@@ -1,5 +1,5 @@
 # 19W Course Notes
-The Course notes of CSC373, CSC336, CSC309, CSC343
+The Course notes of CSC373, CSC336, CSC309, CSC343, STA303
 For the Course notes of JSC270, see its dedicated repository.
 ***
 ### CSC373 Algorithm Design, Analysis & Complexity
@@ -12,3 +12,6 @@ For the Course notes of JSC270, see its dedicated repository.
 ***
 ### CSC343 Introduction to Databases
  - Relation model 1.9
+***
+### STA303
+ - Case Study: Spock Conspiracy Trail 1.10
