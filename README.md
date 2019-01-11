@@ -9,7 +9,7 @@ For the Course notes of JSC270, see its dedicated repository.
  - Number Representations and Errors 1.9
 ***
 ### CSC309 Programming on the Web
- - Networking protocols 
+ - Networking protocols 1.11
 ***
 ### CSC343 Introduction to Databases
  - Relation model 1.9
