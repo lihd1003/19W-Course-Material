@@ -13,5 +13,5 @@ For the Course notes of JSC270, see its dedicated repository.
 ### CSC343 Introduction to Databases
  - Relation model 1.9
 ***
-### STA303
+### STA303 Methods of Data Analysis II
  - Case Study: Spock Conspiracy Trail 1.10
