@@ -3,16 +3,19 @@ The Course notes of CSC373, CSC336, CSC309, CSC343, STA303
 For the Course notes of JSC270, see its dedicated repository.
 ***
 ### CSC373 Algorithm Design, Analysis & Complexity
- - Greedy Algorithm 1.11
+ - Week1 Greedy Algorithm
+ - Week2 MST
 ***
 ### CSC336 Numerical Methods 
- - Number Representations and Errors 1.11
+ - Number Representations and Errors
 ***
 ### CSC309 Programming on the Web
- - Networking protocols 1.11
+ - Networking protocols
+ - HTML & CSS
 ***
 ### CSC343 Introduction to Databases
- - Relation model 1.9
+ - Relation model
+ - Relation Algebra
 ***
 ### STA303 Methods of Data Analysis II
- - Case Study: Spock Conspiracy Trail 1.10
+ - Case Study Spock Conspiracy Trail
