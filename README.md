@@ -7,6 +7,7 @@ For the Course notes of JSC270, see its dedicated repository.
  - Week2 MST
 ***
 ### CSC336 Numerical Methods 
+(MATLAB Kernal) <br>
  - Number Representations and Errors
 ***
 ### CSC309 Programming on the Web
@@ -18,4 +19,5 @@ For the Course notes of JSC270, see its dedicated repository.
  - Relation Algebra
 ***
 ### STA303 Methods of Data Analysis II
+(R Kernel) <br>
  - Case Study Spock Conspiracy Trail
