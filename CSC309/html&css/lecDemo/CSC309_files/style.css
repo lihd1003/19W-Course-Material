@@ -1,0 +1,25 @@
+h1 {
+	color: blue;
+	background-color: yellow; 
+}
+
+p {
+	color: red;
+	background-color: yellow; 
+}
+
+a {
+	background-color: yellow;
+}
+
+#css {
+	color: orange;
+}
+
+.highlight {
+	background-color: pink; 
+}
+
+.fontblue {
+	color: blue;
+}
