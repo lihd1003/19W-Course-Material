@@ -1,0 +1,34 @@
+body {
+	background-color: #c5d2ea;
+	margin-left: 20px;
+	font-family: "Helvetica Neue", Helvetica, sans-serif;
+}
+
+.student {
+	margin-bottom: 5px;
+	font-size: 150%;
+}
+
+.addButton {
+	height: 200%;
+}
+
+ul {
+	margin: 0;
+	padding: 0;
+}
+
+ul li {
+	list-style: none; /* Gets rid of list bullet points */
+}
+
+
+table, td, th {
+	border-collapse: collapse;
+	border: 1px solid black;
+}
+
+td, th {
+	min-width: 200px;
+}
+

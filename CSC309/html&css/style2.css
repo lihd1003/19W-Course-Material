@@ -1,7 +1,7 @@
 #box1 {
 	background-color: salmon;
 	width: 30%;
-	height: 100vh;
+	height: 100000px;
 	/* display: inline-block; */
 	float: left;
 }
@@ -20,9 +20,11 @@
 }
 
 #box4 {
-	float: left;
+	position: relative;
 	height: 100px;
 	width: 100px;
+    left: 200px;
+    top: 100px;
 	background-color: Gold;
 }
 

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+ 	<meta charset="utf-8">
+    <title>ToDo List</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+ </head>
+ <body>
+ 	<h1>ToDo List</h1>
+
+ 	<form id='taskForm'>
+ 		<input id='tName' type="text" name="task" placeholder="Task">
+ 		<input type="submit" value="Add Task">
+ 	</form>
+
+ 	<br>
+
+ 	<table>
+ 		<tbody id='tasks'>
+ 		<tr>
+ 			<th>
+ 				Task
+ 			</th>
+ 			<th>
+ 				Actions
+ 			</th>
+ 		
+ 		</tr>
+ 		<tr>
+ 			<td>
+ 				Buy Milk
+ 			</td>
+ 			<td>
+ 				<button class='edit'>edit</button>
+ 				<button class='remove'>done</button>
+ 			</td>
+ 		</tr>
+ 		 <tr>
+ 		 <td>
+ 		 	Study
+ 		 </td>
+ 		 <td>
+ 		 		<button class='edit'>edit</button>
+ 				<button class='remove'>done</button>
+ 			</td>
+ 		</tr>
+ 		</tbody>
+ 	</table>
+
+ 	<script type="text/javascript" src="todo.js"></script>
+ </body>
+</html>

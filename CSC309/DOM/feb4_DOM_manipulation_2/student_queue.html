@@ -1,0 +1,40 @@
+
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+ 	<meta charset="utf-8">
+    <title>Student Queue</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+ </head>
+ <body>
+ 	<h1>Student Help Queue</h1>
+ 	<h3>Below are the next students in line for help.</h3>
+
+ 	<form id='queueForm'>
+ 		<input id="sName" type="text" name="student" placeholder="Student">
+ 		<input id="sCourse" type="text" name="course" placeholder="Course">
+ 		<input id='sAddAt' type="text" name="addAt" placeholder="Add at position">
+ 		<input type="submit" value="Submit">
+
+ 	</form>
+
+ 	<br>
+
+ 	<input id="timeLimit" type="text" name="limit" placeholder="Time limit (seconds)">
+ 	<button id="kickButton">Kick!</button>
+
+ 	<ul id='queue'>
+ 		<li class='student'>
+ 			James - CSC108<button class='remove'>remove</button>
+ 		</li>
+ 		<li class='student'>
+ 			Kate - CSC207<button class='remove'>remove</button>
+ 		</li>
+ 		<li class='student'>
+ 			Saul - CSC148<button class='remove'>remove</button>
+ 		</li>
+ 	</ul>
+
+ 	<script type="text/javascript" src="student_queue.js"></script>
+ </body>
+</html>
