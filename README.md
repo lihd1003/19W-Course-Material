@@ -1,22 +1,26 @@
 # 19W Course Notes
-The Course notes of CSC373, CSC336, CSC309, CSC343, STA303
-For the Course notes of JSC270, see its dedicated repository.
+The Course notes of CSC373, CSC309, CSC343, STA303
+
 ***
 ### CSC373 Algorithm Design, Analysis & Complexity
  - Greedy Algorithm
+ - Dynamic Algorithm
+ - Network Flow
 ***
-### CSC336 Numerical Methods 
-(MATLAB Kernal) <br>
- - Number Representations and Errors
-***
+
 ### CSC309 Programming on the Web
  - Networking protocols
  - HTML & CSS
+ - JavaScript
+ - HTML DOM
+ - NodeJS
 ***
 ### CSC343 Introduction to Databases
  - Relation model
- - Relation Algebra
+ - Relational Algebra
+ - SQL
 ***
 ### STA303 Methods of Data Analysis II
 (R Kernel) <br>
- - Case Study Spock Conspiracy Trail
+
+
