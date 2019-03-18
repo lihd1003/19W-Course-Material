@@ -6,7 +6,7 @@ const request = require('request')
 const getAddress = (lat, lon) => {
 	return new Promise((resolve, reject) => {
 		request({
-			url: `https://maps.googleapis.com/maps/api/geocode/json?latlng=${lat},${lon}&key=AIzaSyBmlBarJN3RhKqwNnH4uVwcfydzNwUW-OQ`,
+			url: `https://maps.googleapis.com/maps/api/geocode/json?latlng=${lat},${lon}&key=`,
 			json: true
 		}, (error, response, body) => {
 			if (error) {
@@ -20,7 +20,7 @@ const getAddress = (lat, lon) => {
 				}
 		})
 	})
-	
+
 }
 
 module.exports = { getAddress }
