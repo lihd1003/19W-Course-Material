@@ -1,0 +1,20 @@
+{
+  "name": "mar11_mongo",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "crypto-js": "^3.1.9-1",
+    "express": "^4.16.4",
+    "jsonwebtoken": "^8.5.1",
+    "mongodb": "^3.1.13",
+    "mongoose": "^5.4.19",
+    "validator": "^10.11.0"
+  }
+}
