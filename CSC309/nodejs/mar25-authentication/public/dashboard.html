@@ -1,0 +1,46 @@
+<html>
+    <head>
+        <title>Basic Auth</title>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+
+    <body class="container">
+        <div class="page-header">
+            <h1>Dashboard</h1>
+            <h2>You are <strong>logged in.</strong> as (email here)</h2>
+            <button onclick='window.location = "/users/logout"' id='add'>Logout</button>
+        </div>
+        <br>
+        <div class="container row">
+            <div class="jumbotron col-sm-4 pull-center">
+                <h3>Add a Student:</h3>
+                <div>
+                    <label>Student Name:</label>
+                    <input id="name" type="text" name="name"/>
+                </div>
+                <div>
+                    <label>Year:</label>
+                    <input id="year" type="text" name="year"/>
+                </div>
+                <div>
+                    <!-- <input class="btn btn-primary" type="submit" value="Add Student"/> -->
+                    <button onclick='addStudent()' id='add'>Add Student</button>
+                </div>    
+                <p id='message'></p>            
+            </div>          
+        </div>
+
+
+
+        <div>
+            <!-- <input class="btn btn-primary" type="submit" value="Add Student"/> -->
+            <button onclick='getStudents()' id='add'>Get Students</button>
+        </div>   
+        <div>
+            <ul id='studentsList'>
+                
+            </ul>
+
+        </div>             
+    </body>
+    <script type="text/javascript" src="/js/script.js"></script>
+</html>
