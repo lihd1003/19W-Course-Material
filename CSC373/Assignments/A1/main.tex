@@ -1,0 +1,418 @@
+\documentclass[11pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath, amssymb, amsthm, csc, mathbbol}
+\usepackage{float}
+\usepackage{amsfonts}
+\usepackage{mathtools}
+\usepackage{listings}
+\usepackage{multicol}
+\usepackage{enumerate}
+\usepackage{titlesec}
+
+\usepackage{graphicx}
+\usepackage{fullpage}
+\usepackage{comment}
+\usepackage{color}
+\usepackage[mathscr]{euscript}
+\let\euscr\mathscr \let\mathscr\relax
+\usepackage[scr]{rsfso}
+\newcommand{\powerset}{\raisebox{.15\baselineskip}{\Large\ensuremath{\wp}}}
+\newcommand{\myiff}{\mbox{ iff }}
+
+\usepackage[a4paper, margin=1in]{geometry}
+\newtheorem{ques}{Question}[section]
+\newtheorem{defs}{Definition}[section]
+\newenvironment{question}{
+    \begin{ques} \normalfont
+    }{
+    \end{ques}
+}
+
+\newenvironment{shiftpar}[1][1.5em]
+  {\list{}{%\listparindent #1%
+    \itemindent\parindent
+    \leftmargin#1
+%    \rightmargin\leftmargin
+    \parsep\z@\@plus\p@}%
+    \item\relax}
+  {\endlist}
+  
+\newenvironment{my_enumerate}{
+\begin{enumerate}
+  \setlength{\itemsep}{-1pt}
+  \setlength{\parskip}{0pt}
+  \setlength{\parsep}{0pt}}{\end{enumerate}
+}
+
+\newtheorem{claimS}{Claim}[subsection]
+\newtheorem{claims}{Claim}[claimS]
+
+
+
+\newcommand{\fdent}{\hspace{4mm}}
+\titleformat*{\subsection}{\normalfont}
+\newcommand{\AAND}{\; AND\;}
+\newcommand{\OOR}{\; OR\;}
+
+\newcommand*{\myfontforfunc}{\fontfamily{bch}\selectfont}
+\DeclareTextFontCommand{\textfunc}{\myfontforfunc}
+
+\lstset
+{ %Formatting for code in appendix
+    basicstyle=\footnotesize,
+    numbers=left,
+    stepnumber=1,
+    showstringspaces=false,
+    tabsize=1,
+    breaklines=true,
+    breakatwhitespace=false,
+}
+\renewcommand{\thesubsection}{\thesection.\alph{subsection}}
+
+
+\title{CSC373 Assignment1}
+\author{Haoda Li, Ruiqi Wang}
+
+\begin{document}
+
+\maketitle
+\begin{enumerate}
+    \item
+    Define $A = (a_1,a_2,...,a_n)$ be the schedule sequence ordered by the defined greedy algorithm. \\
+    Define $A^* = (a'_1,a'_2,...,a'_n)$ be the sequence of soldiers that represents the optimal schedule.\\
+    \begin{enumerate}
+    
+    
+        \item \begin{proof} We show that the algorithm described in question (a) will not always produce an optimal schedule by a counterexample.\\
+            Consider the set of soldiers $S = \{s_1,s_2\}, c_1 = 4, r_1 = 1, c_2 = 2, r_2 = 2$.\\
+            Note that $4+1 > 2+2$, by our sorting strategy, the schedule sequence is $A = (s_1,s_2)$ and the total time is $max\{4+2+2, 4+1\} = 8$. \\
+            However, consider $A^* = (s_2, s_1)$, the total time is $max\{2 + 4 + 1, 2 + 2\} = 7 < 8$. Therefore, sorting by the sum of $c_i + r_i$ does not always give the optimal solution.
+        \end{proof}
+        
+        
+        \item We perform a greedy algorithm by sorting the order in which the soldiers will climb the rope so that $r_i\geq r_{i+1}$. 
+
+
+        \item Define $A_0=\emptyset$ and $A_i = {a_1,...,a_i}, A_i\subseteq A$ be the subsequence of the first $i$ elements of $A$(the schedule sequence ordered by the defined greedy algorithm),$i\in\{1,...,n\}.$\\
+        Define $T_A(k)$ be the completion time of the $k$th soldier in the schedule sequence $A$, $T_A(k) = r_k + \sum_{i=1}^k c_i$. \\
+        Define $T(A)$ be the overall completion time of the soldiers with the given schedule $A$, note that $T(A) = \max\{T(a_k) \mid k\in\mathbb{Z}^+. k\leq n\}$.\\
+        \textit{Claim.} Let $A$ be the sequence of $n$ soldiers that is sorted in non-increasing order of their running time ($r_i$), then $\forall k\in\mathbb{N}, k\leq n$, there exists an optimal schedule $A^*$ s.t. $A_k = A_k^*$
+        \begin{proof} Define $P(k)$: $\exists$ an optimal schedule $A^*$  s.t. $ A_k = A_k^*$, where $k\in\{0,1,2,...,n\}$.  \\
+        
+        \textbf{Base Case:} $k = 0$, $A_0 = \emptyset = A^*_0, P(0)$ holds.\\[2ex]
+        \textbf{Inductive Step:} Let $k > 0$, assume $P(k)$ holds. Take $A^*$ be the optimal solution s.t. $A_k = A_k^*$. \\
+        Consider $a_{k+1} \in A$, \\
+        \textbf{Case 1: } $a_{k+1} = a'_{k+1}$, then $A_{k+1} = A^*_{k+1}, P(k+1)$ is proven. \\
+        \textbf{Case 2: } $a_{k+1} \neq a'_{k+1}$.\\
+        Since both $A$ and $A^*$ are sequence of all $n$ soldiers, then $\exists j\in \N, j\neq k+1$ s.t. $a'_j\in A^*, a'_j = a_{k+1}$. By induction hypothesis, $A_k = A^*_k$, also, $a_j' = a_{k+1}$, then $a_j'$ can't appear in $A^*_k$, otherwise, $a_{k+1}$ will be in $A_k$. Thus, we have $j > k+1$    (1)\\[2ex]
+        Since A is sorted in non-increasing order of running time, $r_{k+1} = max\{r_i \mid i \in \N, k+1\leq i \leq n \}$. Since $A^* - A^*_k = A - A_k$, $r'_j = r_{k+1} = max\{r'_i \mid i \in \N, k+1\leq i \leq n\}$    (2)\\[2ex]
+        % Denote $a_{k+1}'$ as the $(k+1)$th element of $A^*$. Denote $r'_j, r'_{k+1}$ be the running time of $a'_j, a'_{k+1}$ , respectively. Because $A$ is sorted in non-increasing order of running time, we have $r'_j \geq r'_{k+1}$. \\
+        % Also, note that $\forall \ell \in\{k+2,...,j-1\}. T_{A^*}(\ell) = r'_\ell + \sum_{i=1}^\ell c'_i \leq r'_{j} + \sum_{i=1}^j c'_i = T_{A^*}(j)$, hence $T(A^*)\geq T_{A^*}(j)$ by the definition of $T$.\\
+        Let $A^{**} = \{a_1'',a_2'',...,a_n''\}$ be the sequence obtained by swapping $a'_j$ and $a'_{k+1}$ in  $A^*$, (i.e. $a'_j = a''_{k+1}, a'_{k+1} = a_j''$ and $a''_i = a'_i$ for $i\in \N, 1\leq i \leq n, i\neq j, i \neq k+1$). \\
+        Then we have $A_{k+1} = A^{**}_{k+1}$.\\[2ex]
+        We'll show that $A^{**}$ is an optimal solution. Note that \\
+        $\forall \ell \in \{1,...,k\}, T_{A^{**}}(\ell) = T_{A^*}(\ell)$ since the swapping won't influence them. \\
+        For k+1.
+        \begin{align*}
+            \begin{split}
+                 T_{A^{**}}(k+1) &= r''_{k+1} + \sum_{i=1}^{k+1} c''_i \\
+                 & \le r'_{j} + \sum_{i=1}^{k} c'_i + c'_{j}\\
+                 & \leq r'_{j} + \sum_{i=1}^{j} c'_i \ \  \text{since j $>$ k+1 by (1)}\\
+                 &= T_{A^*}(j)
+            \end{split}
+        \end{align*}
+        $\forall l\in\{k+2,k+3,...,j-1\}$.
+        \begin{align*}
+            \begin{split}
+                 T_{A^{**}}(\ell) &= r''_{\ell} + \sum_{i=1}^{\ell} c''_i \\
+                &= r'_{\ell} + \sum_{i=1}^{k}c'_i + c'_j + \sum_{i=k+2}^{\ell}c'_i \\
+                &\leq r'_j + \sum_{i=1}^{k}c'_i + c'_j + \sum_{i=k+2}^{\ell}c'_i \ \ \ \text{since $r'j \geq r'_\ell$ by (2)}\\
+                &\leq r'_j + \sum_{i=1}^{k}c'_i + c'_j + c'_{k+1} + \sum_{i=k+2}^{\ell}c'_i \\
+                 &\leq r'_j + \sum_{i=1}^{j}c'_j\\
+                 &= T_{A^*}(j)
+            \end{split}
+        \end{align*}
+        $T_{A^{**}}(j) = r''_j + \sum_{i=1}^j c''_i = r'_{k+1} + \sum_{i=1}^j r'_j \leq r'_{j} + \sum_{i=1}^j r'_j = T_{A^*}(k+1)$\\[2ex]
+         For $\ell = j$, $T_{A^{**}}(j) = r''_j + \sum_{i=1}^j c''_i = r'_{k+1} + \sum_{i=1}^j c'_j = T_{A^*}(j)$\\[2ex]
+        $\forall \ell \in \{j+1,...,n\}, T_{A^{**}}(\ell) = T_{A^*}(\ell)$ since the swapping won't influence them. \\[2ex]
+        Therefore, $T(A^{**}) = \max\{T_{A^{**}(\ell)}\mid \ell \in\{1,...,n\}\} = \max\{T_{A^{*}}(\ell)\mid \ell \in\{1,2,...,k\}\cup\{j\} \cup \{j+1,...,n\}\} \leq \max\{T_{A^{*}}(\ell)\mid \ell\in\{1,2,...,n\}\} = T(A^*)$. \\
+        Since $A^*$ is an optimal schedule, $A^{**}$ must also be an optimal schedule. $P(k+1)$ is proven. \\
+        In all cases, $P(k) \Rightarrow P(k+1)$. Therefore, by induction, the claim is proven.
+        \end{proof}
+        \textit{Corollary. }By the claim above, when $k = n$, $\exists A^*, s.t A_n = A^*_n$. Since $A = A_n, A^* = A^*_n$, we get $A = A^*$. Thus, we have proven that the greedy algorithm is correct.  
+    \end{enumerate}
+    \newpage
+    \item \textbf{Algorithm} \\
+    Input: $n \in\mathbb{Z}^+, A = (a_1,a_2,...,a_n)$ is the sequence of integers, $|A| = n$. \\
+    Output: returns $j,k\in\mathbb{Z}^+$ such that $(1\leq j\leq k \leq n)\wedge (\forall j',k'\in\mathbb{Z}^+, 1 \leq j'\leq k' \leq n.\Rightarrow \sum_{i=j'}^{k'}a_i \leq \sum_{i=j}^{k}a_i)$ \\
+    \begin{lstlisting}
+    max(A, n)
+        j, k, l = 0;
+        local_max = -Infinity;
+        global_max = -Infinity;
+        for i in range(1, n):
+            if (local_max < 0):
+                l = i
+                local_max = 0
+            local_max = local_max + A[i]
+            if (local_max > global_max):
+                j = l
+                k = i
+                global_max = local_max
+        return j, k
+    \end{lstlisting}
+    \textbf{Justification for Runtime}\\[2ex]
+    The initialization (line 2-4) are all simple value assignment statements which take constant time.\\
+    Then we have a single for loop from 1 to n. Within each iteration, the two if-blocks(line 6-8, 10-13) contain only value comparison and assignment statements and take constant time. Line 9 is a simple addition and a value assignment, which takes constant time. Thus, each iteration takes constant time and the loop takes a total of $\mathcal{O}(n)$ runtime.\\
+    The return statement also takes constant time.\\
+    Therefore, our algorithm takes $\mathcal{O}(n)$ runtime.\\[2ex]
+    
+    \textbf{Proof for Correctness} \\[2ex]
+    Denote the set of the first $i$ integers of the input $A$ as $A_i = (a_1,a_2,...,a_i)$, for $i\in \N, 1\leq i \leq n$. Denote $A_0 = \emptyset$. Note that $A_i$ is the sequence of all examined integers after the $i$th iteration of the for loop (line 5-13). \\
+    Define $j_i,k_i, \ell_i$ be the value of $j,k, \ell$ after the $i$th iteration of the for loop, $j_0 = k_0 = \ell_0 = 0$. \\
+    Define $local\_max_i, global\_max_i$ be the value of $local\_max, global\_max$ after the ith iteration of the for loop. $local\_max_0 = global\_max_0 = -Infinity$ by the algorithm.\\[2ex]
+     \textit{lemma1. }$\forall m\in\mathbb{N}. (a_{\ell_m},...,a_{m})$ is the maximum subsequence of $A_m$ containing $a_{m}$\\
+    \textit{lemma2. } $\forall m\in\mathbb{N}. m\leq n\Rightarrow (a_{j_m},...,a_{k_m})$ is the maximum subsequence of $A_m$
+  
+    \begin{proof}
+    Define P(m): $(a_{j_m},...,a_{k_m})$ is the maximum subsequence of $A_m$\\
+    Q(m): $(a_{\ell_m},...,a_{m})$ is the maximum subsequence of $A_m$ containing $a_{m}$, where $m \in \N, 1\leq m \leq n$ \\[2ex]
+    First show that $lemma1$ holds by proving that $Q(m)$ holds for $m \in \N, 1\leq m \leq n$.\\
+    \textbf{Base Case: } m = 1. \\
+    Since $local\_max = -Infinity$ before the first iteration of the for loop, $\ell$ is set to i = 1 during the first iteration. Since $(a_\ell) = (a_1)$ is the only subsequence of $A_1$ containing $a_1$, it is the max subseqence of $A_1$ containing $(a_1)$. Thus, Q(1) holds.\\[2ex]
+    \textbf{Inductive Step:} let $m\in \N, m \geq 1$, assume that Q(m) hold. WTS Q(m+1).\\[2ex]
+    Case 1: $local\_max_m < 0$. then by algorithm $\ell_{m+1} = m+1$,  $local\_max_{m+1} = a_{m+1}$.\\
+    If we want to get the subsequence of $A_{m+1}$ containing both $a_{m+1}$ and some entries before $a_m$, then the subsequence must contain $a_m$.\\
+    Since Q(m) holds, i.e. $local\_max_m$ is the maximum sum of subsequences containing $a_m$, then the sum of any subsequences of $A_{m+1}$ that contain both $a_{m+1}$ and some entries before $a_{m+1}$ have sum $\leq local\_max_m + a_{m+1} < 0 + a_{m+1}$.\\
+    Thus, $local\_max_{m+1} = a_{m+1}$ is the maximum sum of subsequence containing $a_{m+1}$.\\
+    And since we update $\ell_{m+1}$ accordingly, Q(m+1) holds in this case.\\
+    
+    Case 2: $local\_max_m \geq 0$. then $\ell_{m+1} = \ell_{m}$, $local\_max_{m+1} = local\_max_{m} + a_{m+1}$.\\
+    Similar to the argument in Case 1, if we want to get the subsequence of $A_{m+1}$ containing both $a_{m+1}$ and some entries before $a_m$, then the subsequence must contain $a_m$.\\
+    Since Q(m) holds, i.e. $local\_max_m$ is the maximum sum of subsequences containing $a_m$, then the sum of any subsequences of $A_{m+1}$ that contain both $a_{m+1}$ and some entries before $a_{m+1}$ have sum $\leq local\_max_m + a_{m+1}$ (takes $"="$ when $\ell_{m+1} = \ell_{m}$).  \\
+    Since $local\_max_{m} \geq 0$, the subsequence containing only $a_{m+1}$ has sum $a_{m+1} \leq local\_max_m + a_{m+1}$.\\
+    Thus, $local\_max_{m+1} = a_{m+1}+ local\_max_m$ is the maximum sum of subsequence containing $a_{m+1}$.\\
+    And since we update $\ell_{m+1}$ accordingly, Q(m+1) holds in this case.\\
+    By the principle of induction, we have proven that $lemma 1$ holds.\\[2ex]
+    
+    Then show that $lemma2$ holds by proving that $P(m)$ holds for $m \in \N, 1\leq m \leq n$.\\[2ex]
+    \textbf{Base Case:} m = 1.\\
+    Since $(a_1)$ is the only subsequence of $A_1$, $(a_1)$ is the maximum subsequence of $A_1$. By the algorithm, since on line 10, $global\_max_0 = -Infinity < local\_max = A[1]$, then $j, k$ are updated to $j=\ell = 1, k= i = 1$ after the first iteration, i.e. $(a_{j_1},...,a_{k_1}) = (a_1)$. Thus, P(1) holds.\\[2ex]
+    \textbf{Inductive Step: } let $m\in \N, m \geq 1$, assume that P(m) hold. WTS P(m+1).\\
+    Notice that $\{$ subsequences of $A_{m+1}$ $\} $ = $\{$ subsequences of $A_{m}$ $\} $ $\cup$ $\{a[i, m+1]:  i\in\N, 1\leq i \leq m+1\} $\\
+    Denote $B_m = \{$ subsequences of $A_{m}$ $\}$, $C_{m+1} = \{a[i, m+1]:  i\in\N, 1\leq i \leq m+1\} $\\
+    Then $global\_max_m =$ max sum of $B_m$ by I.H. and $local\_max_{m+1}$ = max sum of $C_{m+1}$ by $lemma1$.\\
+    Since the algorithm doesn't update $local\_max$ after line 9 in a single iteration, then $local\_max = local\_max_{m+1}$ after line 9 in the $m+1$th iteration. Thus, the algorithm takes $max\{global\_max_{m}, local\_max_{m+1}\}$ as $global\_max_{m+1}$ in line 13, i.e. $global\_max_{m+1} =$ max sum of all subsequences of $A_{m+1}$.\\
+    Since we update $j, k$ according to the change of $global\_max$, $P(m+1)$ holds.\\[2ex]
+    By the principle of induction, we have proven $lemma2: \forall m\in\mathbb{N}. m\leq n\Rightarrow (a_{j_m},...,a_{k_m})$ is the maximum subsequence of $A_m$.\\
+    Take $m = n$, we have $(a_{j_n},...,a_{k_n})$ is the maximum subsequence of $A_n = A$, and thus, the algorithm is correct.
+    \end{proof}
+\newpage
+
+\item \textbf{Algorithm} \\
+    Input: $G = (V,E)$ a connected undirected graph with a unique MST, $w: E\rightarrow \Z^+$, a weight function for the edges of G.\\
+    Output: returns a second-minimum spanning tree of G \\
+    \begin{lstlisting}
+    Second-MST(G, w)
+        T* = MST-Prim(G, w)
+        E* = all edges in T*
+        min_diff = 0
+        a = Nil  // edge to add
+        r = Nil  // edge to remove
+        initialization for LCA // this operation is explained below and in Appendix
+        for e in E - E*:
+            C = Find_circle(T*, e)
+            f = edge with maximum weight in C except e 
+            // for find_circle and find the maximum weight, we use a finding lowest common ancestor algorithm with some additional operations, see implementation details in Appendix 
+            if w(e) - w(f) < min_diff:
+                min_diff = w(e) - w(f)
+                r = f
+                a = e
+        if a == Nil:
+            return Nil
+        T = remove r from T*
+        T = add a to T
+        return T
+    \end{lstlisting}
+    
+    % \begin{lstlisting}
+    % Find_circle(T, e)
+    %     (u, v) = e 
+    %     for each ancestor a of u from u.parent to root of T:
+    %         label a
+    %     for each ancestor w of v from v.parent to root of T:
+    %          if w is labeled:
+    %             return path(u, w) + {e} + path(v, w)
+    %         else:
+    %             label w
+    % \end{lstlisting}
+
+\textbf{Justification for correctness}\\[2ex]
+First prove the lemma:\\
+\textit{Lemma 1. } For any graph $G=(V,E)$, if $G$ has a unique MST $T^*$ and some second MST $\hat{T}$, then the second MST $\hat{T}$ has exactly one edge that differs from the $T^*$. 
+\begin{proof} 
+    Let $m = |E|$ (the number of edges in G), $n = |V|$ (the number of vertices in G). \\
+    Since $T^*, \hat{T}$ are spanning tree of G, each of them has $|\hat{T}|=|T^*| = n-1$ edges. \\[2ex]
+    Since the MST is unique, $\hat{T}$ must have at least one edge differ from $T^*$. \\
+    We then show that $\hat{T}$ does not have two ore more edges differ from $T$ by contradiction: \\[2ex]
+    Assume $\hat{T}$ has two ore more edges differ from $T^*$, a.k.a. $|T^*-\hat{T}|=|\hat{T}-T^*|\geq 2$. \\[2ex]
+    Let $(u,v)\in T^*-\hat{T}$ be the edge with the minimum weight in $T^*-\hat{T}$, then $\hat{T}\cup\{(u,v)\}$ must contain a unique cycle $C$, since $\hat{T}\cup\{(u,v)\}$ spans G with $n$ edges. And there must exists some edge $(x,y)\in \hat{T}-T^*$ that is in $C$,  otherwise $C \in T$, contradicts that a MST does not have a cycle. \\[2ex]
+    We also have $w(x,y)>w(u,v)$, justify by contradiction: \\
+    Suppose $w(x,y)\leq w(u,v)$. Similar to the argument above, $T^*\cup\{(x,y)\}$ must contains a unique cycle $C'$ and there exists some $(u',v')\in T^*-\hat{T}$ that is in $C'$. Then $T'=T^*-\{(u',v')\}\cup\{(x,y)\}$ is a spanning tree.\\ Notice that $(u,v)$ is the minimum weighed edge in $T^*-\hat{T}$, hence $w(u',v')\geq w(u,v)$ and 
+    $$w(T') = w(T^*)-w(u',v')+w(x,y) \leq w(T^*) - w(u,v)+w(x,y)$$
+    and by our assumption that $w(x,y)\leq w(u,v)$, we have 
+    $$w(T^*) - w(u,v)+w(x,y) \leq w(T^*) - w(u,v)+w(u,v) = w(T^*)$$
+    which implies $w(T')\leq w(T^*)$. It contradicts with the fact that $T^*$ is the unique MST. Therefore, $w(x,y)>w(u,v)$.\\
+    
+    Notice that $(x,y),(u,v)$ are both in the cycle $C$. Let $\hat{T}'=\{ \hat T\}-\{(x,y)\}\cup\{(u,v)\}$, $\hat{T}'$ is also a spanning tree and because $w(u,v)<w(x,y)$, we have $w(\hat{T}')<w(\hat{T})$.\\
+    Also, $\hat{T}'\neq T^*$ since $T^*$ differs from $\hat{T}$ by at least two edges while $\hat{T}'$ differs from $\hat{T}$ by only one edge. \\
+    Therefore, we found a spanning tree $\hat{T}'$ s.t.$w(\hat{T}')<w(\hat{T})$, i.e. $\hat{T}$ is not the second MST, which is a contradiction.\\
+    Thus, the statement of the lemma is correct.
+\end{proof}
+
+Then prove the correctness of the algorithm: 
+\begin{proof}
+    If $E - E^* = \emptyset$, then there is no other spanning tree in $G$ and the for loop won't execute. Therefore, the algorithm will correctly return Nil.\\[2ex]
+    If $E- E^* \neq \emptyset$.\\
+    By lemma 1, the MST and second MST differ only by one edge. Thus, we only need to consider the spanning trees by adding an edge not in $T^*$ to $T^*$ and remove another edge to avoid cycle.\\
+    Denote $C$ as the cycle in $T\cup\{e\}$, where $e$ is an edge not in $T^*$.\\
+    Note that the edges on $C$ other than $e$ must have weight smaller than $w(e)$. (otherwise, if there exists $e_0 \in C$ s.t. $w(e_0) \geq w(e)$, we can get a different MST from $T^*$ or a spanning tree with smaller total weight by adding $e$ to $T^*$ and remove $e_0$, contradicts that $T^*$ is the unique MST.)\\
+    Denote the edge removed from $C$ as $r$, if we want to get the second MST, we need to minimize the total weight of the spanning tree: $T^* - \{r\} + \{e\}$, i.e. we need to minimize $w(T^* - \{r\} + \{e\}) - w(T^*) =  w(e) - w(r)$.\\[2ex]
+    Since we update the edge to add and to remove according to the update of $min\_diff$,  we prove the algorithm is correct by proving that the value of $min\_diff$ at the end of the for loop is the minimum of all possible $w(e) - w(r)$ as above. \\[2ex] 
+    Denote $E_i = \{e_1, e_2, .., e_i\}$ be the set of the first i elements in $E - E^*$, $i\in \N, 1\leq i \leq |E|$ and $E_0 = \emptyset$.\\
+    Denote $f_i, a_i, r_i, min\_diff_{i}$ be the value of $f, a, r, min\_diff$ after the ith iteration of the for loop. $a_0 = Nil$, $r_0 = Nil$, $min\_diff_{0} = 0$.\\[2ex]
+    Define the predicate: P(k): $min\_diff_{k} = min\{w(T) - w(T*): T \in \cup_{1\leq i \leq k} S_i\}$, $S_i =$ set of spanning trees containing $e_i$ and different from MST $T^*$ by only one edge, where $k\in \N, 1\leq k \leq |E|$.\\[2ex]
+\textbf{Base Case: } k = 1. \\
+    Since $e_1$ not in MST $T^*$, adding the edge $e_1$ to $T^*$ creates a unique cycle $C$. We can get another spanning tree by removing an edge other than $e_1$ from $C$.\\
+    By looping over all edges in $C$ and repeating the above operation, we can get all spanning trees containing $e_1$ and different from $T^*$ by one edge.\\
+    (Otherwise, if we can get a different spanning tree containing $e_1$, we can remove an edge not on $C$, however, we will then disconnect one vertex on this edge from other vertices and won't get a spanning tree.)\\[2ex]
+    Since $f_1$ is the edge with maximum weight on $C$ other than $e_1$. It minimizes  $w(e_1) - w(r)$. Since we take $min\_diff_1 = w(e_1) - w(f_1)$, P(1) holds.\\[2ex]
+\textbf{Inductive Step: } Let $k\in \N$, assume P(k) holds. WTS P(k+1) holds.\\
+By similar arguments as the base case, $f_{k+1}$ minimize $w(e_{k+1}) - w(r)$ where $r$ is an edge on the cycle in $T^{*} \cup \{e_{k+1}\}$.i.e. $w(e_{k+1}) - w(r) = min\{w(T) - w(T*): T \in T_{k+1}\}\}$\\
+By induction hypothesis, $min\_diff_{k} = min\{w(T) - w(T*): T \in \cup_{1\leq i \leq k} T_i\}$, $T_i =$ set of spanning trees that contain $e_i$ and differ from the MST by only one edge.\\
+Thus, by taking the minimum between $w(e_{k+1}) - w(e_{k+1})$ and $min\_diff_{k}$, we get the minimum of $w(T) - w(T^*)$ where $ T \in \cup_{1\leq i \leq k+1} T_i$.\\
+Therefore, $P(k+1)$ holds.\\
+
+Therefore, $\forall k \in \N, 1 \leq k \leq |E|$, $min\_diff_{k} = min\{w(T) - w(T*): T \in \cup_{1\leq i \leq k} T_i\}$, where $T_i =$ set of spanning trees that contain $e_i$ and differ from the MST by only one edge.\\[2ex]
+Since we loop over all edges in $E - E^*$, set of spanning tree of G that differs from $T^*$ by only one edge = $\cup_{1\leq i \leq |E|} T_i$.\\
+Take $k = |E|$, $min\_diff_{|E|} = min\{w(T) - w(T*):$ T is a spanning tree of G that differs from $T^*$ by only one edge$\}$ \\
+Since we get the correct edge $a$ to add and $r$ to remove from $T^*$ according to $min\_diff$, the Second-MST algorithm correct.
+\end{proof}
+
+\textbf{Justification for Runtime}
+\begin{enumerate}[1.]
+    \item The algorithm starts by using Prim's Algorithm to find MST, which takes $\mathcal{O}(|E|log|V|)$ runtime.
+    \item The initialization step(line 3-5) are value assignments, which take constant time.
+    \item The initialization of the LCA algorithm takes $O(|V|\log|V|)$ time, see Appendix for details. 
+    \item For each iteration in the for loop:\\
+    Since we can attach a field to each edge $e$ to indicate whether $e$ is in MST during the MST-Prim process, the check of whether $e$ is in T takes constant time.\\[2ex]
+    If $e$ is in MST, then we execute the next loop, so the runtime for this case is $\mathcal{O}(1)$.\\
+    If $e$ is not in MST:\\
+    % For the Find-circle function, denote $e$ as $(u, v)$. We simply go up from $u, v$ to root of $T$ to find their common ancestors $w$ and return the union of $e$ and paths $u\rightarrow w, v\rightarrow w$. This process can be done in linear time to the height of $T$, since there are only $|V| - 1$ edges in T, height of T is at most $|V| - 1$. Thus, Find-circle takes $\mathcal{O}(|V|)$ time.\\
+    % For line 11, finding the maximum edge in C except e takes linear time to the length of $C$, since C contains at most $|V|$ edges, this line takes at most $\mathcal{O}(|V|)$ time.\\
+    For Find-cycle and finding the maximum weight edge other than $e$ in the cycle, we  use LCA with Sparse Matrix, which takes $\mathcal{O}(log|V|)$ time, see details in Appendix.\\[2ex]
+    The rest of the loop is simple comparison and value assignment statements, which takes constant time.\\
+    Thus, each iteration takes at most $\mathcal{O}(log |V|)$ time. Since there are $|E|$ edges in G, the for loop takes at most $\mathcal{O}(|E| log|V|)$ runtime.
+    \item Add or remove an edge from T is only a change of parent pointer, thus taking constant time.
+    \item The return statements also take constant time.
+\end{enumerate}
+ Therefore, our algorithm runs in $\mathcal{O}(|E|log|V| + |E|log|V| + const) = \mathcal{O}(|E|log |V|)$ time.
+\end{enumerate}
+
+\section*{Appendix} 
+\subsection*{\textbf{Reasons for using LCA}} Let $T^*$ be some MST of $G=(V,E)$, $e\in E-T^*$, say $e=(u,v)$. By the properties of the tree, we can trace $u$ and $v$ along their parents, till the root $r$. there will be some vertices that are traced by both $u,v$, let $q$ be the first of such vertex, then $u\sim q\sim v$ is a path between $(u,v)$. The path along with $e$ forms a cycle. Also, by the property of a spanning tree, this is the only path between $(u,v)$. Call $q=LCA(u,v)$ the lowest common ancestor of $u,v$. Therefore, if we can find the LCA of vertices, we can find a cycle in $T^*\cup\{e\}$. Then, we can examine all the edge weights for finding the maximum weight edge. \\
+
+\subsection*{\textbf{Implementation of finding max weight edge}}
+The algorithm is based on the Sparse Matrix implementation of LCA, with some augmentation, the Sparse matrix implementation of LCA is found from\\ https://www.hackerrank.com/topics/lowest-common-ancestor\\ and the following is how we modify it to allow returning max weight edge. \\
+
+Precondition: $V=\{1,2,...,n\}, |V|=n$ is the set of vertices in a tree, $parent[i]$ returns the index of $i$th vertex's parent, $w$ is the weight function.\\
+Postcondition: returns a 2-D array $P$ such that $P[i][j].index$ stores the $2^j$th ancestor of $i$ and $P[i][j].weight = e_m$, s.t. $w(e_m) = \max\{w(e)\mid e \text{ is on the path from }v_i \text{ to its }2^j\text{th ancestor}\}$ and $e_m$ is on the path from $v_i$ to its $2^j$th ancestor, or $Nil$ if $i$ does not have $2^j$th ancestor. \\
+\begin{lstlisting}
+    initialization(V, w):
+        P = an 2-D array filled with Nil
+        
+        // for every vertex i, P[i][0] stores its parent and the weight of the edge from v_i to its parent. 
+        for i from 1 to n:
+            if i is the root:
+                P[i][0] = Nil
+            else:
+                node.index = parent[i].
+                node.weight = (i, parent[i])
+                P[i][0] = node
+        
+        for j from 1 to ceil(log_2(n)):
+            for i from 1 to n:
+                if P[i][j-1] != Nil and P[P[i][j-1]][j-1] != Nil:
+                    node.index = P[P[i][j-1]][j-1].index
+                    if w(P[i][j-1].weight) > w(P[P[i][j-1]][j-1].weight):
+                         node.weight = P[i][j-1].weight
+                    else:
+                        node.weight = P[P[i][j-1]][j-1].weight
+                    P[i][j] = node
+\end{lstlisting}
+\vspace{1cm}
+Precondition: $P$ is the 2-D array specified in initialization(V,w), $i\neq j$ are two vertices in the graph. \\
+Postcondition: returns the maximum weight edge on the path between $i, j$
+\begin{lstlisting}
+    find_max_weight(P, i, j):
+        // level returns the level of a vertex in the tree
+        if level(i) < level(j):
+            swap i, j    // make sure i always have the larger level
+            
+        // raise i to the same level as j
+        d = level(i) - level(j)
+        max_weight_edge = Nil
+        while d > 0:
+            s = floor(log_2(d)) 
+            if w(P[i][s].weight) > w(max_weight):   // update max_weight_edge
+                max_weight_edge = P[i][s].weight
+            i = P[i][s].index     // raise i
+            d = 2^s
+          
+        if i == j: // if j is ancestor of i, already found path i to j
+            return max_weight_edge
+            
+        // if not 
+        for k from ceil(log_2(height of the tree)) to 0:
+            if((P[i][k] != Nil) and (P[i][k] != P[j][k])):
+                max_weight_edge = edge among (P[i][k].weight, P[j][k].weight, max_weight_edge) with max weight
+                i = P[i][k].index
+                j = P[j][k].index
+        max_weight_edge = edge among (max_weight_edge, P[i][0].weight, P[j][0].weight) with max weight
+        return max_weight_edge
+\end{lstlisting}
+
+\textbf{Proof of Correctness} \\
+\textbf{Claim 1. } initialization is correct. 
+\begin{proof} I'll do an induction on $j$. \\
+\textbf{Predicate: } $P(j) = P[i][j]$ stores the $2^j$th ancestor of $i$ and \\
+$\max\{w(e)\mid e$ is on the path from $v_i$ to its $2^j$ th ancestor$\}$, or $Nil$ if $i$ does not have $2^j$th ancestor. where $i\in\{1,...,n\}$.\\[2ex]
+\textbf{Base case: } $j=0$, then from line 6-11, its trivial that $\forall i\in\{1,...,n\}. P[i][0]$ stores its parent ($2^0$th ancestor) and the weight of the edge between $i$ and its parent. Or $Nil$ if $i$ is root. \\[2ex]
+\textbf{Inductive Step: } Assume P(j) holds, consider the $j+1$th iteration of the for loop (line 13-18).\\
+Note that an entry $ P[m][n]$ is only modified in the $n$th iteration of the for loop (line 13-18) and the $m$th iteration of the inner for loop (line 14-18). \\
+Let $i$ be an arbitrary iteration of the inner for loop. \\
+Suppose $P[i][j] \neq Nil$ and $P[P[i][j]][j] \neq Nil$, then $P[i][j].index$ is the $2^j$th ancestor of $i$, $P[P[i][j]][j]$ is the $2^j$th ancestor of $P[i][j]$, a.k.a $2^j$th ancestor of $2^j$ ancestor of $i$, which is $i$'s $2^{j+1}$th ancestor.\\ Similarly, $P[i][j].weight, P[P[i][j]][j].wight$ stores the max weighted edge from $i$ to $i$'s $2^j$th ancestor and $i$'s $2^j$th ancestor's $2^{j+1}$th ancestor respectively, hence the max of them is the max weighted edge from $i$ to its $2^{j+1}$th ancestor.\\
+If $P[P[i][j]][j]$ is $Nil$, then $P[i][j+1]$ will remain $Nil$ as wanted since $i$'s $2^{j+1}$th ancestor does not exist. 
+Suppose $P[i][j] == Nil$, then $i$'s $2^{j+1}$th ancestor does not exist, $P[i][j+1]$ will remain $Nil$ as wanted.\\[2ex]
+\end{proof}
+
+\textbf{Claim 2. } find\_max\_weight is correct
+\begin{proof}
+By the property of a tree, we know that $\forall i,j\in V, i\neq j$, there exists a path between $i\sim LCA(i,j)\sim j$ where $LCA(i,j)$ is the lowest common ancestor of $i, j$.  Therefore, if we find the $LCA(i,j)$, we can find the path between $i,j$.\\
+As shown in the original implementation of find\_LCA, it will traces upwards and find the LCA by a binary-lifting. By the correctness of the original find\_LCA algorithm, the two vertices $i,j$ are lifted and eventually to their lowest common ancestor.\\
+Note that whenever we lift a vertex $i$ (line 12, 22, 23), $P[i][s].weight$ is compared with max\_weight\_edge on the path we already found. By the correctness of initialization, $P[i][s].weight$ is the max weight edge in the path from $i$ to $P[i][s]$. Therefore, during the lifting, we maintain max\_weight\_edge be the max weight edge on the path $i\sim LCA(i,j)\sim j$. \\[2ex]
+\end{proof}
+
+
+\textbf{Justification for Runtime} \\
+Note that the Sparse Matrix implementation of LCA takes $O(|V|\log|V|)$ time for initialization and $O(\log|V|)$ time for each call of finding $LCA$. \\
+Compare to the original initialization, the added operations are \\
+Line 10, assign (i, parent[i]) to the weight field of an entry of $P$, which takes constant time. \\
+Line 17-20, find the max of two edges stored in two entries of $P$. Note that by implementing the matrix as a hash table, the expected worst case run time of each query is constant.\\ 
+Therefore, the overall runtime of initialization remains to be $O(|V|\log|V|)$ \\[2ex]
+Compare the the original find LCA, the added operations in find\_max\_height are \\
+Line 11-12, get the weight field of one entry of $P$.\\
+Line 22, 25, find the weights stored in a constant number of entries of $P$, and find the max among 3 values. \\
+All the operations added take constant time in a single iteration of the loops they belong to, hence the overall runtime of find\_max\_weight remains to be $O(|V|\log|V|)$. \\
+Therefore, the total runtime is $O(|V|\log|V|)$.
+\end{document}

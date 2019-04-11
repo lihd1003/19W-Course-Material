@@ -1,0 +1,174 @@
+---
+title: "STA303 Assignment 2"
+author: "Haoda Li 1003918335"
+output: pdf_document
+---
+# Solutions
+## Question 1
+
+```{r echo=FALSE}
+student <- read.csv('data2.csv')
+GPA <- student$GPA
+Grade <- student$Grade
+Player <- as.integer(student$Play != 0)
+Glay <- NULL
+for (i in 1:399)
+{ if (Player[i]==0 & Grade[i]=="B ")
+{Glay[i]="NonplayerNA"}
+else if (Player[i]==0 & Grade[i]=="A ")
+{Glay[i]="NonplayerA"}
+else if (Player[i]==0 & Grade[i]=="A+ ")
+{Glay[i]="NonplayerAP"}
+else if (Player[i]==1 & Grade[i]=="B " )
+{Glay[i]="PlayerNA"}
+else if (Player[i]==1 & Grade[i]=="A ")
+{Glay[i]="PlayerA"}
+else {Glay[i]="PlayerAP"}
+}
+Player=as.factor(Player)
+Glay=as.factor(Glay)
+```
+### i. 
+``` {r echo=FALSE}
+boxplot(GPA~Player,data=student, names=c('Player', 'Non-player'), 
+        main="side-by-side boxplots\nof GPA between players and non-players by 8335")
+```
+The difference of median, third quartile, maximum of GPA between players and non-players are very small, while the first quartile and minimum have some difference.
+
+### ii. 
+``` {r echo=FALSE}
+boxplot(GPA~Grade, data=student, names=c('A+', 'A', 'B'), 
+        main="side-by-side boxplots of GPA\nbetween different expected grades by 8335")
+```
+There is a significant difference in mean, first quartile, third quartile, minimum, and maximum of GPA among the three groups. 
+
+### iii. 
+``` {r echo=FALSE}
+par(cex.axis=0.7)
+boxplot(GPA~Glay, data=student, main="side-by-side boxplots of GPA\nbetween different Glay by 8335")
+```
+There is a significant difference in mean, first quartile, third quartile, minimum, and maximum of GPA among the three groups. 
+
+
+## Question 2
+``` {r echo=FALSE}
+t.test(GPA~Player, data=student)
+```
+**Two sample t-test**\
+Null hypothesis: $H_0: \mu_p-\mu_n=0$ where $\mu_p$ is the mean GPA of players, $\mu_n$ is the mean GPA of non-players.
+
+Test statistic: 1.1831
+
+p-value: 0.2383
+
+By the result of a pooled two sample t-test, since the p-value is 0.23 > 0.05, we cannot reject the null hypothesis. Therefore, there is no evidence suggesting that there is a difference in means between Players and Non-players. 
+
+## Question 3
+
+**One way ANOVA**
+``` {r echo=FALSE}
+gg <- aov(GPA~Grade, data=student)
+summary(gg)
+```
+
+
+Null hypothesis: $H_0:\mu_{A+}=\mu_{A}=\mu_{B}$ where $\mu_{A+},\mu_A,\mu_B$ are mean GPA of students with expected grades $A+, A, B$.
+
+Alternative hypothesis: $H_a$: at least one pair of $\mu_{A+},\mu_A,\mu_B$ does not equal. 
+
+Test statistic: 59.84
+
+p-value: $\approx 0.0$
+
+By the result of one way ANOVA, since the p-value is approximately 0, we can reject the null hypothesis. Therefore, there is some evidence that there is a difference in mean between students with different expected grades.
+
+
+
+**Pairwise comparisons**
+
+Since there are only 3 levels of expected grades, I'll use Bonferroni's Method for pairwise comparisons. 
+
+``` {r echo=FALSE}
+pairwise.t.test(GPA, Grade, data=student, p.adj='bonf')
+```
+
+By the result of pair wise t-test, for each pair of comparisons, the p-value is approximately 0. Therefore, there is some evidence that the GPA differs for each pair among all levels of expected grades.
+
+## Question 4
+
+**One way ANOVA**
+
+``` {r echo=FALSE}
+ggl <- aov(GPA~Glay, data=student)
+summary(ggl)
+```
+
+
+Null hypothesis: $H_{0}$: the mean GPA is equal for all six categories of students classfied by the combination of their player status and expected grade.
+
+Alternative hypothesis: $H_a$: at least one pair of categories among the six categories of students classfied by the combination of their player status and expected grade does not equal. 
+
+Test statistic: 25.82
+
+p-value: $\approx 0.0$
+
+By the result of one way ANOVA, since the p-value is approximately $0\leq 0.05/3$, we can reject the null hypothesis. Therefore, there is some evidence that there is a difference in mean between students with different categories of students classfied by the combination of their player status and expected grade.
+
+**Pairwise comparisons**
+
+Since there are 6 levels of expected grades, I'll use Tukey's Method for pairwise comparisons. 
+
+``` {r echo=FALSE}
+hsd <- TukeyHSD(ggl, "Glay")
+hsd
+```
+``` {r echo=FALSE}
+par(mar=c(12,12,2,1), cex=0.5, las=1)
+plot(hsd)
+```
+
+By the output of Tukey's HSD method, the pair of catories that have different mean GPA are: 
+
+- NonplayerNA-NonplayerA
+- PlayerAP-NonplayerA
+- PlayerNA-NonplayerA
+- NonplayerNA-NonplayerAP
+- PlayerNA-NonplayerAP
+- PlayerAP-NonplayerNA
+- PlayerAP-PlayerA
+- PlayerNA-PlayerA
+- PlayerNA-PlayerAP
+ 
+# Question 5
+
+``` {r echo=FALSE}
+plot(lm(GPA~Play, data=student), which = 1:2)
+bartlett.test(GPA~Play, data=student)
+```
+From the residuals vs. fitted plot, we can observe that the points spread out. Also, the Bartlett test has a extreme large p-value (0.971).  The assumption of constant variance is violated. 
+
+From the Normal Q-Q plot, we can observe that the plot is heavy-tailed. The assumeption of normality of errors is violated.
+
+we should not be concerned that the data contained different numbers of students in the three grade
+levels. It is not a part of our assumptions and the group size will not influence the test statistics significantly. 
+
+## Question 6
+ 
+ a) $Y_i=\beta_0+ \beta_1 X_{A,i} + \beta_2 X_{B,i} + \beta_3 X_{p,i} + \beta_4 X_{A,i}X_{p,i} + \beta_5 X_{B,i} X_{p,i}$ where $Y_i$ is the GPA of $i$th student; $X_{A,i}, X_{B,i}$ are the indicators that the $i$th student's expected grade is A, B, respectively; $X_{p,i}$ is the indicator that the $i$th student is a player. 
+ b) No, the total number of predictor variables are $(2-1) + (3-1) + (2-1)(3-1) = 5\neq 6$ since there are 2 levels of Player status and 3 levels of expected grades.
+ c) The F-test will be significant. From the result of Q4, we have evidence that there is difference among pairs such as PlayerNA-NonplayerAP, PlayerAP-NonplayerNA, PlayerAP-NonplayerA, PlayerNA-NonplayerA. These results shows that there are some interactions between two variables in explaining GPA. 
+ 
+## Question 7
+The mathematical equation is $Y_i=\beta_0 + \beta_1X_{A,i} + \beta_2X_{B,i} + \beta_3X_{p,i}$ where $Y_i$ is the GPA of $i$th student; $X_{A,i}, X_{B,i}$ are the indicators that the $i$th student's expected grade is A, B, respectively; $X_{p,i}$ is the number of hours the $i$th student spent playing video or computer games. 
+
+The new model treats Play as a continous variable rather than a categorical variable. 
+
+## Question 8
+Factor: the current status of student. Levels: part-time, full-time.
+
+Factor: the student's background of English. Levels: native speaker, has over 5 years of experience, less than or equal to 5 years of experience. 
+
+\newpage
+# Appendix
+```{r, ref.label=knitr::all_labels(),echo=TRUE,eval=TRUE}
+```

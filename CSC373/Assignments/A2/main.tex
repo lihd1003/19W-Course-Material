@@ -1,0 +1,315 @@
+\documentclass[11pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath, amssymb, amsthm, csc, mathbbol}
+\usepackage{float}
+\usepackage{amsfonts}
+\usepackage{mathtools}
+\usepackage{listings}
+\usepackage{multicol}
+\usepackage{enumerate}
+\usepackage{titlesec}
+
+\usepackage{graphicx}
+\usepackage{fullpage}
+\usepackage{comment}
+\usepackage{color}
+\usepackage[mathscr]{euscript}
+\let\euscr\mathscr \let\mathscr\relax
+\usepackage[scr]{rsfso}
+\newcommand{\powerset}{\raisebox{.15\baselineskip}{\Large\ensuremath{\wp}}}
+\newcommand{\myiff}{\mbox{ iff }}
+
+\usepackage[a4paper, margin=1in]{geometry}
+\newtheorem{ques}{Question}[section]
+\newtheorem{defs}{Definition}[section]
+\newenvironment{question}{
+    \begin{ques} \normalfont
+    }{
+    \end{ques}
+}
+
+\newenvironment{shiftpar}[1][1.5em]
+  {\list{}{%\listparindent #1%
+    \itemindent\parindent
+    \leftmargin#1
+%    \rightmargin\leftmargin
+    \parsep\z@\@plus\p@}%
+    \item\relax}
+  {\endlist}
+  
+\newenvironment{my_enumerate}{
+\begin{enumerate}
+  \setlength{\itemsep}{-1pt}
+  \setlength{\parskip}{0pt}
+  \setlength{\parsep}{0pt}}{\end{enumerate}
+}
+
+\newtheorem{claimS}{Claim}[subsection]
+\newtheorem{claims}{Claim}[claimS]
+
+
+
+\newcommand{\fdent}{\hspace{4mm}}
+\titleformat*{\subsection}{\normalfont}
+\newcommand{\AAND}{\; AND\;}
+\newcommand{\OOR}{\; OR\;}
+
+\newcommand*{\myfontforfunc}{\fontfamily{bch}\selectfont}
+\DeclareTextFontCommand{\textfunc}{\myfontforfunc}
+
+\lstset
+{ %Formatting for code in appendix
+    basicstyle=\footnotesize,
+    numbers=left,
+    stepnumber=1,
+    showstringspaces=false,
+    tabsize=1,
+    breaklines=true,
+    breakatwhitespace=false,
+}
+\renewcommand{\thesubsection}{\thesection.\alph{subsection}}
+
+
+\title{CSC373 Assignment2}
+\author{Haoda Li, Ruiqi Wang, Zonggen Bai}
+
+\begin{document}
+
+\maketitle
+\begin{enumerate}
+    \item
+    \begin{enumerate}
+        \item Recursive structure: $\forall$ coordinate (i,j), since the rider can only travel right and up, the maximum probability of the rider safely travel from (0,0) to (i,j) is either $prob(i-1,j) * (1-p_{ij})$ or $prob(i,j-1) * (1-q_{ij})$, where $prob(i,j)$ denotes the maximum probability of safely travelling from (0,0) to (i,j).
+        \item Define a table A[i, j] which stores the maximum probability of having no accident among all paths from (0,0) to (i, j), namely $\forall i \in [0,m], j \in [0,n], A[i,j]=prob(i,j)$.
+        \item Recurrence for table value: \\
+            $A[0, 0] = 1$. \\
+            $A[i, j] = A[i-1, j] * (1- p_{ij})$. where j = 0.\\
+            $A[i, j] =  A[i, j-1] * (1 - q_{ij})$. where i = 0.\\
+            $A[i, j] = max\{ A[i-1, j] * (1- p_{ij}), A[i, j-1] * (1 - q_{ij})\}$. otherwise \\
+            
+            
+            
+        \textbf{Justification of correctness}\\
+        
+        \textit{Claim. }$\forall x \in [0,m+n], i \in [0,m], j \in [0,n]$, if $ x = i + j,$ then $A[i,j] = prob(i,j)$.\\
+        
+        \textit{Proof (by induction on $x$)}:\\
+        Base case: if $x=0$, then $i=0$, and $j=0$. Then $A[0,0]=prob(0,0)=1$ by definition. Since at $(0,0)$, the rider is guaranteed to be safe, the base case is correct.\\
+        Inductive hypothesis: $\forall k \in[0,m+n-1]$, $\forall i \in [0,m], j \in [0,n]$, if $ x = i + j,$ then $A[i,j] = prob(i,j)$. \\
+        Inductive step: \\
+        WTP: $\forall i \in [0,m], j \in [0,n]$, if $ k+1 = i + j,$ then $A[i,j] = prob(i,j)$. Assume $k+1=i+j$. Three cases need to be considered in order to compute $A[i,j]$:
+        
+            \textit{Case 1.} When (i,j) is on bottom border \\
+            According to the recurrence relation, $A[i,j]=A[i-1,j]*(1-p_{ij})$, when $j=0$. By inductive hypothesis, $A[i-1,j] = prob(i-1,j)$ since $x=i-1+j=k$ and the rider can only travel towards right. Therefore, $A[i,j]=prob(i-1,j)*(1-p_{ij})=prob(i,j)$, and the recurrence is correct in this case.
+            
+            \textit{Case 2.} When (i,j) is on left border \\
+            Similar to the first case, according to the recurrence relation, $A[i,j]=A[i,j-1]*(1-q_{ij})$, when $i=0$. By inductive hypothesis, $A[i,j-1]=prob(i,j-1)$ since $x=i+j-1=k$ and the rider can only travel up. Therefore, $A[i,j]=prob(i,j-1)*(1-q_{ij})=prob(i,j)$, and the recurrence is correct in this case.
+            
+            \textit{Case 3.} When (i,j) is not on border \\
+            If $(i,j)$ is not on either of the border, then there would be two routes the rider would be coming from: bottom or left, by the problem definition. By inductive hypothesis, $A[i-1,j]=prob(i-1,j)$ and $A[i,j-1]=prob(i,j-1)$, since $x=i+j-1=k$. In order to maximize the probability of having no accident at $(i,j)$, only the maximum value of the probability coming from bottom or left will be set to $A[i,j]$, namely $A[i,j]=max\{ A[i-1, j] * (1- p_{ij}), A[i, j-1] * (1 - q_{ij})\}=max\{ prob(i-1,j) * (1-p_{ij}), prob(i,j-1) * (1-q_{ij})\}=prob(i,j)$. Therefore, the recurrence is correct in this case and thus overall the recurrence is correct.
+            
+        \item Bottom-up Algorithm:\\
+        Input: P, Q are 2-D arrays s.t. P[i][j] be the probability that riding right from coordinate(i-1, j) to(i, j) results in an accident, and Q[i][j] be the probability that riding up from coordinate(i, j-1)to(i, j) results in an accident.(m,n) is the upper-right corner one want to get to.\\
+        Output: Table A, B. s.t. A[i, j] stores the maximum probability of having no accident among all paths from (0,0) to (i, j). B[i, j] stores the previous corner to get to (i, j) that satisfies A[i, j]
+            \begin{lstlisting}
+Riding(P, Q, m, n):
+    A = a 2-D array filled with 0 // max probability
+    B = a 2-D array filled with Nil // previous corner
+    A[0, 0] = 1
+    for i from 1 to m:
+        A[i, 0] = A[i-1, 0] * (1- P[i][0])
+        B[i, 0] = (i-1, 0)
+    for j from 1 to n:
+        A[0, j] = A[0, j-1] * (1- Q[0][j])
+        B[0, j] = (0, j-1)
+    for j from 0 to n:
+        for i from 0 to m:
+            if (A[i-1, j] * (1- P[i][j]) < A[i, j-1] * (1 - Q[i][j])):
+                A[i, j] = A[i, j-1] * (1 - Q[i][j])
+                B[i, j] = (i, j-1)
+            else:
+                A[i, j] = A[i-1, j] * (1- P[i][j])
+                B[i, j] = (i-1, j)
+    return A, B
+            \end{lstlisting}
+        \item Reconstruct solution: \\
+        Recursive call on BestRoute(B, m, n, (m,n)) will result in a linked list representing the path with maximum probability of having no accident from $(0,0)$ to $(m,n)$.\\[2ex]
+        Input: B as returned by Riding, result is a linked-list set to Nil before the call to BestRoute(B, m, n, (m,n)).\\
+        Output: return the optimal route from (0, 0) to (i, j).\\
+            \begin{lstlisting}
+    BestRoute(B, i, j, result):
+        if coordinate == (0,0):
+            return result.prepend((0,0))
+        else:
+            result.prepend(B[i,j])
+            return BestRoute(B, B[i,j][0], B[i,j][1], result)
+            \end{lstlisting}
+
+            \textbf{Justification of running time}\\
+            In order to compute matrices $A$ and $B$, the algorithm needs to traverse through the given matrix one (aka, the \textit{bottom-up step}). Each iteration takes constant time since it only contains comparing and accessing constant number of elements inside matrices. Therefore, $Riding(P,Q,m,n)$ will take time $O(m*n)$. For reconstructed solution, it will take $O(m+n)$ time because the rider can only travel top or right, meaning that circle and turning back are not allowed. In conclusion, the overall running time of the program is $O(max\{ m*n, m+n \})$.
+    \end{enumerate}
+    
+    \newpage
+    \item
+    \begin{enumerate}
+        \item Recursive structure: since the customer can only buy burgers, fries, and drinks with a coupon or separately, for each coupon $N_i$, the minimum priced strategy will either use this coupon or not. Therefore, let $P(j,k,m,\mathcal{N})$ denote the minimum amount of money to get at least $j$ burgers, $k$ fries, $m$ drinks with coupons $\mathcal{N}=\{N_1,...,N_n\}$, the minimum price $P(B,C,D,\mathcal{N})$ can either be $P(B-b_i,C-c_i,D-d_i, \mathcal{N}-\{N_i\}) + p_i$ or $P(B,C,D, \mathcal{N}-\{N_i\})$. 
+        \item Define a table $P[j,k,m,i]$ which stores the minimum amount of money to get at least $j$ burgers, $k$ fries, $m$ drinks with coupons $N_1,...,N_i$
+        \item Define $P(j,k,m,i)$ that returns the minimum amount of money to get at least $j$ burgers, $k$ fries, $m$ drinks with coupons $N_1,...,N_i$. Then the recurrence is given by \\
+        $P(j,k,m,0) = j\times p_b + k\times p_c + m\times p_d$, \\
+        $P(j,k,m,i) = \min\{P(\max\{0, j-b_i\}, \max\{0,k-c_i\}, \max\{0,m-d_i\}, i-1) + p_i, P(j,k,m,i-1)\}$ where $i \in \N, 1\leq i \leq n$ \\
+        
+      
+        \textbf{Justification of correctness}\\ 
+        \textit{Claim. } $\forall i\in\mathbb{N}. i\leq n$, then $\forall j,k,m\in\mathbb{N}. P(j,k,m,i)$ returns correctly.
+        \begin{proof} I will prove by induction on $i$.\\
+        Base case: if $i=0$, then there is no coupon, the items can only be bought separately, and the total price is $P(j,k,m,0) = j\times p_b + k\times p_c + m\times p_d$. 
+        
+        Induction hypothesis: $\forall j,k,m\in\mathbb{N}$, P(j,k,m,i) returns correctly. 
+        
+        Inductive step: consider $P(j,k,m,i+1)$ where $B,C,D$ are arbitrary, $i+1\leq n$, consider the two cases:
+        
+        - Suppose coupon $N_{i+1}$ is used, then there are $\max\{0, j-b_{i+1}\}$ burgers, $\max\{0, k-c_{i+1}\}$ fries, and $\max\{0, m-d_{i+1}\}$ drinks that are still required payment, and the total amount of payment is $P(\max\{0, j-b_i\}, \max\{0,k-c_i\}, \max\{0,m-d_i\}, i) + p_{i+1}$, by induction hypothesis $P(\max\{0, j-b_i\}, \max\{0,k-c_i\}, \max\{0,m-d_i\}, i)$ gives the correct amount of payment, hence $P(j,k,m,i+1)$ also gives the correct number. 
+        
+        - Suppose coupon $N_{i+1}$ is not used, then $P(j,k,m,i+1)=P(j,k,m,i)$ by the definition of $P$, then by induction hypothesis, $P(j,k,m,i+1)$ returns the correct number. 
+        
+        By taking the minimum of the two cases, $P(j,k,m,i)$ will return the minimum amount of money as specified. 
+        \end{proof}
+        \item The bottom-up algorithm is given: \\
+        Input: B, C, D; $p_b, p_c, p_d$; $b_i, c_i, d_i, p_i$ for $i\in \N ,1 \leq i \leq n$, as described in the question.\\
+        Output: the minimum amount of money needed to get at least B burgers,C fries, and D drinks
+\begin{lstlisting}
+# initialization
+for j from 0 to B:
+  for k from 0 to C:  
+   for m from 0 to D:
+        P[j,k,m,0] = j*p_b + k*p_c + m*p_d
+        
+# fill in the table
+for i from 1 to n:
+ for j from 0 to B:
+  for k from 0 to C:  
+   for m from 0 to D:
+     P[j,k,m,i] = min(P[max(0,j-b_i), max(0,k-c_i), max(0,m-d_i),
+                         i-1] + p_i,
+	                     P[j, k, m, i-1])
+
+# return the answer
+return P[B,C,D,n]
+\end{lstlisting}
+    Notice that in this algorithm, we don't have to store $i$, we can reduce the space complexity to $O(BCD)$ rather than $O(BCDn)$. The algorithm is:
+\begin{lstlisting}
+# initialization
+for j from 0 to B:
+  for k from 0 to C:  
+   for m from 0 to D:
+        P[j,k,m] = j*p_b + k*p_c + m*p_d
+        
+# fill in the table
+for i from 1 to n:
+ for j from 0 to B:
+  for k from 0 to C:  
+   for m from 0 to D:
+     P[j,k,m] = min(P[max(0,j-b_i), max(0,k-c_i), max(0,m-d_i)] + p_i,
+	                   P[j, k, m])
+
+# return the answer
+return P[B,C,D]
+\end{lstlisting}
+    \textbf{Justification for runtime} \\
+    The initialization takes $O(BCD)$ time, since the arithmetic operations on line 5 takes constant time and the triple for loop iterate $B\times C\times D$ times.
+    
+    The for loops for line 8-16 takes $O(BCDn)$ times, since the operations in the loop body in line 12-16 takes constant time, and the four loops iterate $B\times C\times D\times n$ time. 
+    
+    Therefore, the total time is $O(BCD)+O(BCDn)\in O(BCDn)$.
+    \end{enumerate}
+
+    \newpage
+    \item
+    Find the maximum points earned using time T by finding the minimum time needed to get each amount of points or more.\\
+    \begin{enumerate}
+        \item Recursive structure: Since one can only do an assignment once, the strategy for getting some points P using the minimum time will either be doing this assignment or not. Therefore, let B(P, n) denote the minimum amount of time to get points P with assignments $(A_1, A_2, ..., A_n)$, then it can either be $B(P-p_n, n-1)+ t_n$ (doing the $n^{th}$ assignment) or $B(P, n-1)$(not doing the $n^{th}$ assignment)\\
+        \item Define the table B[P,i], which stores the least amount of time needed to earn points P or more by doing assignments among the first i assignments ($A_1, A_2, ..., A_i$), be infinity if we cannot get point P using the first i assignments.\\
+        \item Recurrence\\
+            B[0, 0] = 0\\
+            B[P, 0] = infinity,  for $P \geq 1$\\
+            B[P, i] = $min\{B[ max\{P-p_i, 0\}, i-1] + t_i, B[P, i-1]\}$ for other cases\\
+            
+            
+            \textbf{Justification for correctness}\\
+            If we know the minimum time needed to get each amount of points, then we can find the smallest amount of points that cannot be achieved within the time limit $T$ (there is no need to go over this amount, since if we can get P+1 points within time limit $T$, we can definitely get P points by doing the same assignments), i.e. we can know the largest amount of points that can be achieved with $T$ since the points are all integers.\\[2ex]
+            Claim: $\forall i \in \N, i \leq n$, $\forall P\in \N, P \leq \sum_{k=1}^{n}p_k$, B[P,i] is the minimum amount of time needed to finish point P by doing assignments among $A_1, A_2, ..., A_i$, or infinity if cannot get point P.
+            \begin{proof}(do a strong induction on i)\\
+                Base Case: i = 0.\\
+                    Obviously, we can get 0 point by doing nothing using no time, so B[0,0] = 0. And we cannot get any point by doing no assignment, so B[P, 0] = infinity, for $P > 0$.\\
+                Inductive Step: Assume $i\in \N$ and the claim holds for $1\leq k \leq i$. WTS the claim holds for i+1. We have two cases: \\
+                Case 1: do the $i+1^{th}$ assignment. Then if we want to get the minimum amount of finishing time, we only need to know the minimum amount of time for getting $P - p_{i+1}$ points(or 0 point if $P - p_{i+1} \leq 0$) by doing the assignments among $A_1, A_2, ..., A_i$. Since the claim holds for $i$,  $B[\max\{P - p_{i+1}, 0\},  i] + t_i$ is the minimum time needed for case 1.\\
+                Case 2: not do the $i+1^{th}$ assignment. Then the problem is the same as finding the minimum amount of time to get point P with assignments among $A_1, A_2, ..., A_i$, which is $B[P, i-1]$ by inductive hypothesis.\\
+                Thus, taking the minimum between $B[\max\{P - p_{i+1}, 0\},  i] + t_i$ and $B[P, i-1]$ gets the value for $B[P, i+1]$ as desired. i.e. the claim holds for $i+1$.
+                
+                We thus complete the proof for the claim.
+            \end{proof}
+        \item Bottom-up Algorithm\\
+        Input: p,t are two arrays where p[i] is the number of points earned and  t[i] is the time needed to complete $A_i$, T is the total time limit.\\
+        Output: Return the max point one can get within T, and two arrays B, S, where B[P, i] is the minimum amount of time needed to get point P by doing assignments among $A_1, A_2, ..., A_i$ and S[P, i] is the largest index among indices of the assignments to do to achieve B[P, i]\\
+            \begin{lstlisting}
+    MinTime(p, t, T):
+    # identify the range of possible points
+    max = 0
+    for i from 1 to n:
+        max += p[i]
+        
+    # initialization
+    B = a max-by-n 2D array filled with infinity
+    S = a max-by-n 2D array filled with Nil
+    B[0, 0] = 0
+    S[0, 0] = Nil
+    for P from 1 to max:
+        B[P, 0] = infinity
+        S[P, 0] = Nil
+    
+    for P from 1 to max:
+        overtime = -1
+        for i from 1 to n:
+            # implement the recurrence
+            if B[max{P-p_i, 0}, i-1] + t_i < B[P, i-1]:
+                B[P, i] = B[max {P-p_i, 0}, i-1] + t_i
+                S[P, i] = i
+            else:
+                B[P, i] = B[P, i-1]
+                S[P, i] = S[P, i-1]
+            
+            # if can get point P within time T
+            if B[P, i] <= T:
+                overtime = 0
+        # cannot get point P within time T 
+        if overtime < 0:
+            return P - 1, B, S
+    return max, B, S
+    \end{lstlisting}
+    
+        \item Optimal Solution: recurrence on the input ($max\_point, n, S, p, result$), where $max\_point$ is the first returned value and $S$ is the last returned value of the bottom-up algorithm in Part(d). And $result$ is set to empty list before the first recursive call to BestSoln\\[2ex]
+        Input: $S$, $result$ as described above. $point$ is the amount of points to get, $i$ is the largest index among all the assignments to do and $p$ is the array where p[i] is the number of points earned by completing $A_i$\\
+        Output: Return list of assignments (among $(A_1, A_2, ..., A_i)$) to do to achieve point P using time B[P,i]
+        \begin{lstlisting}
+        BestSoln(P, i, S, p, result):
+            k = S[P, i]
+            if k != Nil:
+                result.append(k)
+                return BestSoln(max{P - p_k, 0}, k-1, S, result)
+            return result
+        \end{lstlisting}
+        
+    \end{enumerate}
+    
+    \textbf{Justification for Runtime}:\\
+    For simplicity, denote sum = $\sum_{i=1}^n p_i$\\[2ex]
+    For the bottom-up algorithm, finding the largest possible points $max$ is a simple iteration over the array $p$, which takes $\mathcal{O}(n)$ time.\\
+    The initialization of $B$, S(line 8 - 9) takes $\mathcal{O}(n\cdot sum)$ time. The extra steps of initialization includes a loop from 1 to sum. For each iteration, there is only two value assignment. Thus, the extra steps take $\mathcal{O}(sum)$ time.\\
+    For the rest of the algorithm, there is a double loop with inner loop having $n$ iterations and outer loop having $sum$ iterations. For each inner iteration, there is only simple comparisons and value assignments, which take constant time. Thus, the whole double loop takes $\mathcal{O}(n\cdot sum)$ time.\\
+    Thus, the bottom-up algorithm takes $\mathcal{O}(n\cdot sum) = \mathcal{O}(n^2 \cdot max\{p_i, 1\leq i \leq n, i\in \N\})$, which is pseudo-polynomial time to input.\\
+    
+    For the reconstruction of solution, there are at most n recursions and for each recursion, the algorithm other than the recursive step takes constant time. Thus, the reconstruction takes $\mathcal{O}(n)$ time.
+    
+    
+\end{enumerate}
+\end{document}
