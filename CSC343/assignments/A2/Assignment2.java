@@ -76,37 +76,33 @@ public class Assignment2 extends JDBCSubmission {
 
     @Override
     public List<Integer> findSimilarPoliticians(Integer politicianName, Float threshold) {
-        // Implement this method!
-        List<Integer> ids = new ArrayList<Integer>();
-
-        try{
-            String description = new String('');
-            String queryString = "SELECT description FROM politician_president WHERE politician_president.id = ?";
-            PreparedStatement ps = conn.prepareStatement(queryString);
-            ps.setString(1, politicianName);
-            ResultSet rs = ps.executeQuery();
+        ArrayList<Integer> result = new ArrayList<>();
+        String thisComment = "";
+        String compare;
+        String candidate = "SELECT id, description, comment " +
+                "FROM Parlgov.Politician_president WHERE id = ? ";
+        try {
+            PreparedStatement statement = connection.prepareStatement(candidate);
+            statement.setInt(1, politicianName);
+            ResultSet rs = statement.executeQuery();
             while (rs.next()) {
-                description = rs.getString("description");
+                thisComment = rs.getString(2) + rs.getString(3);
             }
-
-            String queryString1 = "SELECT id, description FROM politician_president";
-            PreparedStatement ps1 = conn.prepareStatement(queryString1);
-            ResultSet rs1 = ps1.executeQuery();
-            while (rs1.next()) {
-                if(similarity(rs1.getString("description"), description) >= threshold) {
-                    int id = rs1.getInt("id");
-                    if(id != politicianName){
-                        ids.add(id);
-                    }
+            String others = "SELECT id, description, comment FROM Parlgov.politician_president WHERE id <> ?";
+            PreparedStatement statement2 = connection.prepareStatement(others);
+            statement2.setInt(1, politicianName);
+            ResultSet rs2 = statement2.executeQuery();
+            while (rs2.next()) {
+                compare = rs2.getString(2) + rs2.getString(3);
+                if (similarity(thisComment, compare) >= threshold) {
+                    result.add(rs2.getInt(1));
                 }
-            }
-        }catch (SQLException se)
-        {
-            System.err.println("SQL Exception." +
-                    "<Message>: " + se.getMessage());
+            }return result;
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
 
-        return ids;
+        return null;
     }
 
     public static void main(String[] args) {
