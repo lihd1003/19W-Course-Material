@@ -128,15 +128,3 @@ log(totalBalance)
 const totalBalanceArrow = accounts.reduce((total, account) => total + account.balance, 0)
 
 log(totalBalanceArrow)
-
-
-
-
-
-
-
-
-
-
-
-
