@@ -1,8 +1,9 @@
+function b() {
+  console.log(a)
 
-if (true) {
-  var j = 2
-} else {
-  var j = 2
 }
+a = 2
+console.log(a)
 
-console.log(j)
+
+b()

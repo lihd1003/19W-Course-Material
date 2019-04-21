@@ -28,29 +28,29 @@ const createCounter2 = function () {
 // setTimeout(f, interval)
 
 // let's start with var
-// for (var i = 1; i <= 5; i++) {
-// 	setTimeout(function () {
+//for (var i = 1; i <= 5; i++) {
+//	setTimeout(function () {
 // 		log(i);
 // 	}, i * 1000);
-// }
+//}
 
 // for (var i = 1; i <= 5; i++) {
 // 	(function () {
 // 		var j = i; // j is function scoped in the anon function
-// 		setTimeout(function () {
+//		setTimeout(function () {
 // 			log(j);
 // 		}, i * 1000);
 // 	})();
 // }
 
 
-// let creates a variable with 
+// let creates a variable with
 // a new (block) scope within each iteration
 // for (let i = 1; i <= 5; i++) {
 // 	setTimeout(function () {
 // 		log(i);
 // 	}, i * 1000);
-// }
+//}
 
 
 
@@ -104,6 +104,4 @@ student3.myYear()
 student3.myYear.bind(student2)();
 student3.myYear.call(student2)
 
-student2.nested.myYear();
-
-
+//student2.nested.myYear();
