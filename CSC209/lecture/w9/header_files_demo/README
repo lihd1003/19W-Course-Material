@@ -1,0 +1,32 @@
+This demo is to illustrate header files and how things can go wrong.
+ll.c implements a few linked list operations.
+main.c calls functions in ll.c
+stack.c uses the ll.c functions to implement push and pop.
+
+Version 1: main.c includes ll.c
+If you compile it as 
+gcc -Wall -g -std=gnu99 -o main main.c
+it will compile and run without errors.
+
+Version 2: This adds the stack.c file.  The question is how to compile it?
+gcc -Wall -g -std=gnu99 -o main main.c
+leads to errors about push and pop
+gcc -Wall -g -std=gnu99 -o main main.c stack.c
+leads to errors about multiply defined symbols
+
+Maybe include stack.c?  
+
+Let's get it right.  Include ll.h in all the files and compile as
+gcc -Wall -g -std=gnu99 -o main main.c stack.c ll.c  
+Or use the Makefile
+
+
+Version 3: Putting the global variable in the header file also doesn't work.  The error is about head being multiply defined.  So move the variable into main.c, and use 
+extern in the header file, so the other files know it exists.
+
+Version 4: Global variables are also bad because then we can have only one list.
+Perhaps you want them for a singleton design pattern, but here (where we are essentially creating a linked-list API) we can imagine lots of situations where the user would want multiple independent lists or stacks.
+
+Now, the question is whether to always pass in a pointer to pointer so the list is changed in the arguments, or to return the new list when possible. This is
+a matter of style. We see that the second alternative is not always an option since some functions have used their return values for other purposes.
+

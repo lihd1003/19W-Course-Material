@@ -1,0 +1,11 @@
+First attempt to split up code between two files.
+
+This is badly done in many ways:  The worst is the include "ll.c"
+
+compile as
+gcc -Wall -g -std=gnu99 -o main main.c
+
+This technically works.
+
+The next step is to introduce another file that uses the linked list 
+operations

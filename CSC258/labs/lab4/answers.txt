@@ -1,0 +1,3 @@
+1.4  Clk can't start with 0, because it will carry the value from the output, which is undefinded at the beginning
+
+3.1  Nothing will happen since the output of the shifterbit is passed into the shifterbit itself

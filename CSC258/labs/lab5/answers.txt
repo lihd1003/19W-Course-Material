@@ -1,0 +1,22 @@
+Part I
+6. a) 13/32070 (<1%)
+  b) 621.89MHz
+
+Part II
+0. When the counter reaches maximum, say 1111, the next count will be 10000, the leading 1 loses and the counter becomes 0000.
+   change the if (q == 4'b1111) to if (q == 4'b1001)
+   It will be jumping among all numbers
+   26 TFFs, 26bits (Since log_2 50,000,000 = 25.6)
+
+Part III
+1. letter | Morse Code | Pattern Representation
+      S   | . . .      | 0101010000000000
+      T   | _          | 0111000000000000
+      U   | . . _      | 0101011100000000
+      V   | . . . _    | 0101010111000000
+      W   | . _ _      | 0101110111000000
+      X   | _ . . _    | 0111010101110000
+      Y   | _ . _ _    | 0111010111011100
+      Z   | _ _ . .    | 0111011101010000
+   Table Width = 16
+

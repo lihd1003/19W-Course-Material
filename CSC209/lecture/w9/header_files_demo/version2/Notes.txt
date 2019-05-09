@@ -1,0 +1,13 @@
+Introduce the header file
+
+play around with getting different error messages depending on 
+including .c file.
+
+Moving towards the idea that the global variable doesn't belong in the 
+header file.
+
+First compile with 
+gcc -Wall -g -std=gnu99 -o main main.c
+
+then 
+gcc -Wall -g -std=gnu99 -o main main.c stack.c

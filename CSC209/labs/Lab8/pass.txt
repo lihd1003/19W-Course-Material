@@ -1,0 +1,8 @@
+fish:swim
+birds:fly
+lizards:crawl
+humanoids:walk
+bluewhales:swim
+killerwhales:swim
+cats:climbtrees
+monkeys:eatcoconuts
