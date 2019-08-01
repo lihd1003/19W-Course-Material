@@ -1,6 +1,0 @@
-1. Add a "Trend for you" section below the profile. Includes an ordered list.
-2. Add a search bar on the right of the profile stats. Includes a input box and a button.
-3. Add a tool bar on the top of the page.
-4. Add a "Who to follow" section below the "Trend for you" section.
-4. Add a "Leave your comments" section on the right of the page
-5. Add a "photos & Media" section on the right of the page 

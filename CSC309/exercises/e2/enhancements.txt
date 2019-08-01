@@ -1,3 +1,0 @@
- - Add a new review system at the bottom, the user can leave their reviews about a book. Also, the user can select and delete reviews
- - Add a search for all books in the library, the user can search by ID, title, or genre
- - Add a new history system at the bottom, the user can check the borrowing history of the books by searching for bookID and/or the time interval of the borrow time. If the user leave blank for the corresponding input, then the search query will not check the input condition.
