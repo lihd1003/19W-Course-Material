@@ -4,7 +4,7 @@ $.ajax({
   dataType: "json",
   url: "./table_of_content.json",
   success: (data) => {
-    path = JSON.parse(data)
+    path = data
   },
   async: false
 });
