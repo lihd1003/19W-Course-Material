@@ -1,34 +1,35 @@
-let path = []
+'use strict'
+let paths = []
 
 $.ajax({
   dataType: "json",
   url: "./table_of_content.json",
   success: (data) => {
-    path = data
+    paths = data
   },
   async: false
 });
 
-let current = ["."]
+let current = "./"
 
 const option = {
   item: '<li class="mdl-list__item" >' +
-    '<a data-parent class="parent mdl-list__item-primary-content mdl-color-text--blue-grey-800" style="cursor: pointer" onclick="update(this)">' +
+    '<a data-path class="path mdl-list__item-primary-content mdl-color-text--blue-grey-800" style="cursor: pointer" onclick="update(this)">' +
     '<i class="material-icons mdl-list__item-icon type"></i>' +
     `<span class="name"></span>` +
     '</a></li>',
   valueNames: ['type', 'name', {
-    name: 'parent',
-    attr: 'data-parent'
+    name: 'path',
+    attr: 'data-path'
   }]
 }
 
-const list = new List('list', option, path)
+const list = new List('list', option, paths)
 
-$("#path").text(current.join("/") + "/")
+$("#path").text(current)
 
 list.filter((i) => {
-  return i.values().parent === "."
+  return i.values().path === "."
 })
 list.sort('name', { order: "asc" });
 
@@ -36,27 +37,32 @@ list.sort('name', { order: "asc" });
 const update = (t) => {
   const target = t.children[1].innerHTML
   if (t.firstChild.innerHTML === "folder") {
-    current.push(target)
-    $("#path").text(current.join("/") + "/")
+    current = t.getAttribute("data-path") + "/" + target
+    $("#path").text(current)
     list.filter()
     list.filter((i) => {
-      return i.values().parent === target
+      return i.values().path === current
     })
     list.sort('name', { order: "asc" });
   } else {
-    window.open(current.join("/") + "/" + target, '_blank');
+    window.open(current + "/" + target, '_blank');
   }
 }
 
 const back = () => {
-  if (current.length == 1) {
+  if (current === ".") {
     return
   }
-  current.pop()
-  list.filter()
-  list.filter((i) => {
-    return i.values().parent === current[current.length - 1]
-  })
-  list.sort('name', { order: "asc" });
-  $("#path").text(current.join("/") + "/")
+  else {
+    const backed = current.split("/")
+    backed.pop()
+    current = backed.join("/")
+    $("#path").text(current)
+    list.filter()
+    list.filter((i) => {
+      return i.values().path === current
+    })
+    list.sort('name', { order: "asc" });
+  }
+
 }
