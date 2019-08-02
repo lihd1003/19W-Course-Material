@@ -2,7 +2,7 @@
 <html>
 <head><meta charset="utf-8" />
 
-<title>Week9</title>
+<title>1. Real Number Construction</title>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.10/require.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
@@ -13056,6 +13056,31 @@ ul.typeahead-list  > li > a.pull-right {
 .ansi-bold { font-weight: bold; }
 
     </style>
+<style type="text/css">
+    /*This file contains any manual css for this page that needs to override the global styles.
+This is only required when different pages style the same element differently. This is just
+a hack to deal with our current css styles and no new styling should be added in this file.*/
+
+#ipython-main-app {
+    position: relative;
+	font-size: 13pt;
+	font-family: 'Cambria', serif;
+}
+#jupyter-main-app {
+    position: relative;
+	font-size: 13pt;
+}
+.tab-content .row {
+	margin-bottom: 10px;
+}
+
+.text_cell_render {
+	font-size: 16pt;
+	font-family: "Cambria", serif;
+	line-height: 1.5;
+}
+
+    </style>
 
 
 <style type="text/css">
@@ -13116,10 +13141,22 @@ div#notebook {
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p><strong>Pointwise convergence</strong> Given $\{h_k\}\subset C(S,\mathbb R)$. We say that they converge pointwise if $\forall x\in S. h_k(x)\rightarrow h(x)$. 
-$$\forall \epsilon &gt; 0. \forall x \in S. \exists N &gt; 0. \forall k \geq N. |f_k(x)-f(x)|&lt;\epsilon$$</p>
-<p><strong>Convergence Uniformly</strong> $f_k\rightarrow^{u.c.}f$ if $\|f_k - f\|_{\infty}\rightarrow 0$. 
-$$\forall \epsilon &gt; 0. \exists N &gt; 0. \forall k\geq N. \sup_{x\in S}|f_k(x)-f(x)|\leq \epsilon$$</p>
+<h3 id="Decimal-expansion">Decimal expansion<a class="anchor-link" href="#Decimal-expansion">&#182;</a></h3>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Given $r\in\mathbb{R}^+$</p>
+<ol>
+<li>find $q\in\mathbb{N}^+, q\leq r\le q+1$  </li>
+<li>So we find next decimal place $d_1/10 \leq r- q &lt; d_1 / 10 + 1/10$  </li>
+<li>repeat $\frac{d_k}{10^k} \leq r - q - \sum _1^{k-1} \frac{d^m}{10^m} &lt; \frac{d_k}{10^k} + 10^{-k}$
+So that $r = q.d_1d_2d_3...$</li>
+</ol>
+<p><strong>terminating</strong> decimal expansion $q.d_1d_2...d_{m_0}$<br>
+<strong>repeating</strong> decimal expansion $q.d_1...d_k\overline{d_{k+1}...d_n}$(ex. $1/35 = 0.0287154\overline{287154}$)</p>
 
 </div>
 </div>
@@ -13127,20 +13164,19 @@ $$\forall \epsilon &gt; 0. \exists N &gt; 0. \forall k\geq N. \sup_{x\in S}|f_k(
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p><strong>Example</strong> consider 
-$f_k(x):=
-    \begin{cases}
-        k^2 x &amp; 0\leq x\leq 1/k \\
-       k^2 x (\frac{2}{k}-x) &amp; 1/2 \leq x \leq 2/k \\
-       0 &amp;2/k \leq x \leq 1
-    \end{cases}$<br>
-<strong>Claim</strong> $f_k \rightarrow^{p.w.} 0$<br>
-<em>proof</em>. Let $x\in[0,1]$. take $N &gt; 0$ s.t. $2/N \leq x$. Therefore, $\forall k \geq N, |f_k(x)-0|&lt;\epsilon$</p>
-<p><strong>Claim</strong> $f_k\not\rightarrow^{u.c.} 0$<br>
-<em>proof</em>. $\sup_{x\in[0,1]}|f_k(x)-0|=k\rightarrow\infty$</p>
-<p><strong>Claim</strong> $\lim_{k\rightarrow\infty}\int_0^1 f_k(x)dx \neq \int_0^1 \lim_{k\rightarrow\infty}f_k(x)dx$<br>
-<em>proof</em>. $LHS=\lim_{k\rightarrow\infty}\int_0^{1/k} k^2 x dx + \int_{1/k}^{2/k} k^2(\frac{2}{k}-x)dx + 0 = \lim_{k\rightarrow\infty}1=1$<br>
-$RHS = 0 \neq 1$</p>
+<p><strong>Claim</strong> $\forall x\in \mathbb{R}^+$ is rational IFF $x$ has a decimal expansion that is either terminating or repeating</p>
+<p><em>proof</em>.<br>
+$\Leftarrow$<br>
+Assume $x$ is terminating, $x = q.d_1...d_{n_0} = q + \sum_1^n \frac{d_m}{10^m} \in \mathbb{Q}$<br>
+Assume $x$ is repeating, $q.d_1...d_k\overline{d_{k+1}...d_m}$.<br>
+Known that $d_1...d_k$ part is rational, the remaining $0.0...0\overline{d_{k+1}...d_m}$</p>
+<p>$ = 10^{-k}(\sum_{m=1}^n \sum_{l=0}^\infty \frac{d'_m}{10^{nl + m}})$ since the number is repeating, we denote $d'_0,...,d'_n$ be the repeated digits</p>
+<p>$= 10^{-k}\sum_{m=1}^n d'_m 10^{-m} (\sum_{l=0}^\infty 10^{-nl})$ decompose</p>
+<p>$= 10^{-k}\sum_{m=1}^n d'_m 10^{-m} (1 - 10^{-n})^{-1}$ geometric series</p>
+<p>$ = \sum_{m=1}^n\frac{d'_m 10^n}{10^{m+k}(10^n - 1)}$ make it looks nicer</p>
+<p>$\Rightarrow$<br>
+Take $l, m \in\mathbb{Z}^+， x = l/m$.<br>
+By Euclidean division, $l = d_0m + r_0/m$ where $d_0\in\mathbb{Z}^+$ is the quotient, $r_0\in\mathbb{Z}^+$ is the remainder, $r_0&lt;m$.</p>
 
 </div>
 </div>
@@ -13148,8 +13184,13 @@ $RHS = 0 \neq 1$</p>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p><strong>Example</strong> Let $f_n:[0,A]\rightarrow \mathbb R, f(x):= \frac{\sin(nx)}{n}\rightarrow^{u.c.}0$.<br>
-<em>proof</em>. $\sup_{x\in[0,A]}|\frac{\sin(nx)}{x} - 0| \leq 1/n \rightarrow 0$</p>
+<p><strong>lemma</strong> $\forall n\in \mathbb{N}. l/m = \sum_{m=0}^n \frac{d_m}{ 10^{m}} + \frac{r_n} {10^{n}m}$  (induction by further Euclidean division)</p>
+<p>Suppose $\exists i, r_i = 0$, then is terminated<br>
+Suppose $\forall k$ WTS repeating.</p>
+<ul>
+<li>since $r_k$ is a remainder, it can only choose from $r_k \in \{1, ..., m - 1\}$. Then $\exists k_1, k_2. r_{k_1} = r_{k_2}$.<br>
+Then by uniqueness of Euclidean division, it is repeated. </li>
+</ul>
 
 </div>
 </div>
@@ -13157,8 +13198,7 @@ $RHS = 0 \neq 1$</p>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p><strong>Claim</strong> u.c. does not preserve derivatives<br>
-<em>proof</em>. $f'(x)=\frac{n\cos(nx)}{n} = cos(nx)$ doesn't converge to any function.</p>
+<p><strong>Irrational Numbers</strong> $x$ is irrational if $x\in\mathbb{Q}^c$, i.e. $\not\exists l, m\in\mathbb{Z}^+ s.t. x = l/m$</p>
 
 </div>
 </div>
@@ -13166,19 +13206,9 @@ $RHS = 0 \neq 1$</p>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p><strong>Dini's Theorem</strong> If $f,f_n\in C([a,b]). (\forall n \geq 1. f_n \leq f_{n+1} \land f_n(x)\rightarrow f(x))\Rightarrow f_n\rightarrow^{u.c.} f$</p>
-<p><em>proof</em>. Since $f_n \leq f_{n+1}\land f_n \rightarrow f \Rightarrow g(x):=f(x)-f_n(x)\geq 0$<br>
-(i) By continuity at $x_0$, take $\delta_1 &gt; 0, \forall y\in\mathbb R. |x_0 - y|\Rightarrow |g(x_0) - g(y)|\leq \epsilon/2$<br>
-(ii) By $f_n(x_0)\rightarrow^{p.w.}f(x_0)$, take $N&gt;0, \forall n &gt; N. |f_n(x_0)-f(x_0)|\leq \epsilon/2$<br>
-$|g(y)| = |f(y)-f_n(y)|$<br>
-$\leq |f(x_0)-f_n(x_0)| + |g(x_0) - g(y)|$<br>
-$\leq \epsilon /2 + \epsilon /2 = \epsilon. \forall y\in (x_0-\delta, x_0 + \delta)$</p>
-<p>Then, suppose that we don't have u.c.<br>
-$\Rightarrow \sup_{x\in[a,b]}|g(x)|=\sup_{x\in[a,b]} |f(x)-f_n(x)|\geq d, d &gt; 0$.<br>
-$\|g\|_{\infty}&gt;d\Rightarrow \forall n &gt; 1. \exists x_n \in [a,b]. g_n(x_n)\geq d$<br>
-By $\{x_n\}\in[a,b]$, with bolzano weierstrass theorem, $x_{n_k}\rightarrow x_0 \in [a,b]$.<br>
-But we show for $\epsilon &lt; d. \exists \delta &gt; 0. |x_0 - y|&lt;\delta\Rightarrow |g(y)|&lt; \epsilon &lt; d$.<br>
-For $\delta, \exists N&gt;0$ so that $\forall k\geq N.|x_{n_k}-x_0|\leq \delta$. Take $y = x_{n_k}\Rightarrow |g(x_{n_k})|&lt;\epsilon &lt; d$ causes contradiction</p>
+<p><strong>Claim</strong> $\forall x, y \in \mathbb{R}, x &lt; y \Rightarrow \exists r\in\mathbb{R}. x &lt; r &lt; y$ and $r$ is terminating.</p>
+<p><em>proof</em>. consider the decimal expansions of $x = x_0.x_1..., y = y_0.y_1...$, then exists the smallest $k$ where $x_k + 1 \leq y_k$, then find the next $m&gt;k$ where $x_m \neq 9$.
+Then construct $r = x_0.x_1...[x_m + 1]y_{m+1}y_{m+2}...$</p>
 
 </div>
 </div>
@@ -13186,16 +13216,29 @@ For $\delta, \exists N&gt;0$ so that $\forall k\geq N.|x_{n_k}-x_0|\leq \delta$.
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h4 id="Uniform-convergence-and-completeness">Uniform convergence and completeness<a class="anchor-link" href="#Uniform-convergence-and-completeness">&#182;</a></h4><p><strong>Theorem</strong> If $f_k\in C([a,b]),f_k \rightarrow^{u.c.}f$, then $f\in C([a,b])$<br>
-<em>proof</em>. Let $\epsilon &gt; 0$, and $x_0\in [a,b]$.<br>
-By uniform continuous, take $N_{\epsilon/3} &gt; 0, \forall k &gt; N_{\epsilon/3}. \sup_{x\in[a,b]}|f_k(k)-f(x)|\leq \epsilon/3$<br>
-By continuity of $f_k$, take $\delta_{\epsilon/3} &gt; 0, |x_0 - y|\leq \delta \Rightarrow |f_{N_{\epsilon/3}}(x_0) - f_{N_{\epsilon/3}}(y)|\leq \epsilon/3$<br>
-Take $\delta = \delta_{\epsilon/3}$,<br>
-$|f(x_0) - f(y)| \leq $<br>
-$|f(x_0) - f_{N_{\epsilon/3}}(x_0)| $ by uniform continuous<br>
-$+ |f_{N_{\epsilon/3}}(x_0) - f_{N_{\epsilon/3}}(y)|$ by continuity<br>
-$ + |f_{N_{\epsilon/3}}(y) - f(y)|$ by uniform continuous<br>
-$= \epsilon/3 + \epsilon/3 + \epsilon/3$</p>
+<h3 id="Construction-From-Cauchy-Sequence">Construction From Cauchy Sequence<a class="anchor-link" href="#Construction-From-Cauchy-Sequence">&#182;</a></h3>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Consider the space of Cauchy sequence $C_Q = \{(y_n): y_n\in \mathbb{Q}\}$</p>
+<p>$x_n, y_n$ Cauchy  THEN</p>
+<p><strong>Proposition 1</strong> $x_n + y_n$ Cauchy.<br>
+<em>proof.</em> Let $\epsilon &gt; 0, N_\epsilon = max(N^x_{\epsilon/2}, N^y_{\epsilon/2})$</p>
+<p><strong>Proposition 2</strong> $x_ny_n$ Cauchy<br>
+<em>proof.</em> 
+\begin{align*}
+|x_ny_n - x_my_m| &amp;= |x_ny_m - x_my_n + x_my_n - x_my_m| \\
+&amp;\leq |y_n(x_n-x_m)| + |x_m(y_n - y_m)|\\
+&amp;\leq B_2|x_n - x_m|  B_1|y_n - y_m| &amp;\text{since Cauchy sequences are bounded}\\
+\end{align*}
+Want this to be less than $\epsilon &gt; 0$. 
+Therefore, take $|x_n - x_m| \leq \epsilon / 2B_2, |y_n - y_m|\leq \epsilon/2B_1$</p>
+<p><strong>Proposition 3</strong> Additive identity $r_0=(0,0,0,...)$, multiplicative identity $r_1 = (1,1,1,...)$<br>
+$a+r_o = \{a_1 + 0, a_2 + 0,...\}=\{a_n\} = a$<br>
+$ar_1 = \{a_11, a_21,...\} = \{a_n\} = a$</p>
 
 </div>
 </div>
@@ -13203,107 +13246,11 @@ $= \epsilon/3 + \epsilon/3 + \epsilon/3$</p>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p><strong>Example</strong> $f_n(x) = (1 + \frac{x}{n})^n\rightarrow^{u.c.} e^x := \sum^\infty \frac{x^k}{k!}$ over any interval $[a,b]$<br>
-<em>proof</em>. $\sup_{x\in [a,b]} |(1+\frac{x}{n})^n - e^x| =\|\sum_{k=1}^n {n\choose k}\frac{x^k}{n^k} - \sum\frac{x^k}{k!}\|_\infty$<br>
-$\leq |\sum^\infty \frac{x^k}{k!}|$ Since ${n\choose k}/n^k \leq \frac{n}{k!}$<br>
-$\leq |\sum \frac{b^k}{k!}|$ Since $x\in [a,b]$<br>
-By big-oh, Take $N_\epsilon &gt; 0, \forall n \geq N. \sum \frac{b^k}{k!} \leq \epsilon$</p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p><strong>Claim</strong> $\lim_{n\rightarrow\infty}\int_0^1 f_n(x)dx = \int_0^1 \lim_{n\rightarrow\infty}f_n(x)dx = \int_0^1 e^x dx = e-1$<br>
-<em>proof</em>. $\int_0^1 (1 + \frac{x}{n})^n dx = \big(\frac{{n+x}^{n+1}}{(n+1)n^n}\big)\big|_0^1$<br>
-$ = \frac{(n+1)^{n+1}}{(n+1)n^n} - \frac{n^{n+1}}{(n+1)n^n}$<br>
-$ = (1 + \frac{1}{n})^n - \frac{n}{n+1}$<br>
-$\lim_{n\rightarrow \infty} (1 + \frac{1}{n})^n - \frac{n}{n+1} = e - 1$</p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p><strong>Example</strong> Point-wise convergence does not imply uniform continuous<br>
-<em>proof</em>. Take $f_n:[0,1]\rightarrow \mathbb{R} : = x^n$.<br>
-$f_n(x_0) \rightarrow^{p.w.} \mathbb I (x_0 = 1)$<br>
-But $\sup_{x\in[0,1]}|x_n - \mathbb I(x = 1)| = \sup_{x\in(0,1)}|x^n|$.<br>
-Therefore, for $x_0 = 0.5^{1/n}, f_n(x_0) = 1/2 &gt; 0$.<br>
-You will lose u.c. when you arbitrarily close to 1.</p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p><strong>Claim</strong> $\forall f,g\in C(K). K$ compact, if $f_n \rightarrow^{u.c.} f, g_n \rightarrow^{u.c.} g$, then $f_n g_n \rightarrow^{u.c.} f g$<br>
-<em>proof</em>. Let $\epsilon &gt; 0$, for all $x\in K$<br>
-$|f_n(x)g_n(x) - f(x)g(x)| = |f_n(x)g_n(x) - g(x)f_n(x) + g(x)f_n(x) - f(x)g(x)|$<br>
-$\leq |f_n(x)||g_n(x)-g(x)| + |g(x)||f_n(x)-f(x)|$<br>
-$&lt; B_1 |g_n(x)-g(x)| + B_2 |f_n(x)-f(x)|$ By EVT on $f_n, g_n$, since $K$ compact<br>
-$\leq B_1 \|g_n - g\|_\infty + B_2 \|f_n-f\|_{\infty}$ By u.c. of $f,g$</p>
-<p>Take $N_1\Rightarrow \forall n \geq N_1 . \|g_n-g\|_\infty \leq |\frac{\epsilon}{2B_1}|$<br>
-Take $N_2\Rightarrow \forall n \geq N_2 . \|f_n-f\|_\infty \leq |\frac{\epsilon}{2B_2}|$</p>
-<p>$\leq \epsilon$</p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h4 id="Integral-Convergence-Theorem">Integral Convergence Theorem<a class="anchor-link" href="#Integral-Convergence-Theorem">&#182;</a></h4><p>If $f_n \in C([a,b])\land f_n \rightarrow^{u.c.}f$,<br>
-then $\forall [c,d]\subseteq [a,b]. \lim_{n\rightarrow\infty}\int_c^d f_n(t)dt = \int_c^d \lim_{n\rightarrow\infty}f_n(t)dt$</p>
-<p><em>proof</em>. 
-\begin{align}
-\Big|\int_c^d f_n(t) - f(t)dt\Big| &amp;\leq \int_c^d |f_n(t)-f(t)|dt  \\
-&amp;\leq \int_c^d \sup_{s\in[a,b]}|f_n(s)-f(s)|dt \\
-&amp;= \sup_{s\in[a,b]} |f_n(s)-f(s)| \int_c^d d_t \\
-&amp;= \|f_n-f\|_\infty(d-c) \\
-&amp;\text{by u.c., take }\tilde\epsilon = \frac{\epsilon}{b-a} s.t. \exists N_{\tilde \epsilon} \geq 0. \forall n\geq N_{\tilde\epsilon}, \|f_n-f\|_\infty \leq \tilde\epsilon  \\
-&amp;\leq \frac{d-c}{a-b}\epsilon
-\end{align}</p>
-<p>Note that if $[a,b]=[0,\infty)$, then the proof breaks down.<br>
-because $\int_c^d dt$ can be arbitrarily large, so one fix is to have a density $\rho(x)$ so that $\int_c^d \rho(s)ds\leq B$</p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h4 id="Leibriz's-Rule-(differentiation-under-the-integral)">Leibriz's Rule (differentiation under the integral)<a class="anchor-link" href="#Leibriz's-Rule-(differentiation-under-the-integral)">&#182;</a></h4><p>$\forall f(x,t), d_x f(x,t) \in C([a,b]\times[c,d])$. If $f(x) = \int_c^d f(x,t)dt$, then $\frac{dF}{dx} = \int_c^d d_x f(x,t)dt$</p>
-<p><em>proof</em>. Fix $x_0\in[a,b]$<br>
-$$F'(x_0) = \lim_{h\rightarrow 0}\frac{F(x_0 + h) - F(x_0)}{h}$$
-Consider the RHS, 
-\begin{align}
-\lim_{h\rightarrow 0}\frac{F(x_0 + h) - F(x_0)}{h} &amp;= \frac{1}{h}\int_c^d f(x_0+h,t)-f(x_0, t)dt \\
-\text{by MVT, take }\xi(t,h)\in [x_0, x_0+h], &amp;\frac{F(x_0 + h) - F(x_0)}{h} = d_x f(\xi(t,h), t) \\
-&amp;= \int_c^d d_xf(\xi(t,h),t)dt
-\end{align}</p>
-<p>WTS given $\epsilon$, can find $h$ small enough so that $|\int_c^d d_xf(\xi(t,h), t) - d_xf(x_0, t)dt|\leq \epsilon$<br>
-Using continuity of $d_xf(x_0, t)$, take $\delta &gt; 0. |x_0 - y|&lt;\delta \Rightarrow |d_xf(y,t) - d_xf(x_0,t)|\leq \frac{\epsilon}{d-c}$</p>
-<p>Since $|\xi(t,h)-x_0|&lt;h$, take $\delta &lt; h$, then $|d_xf(\xi(t,h), t) - d_xf(x_0, t)|\leq \frac{\epsilon}{d-c}$,<br>
-\begin{align}
- |\int_c^d d_xf(\xi(t,h), t)-d_xf(x_0, t)dt| &amp;\leq \int_c^d |d_xf(\xi(t,h), t)-d_xf(x_0, t)|dt \\
- &amp;\leq \frac{\epsilon}{d-c}\int_c^d dt = \epsilon
-\end{align}</p>
-<p>Therefore, $\epsilon&gt;0, \exists h$ small enough so that $|\frac{F(x_0 + h, t) - F(x_0)}{h} - \int_c^d d_xf(x_0,t)dt|\leq \epsilon$. 
-Therefore, $F'(x_0)=\lim_{h\rightarrow 0} \frac{F(x_0+h)-F(x)}{h} = \int_c^d d_xf(x_0, t)dt$</p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p><strong>Example</strong> Prove $\int_0^\infty e^{-x^2}dx = \sqrt\pi/2$<br>
-<em>proof</em>. Define $F(x,t) = \int_0^1 \frac{e^{-x}(1+t^2)}{1+t^2}dx = \int_0^1 f(x,t)dt$, $f(x,t)$ is continuous on $[0,M]\times[0,1]$.<br>
-By Leibiz' Rule,</p>
+<p><strong>Equivalence Class</strong>
+$(x_n)\sim (y_n)$ IFF $\lim_{n\rightarrow \infty}|x_n -y_n| = 0$</p>
+<p><strong>Example</strong> $x_n = 1/n, y_n = 0$<br>
+<strong>Example</strong> Let $\pi=p_0.p_1p_2...$, take $x_n = p_0.p_1...p_n, y_n = p_0.p_1...p_n1 = x_n + 10^{-(n+1)}$.</p>
+<p>Let $\mathbb{R}:=$equivalence class on $C_Q$, so for any $x\in\mathbb{R}$ you can find a Cauchy sequence $(x_n)$ in $\mathbb{Q}$ s.t. $\lim_{n\rightarrow\infty}|x_n - x| = 0$</p>
 
 </div>
 </div>

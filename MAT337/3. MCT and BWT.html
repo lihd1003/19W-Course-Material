@@ -2,7 +2,7 @@
 <html>
 <head><meta charset="utf-8" />
 
-<title>Week2</title>
+<title>3. MCT and BWT</title>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.10/require.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
@@ -13056,6 +13056,31 @@ ul.typeahead-list  > li > a.pull-right {
 .ansi-bold { font-weight: bold; }
 
     </style>
+<style type="text/css">
+    /*This file contains any manual css for this page that needs to override the global styles.
+This is only required when different pages style the same element differently. This is just
+a hack to deal with our current css styles and no new styling should be added in this file.*/
+
+#ipython-main-app {
+    position: relative;
+	font-size: 13pt;
+	font-family: 'Cambria', serif;
+}
+#jupyter-main-app {
+    position: relative;
+	font-size: 13pt;
+}
+.tab-content .row {
+	margin-bottom: 10px;
+}
+
+.text_cell_render {
+	font-size: 16pt;
+	font-family: "Cambria", serif;
+	line-height: 1.5;
+}
+
+    </style>
 
 
 <style type="text/css">
@@ -13116,19 +13141,19 @@ div#notebook {
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p><strong>Monotonic</strong> A sequence $(a_n)$ is (strictly) monotone increasing is $a_n\leq a_{n+1}(a_n&lt;a_{n+1}), \forall n\geq 1$.</p>
-
+<h3 id="Monotone-Convergence-Theorem">Monotone Convergence Theorem<a class="anchor-link" href="#Monotone-Convergence-Theorem">&#182;</a></h3>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p><strong>Monotone Convergence Theorem</strong><br>
-Monotone increasing and bounded above $\Rightarrow$ converges to supremum.</p>
+<p>Monotone increasing and bounded above $\Rightarrow$ converges to supremum.</p>
+<p><strong>Monotonic</strong> A sequence $(a_n)$ is (strictly) monotone increasing is $a_n\leq a_{n+1}(a_n&lt;a_{n+1}), \forall n\geq 1$.</p>
 <p>WTS $\lim_{n\rightarrow\infty}a_n = \inf(a_n)$. i.e.<br>
 $\forall \epsilon. \exists N. \forall n \geq N. |a_n - L| \leq \epsilon$</p>
-<p><em>proof.</em>  Let $L=\inf(a_n)$. Let $\epsilon &gt; 0$, take $a_N \in (a_n)$ s.t. $L-\epsilon &lt; a_N$. Then $L-\epsilon &lt; a_N \leq a_n \leq L$ for all $n\geq N. \Rightarrow \forall n\geq N. |a_n-L|&lt;\epsilon$</p>
+<p><em>proof.</em>  Let $L=\inf(a_n)$. Let $\epsilon &gt; 0$, take $a_N \in (a_n)$ s.t. $L-\epsilon &lt; a_N$.<br>
+Then $L-\epsilon &lt; a_N \leq a_n \leq L$ for all $n\geq N. \Rightarrow \forall n\geq N. |a_n-L|&lt;\epsilon$</p>
 
 </div>
 </div>
@@ -13146,15 +13171,15 @@ $\forall \epsilon. \exists N. \forall n \geq N. |a_n - L| \leq \epsilon$</p>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p><strong>Example 2.6.B</strong> Let $a_1 = 0, a_{n+1}=\sqrt{5 + a_n}$, find whether it's convergent and if convergent what's the limit.</p>
-<p><strong>Monotone</strong> $a_{n+1}\geq a_n$<br>
-<em>proof</em><br>
+<p><strong>Example</strong>(D\&amp;D 2.6.B) Let $a_1 = 0, a_{n+1}=\sqrt{5 + a_n}$, find whether it's convergent and if convergent what's the limit.</p>
+<p><strong>Monotone</strong><br>
+<em>proof</em>.<br>
 $a_2 = \sqrt 5 &gt; 0 = a_1$<br>
 $a_{n+1} = \sqrt{5 + a_n} &gt; \sqrt{5 + a_{n-1}}=a_n$</p>
-<p><strong>Bounded above</strong> 
+<p><strong>Bounded above</strong><br>
 $a^2_{n+1} =5 + a_n &lt; 5 + a_{n+1}$. Let $x = a_{n+1}\Rightarrow x^2 &lt; 5 + x\Rightarrow x^2 -x -5 &lt; 0$.<br>
-$x\in [\frac{1-\sqrt{21}}{2}, \frac{1+\sqrt{21}}{2}]\Rightarrow a_{n+1}=x$ is bounded above.<br>
-but in fact, $L = \lim\sqrt{5 + a_{n-1}}=\sqrt{5+L} \Rightarrow L^2 = L - 5$. solve and take $L &gt; 0$ since monotone increasing, then $L=\frac{1+\sqrt{21}}{2}$</p>
+$x\in [\frac{1-\sqrt{21}}{2}, \frac{1+\sqrt{21}}{2}]\Rightarrow a_{n+1}=x$ is bounded above.</p>
+<p>In fact, $L = \lim\sqrt{5 + a_{n-1}}=\sqrt{5+L} \Rightarrow L^2 = L - 5$. solve and take $L &gt; 0$ since monotone increasing, then $L=\frac{1+\sqrt{21}}{2}$</p>
 
 </div>
 </div>
@@ -13162,7 +13187,7 @@ but in fact, $L = \lim\sqrt{5 + a_{n-1}}=\sqrt{5+L} \Rightarrow L^2 = L - 5$. so
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p><strong>Example 2.6.I</strong> Let $(a_n)$ be bounded, define $\lim\sup a_n = b_n = \sup\{a_k: k\geq n\}$ for $n\geq 1$. Prove that $(b_n)$ converges.</p>
+<p><strong>Example</strong>(D\&amp;D 2.6.I) Let $(a_n)$ be bounded, define $\lim\sup a_n = b_n = \sup\{a_k: k\geq n\}$ for $n\geq 1$. Prove that $(b_n)$ converges.</p>
 <p><strong>Monotone</strong> $b_n\leq b_{n+1}$<br>
 since $b_n = \max(a_n, \sup\{a_k: k\geq n+1\})=\max(a_n,b_{n+1})\geq b_{n+1}$</p>
 <p><strong>Bounded below</strong> $\forall n \geq 1. a_n\geq M, b_n = \sup(a_k:k\geq n )\geq M$</p>
@@ -13175,15 +13200,8 @@ $$\exists L&lt;\infty.  \lim b_n = \lim_{n\rightarrow\infty}\sup_{k\geq n} a_nL$
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Bolzano-Weierstrass-Theorem">Bolzano-Weierstrass Theorem<a class="anchor-link" href="#Bolzano-Weierstrass-Theorem">&#182;</a></h3><p>Every bounded sequence of real numbers has a convergent subsequence</p>
 <p><strong>Subsequence</strong> a subsequence of $(a_n)$ is a sequence $(a_{n_k})$ where $n_1&lt;n_2&lt;...$</p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p><strong>Bolzano-Weierstrass Theorem 2.7.2.</strong> Every bounded sequence of real numbers has a convergent subsequence</p>
 <p><em>proof.</em> Let $(a_n)\subseteq [-M, M]$.<br>
 Construct the subsequence by</p>
 <ul>
@@ -13196,124 +13214,6 @@ Construct the subsequence by</p>
 <p>Then $\forall \epsilon &gt; 0$, take $N_\epsilon$ s.t. $\epsilon &gt; M/2^{N_\epsilon} &gt; |a_{N_\epsilon} - L|$<br>
 but $|a_n - L | \leq |I_n|\leq |I_{N_\epsilon}| / 2^{n-N_\epsilon}, \forall n\geq N_\epsilon$</p>
 <p>$\epsilon &gt; M / 2^{N_\epsilon} &gt; |a_n - L|. \forall n\geq N_\epsilon\Rightarrow \lim{a_n} = L$</p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p><strong>Example 2.7.I. Cantor diagonalization</strong> Suppose $(x_n)\subset \mathbb{R}$, and that $L_k$ are real numbers with $\lim_{k\rightarrow\infty} = L$. If for each $k\geq 1$, there is a subsequence of $(x_n)$ converging to $L_k$, show that some subsequence converges to $L$.</p>
-<p><strong>Claim.</strong> the sequence $(x_{1n})$ is eventually bounded.</p>
-<p>Taking $\epsilon = 1$, using limit definition. $\min(-M_{N_\epsilon}, L_1 - 1)\leq x_{1n}\leq \max(M_{N_\epsilon}, 1+ L_1)$</p>
-<p>So for sequence $(x_{k_n})$ and $x_{k_n}\rightarrow L_k$, you can pick $x_{m_{k_n}}$ s.t. $|x_{m_{k_n}} - L_k|\leq 1/k$, then we can prove</p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="TH">TH<a class="anchor-link" href="#TH">&#182;</a></h2>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h4 id="Cauchy-sequence">Cauchy sequence<a class="anchor-link" href="#Cauchy-sequence">&#182;</a></h4><p>$\forall \epsilon &gt; 0. \exists N &gt;0 .\forall m,n \geq N. |a_m - a_n| \leq \epsilon$</p>
-<p>Any convergent sequence is Cauchy</p>
-<p>Every Cauchy sequence is bounded</p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Construction-of-reals">Construction of reals<a class="anchor-link" href="#Construction-of-reals">&#182;</a></h3>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>Consider the space of Cauchy sequence $C_Q = \{(y_n): y_n\in \mathbb{Q}\}$</p>
-<p>$x_n, y_n$ Cauchy  THEN</p>
-<p><strong>Proposition 1</strong> $x_n + y_n$ Cauchy.<br>
-<em>proof.</em> Let $\epsilon &gt; 0, N_\epsilon = max(N^x_{\epsilon/2}, N^y_{\epsilon/2})$</p>
-<p><strong>Proposition 2</strong> $x_ny_n$ Cauchy<br>
-<em>proof.</em><br>
-$|x_ny_n - x_my_m| = |x_ny_m - x_my_n + x_my_n - x_my_m|$<br>
-$\leq |y_n(x_n-x_m)| + |x_m(y_n - y_m)|$<br>
-$\leq B_2|x_n - x_m|  B_1|y_n - y_m|$ since Cauchy sequences are bounded<br>
-Want this to be less than $\epsilon &gt; 0$
-Therefore, take $|x_n - x_m| \leq \epsilon / 2B_2, |y_n - y_m|\leq \epsilon/2B_1$</p>
-<p><strong>Proposition 3</strong> Additive identity $r_0=(0,0,0,...)$, multiplicative identity $r_1 = (1,1,1,...)$<br>
-$a+r_o = \{a_1 + 0, a_2 + 0,...\}=\{a_n\} = a$<br>
-$ar_1 = \{a_11, a_21,...\} = \{a_n\} = a$</p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p><strong>Equivalence Class</strong>
-$(x_n)\sim (y_n)$ IFF $\lim_{n\rightarrow \infty}|x_n -y_n| = 0$</p>
-<p><strong>Example</strong> $x_n = 1/n, y_n = 0$<br>
-<strong>Example</strong> Let $\pi=p_0.p_1p_2...$, take $x_n = p_0.p_1...p_n, y_n = p_0.p_1...p_n1 = x_n + 10^{-(n+1)}$.</p>
-<p>Let $\mathbb{R}:=$equivalence class on $C_Q$, so for any $x\in\mathbb{R}$ you can find a Cauchy sequence $(x_n)$ in $\mathbb{Q}$ s.t. $\lim_{n\rightarrow\infty}|x_n - x| = 0$</p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Completeness">Completeness<a class="anchor-link" href="#Completeness">&#182;</a></h3>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p><strong>Metric space</strong> a space X plus a notion of distance</p>
-<p><strong>Complete</strong> a metric space $S$ is complete if Cauchy sequence in $S$ converges to some point in that space.</p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p><strong>Theorem 2.8.5</strong> every Cauchy sequence of reals converges. i.e. $\mathbb{R}$ is complete.</p>
-<p><em>proof.</em> Let $(x_n)\in\mathbb{R}$ be Cauchy and $x_n\rightarrow L$. WTS $L\in\mathbb{R}$</p>
-<p>We'll use diagonalization argument: For fixed $x_n\in\mathbb{R}, \exists (r_{n,k})$ be rational Cauchy s.t. $\lim_{k\rightarrow\infty}r_{n,k}=x_n$. 
-Let $a_n$ be s.t. $|a_n - x_n|\leq 1/n$ by choosing a candidate for each $n$. 
-$\Rightarrow |a_n-L|\leq |a_n-x_n| + |x_n-L|\leq 1/n + \epsilon_n$<br>
-$\Rightarrow \lim_{n\rightarrow\infty} a_n = L \in\mathbb{R}$</p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p><strong>MVT</strong> $|f(x)-f(y)| = |f'(\xi)||x-y|$ for $\xi\in(x,y)$</p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p><strong>Example</strong> $a_1 = 1, a_{n+1} = cos(a_n)$ show that $a_n\rightarrow L$.<br>
-<em>proof.</em> WTS $(a_n)$ is Cauchy<br>
-$|\cos(a_{n - 1})-\cos(a_n)|\leq |\sin(\xi)||a_{n-1}-a_n|$ for $\xi\in(a_n,a_{n-1})$<br>
-$\Rightarrow |a_n - a_{n+1}|\leq r|a_{n-1}-a_n|$<br>
-$\leq r^n|a_2 - a_1|$ by doing such recursively</p>
-<p>If $r &lt; 1$, then $\lim|a_n - a_{n-1}|=0$</p>
 
 </div>
 </div>

@@ -2,7 +2,7 @@
 <html>
 <head><meta charset="utf-8" />
 
-<title>Week4</title>
+<title>2. Extremum</title>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.10/require.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
@@ -13056,6 +13056,31 @@ ul.typeahead-list  > li > a.pull-right {
 .ansi-bold { font-weight: bold; }
 
     </style>
+<style type="text/css">
+    /*This file contains any manual css for this page that needs to override the global styles.
+This is only required when different pages style the same element differently. This is just
+a hack to deal with our current css styles and no new styling should be added in this file.*/
+
+#ipython-main-app {
+    position: relative;
+	font-size: 13pt;
+	font-family: 'Cambria', serif;
+}
+#jupyter-main-app {
+    position: relative;
+	font-size: 13pt;
+}
+.tab-content .row {
+	margin-bottom: 10px;
+}
+
+.text_cell_render {
+	font-size: 16pt;
+	font-family: "Cambria", serif;
+	line-height: 1.5;
+}
+
+    </style>
 
 
 <style type="text/css">
@@ -13116,14 +13141,19 @@ div#notebook {
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h4 id="Extreme-value-theorem">Extreme value theorem<a class="anchor-link" href="#Extreme-value-theorem">&#182;</a></h4><p>If a function $f:K\rightarrow R$ is continous and $K$ is compact, then $f(K)$ is compact and $\exists a,b\in K. \forall k\in K. f(a)\leq f(k)\leq f(b)$</p>
-<p><strong>Part1</strong> $f(K)$ compact<br>
-<em>proof</em>. Let $(y_k)\subseteq f(K)$, take $(x_k)\subseteq K s.t. f(x_k)=y_k$. By compactness of $K$, take $(x_{k_n})\subseteq (x_k)$ and $x_k\rightarrow x\in K.$ Then by continuous mapping theorem, $f(x_{k_n})\rightarrow f(x)\in f(K)$</p>
-<p><strong>Part2</strong> $f(K)$ has max and min<br>
-<em>proof</em>. By compactness and least bound principle, take $M,m$ be the supremum and infimum of $f(X)$. WTS thats contained in $f(K)$.<br>
-Construct a sequence $(d_n)\subset K$ s.t. $M-\frac{1}{n}\leq f(d_n)\leq M$ (since M is the supremum we can do such construction).<br>
-Since $K$ is compact, by Bolz. Weis. Theorem, take $(d_{n_k})\subseteq (d_n), d_{n_k}\rightarrow d$ is convergent.</p>
-<p>Then by squeeze theorem, $M-\frac{1}{n}\leq f(d_{n_k})\leq M$ is squeezed by $M$, $\lim f(d_{n_k}) = f(\lim f(d_{n_k})) = M$. By compactness of $f(K), M\in f(K)$.</p>
+<h3 id="Extremum">Extremum<a class="anchor-link" href="#Extremum">&#182;</a></h3>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><strong>Bound</strong>  A set $S\subset\mathbb{R}$ is<br>
+<strong>bounded above</strong> $\exists M\in\mathbb{R}. \forall s \in S. s\leq M. $<br>
+<strong>bounded below</strong> $\exists L\in\mathbb{R}. \forall s \in S. s\geq L. $</p>
+<p><strong>Supremum</strong> $sup(S)\in\mathbb{R}$ is a upper bound and $\forall v. v\geq sup(S)\land v$ is upper bound.<br>
+<strong>Infimum</strong> $inf(S)\in\mathbb{R}$ is a lower bound and $\forall v. v\leq inf(S)\land v$ is lower bound.</p>
+<p><strong>Proposition</strong> $u$ is a supremum of $S$ IFF $u$ is a upper bound and $\forall \epsilon &gt; 0. \exists s_\epsilon \in S. u-\epsilon &lt; s_\epsilon$</p>
 
 </div>
 </div>
@@ -13131,8 +13161,19 @@ Since $K$ is compact, by Bolz. Weis. Theorem, take $(d_{n_k})\subseteq (d_n), d_
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p><strong>Example</strong> $f$ continuous on $[a,b]\subseteq \mathbb{R}$ has no local extremum, then $f$ is monotone.<br>
-<strong>local maxmimum/minimum</strong> $x_0$ is local max/min if $\exists \epsilon &gt; 0. \forall x\in [x_0-\epsilon, x_0+\epsilon], f(x)\leq | \geq f(x_0)$.</p>
+<h4 id="Least-upper-bound-principle">Least upper bound principle<a class="anchor-link" href="#Least-upper-bound-principle">&#182;</a></h4><p>$\forall S\neq \emptyset, S$ bounded above. $S$ has a supremum.</p>
+<p><em>proof</em>.  Since bounded above, take $M\in\mathbb{R}$ where $\forall s \in S. M\geq s$.<br>
+Pick $s'=s_0.s_1 \in S\Rightarrow M\geq s'\Rightarrow m_0 + 1 &gt; s_0$.<br>
+Find lowest $a_0\in \{s_0, ..., m_0 + 1\}$ that is an upper bound for $S$.</p>
+<p><em>Induction</em> $y_n = \sum_0^n a_i / 10^i$ where $a_i=\min\{a \in \{0, 1, ..., 9\}\mid y_i \geq S\}$. Take $x_n \in S$ s.t. $a_0.a_1...a_n - 10^{-n}\leq x_n \leq y_n$</p>
+<p><em>WTS</em> $L = a_0.a_1... = sup(S)$</p>
+<p>Upper bound property: start with any $s_0.s_1,... \in S$ either</p>
+<ol>
+<li>$\forall i. s_i = a_i\Rightarrow S = L$  </li>
+<li>$\exists k$ be the first different digit and $s_k &gt; a_k$
+Construct $y_k^* = a_0.a_1...a_{k-1}s_k$. then $L &lt; y_k^*\leq s_0.s_1$, while by the ordering this cannot happen. </li>
+</ol>
+<p>Subsequence Property: For each $\epsilon$, you can pick $n &gt; 0$ s.t. $L-\epsilon \leq L - 10^{-n} \leq x_n \leq y_n &lt; L$</p>
 
 </div>
 </div>
@@ -13140,7 +13181,8 @@ Since $K$ is compact, by Bolz. Weis. Theorem, take $(d_{n_k})\subseteq (d_n), d_
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h4 id="Uniform-Continuilty">Uniform Continuilty<a class="anchor-link" href="#Uniform-Continuilty">&#182;</a></h4><p>$f:S\rightarrow R$ is uniformly continuous if $\forall \epsilon &gt; 0. \exists \delta &gt; 0. \forall x,y. |x-y|\leq \delta \Rightarrow |f(x)-f(y)|&lt;\epsilon$</p>
+<p><strong>Claim</strong> Uniqueness of supremum</p>
+<p><em>proof</em> Assume $\exists u,v$ be two supremums, $v &lt; u$. Take $\epsilon = u -v, \forall \epsilon &gt; 0. \exists s_\epsilon \in S \Rightarrow u - (u-v) &lt; s_\epsilon \Rightarrow v &lt; s_\epsilon$.</p>
 
 </div>
 </div>
@@ -13148,36 +13190,10 @@ Since $K$ is compact, by Bolz. Weis. Theorem, take $(d_{n_k})\subseteq (d_n), d_
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p><strong>Sequential criterion</strong> A function $f:S\rightarrow R$ is not uniform continuous if $\exists (x_n), (y_n)\subseteq S$ s.t. $|x_n - y_n|\rightarrow 0$ but $\exists \epsilon_0 &gt;0 s.t. |f(x_n)-f(y_n)|\geq \epsilon_0 &gt; 0$</p>
-<p><em>proof</em>. negation of the uniform continuous definition</p>
-<p><strong>Example</strong> $f(x):=x^2$<br>
-Let $x_n = n + n^{-1}, y_n = n$. Then $|x_n-y_n|= n^{-1}\rightarrow 0$, but $|(n+n^{-1})^2 - n^2| = |-2|+n^{-2}\rightarrow 2 &gt; 0$</p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p><strong>$\alpha$-Holder</strong> $f:S\rightarrow R$ is a-Holder if $|f(x)-f(y)|\leq c |x-y|^\alpha, \alpha\in[0,1]. \forall x,y\in S$.</p>
-<p><strong>Example</strong> $f(x)=x^p, p\in(0,1)$ is call p-Holder and is uniform continuous.<br>
-<em>proof</em>. Let $\epsilon &gt; 0$, take $\delta = (\epsilon / c)^{a^{-1}} &lt; 1$ because $\alpha \leq 1$<br>
-$|f(x)-f(y)|\leq c|x-y|^\alpha \leq c\delta^\alpha =\epsilon$</p>
-<p>When $\alpha = 1, i.e. |f(x)-f(y)|\leq c|x-y|$, they are called Lipschitz.</p>
-<p><strong>Example</strong> Any differentiable functions are Lipschitz (bounded derivative)<br>
-<em>proof</em>. by MVT, $|f(x)-f(y)| = |f'(c)||x-y|\leq B|x-y|$</p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p><strong>Heine-Cantar Theorem</strong> if $K$ compact, and $f:K\rightarrow R$ is continuous, then $f$ is also uniform continuous.<br>
-<em>proof</em>. Suppose $f$ is not uniform continuous<br>
-Take $(x_n), (y_n)$ and for $\epsilon &gt; 0$ s.t. $|x_n - y_n|\leq 1/n$ but $|f(x_n)-f(y_n)|\geq \epsilon &gt; 0$. By $K$ compact, take $(x_{n_k})\rightarrow x\in K$。<br>
-However, $|y_{n_k}-x|\leq |y_{n_k}-x_{n_k}| + |x_{n_k}-x| \leq n_k^{-1} + \epsilon_k \rightarrow 0$ i.e. $y_{n_k}\rightarrow x$<br>
-$\forall n_k &gt; N_{\epsilon_0/4}|f(x_n)-f(y_n)|\leq |f(x_n)-f(x)| + |f(x)-f(y)| \leq \epsilon_0/2$ causes contradiction</p>
+<p><strong>Claim</strong> For all bounded above set $A$ and $c\geq 0$. $\sup(cA) = c \sup(A)$</p>
+<p><em>proof</em>. Let $M = \sup(A)$.<br>
+Upper bound property: $\forall s. s\leq M \Rightarrow cs \leq cM$<br>
+Subsequence property: Let $\epsilon \geq 0$, take $s_{\epsilon/c}$, then $cs_{\epsilon/c}\geq u - \epsilon$</p>
 
 </div>
 </div>

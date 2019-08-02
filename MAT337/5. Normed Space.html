@@ -2,7 +2,7 @@
 <html>
 <head><meta charset="utf-8" />
 
-<title>Week5</title>
+<title>5. Normed Space</title>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.10/require.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
@@ -13056,6 +13056,31 @@ ul.typeahead-list  > li > a.pull-right {
 .ansi-bold { font-weight: bold; }
 
     </style>
+<style type="text/css">
+    /*This file contains any manual css for this page that needs to override the global styles.
+This is only required when different pages style the same element differently. This is just
+a hack to deal with our current css styles and no new styling should be added in this file.*/
+
+#ipython-main-app {
+    position: relative;
+	font-size: 13pt;
+	font-family: 'Cambria', serif;
+}
+#jupyter-main-app {
+    position: relative;
+	font-size: 13pt;
+}
+.tab-content .row {
+	margin-bottom: 10px;
+}
+
+.text_cell_render {
+	font-size: 16pt;
+	font-family: "Cambria", serif;
+	line-height: 1.5;
+}
+
+    </style>
 
 
 <style type="text/css">
@@ -13116,43 +13141,13 @@ div#notebook {
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h4 id="Intermediate-value-theorem">Intermediate value theorem<a class="anchor-link" href="#Intermediate-value-theorem">&#182;</a></h4><p>If $f:[a,b]\rightarrow \mathbb{R}$ is continuous and $z\in\mathbb{R}$ satisfy $f(a)\leq z\leq f(b)$, then $\exists c \in [a,b]$ s.t. $f(c)=z$.</p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p><em>proof</em>. Let $A = \{x\in[a,b]: f(x) &lt; z\}$, then $A$ is upper bounded. Then, take $c = sup(A)$.</p>
-<p>$\forall \epsilon_n = n^{-1}$, take $a_n \in A$ s.t. $c - n^{-1} \leq a_n \leq c$ and  $f(a_n)\leq z$ so $f(c) = \lim_{n\rightarrow \infty} f(a_n)\leq z$ (1).<br>
-Explicitly assume $c &lt; b$ (otherwise we've done), then take $\exists b_n$ s.t. $c &lt; b_n \leq b, \lim_\infty b_n =c$.<br>
-Since $z$ is upper bound for $A, b_n\not\in A, f(b_n)\leq z$ (2). 
-By (1)(2) $f(c)=z$</p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p><strong>Disconnected</strong> $A\subseteq \mathbb{R}$ is disconnected $U,V$ open cover s.t. $A = U\sqcup V$<br>
-<strong>Connected</strong> $A$ is connected if $\forall U,V. A\neq U\sqcup V$<br>
-<strong>Path connected</strong> of $\forall a,b \in A. \exists \gamma:[0,1]\rightarrow A$ be a continuous path i.e. $\gamma(0)=a, \gamma(1)=b, \gamma([0,1])\subseteq A$</p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h4 id="Norm">Norm<a class="anchor-link" href="#Norm">&#182;</a></h4><p>Let $V$ be a vector space over $\mathbb{R}$, a norm $\|\cdot\|$ over $V$ is a function $V\rightarrow \mathbb{R}^+$ s.t.</p>
+<h3 id="Norm">Norm<a class="anchor-link" href="#Norm">&#182;</a></h3><p>Let $V$ be a vector space over $\mathbb{R}$, a norm $\|\cdot\|$ over $V$ is a function $V\rightarrow \mathbb{R}^+$ s.t.</p>
 <ul>
 <li>positive definite: $\|x\|\geq 0 \land \|x\| = 0 IFF x\equiv 0 \in V$  </li>
 <li>homogeneous $\|ax\| = |a|\|x\|. \forall a\in \mathbb{R}$</li>
 <li>triangular inequality $\|x+y\| = \|x\| + \|y\|$</li>
 </ul>
-<p><strong>Euclidean space over $\mathbb{R}^n$</strong> $\|x\|_2 = \sqrt{\sum |x_k|^2}$</p>
+<p><strong>Example</strong> Euclidean space over $\mathbb{R}^n$__ $\|x\|_2 = \sqrt{\sum |x_k|^2}$</p>
 <ul>
 <li>positive definite<br>
 $|x_k|^2 \geq 0 \Rightarrow \sqrt{\sum |x_k|^2} \geq 0$<br>
@@ -13182,7 +13177,7 @@ $\|x+y\|^2 = \sum |x_k + y_k|^2 \leq \sum |x_k|^2 + |y_k|^2 = \sum |x_k|^2 + \su
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p><strong>Claim</strong>. Sup-norm is a norm<br>
+<p><strong>Example</strong> sup-norm is a norm<br>
 <em>proof</em>.</p>
 <ol>
 <li>$|f(x)| \geq 0$, $f(x):= 0 \Rightarrow \|f\|_\infty = 0, \|f\|_\infty=0\Rightarrow |f(x)|\leq 0\Rightarrow f(x)=0$</li>
@@ -13213,7 +13208,7 @@ $\|x+y\|^2 = \sum |x_k + y_k|^2 \leq \sum |x_k|^2 + |y_k|^2 = \sum |x_k|^2 + \su
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h4 id="Topology-of-normed-spaces">Topology of normed-spaces<a class="anchor-link" href="#Topology-of-normed-spaces">&#182;</a></h4><p><strong>Example</strong> The set $C:=\{f:[0,1]\rightarrow \mathbb{R}: f(0)=1\}$ is closed in $(C([0,1]), \|f\|_\infty:= sup_{x\in [0,1]}f(x))$.</p>
+<h3 id="Topology-of-normed-spaces">Topology of normed-spaces<a class="anchor-link" href="#Topology-of-normed-spaces">&#182;</a></h3><p><strong>Example</strong> The set $C:=\{f:[0,1]\rightarrow \mathbb{R}: f(0)=1\}$ is closed in $(C([0,1]), \|f\|_\infty:= sup_{x\in [0,1]}f(x))$.</p>
 <p><em>proof</em>. Take a sequence $g_n \in C$ s.t. $\|g_n - g\| \rightarrow 0$.<br>
 Then, consider  $|g(0) - 1| \leq |g(0) - g_n(0)| + |g_n(0) -1|$<br>
 $\leq |g(0)-g_n(0)| \leq \|g_n-g\|=0$<br>
@@ -13242,7 +13237,7 @@ Take $\delta = \min(\delta_1, \delta_2)/ 2$.</p>
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>$C_c(\mathbb{R}):=$ space of compactly supported function on reals, $C_c(\mathbb R), f\in C_c(\mathbb R)$ if $\exists M &gt; 0$ s.t. $f(x)=0, \forall |x| &gt; M$</p>
-<p><strong>Proposition</strong> $C_c(\mathbb R)$ is not complete wrt $\|f\|_\infty$</p>
+<p><strong>Claim</strong> $C_c(\mathbb R)$ is not complete wrt $\|f\|_\infty$</p>
 <p><em>proof</em>. WTF a Cauchy sequence $f_n \in C_c(\mathbb R)$ s.t. $f_m \rightarrow f\not\in C_c(\mathbb R)$.<br>
 Take $f_n(x) = \frac{1-(x/n)^2}{1+x^2}\mathbb I (|x|\leq n)$ and we can show that $f_n$ is Cauchy wrt $\|\cdot\|_\infty$</p>
 <p>wlog, assume $n &gt; m$,<br>

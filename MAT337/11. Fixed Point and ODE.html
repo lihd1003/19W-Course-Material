@@ -2,7 +2,7 @@
 <html>
 <head><meta charset="utf-8" />
 
-<title>Week3</title>
+<title>11. Fixed Point and ODE</title>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.10/require.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
@@ -13056,6 +13056,31 @@ ul.typeahead-list  > li > a.pull-right {
 .ansi-bold { font-weight: bold; }
 
     </style>
+<style type="text/css">
+    /*This file contains any manual css for this page that needs to override the global styles.
+This is only required when different pages style the same element differently. This is just
+a hack to deal with our current css styles and no new styling should be added in this file.*/
+
+#ipython-main-app {
+    position: relative;
+	font-size: 13pt;
+	font-family: 'Cambria', serif;
+}
+#jupyter-main-app {
+    position: relative;
+	font-size: 13pt;
+}
+.tab-content .row {
+	margin-bottom: 10px;
+}
+
+.text_cell_render {
+	font-size: 16pt;
+	font-family: "Cambria", serif;
+	line-height: 1.5;
+}
+
+    </style>
 
 
 <style type="text/css">
@@ -13116,9 +13141,14 @@ div#notebook {
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Closed-and-open-sets">Closed and open sets<a class="anchor-link" href="#Closed-and-open-sets">&#182;</a></h3><p><strong>Limit point</strong> For a sequence $(x_n)\in\mathbb{R}$, its limit point $x\in\mathbb{R}$ satisfies $\lim_{n\rightarrow\infty}x_n = x$.</p>
-<p><strong>Closed</strong> if it contains all its limit points</p>
-<p><strong>Example</strong> $\mathbb{R}^n$ is closed because $\mathbb{R}$ is complete</p>
+<h3 id="Discrete-Dynamical-Systems">Discrete Dynamical Systems<a class="anchor-link" href="#Discrete-Dynamical-Systems">&#182;</a></h3><p><strong>Discrete Dynamical Systems</strong> Let $X\subseteq (V,\|\cdot\|), T:X\rightarrow X$ continuous. $(X,T)$ is a discrete dynamical system<br>
+<strong>Forward orbit</strong> $\forall x\in X$, forward orbit of x is the sequence $O(x):=\{T^n_x\}_{n\geq 0}$, $T^n_x=T(T...T(x))$</p>
+<p><strong>Fixed Point</strong> $x^*$ is<br>
+<strong>attractive fixed point (sink)</strong> if $\exists (a,b)\ni x^*$ s.t. $\forall x \in (a,b). T^N_x\rightarrow x^*$<br>
+<strong>repelling fixed point (source)</strong> if $\forall x\neq x^*$, $O(x)$ leaves $(a,b)$</p>
+<p><strong>Contraction</strong> $X\subseteq (V,\|\cdot\|),T:X\rightarrow X$ is a contraction on $X$ if 
+$$\exists c &lt; 1. \forall x,y\in X. \|Tx-Ty\|\leq c\|x-y\|$$
+i.e. $T$ is $c$-Lipschitz $c&lt;1$</p>
 
 </div>
 </div>
@@ -13126,80 +13156,59 @@ div#notebook {
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p><strong>Theorem</strong> Finite union of closed sets is closed</p>
-
+<h3 id="Banach-Contraction-Principle">Banach Contraction Principle<a class="anchor-link" href="#Banach-Contraction-Principle">&#182;</a></h3><p>Let $X\subseteq (V,\|\cdot\|)$ be a closed subset of a complete normed vector space,<br>
+IF $T:X\rightarrow X$ is a contraction on $X$<br>
+THEN<br>
+(i) $T$ has unique fixed point $x^*$<br>
+(ii) $\forall x\in X. x^* = \lim_{n\rightarrow\infty} T^nx$<br>
+(iii) $\|T^nx-x^*\|\leq c^n\|x-x^*\|\leq \frac{c^n}{1-c}\|x-Tx\|, c$ is the Lipschitz constant</p>
+<p><em>proof</em>. Let $x_0\in X$, recursively define $x_{n+1} = Tx_n$, hence form a sequence $\{x_n\}$.<br>
+Then, we can show that $\{x_n\}$ is Cauchy by observing
+\begin{align*}
+\|x_{n+m} - x_n\| &amp;\leq \sum_0^{m-1}\|x_{n+i-1}-x_{n+i}\| &amp;\text{triangle inequality} \\
+&amp;= \sum_{i=0}^{m-1} \|Tx_{n+i}-Tx_{n+i-1}\| \\
+&amp;\leq \sum_{i=0}^{m-1} c\|x_{n+i}-x_{n+i-1}\|&amp;\text{by contraction}\\
+&amp;\leq \sum^{m-1}c^{n+i}\|x_1-x_0\| &amp;\text{recursively repeat such process} \\
+&amp;&lt;\sum^\infty c^{n+i}\|x_1-x_0\| \\
+&amp;= \frac{c^n\|x_1-x_0\|}{1-c}
+\end{align*}
+Since $c^n\rightarrow 0$, we can choose $N$ sufficiently large to have $\|x_{n+m}-x_n\|\rightarrow 0$</p>
+<p><em>Existence</em> By completeness of the normed space, Cauchy implies convergent to some $x^*\in V$, by $X$ closed, $x^*\in X$. By Lipshitz, hence continuous of $T$, $Tx^* = T(\lim x_n) = \lim Tx_n = x^*\Rightarrow x^*$ is the fixed point.</p>
+<p><em>Uniqueness</em> Suppose $y\in X$ is also fixed point, $\|x^*-y\| = \|Tx^* - Ty\| \leq c\|x^*-y\|\Rightarrow \|x^*-y\| = 0\Rightarrow x^*=y$</p>
+$$\|T^Nx-x^*\| = \|T^n x-T^nx^*\|\leq c^n\|x-x^*\|= c^n lim \|x-x_m\|\leq \frac{c^n}{1-c}\|Tx-x\|$$
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p><strong>Open</strong> if $\forall x\in U.\exists r_{x,v}&gt;0. B_r(x)\subseteq U$</p>
-<p>$U$ open, $f$ continuous $\Rightarrow f^{-1}(U)$ is open</p>
-<p><strong>Theorem 4.3.8</strong>. $U$ open IFF $\mathbb{R}-U\rightarrow U^c$ is closed</p>
-
+<h3 id="Solving-ODE">Solving ODE<a class="anchor-link" href="#Solving-ODE">&#182;</a></h3>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p><strong>Theorem</strong> finite intersection of open sets is open.<br>
-<em>proof</em>. $(\cap^M U_i)^{c^c} = (\cup^M U_i^c)^c$<br>
-Since $U_i$ open, $U_i^c$ closed, $\cup^M U_i^c$ closed.</p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Compact-sets">Compact sets<a class="anchor-link" href="#Compact-sets">&#182;</a></h3>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p><strong>Compact Def'n 1</strong> $C\subseteq\mathbb{R}$ is compact if all sequence $\{x_n\}\subseteq C$ has a converging subsequence $\{x_{n_k}\}\subseteq C$<br>
-$\forall \{x_n\}\subseteq C. \exists \{x_{n_k}\}\subseteq \{x_n\}. x_{n_k}\rightarrow x\in C$</p>
-<p><strong>Compact Def'n 2</strong> A set $C$ is compact if every open cover of $C$ has a finte subcover that covers $C$.</p>
-<p><strong>open cover</strong> A collection of open balls $\{U_a\}_{a\geq 1}$ is an open cover if $c\subseteq \cup^\infty U_a$</p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p><strong>Theorem</strong>  $[a,b]\subseteq \mathbb{R}$ is compact<br>
-<em>proof</em>. By Bolzano Weierstrass Theorem. every bounded sequence has a convergent subsequence. Since $[a,b]$ closed, such limit falls in $[a,b]$.</p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p><strong>Continuous mapping theorem</strong> For continous $f, x_n\rightarrow x\Rightarrow f(x_n)\rightarrow f(x)$.</p>
-<p><strong>Corollary</strong> $f:U\rightarrow V$, if $C\subseteq U$ is compact, then $f(C)$ is also compact.</p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p><strong>Heine-Borel Theorem</strong>  $C\subseteq \mathbb{R}$ is compact IFF closed and bounded.</p>
-<p><strong>Claim 1</strong> compact $\Rightarrow$ bounded<br>
-<em>proof</em>. Suppose compact but not bounded. Then take $\{x_n\}\subset C$, wlop, $x_n\rightarrow \infty$. Then, we can take a monotone increasing subsequence $y_n$ of $x_n$. Then by compactness, take $y_{n_k}\rightarrow y\in C$. But a monotone divergent sequence cannot have convergent subsequence.</p>
-<p><strong>Claim 2</strong> compact $\Rightarrow$ closed<br>
-<em>proof</em>. Let $\{x_n\}\subseteq C. x_n\rightarrow x$, WTS $x\in C$.<br>
-By compactness, take $\{x_{n_k}\}\rightarrow L$. We can show that 
-$|x-L| = |x - x_{n_k} + x_{n_k} - L| \leq |x - x_{n_k}| + |x_{n_k} - L| \rightarrow 0$</p>
-<p><strong>Claim 3</strong> closed &amp; bounded $\Rightarrow$ compact<br>
-<em>proof</em>. Let $\{x_n\}\subseteq C$. Since bounded, by BWT, take $\{x_{n_k}\}$ where $x_{n_k}\rightarrow L\in\mathbb{R}$.<br>
-Since $C$ closed, its limit point is in $C$.</p>
+<p><strong>Example</strong> given the initial value problem $f'(x)=1+x-f(x), |x|\leq 1/2$ and $f(0)=1$</p>
+<p>First convert to the integral problem<br>
+$$f(x) = 1+ \int_0^x 1 + t - f(t)dt = 1+ x + \frac{x^2}{2} - \int_0^x f(t)dt, f\in C[-1/2,1/2]$$
+Define $T$ on $C[-1/2,1/2]$ and $Tf = f$ and the solution of the integral equation is a fixed point of $T$
+Then, to show $T$ is a contraction 
+\begin{align*}
+|Tf(x)-Tg(x) &amp;= |\int_0^x f(t)-g(t)dt| \\
+&amp;\leq \big|\int_0^x |f(t)-g(t)|dt\big| &amp;\text{tri. ineq.}\\
+&amp;\leq \int_0^x \|f-g\|dt \\
+&amp;=\|f-g\|_\infty \int_0^{|x|}dt\\
+&amp;\leq \frac{\|f-g\|_\infty}{2}
+\end{align*}
+Thus, by Banach Contraction Principle, choose $f_0 := 1\in C[-1/2,1/2]$, then 
+\begin{align*}
+f_1(x) &amp;= Tf_0(x) = 1+x+\frac{x^2}{2} - \int_0^x dt = 1+\frac{x^2}{2} \\
+f_2(x) &amp;= Tf_1(x) = 1+x+\frac{x^2}{2} - \int_0^x 1+\frac{x^2}{2} dt = 1 + \frac{x^2}{2} - \frac{x^3}{6}\\
+&amp;...\\
+f_n(x) &amp;= \sum \frac{(-x)^{n+1}}{(n+1)!}
+\end{align*}
+Since $|x|\leq 1/2$, using M-test, this power series is uniform convergence, and note that $f_n(x):=e^{-x} + x$</p>
 
 </div>
 </div>

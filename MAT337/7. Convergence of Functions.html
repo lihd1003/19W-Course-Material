@@ -2,7 +2,7 @@
 <html>
 <head><meta charset="utf-8" />
 
-<title>Week12</title>
+<title>7. Convergence of Functions</title>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.10/require.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
@@ -13056,6 +13056,31 @@ ul.typeahead-list  > li > a.pull-right {
 .ansi-bold { font-weight: bold; }
 
     </style>
+<style type="text/css">
+    /*This file contains any manual css for this page that needs to override the global styles.
+This is only required when different pages style the same element differently. This is just
+a hack to deal with our current css styles and no new styling should be added in this file.*/
+
+#ipython-main-app {
+    position: relative;
+	font-size: 13pt;
+	font-family: 'Cambria', serif;
+}
+#jupyter-main-app {
+    position: relative;
+	font-size: 13pt;
+}
+.tab-content .row {
+	margin-bottom: 10px;
+}
+
+.text_cell_render {
+	font-size: 16pt;
+	font-family: "Cambria", serif;
+	line-height: 1.5;
+}
+
+    </style>
 
 
 <style type="text/css">
@@ -13116,20 +13141,17 @@ div#notebook {
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h4 id="Taylor-Series">Taylor Series<a class="anchor-link" href="#Taylor-Series">&#182;</a></h4><p>$f\in C^n(\mathbb R)$, then $P_{n,a}(x):= \sum_{i=0}^n \frac{f^{(i)}(a)(x-a)^i}{i!}$ is the Taylor polynomial around $a$</p>
-<p><strong>Taylor Form remainder</strong> $f\in C^n(\mathbb R)$ and $f^{(n+1)}$ exists, then $f(x) = P_{n,a}(x) + \frac{f^{(n+1)}(c)}{(n+1)!}(x-a)^{n+1}, c\in [a,x]$</p>
-<p><strong>Claim</strong>. Taylor polynomial is unique<br>
-<em>proof</em>. Suppose $f(x) = \sum a_k(x-a)^k + \epsilon_1(x-a)^n = \sum b_k(x-a)^k + \epsilon_2(x-a)$,<br>
-then $\sum(a_k-b_k)(x-a)^k + (\epsilon_1-\epsilon_2)(x-a)^n = 0$,<br>
-by independence of the system of equations, $a_n = b_n, \epsilon_1 = \epsilon_2$</p>
-<p><strong>Claim</strong>. For $x,a\in [-R,R], P_{a,n}\rightarrow^{u.c.}f$<br>
-<em>proof</em>. \begin{align*}
-\|f(x)-P_{a,n}(x)\| &amp;\leq \frac{|f^{(n+1)(c)}|}{(n+1)!}|x-a|^{n+1}\\
-&amp;\leq \frac{|f^{(n+1)(c)}|}{(n+1)!}|2R|^{n+1} \\
-&amp;\leq \frac{M}{(n+1)!}(2R)^{n+1} &amp;\text{by EVT}\\
-&amp;\leq \frac{M}{n^ne^{-n}\sqrt{2\pi n}}(2R)^{n+1} &amp;\text{Stirling's formula}\\
-&amp;\leq M(\frac{2Re}{n+1})^{n+1}\rightarrow 0 \text{ for large }n
-\end{align*}</p>
+<h3 id="Convergence">Convergence<a class="anchor-link" href="#Convergence">&#182;</a></h3>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><strong>Pointwise convergence</strong> Given $\{h_k\}\subset C(S,\mathbb R)$. We say that they converge pointwise if $\forall x\in S. h_k(x)\rightarrow h(x)$. 
+$$\forall \epsilon &gt; 0. \forall x \in S. \exists N &gt; 0. \forall k \geq N. |f_k(x)-f(x)|&lt;\epsilon$$</p>
+<p><strong>Convergence Uniformly</strong> $f_k\rightarrow^{u.c.}f$ if $\|f_k - f\|_{\infty}\rightarrow 0$. 
+$$\forall \epsilon &gt; 0. \exists N &gt; 0. \forall k\geq N. \sup_{x\in S}|f_k(x)-f(x)|\leq \epsilon$$</p>
 
 </div>
 </div>
@@ -13137,17 +13159,20 @@ by independence of the system of equations, $a_n = b_n, \epsilon_1 = \epsilon_2$
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h4 id="Weierstrass-Theorem">Weierstrass Theorem<a class="anchor-link" href="#Weierstrass-Theorem">&#182;</a></h4>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p><strong>Example</strong> For any $a&lt;b, f\in C[a,b]$, exists $p_n\rightarrow^{u.c.}f$</p>
-<p><em>proof</em>. Define $g(x):[0,1]\rightarrow \mathbb R := f(a+x(b-a))$.<br>
-Take $q_n\rightarrow^{u.c.}g$, consider $y=a+x(b-a)$, i.e. $x = \frac{y-a}{b-a}$<br>
-Define $p_n(y):=q_n(\frac{y-a}{b-a}) = q_n(x)\rightarrow^{u.c.}f(y)$</p>
+<p><strong>Example</strong> consider 
+$f_k(x):=
+    \begin{cases}
+        k^2 x &amp; 0\leq x\leq 1/k \\
+       k^2 x (\frac{2}{k}-x) &amp; 1/2 \leq x \leq 2/k \\
+       0 &amp;2/k \leq x \leq 1
+    \end{cases}$</p>
+<p><strong>Claim</strong> $f_k \rightarrow^{p.w.} 0$</p>
+<p><em>proof</em>. Let $x\in[0,1]$. take $N &gt; 0$ s.t. $2/N \leq x$. Therefore, $\forall k \geq N, |f_k(x)-0|&lt;\epsilon$</p>
+<p><strong>Claim</strong> $f_k\not\rightarrow^{u.c.} 0$</p>
+<p><em>proof</em>. $\sup_{x\in[0,1]}|f_k(x)-0|=k\rightarrow\infty$</p>
+<p><strong>Claim</strong> $\lim_{k\rightarrow\infty}\int_0^1 f_k(x)dx \neq \int_0^1 \lim_{k\rightarrow\infty}f_k(x)dx$</p>
+<p><em>proof</em>. $LHS=\lim_{k\rightarrow\infty}\int_0^{1/k} k^2 x dx + \int_{1/k}^{2/k} k^2(\frac{2}{k}-x)dx + 0 = \lim_{k\rightarrow\infty}1=1$<br>
+$RHS = 0 \neq 1$</p>
 
 </div>
 </div>
@@ -13155,15 +13180,39 @@ Define $p_n(y):=q_n(\frac{y-a}{b-a}) = q_n(x)\rightarrow^{u.c.}f(y)$</p>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p><strong>Example</strong> If $f\in C^1[0,1]$, then $\exists \{p_n\}$ over $[0,1]$, $p_n\rightarrow^{u.c}f\land p_n'\rightarrow^{u.c}f'$</p>
-<p><em>proof</em>. Let $f\in C^1[0,1]$, then $f'\in C[0,1]$, take $q_n\rightarrow^{u.c}f'$,<br>
-then let $p_n = \int_0^x q_n(x)dx + f(0)$, 
+<p><strong>Example</strong> Let $f_n:[0,A]\rightarrow \mathbb R, f(x):= \frac{\sin(nx)}{n}\rightarrow^{u.c.}0$.</p>
+<p><em>proof</em>. $\sup_{x\in[0,A]}|\frac{\sin(nx)}{x} - 0| \leq 1/n \rightarrow 0$</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><strong>Claim</strong> u.c. does not preserve derivatives</p>
+<p><em>proof</em>. $f'(x)=\frac{n\cos(nx)}{n} = cos(nx)$ doesn't converge to any function.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><strong>Dini's Theorem</strong> If $f,f_n\in C([a,b]). (\forall n \geq 1. f_n \leq f_{n+1} \land f_n(x)\rightarrow f(x))\Rightarrow f_n\rightarrow^{u.c.} f$</p>
+<p><em>proof</em>. Since $f_n \leq f_{n+1}\land f_n \rightarrow f \Rightarrow g(x):=f(x)-f_n(x)\geq 0$<br>
+(i) By continuity at $x_0$, take $\delta_1 &gt; 0, \forall y\in\mathbb R. |x_0 - y|\Rightarrow |g(x_0) - g(y)|\leq \epsilon/2$<br>
+(ii) By $f_n(x_0)\rightarrow^{p.w.}f(x_0)$, take $N&gt;0, \forall n &gt; N. |f_n(x_0)-f(x_0)|\leq \epsilon/2$<br>
 \begin{align*}
-p_n &amp;= \int_0^x q_n(x)dx + f(0) + f(0) \\
-&amp;\rightarrow^{u.c.}\int_0^x f'(x)dx +f(0)&amp;\text{ICT} \\
-&amp;=f(x)-f(0) + f(0)&amp;\text{FTC II} \\
-&amp;=f(x)
+|g(y)| &amp;= |f(y)-f_n(y)| \\
+&amp;\leq |f(x_0)-f_n(x_0)| + |g(x_0) - g(y)| \\
+&amp;\leq \epsilon /2 + \epsilon /2 = \epsilon. &amp;\forall y\in (x_0-\delta, x_0 + \delta)
 \end{align*}</p>
+<p>Then, suppose that we don't have u.c.<br>
+$\Rightarrow \sup_{x\in[a,b]}|g(x)|=\sup_{x\in[a,b]} |f(x)-f_n(x)|\geq d, d &gt; 0$.<br>
+$\|g\|_{\infty}&gt;d\Rightarrow \forall n &gt; 1. \exists x_n \in [a,b]. g_n(x_n)\geq d$<br>
+By $\{x_n\}\in[a,b]$, with bolzano weierstrass theorem, $x_{n_k}\rightarrow x_0 \in [a,b]$.<br>
+But we show for $\epsilon &lt; d. \exists \delta &gt; 0. |x_0 - y|&lt;\delta\Rightarrow |g(y)|&lt; \epsilon &lt; d$.<br>
+For $\delta, \exists N&gt;0$ so that $\forall k\geq N.|x_{n_k}-x_0|\leq \delta$. Take $y = x_{n_k}\Rightarrow |g(x_{n_k})|&lt;\epsilon &lt; d$ causes contradiction</p>
 
 </div>
 </div>
@@ -13171,21 +13220,24 @@ p_n &amp;= \int_0^x q_n(x)dx + f(0) + f(0) \\
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p><strong>Example</strong> If $f\in C[0,1]$ and $f(0)=0$, then you can find $p_n\rightarrow^{u.c.}f$ s.t. $p_n(0)=0, p'_n(0)=0$</p>
-<p><strong>lemma 1</strong> If $f\in C^1[-1,1]$ is even, then exists $\{p_n\}$ is even and $p_n\rightarrow^{u.c.}f$<br>
-<em>proof</em>. Take $q_n \rightarrow^{u.c.}f$ over $[-1,1]$ by Weierstrass Theorem.<br>
-Define $p_n(x):= \frac{q_n(x)+q_n(-x)}{2}$, and by $f$ even, known $f(x)=\frac{f(x)+f(-x)}{2}$
+<h3 id="Uniform-convergence-and-completeness">Uniform convergence and completeness<a class="anchor-link" href="#Uniform-convergence-and-completeness">&#182;</a></h3>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><strong>Theorem</strong> If $f_k\in C([a,b]),f_k \rightarrow^{u.c.}f$, then $f\in C([a,b])$</p>
+<p><em>proof</em>. Let $\epsilon &gt; 0$, and $x_0\in [a,b]$.<br>
+By uniform continuous, take $N_{\epsilon/3} &gt; 0, \forall k &gt; N_{\epsilon/3}. \sup_{x\in[a,b]}|f_k(k)-f(x)|\leq \epsilon/3$<br>
+By continuity of $f_k$, take $\delta_{\epsilon/3} &gt; 0, |x_0 - y|\leq \delta \Rightarrow |f_{N_{\epsilon/3}}(x_0) - f_{N_{\epsilon/3}}(y)|\leq \epsilon/3$<br>
+Take $\delta = \delta_{\epsilon/3}$,<br>
 \begin{align*}
-\|p_n-f\|_\infty &amp;= \sup_{x\in[-1,1]}|\frac{q_n(x)+q_n(-x)}{2} - \frac{q_n(x)+q_n(-x)}{2}|\\
-&amp;= \frac{1}{2}\sup|q_n(x)-f(x)+(q_n(-x)-f(-x))| \\
-&amp;\leq \frac{1}{2}(\sup|q_n(x)-f(x))| + \sup|q_n(x)-f(x))|) &amp;\text{tri.ineq}\\
-&amp;\leq \frac{\epsilon + \epsilon}{2} = \epsilon
+|f(x_0) - f(y)| &amp;\leq |f(x_0) - f_{N_{\epsilon/3}}(x_0)| &amp;\text{by uniform continuous} \\
+&amp;\quad+ |f_{N_{\epsilon/3}}(x_0) - f_{N_{\epsilon/3}}(y)|&amp;\text{by continuity}  \\
+&amp;\quad+ |f_{N_{\epsilon/3}}(y) - f(y)|&amp;\text{by uniform continuous}  \\
+&amp;= \epsilon/3 + \epsilon/3 + \epsilon/3 = \epsilon
 \end{align*}</p>
-<p><em>proof</em>. extend $f$ to $F=\begin{cases}f(x) &amp;[0,1]\\f(-x)&amp;[-1,0]\end{cases}, F$ is even. by lemma 1, take even $q_n\rightarrow F$.<br>
-Then, take $p_n(x) := q_n(x)-q_n(0)$ and<br>
-(i) by $f(0)=0, q_n\rightarrow F\Rightarrow q_n(0) &lt; \epsilon/2$, $\|p_n-f\| \leq \|q_n-F\|+ \epsilon/2 = \epsilon$<br>
-(ii) $p_n(0)=q_n(0)-q_n(0)=0$<br>
-(iii) $p_n$ is even, hence $p_n(x)=\frac{p_n(x)+p_n(-x)}{2}$, $p_n'(x)=\frac{p_n'(x)-p_n'(-x)}{2}\Rightarrow p'_n(0)=0$</p>
 
 </div>
 </div>
@@ -13193,12 +13245,119 @@ Then, take $p_n(x) := q_n(x)-q_n(0)$ and<br>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p><strong>Example</strong> If $f\in C(\mathbb R), p_n\rightarrow f$ over $\mathbb R$, then $f$ is a polynomial</p>
-<p><em>proof</em>. Since $p_n$ uniform converge, $p_n$ is also Cauchy. Take $N$ large so that $\forall n,m \geq N. \|p_m-p_n\|_\infty \leq 1$<br>
-Then $f(x)=(f(x)-p_m(x))+(p_m(x)-p_n(x))+p_n(x)$.<br>
-Consider $q_{n,m}(x) = p_m(x)-p_n(x)$, it will also be a polynomial, and since $\|q_{n,m}\|\leq 1$, it must converges to some $a_{n,m}\in[-1,1]$.<br>
-By BW Theorem, take subsequence $a_{n,m_k}\rightarrow a_n$ for each $n$.<br>
-$f(x)=\lim_{m_k\rightarrow\infty}f(x) = \lim_k(f(x)-p_{m_k}(x)) + \|p_m - p_n\| + p_n(x) = 0 + a_n + p_n(x)$</p>
+<p><strong>Example</strong> $f_n(x) = (1 + \frac{x}{n})^n\rightarrow^{u.c.} e^x := \sum^\infty \frac{x^k}{k!}$ over any interval $[a,b]$</p>
+<p><em>proof</em>. \begin{align*}
+\sup_{x\in [a,b]} |(1+\frac{x}{n})^n - e^x| &amp;=\|\sum_{k=1}^n {n\choose k}\frac{x^k}{n^k} - \sum\frac{x^k}{k!}\|_\infty \\
+&amp;\leq |\sum^\infty \frac{x^k}{k!}| &amp;{n\choose k}/n^k \leq \frac{n}{k!}\\
+&amp;\leq |\sum \frac{b^k}{k!}| &amp;x\in [a,b]
+\end{align*}</p>
+<p>By big-oh, Take $N_\epsilon &gt; 0, \forall n \geq N. \sum \frac{b^k}{k!} \leq \epsilon$</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><strong>Claim</strong> $\lim_{n\rightarrow\infty}\int_0^1 f_n(x)dx = \int_0^1 \lim_{n\rightarrow\infty}f_n(x)dx = \int_0^1 e^x dx = e-1$</p>
+<p><em>proof</em>. \begin{align*}
+\int_0^1 (1 + \frac{x}{n})^n dx &amp;= \big(\frac{{n+x}^{n+1}}{(n+1)n^n}\big)\big|_0^1  \\
+&amp;= \frac{(n+1)^{n+1}}{(n+1)n^n} - \frac{n^{n+1}}{(n+1)n^n}\\ 
+&amp;= (1 + \frac{1}{n})^n - \frac{n}{n+1}\\ 
+\lim_{n\rightarrow \infty} (1 + \frac{1}{n})^n - \frac{n}{n+1} &amp;= e - 1\\
+\end{align*}</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><strong>Example</strong> Point-wise convergence does not imply uniform continuous</p>
+<p><em>proof</em>. Take $f_n:[0,1]\rightarrow \mathbb{R} : = x^n$.<br>
+$f_n(x_0) \rightarrow^{p.w.} \mathbb I (x_0 = 1)$<br>
+But $\sup_{x\in[0,1]}|x_n - \mathbb I(x = 1)| = \sup_{x\in(0,1)}|x^n|$.<br>
+Therefore, for $x_0 = 0.5^{1/n}, f_n(x_0) = 1/2 &gt; 0$.<br>
+You will lose u.c. when you arbitrarily close to 1.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><strong>Claim</strong> $\forall f,g\in C(K). K$ compact, if $f_n \rightarrow^{u.c.} f, g_n \rightarrow^{u.c.} g$, then $f_n g_n \rightarrow^{u.c.} f g$</p>
+<p><em>proof</em>. Let $\epsilon &gt; 0$, for all $x\in K$<br>
+\begin{align*}
+|f_n(x)g_n(x) - f(x)g(x)| &amp;= |f_n(x)g_n(x) - g(x)f_n(x) + g(x)f_n(x) - f(x)g(x)| \\
+&amp;\leq |f_n(x)||g_n(x)-g(x)| + |g(x)||f_n(x)-f(x)| \\
+&amp;&lt; B_1 |g_n(x)-g(x)| + B_2 |f_n(x)-f(x)|\:\text{By EVT on $f_n, g_n$, since $K$ compact} \\
+&amp;\leq B_1 \|g_n - g\|_\infty + B_2 \|f_n-f\|_{\infty}\:\text{By u.c. of $f,g$} \\
+\text{take} N_1\Rightarrow \forall &amp;n \geq N_1 . \|g_n-g\|_\infty \leq |\frac{\epsilon}{2B_1}|, N_2\Rightarrow \forall n \geq N_2 . \|f_n-f\|_\infty \leq |\frac{\epsilon}{2B_2}| \\ 
+&amp;\leq \epsilon
+\end{align*}</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Integral-Convergence-Theorem">Integral Convergence Theorem<a class="anchor-link" href="#Integral-Convergence-Theorem">&#182;</a></h3>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>If $f_n \in C([a,b])\land f_n \rightarrow^{u.c.}f$,<br>
+then $\forall [c,d]\subseteq [a,b]. \lim_{n\rightarrow\infty}\int_c^d f_n(t)dt = \int_c^d \lim_{n\rightarrow\infty}f_n(t)dt$</p>
+<p><em>proof</em>. 
+\begin{align}
+\Big|\int_c^d f_n(t) - f(t)dt\Big| &amp;\leq \int_c^d |f_n(t)-f(t)|dt  \\
+&amp;\leq \int_c^d \sup_{s\in[a,b]}|f_n(s)-f(s)|dt \\
+&amp;= \sup_{s\in[a,b]} |f_n(s)-f(s)| \int_c^d d_t \\
+&amp;= \|f_n-f\|_\infty(d-c) \\
+&amp;\text{by u.c., take }\tilde\epsilon = \frac{\epsilon}{b-a} s.t. \exists N_{\tilde \epsilon} \geq 0. \forall n\geq N_{\tilde\epsilon}, \|f_n-f\|_\infty \leq \tilde\epsilon  \\
+&amp;\leq \frac{d-c}{a-b}\epsilon
+\end{align}</p>
+<p>Note that if $[a,b]=[0,\infty)$, then the proof breaks down.<br>
+because $\int_c^d dt$ can be arbitrarily large, so one fix is to have a density $\rho(x)$ so that $\int_c^d \rho(s)ds\leq B$</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h4 id="Leibriz's-Rule-(differentiation-under-the-integral)">Leibriz's Rule (differentiation under the integral)<a class="anchor-link" href="#Leibriz's-Rule-(differentiation-under-the-integral)">&#182;</a></h4><p>$\forall f(x,t), d_x f(x,t) \in C([a,b]\times[c,d])$. If $f(x) = \int_c^d f(x,t)dt$, then $\frac{dF}{dx} = \int_c^d d_x f(x,t)dt$</p>
+<p><em>proof</em>. Fix $x_0\in[a,b]$<br>
+$$F'(x_0) = \lim_{h\rightarrow 0}\frac{F(x_0 + h) - F(x_0)}{h}$$
+Consider the RHS, 
+\begin{align}
+\lim_{h\rightarrow 0}\frac{F(x_0 + h) - F(x_0)}{h} &amp;= \frac{1}{h}\int_c^d f(x_0+h,t)-f(x_0, t)dt \\
+\text{by MVT, take }\xi(t,h)\in [x_0, x_0+h], &amp;\frac{F(x_0 + h) - F(x_0)}{h} = d_x f(\xi(t,h), t) \\
+&amp;= \int_c^d d_xf(\xi(t,h),t)dt
+\end{align}</p>
+<p>WTS given $\epsilon$, can find $h$ small enough so that $|\int_c^d d_xf(\xi(t,h), t) - d_xf(x_0, t)dt|\leq \epsilon$<br>
+Using continuity of $d_xf(x_0, t)$, take $\delta &gt; 0. |x_0 - y|&lt;\delta \Rightarrow |d_xf(y,t) - d_xf(x_0,t)|\leq \frac{\epsilon}{d-c}$</p>
+<p>Since $|\xi(t,h)-x_0|&lt;h$, take $\delta &lt; h$, then $|d_xf(\xi(t,h), t) - d_xf(x_0, t)|\leq \frac{\epsilon}{d-c}$,<br>
+\begin{align}
+ |\int_c^d d_xf(\xi(t,h), t)-d_xf(x_0, t)dt| &amp;\leq \int_c^d |d_xf(\xi(t,h), t)-d_xf(x_0, t)|dt \\
+ &amp;\leq \frac{\epsilon}{d-c}\int_c^d dt = \epsilon
+\end{align}</p>
+<p>Therefore, $\epsilon&gt;0, \exists h$ small enough so that $|\frac{F(x_0 + h, t) - F(x_0)}{h} - \int_c^d d_xf(x_0,t)dt|\leq \epsilon$. 
+Therefore, $F'(x_0)=\lim_{h\rightarrow 0} \frac{F(x_0+h)-F(x)}{h} = \int_c^d d_xf(x_0, t)dt$</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><strong>Example</strong> Prove $\int_0^\infty e^{-x^2}dx = \sqrt\pi/2$<br>
+<em>proof</em>. Define $F(x,t) = \int_0^1 \frac{e^{-x}(1+t^2)}{1+t^2}dx = \int_0^1 f(x,t)dt$, $f(x,t)$ is continuous on $[0,M]\times[0,1]$.<br>
+By Leibiz' Rule,</p>
 
 </div>
 </div>

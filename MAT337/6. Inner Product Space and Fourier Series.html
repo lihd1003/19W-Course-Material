@@ -2,7 +2,7 @@
 <html>
 <head><meta charset="utf-8" />
 
-<title>Week1</title>
+<title>6. Inner Product Space and Fourier Series</title>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.10/require.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
@@ -13056,6 +13056,31 @@ ul.typeahead-list  > li > a.pull-right {
 .ansi-bold { font-weight: bold; }
 
     </style>
+<style type="text/css">
+    /*This file contains any manual css for this page that needs to override the global styles.
+This is only required when different pages style the same element differently. This is just
+a hack to deal with our current css styles and no new styling should be added in this file.*/
+
+#ipython-main-app {
+    position: relative;
+	font-size: 13pt;
+	font-family: 'Cambria', serif;
+}
+#jupyter-main-app {
+    position: relative;
+	font-size: 13pt;
+}
+.tab-content .row {
+	margin-bottom: 10px;
+}
+
+.text_cell_render {
+	font-size: 16pt;
+	font-family: "Cambria", serif;
+	line-height: 1.5;
+}
+
+    </style>
 
 
 <style type="text/css">
@@ -13116,43 +13141,11 @@ div#notebook {
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p><strong>Decimal expansion</strong><br>
-Given $r\in\mathbb{R}^+$</p>
-<ol>
-<li>find $q\in\mathbb{N}^+, q\leq r\le q+1$  </li>
-<li>So we find next decimal place $d_1/10 \leq r- q &lt; d_1 / 10 + 1/10$  </li>
-<li>repeat $\frac{d_k}{10^k} \leq r - q - \sum _1^{k-1} \frac{d^m}{10^m} &lt; \frac{d_k}{10^k} + 10^{-k}$
-So that $r = q.d_1d_2d_3...$</li>
-</ol>
-<p>Two types<br>
-terminating decimal expansion $q.d_1d_2...d_{m_0}$<br>
-repeating decimal expansion $q.d_1...d_k\overline{d_{k+1}...d_n}$(ex. $1/35 = 0.0287154\overline{287154}$)</p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p><strong>Proposition</strong> $\forall x\in \mathbb{R}^+$ is rational IFF $x$ has a decimal expansion that is either terminating or repeating<br>
-<em>proof</em><br>
-$\Leftarrow$<br>
-Assume $x$ is terminating, $x = q.d_1...d_{n_0} = q + \sum_1^n \frac{d_m}{10^m} \in \mathbb{Q}$</p>
-<p>Assume $x$ is repeating, $q.d_1...d_k\overline{d_{k+1}...d_m}$.<br>
-Known that $d_1...d_k$ part is rational, the remaining $0.0...0\overline{d_{k+1}...d_m}$</p>
-<p>$ = 10^{-k}(\sum_{m=1}^n \sum_{l=0}^\infty \frac{d'_m}{10^{nl + m}})$ since the number is repeating, we denote $d'_0,...,d'_n$ be the repeated digits</p>
-<p>$= 10^{-k}\sum_{m=1}^n d'_m 10^{-m} (\sum_{l=0}^\infty 10^{-nl})$ decompose</p>
-<p>$= 10^{-k}\sum_{m=1}^n d'_m 10^{-m} (1 - 10^{-n})^{-1}$ geometric series</p>
-<p>$ = \sum_{m=1}^n\frac{d'_m 10^n}{10^{m+k}(10^n - 1)}$ make it looks nicer</p>
-<p>$\Rightarrow$<br>
-take $l, m \in\mathbb{Z}^+， x = l/m$.</p>
-<p>By Euclidean division, $l = d_0m + r_0/m$ where $d_0\in\mathbb{Z}^+$ is the quotient, $r_0\in\mathbb{Z}^+$ is the remainder, $r_0&lt;m$.</p>
-<p><strong>lemma</strong> $\forall n\in \mathbb{N}. l/m = \sum_{m=0}^n \frac{d_m}{ 10^{m}} + \frac{r_n} {10^{n}m}$  (induction by further Euclidean division)</p>
-<p>Suppose $\exists i, r_i = 0$, then is terminated<br>
-Suppose $\forall k$ WTS repeating.</p>
+<h3 id="Inner-Products-Spaces">Inner Products Spaces<a class="anchor-link" href="#Inner-Products-Spaces">&#182;</a></h3><p>An inner product $\langle \cdot, \cdot\rangle :V\rightarrow \mathbb R$ is a function that satisfies</p>
 <ul>
-<li>since $r_k$ is a remainder, it can only choose from $r_k \in \{1, ..., m - 1\}$. Then $\exists k_1, k_2. r_{k_1} = r_{k_2}$.<br>
-Then by uniqueness of Euclidean division, it is repeated. </li>
+<li><strong>positive definite</strong> $\langle x,x\rangle &gt; 0$ and $\langle x,x\rangle =0$ IFF $x\equiv0$</li>
+<li><strong>symmetry</strong> $\langle x,y\rangle =\langle y,x\rangle $</li>
+<li><strong>bilinear</strong> $\langle ax+cy,z\rangle =a\langle x,z\rangle +c\langle y,z\rangle $</li>
 </ul>
 
 </div>
@@ -13161,7 +13154,12 @@ Then by uniqueness of Euclidean division, it is repeated. </li>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p><strong>Irrational Numbers</strong> $x$ is irrational if $x\in\mathbb{Q}^c$, i.e. $\not\exists l, m\in\mathbb{Z}^+ s.t. x = l/m$</p>
+<p><strong>Example</strong> On $\mathbb R^n, x\cdot y = \sum_1^n x_i y_i$</p>
+<ul>
+<li>$x\cdot x =\sum^n x_i^2 \geq 0$</li>
+<li>$x\cdot y = \sum x_i y_i = \sum y_i x_i = y\cdot x$</li>
+<li>$(ax+cy)\cdot z = \sum (ax_i + cy_i) z_i = a\sum x_i z_i + c\sum y_i z_i = ax\cdot z + cy\cdot z$ </li>
+</ul>
 
 </div>
 </div>
@@ -13169,9 +13167,12 @@ Then by uniqueness of Euclidean division, it is repeated. </li>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p><strong>Proposition</strong> $\forall x, y \in \mathbb{R}, x &lt; y \Rightarrow \exists r\in\mathbb{R}. x &lt; r &lt; y$ and $r$ is terminating.<br>
-<em>proof</em> consider the decimal expansions of $x = x_0.x_1..., y = y_0.y_1...$, then exists the smallest $k$ where $x_k + 1 \leq y_k$ (since they are digit, it implies $x_k \leq 8$).
-Then construct $r = x_0.x_1...[x_k + 1]y_{k+1}y_{k+2}...$</p>
+<p><strong>Example</strong> Let $A_{n\times n}$ be a positive definite symmetric matrix, i.e. all its eigenvalues are strictly positive. Then $\langle x\cdot y\rangle _A = x A y^T$ is an inner product on $\mathbb R^n$</p>
+<p>Note that such $A$ can be diagonalized into $A=PDP^T$</p>
+<ul>
+<li>$\langle x,x\rangle _A = xAx^T = xPDPx^T = vDv^T = \sum v_k^2 \lambda_k \rangle  0$ (since $A$ is definite, $\lambda_k \rangle  0$)<br>
+$\langle x,x\rangle =0$ IFF $\sum v_k^2 \lambda_k = 0\Rightarrow v_k = 0 \Rightarrow xP = 0$, since $P$ is orthogonal, $x=0$</li>
+</ul>
 
 </div>
 </div>
@@ -13179,12 +13180,13 @@ Then construct $r = x_0.x_1...[x_k + 1]y_{k+1}y_{k+2}...$</p>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p><strong>Bound</strong>  A set $S\subset\mathbb{R}$ is<br>
-<strong>bounded above</strong> $\exists M\in\mathbb{R}. \forall s \in S. s\leq M. $<br>
-<strong>bounded below</strong> $\exists L\in\mathbb{R}. \forall s \in S. s\geq L. $</p>
-<p><strong>Supremum</strong> $sup(S)\in\mathbb{R}$ is a upper bound and $\forall v. v\geq sup(S)\land v$ is upper bound.<br>
-<strong>Infimum</strong> $inf(S)\in\mathbb{R}$ is a lower bound and $\forall v. v\leq inf(S)\land v$ is lower bound.</p>
-<p><strong>Proposition</strong> $u$ is a supremum of $S$ IFF $u$ is a upper bound and $\forall \epsilon &gt; 0. \exists s_\epsilon \in S. u-\epsilon &lt; s_\epsilon$</p>
+<p><strong>Lemma Cauchy Schwartz</strong> For $x,y\in (V,\langle ,\rangle ), |\langle x,y\rangle |\leq \langle x,x\rangle ^2\langle y,y\rangle ^2$</p>
+<p><em>proof</em>. By positive definite, for $t\in\mathbb R$, $\langle x-ty, x-ty\rangle  \geq 0$.<br>
+Take $t = \frac{\langle x,y\rangle }{y,y}$,<br>
+$\langle x,x\rangle  - 2t |\langle x,y\rangle | + t^2 \langle y,y\rangle  $<br>
+$= \langle x,x\rangle  - 2\frac{\langle x,y\rangle ^2}{\langle y,y\rangle} + \frac{\langle x,y\rangle ^2}{\langle y,y\rangle }$<br>
+$=\langle x,x\rangle  - \frac{\langle x,y\rangle ^2}{\langle x,y\rangle } \geq 0$<br>
+$\Rightarrow \langle x,y\rangle ^2 \leq \langle x,x\rangle \langle y,y\rangle $</p>
 
 </div>
 </div>
@@ -13192,19 +13194,16 @@ Then construct $r = x_0.x_1...[x_k + 1]y_{k+1}y_{k+2}...$</p>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p><strong>Least upper bound principle</strong> $\forall S\neq \emptyset, S$ bounded above. $S$ has a supremum.<br>
-<em>proof</em>  Since bounded above, take $M\in\mathbb{R}$ where $\forall s \in S. M\geq s$.<br>
-Pick $s'=s_0.s_1 \in S\Rightarrow M\geq s'\Rightarrow m_0 + 1 &gt; s_0$.<br>
-Find lowest $a_0\in \{s_0, ..., m_0 + 1\}$ that is an upper bound for $S$.</p>
-<p><em>Induction</em> $y_n = \sum_0^n a_i / 10^i$ where $a_i=\min\{a \in \{0, 1, ..., 9\}\mid y_i \geq S\}$. Take $x_n \in S$ s.t. $a_0.a_1...a_n - 10^{-n}\leq x_n \leq y_n$</p>
-<p><em>WTS</em> $L = a_0.a_1... = sup(S)$</p>
-<p>Upper bound property: start with any $s_0.s_1,... \in S$ either</p>
-<ol>
-<li>$\forall i. s_i = a_i\Rightarrow S = L$  </li>
-<li>$\exists k$ be the first different digit and $s_k &gt; a_k$
-Construct $y_k^* = a_0.a_1...a_{k-1}s_k$. then $L &lt; y_k^*\leq s_0.s_1$, while by the ordering this cannot happen. </li>
-</ol>
-<p>Subsequence Property: For each $\epsilon$, you can pick $n &gt; 0$ s.t. $L-\epsilon \leq L - 10^{-n} \leq x_n \leq y_n &lt; L$</p>
+<p><strong>Example</strong> Over $C[a,b]$, $\langle f,g\rangle _{L^2} = \int_a^b f g dx$</p>
+<ul>
+<li>$\langle f,f\rangle _{L^2} = \int_a^b f^2 dx \geq 0$<br>
+$\langle f,f\rangle _{L^2}=0$ IFF $\int_a^b |f|^2 dx = 0$ IFF $f(x)=0$ because $f$ is continuous<br>
+Assume $f(x_0) &gt;  0$, then by continuity, take $I_\delta(x_0):=[x_0-\delta, x_0+\delta], \forall x\in I_\delta(x_0). f(x) \rangle  \epsilon \rangle  0$ so that $\int_a^b |f|^2 dx &gt;  \int_{I_\delta(x_0)} |f(x)|^2 dx &gt;  \epsilon^2 $ contradicts with $\langle f,f\rangle _{L^2}=0$ (other details to be filled)</li>
+</ul>
+<p>By Cauchy Schwartz inequality, $\int fg\leq \sqrt{\int f^2}\sqrt{\int g^2}$<br>
+ $\Rightarrow \langle f,g\rangle _{L^2} \leq \|f\|_{L^2}\|g\|_{L^2}$<br>
+ $\Rightarrow f\in L^2([a,b]) \Rightarrow f\in L^1([a,b])$</p>
+<p>Therefore, every inner product gives rise to a norm $\|x\|_v := \sqrt{\langle x,x\rangle }$</p>
 
 </div>
 </div>
@@ -13212,8 +13211,10 @@ Construct $y_k^* = a_0.a_1...a_{k-1}s_k$. then $L &lt; y_k^*\leq s_0.s_1$, while
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p><strong>Proposition</strong> Uniqueness of supremum</p>
-<p><em>proof</em> Assume $\exists u,v$ be two supremums, $v &lt; u$. Take $\epsilon = u -v, \forall \epsilon &gt; 0. \exists s_\epsilon \in S \Rightarrow u - (u-v) &lt; s_\epsilon \Rightarrow v &lt; s_\epsilon$.</p>
+<p><strong>Hilbert space</strong> a complete inner product space is called Hilbert space</p>
+<p><strong>Completeness over inner product space</strong> A inner product space is complete if every Cauchy sequence $x_n$ has a limit in the space. i.e.<br>
+$\|x_n - x\|_V^2 = \langle x_n - x, x_n - x\rangle \rightarrow 0$</p>
+<p>$L^2([a,b]):= \{f:[a,b]\rightarrow \mathbb R: \int_a^b |f|^2 \langle  \infty\}$</p>
 
 </div>
 </div>
@@ -13221,10 +13222,110 @@ Construct $y_k^* = a_0.a_1...a_{k-1}s_k$. then $L &lt; y_k^*\leq s_0.s_1$, while
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p><strong>Proposition</strong> For all bounded above set $A$ and $c\geq 0$. $sup(cA) = c sup(A)$<br>
-<em>proof</em> Let $M = sup(A)$.<br>
-Upper bound property: $\forall s. s\leq M \Rightarrow cs \leq cM$
-Subsequence property: Let $\epsilon \geq 0$, take $s_{\epsilon/c}$, then $cs_{\epsilon/c}\geq u - \epsilon$</p>
+<p><strong>Remark</strong> The space $S:=(C[a,b], \|\cdot\|_{L^2})$ is not complete, but $L^2([a,b])$ is the completion of $S$. which means taking any Cauchy sequence, then it has a limit in $L^2$. In another words, continuous functions can approximate any square integrable function in $L^2$-norm.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><strong>Monotone Convergence Theorem</strong> Take nonnegative $f_n(x)\geq 0$, if</p>
+<ul>
+<li>$f_1(x)\leq f_2(x) \leq ...$  </li>
+<li>point-wise limit $f_n(x)\rightarrow f(x)$ i.e. $|f_n(x)-f(x)|\rightarrow 0$</li>
+</ul>
+<p><strong>Corollary</strong> By MCT, $\lim \int f_n = \int \lim f_n = \int f$</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><strong>Dominated/Integral Convergence Theorem</strong> If $\{h_n\}$ satisfy</p>
+<ul>
+<li>$|h_n(x)|\leq B(x)$, which $B$ is an integrable function</li>
+<li>$h_n(x)\rightarrow^{\text{point-wise}} h(x)$</li>
+</ul>
+<p>Then, $\lim \int f_n = \int \lim f_n = \int f$</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><strong>Theorem</strong> The space $(L^2, \|\cdot\|_{L^2})$ is complete</p>
+<p><em>proof</em>. Take Cauchy sequence $f_n \in L^2([a,b])$. By Cauchy, take subsequence $f_{n,k}$ s.t. $\|f_{n,k} - f_{n,k+1}\| \leq 2^{-k}$.<br>
+Let $f(x):=f_{n,1}(x) + \sum (f_{n, k+1} - f_{n,k}(x))$. WTS $f\in L^2 (i)$, $f_{n,k}\rightarrow^{L^2} f (ii)$.<br>
+Define $g:= |f_n,1| + \sum|f_{n,k+1}- f_{n,k}| $, $S_M(g) = |f_n,1| + \sum^M|f_{n,k+1}- f_{n,k}|$, then $f\leq g, S_M(f) \leq S_M(g)$<br>
+Apply MCT to $\{S_M(g)\}, 0\leq |f_{n,1}| \leq |f_{n,2}-f_{n,1}|\leq ..., S_1(g) \leq S_2(g) \leq S_3(g)$</p>
+<p>Then, WTS $S_M(g)\rightarrow g(x)$, which suffices to show that the sequence $g$ converges, a.k.a. $g\in L^2$<br>
+By triangle inequality $\|S_M(g)\|_{L^2} \leq \|f_{n,1}\|_{}L^2 + \sum^M \|f_{n,k+1} - f_{n,k}\| \leq \|f_{n,1}\| + \sum^M 2^{-k} \langle  \infty$</p>
+<p>$\int |g^2| dx = \int \lim_{M\rightarrow \infty} |S_M(g)^2|dx$<br>
+$=\lim_{n\rightarrow\infty} \int |S_M(g)|^2 dx$ by MCT<br>
+$\leq \lim_{M\rightarrow \infty} \|f_{n,1}\| + \sum^M 2^{-k} \leq \|f_{n,1}\| + 2 \langle  \infty $</p>
+<p>We have Cauchy seuqnce $f_n \in L^2$, WTS $\|f_n -f\|_{L^2}\rightarrow 0$<br>
+(i) Since $|f|\leq g$ and $g\in L^2, \int |f|^2 \leq \int |g|^2 \langle \infty\Rightarrow f\in L^2$</p>
+<p>(ii) $\|f_n - f\|_{L^2}^2 = \int |f_n - f|^2 dx\rightarrow 0$<br>
+Let $h_k:=|f_{n,k}- f|^2$, then<br>
+$h_k \leq |S_k(g)| + |g| \leq 2|g|\in L^2$<br>
+$f_{n,k}\rightarrow^{\text{point-wise}} f$ since $g\in L^2$ so $\lim_{k\rightarrow \infty} f_{n,k}(x)=f(x)$ exists<br>
+BY DCT, $\lim_{k\rightarrow \infty} \int |h_k|^2 = \int \lim_{k\rightarrow \infty} |h_k|^2 =0$,<br>
+Therefore, $f_{n,k}\rightarrow^{L^2}f$</p>
+<p>Then, expansion $f_{n,k} $ to $f_n$. i.e. $f_n \rightarrow^{L^2} f$.<br>
+By Cauchy sequence of $f_n$, if the sub-sequence converges to some limit, so that the whole sequence will do so.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Fourier-Series">Fourier Series<a class="anchor-link" href="#Fourier-Series">&#182;</a></h3>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><strong>Orthogonal</strong> Given $x,y\ in (V,\langle\cdot, \cdot\rangle)$, x,y are orthogonal if $\langle x,y\rangle  = 0$</p>
+<p><strong>Example</strong> $x\circ y = cos(\theta) |x||y|$, so when $\theta = \pi /2, x\circ y = 0$</p>
+<p><strong>Orthonormal</strong> A collection of $\{e_k\}$ is called orthonormal if $\langle e_k,e_m\rangle  = 1\mathbb I(k=m)$</p>
+<p><strong>Theorem</strong> Every Hilbert space has orthonormal basis, i.e. $\forall x\in H. x = \sum^\infty \langle x,e_k\rangle  e_k$</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><strong>Example</strong> Take $e_k = (0,...,0,1,0)$ where $1$ is at $k$th position, $\{e_k\}$ is orthonormal set.</p>
+<p><em>proof</em>. $e_k \cdot e_m = \sum^n (e_k)_i (e_m)_i = 1\mathbb I(k=m)$</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><strong>Example</strong> $\{1, \sqrt2\cos(n\theta), \sqrt2\sin(n\theta)\}$ is orthogonal for $(C([-\pi, \pi]), \|\cdot\|_{L^2})$</p>
+<p><em>proof</em>. $\frac{\sqrt2}{\pi}\int_{-\pi}^\pi \cos(n\theta)\cos(k\theta) = 1\mathbb I(n=k)$ and<br>
+$\frac{\sqrt2}{\pi}\int_{-\pi}^\pi \sin(n\theta)\sin(k\theta) = 1\mathbb I(n=k)$  and<br>
+$\frac{\sqrt2}{\pi}\int_{-\pi}^\pi \sin(n\theta)\cos(k\theta) = 0$</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><strong>Fourier Series</strong> For function $f\in L^2([a,b])$, the Fourier series is defined to be 
+$$f(x):= a_0 + \sum a_n \frac{\cos(n\pi x)}{L} + b_n \frac{\sin(n\pi x)}{L}$$ where
+$$a_n = \langle f, \frac{\cos(n\pi x)}{L})\rangle _{L^2}, b_n = \langle f, \frac{\sin(n\pi x)}{L}\rangle _{L^2}$$</p>
+<p><strong>Carleson Hunt Theorem</strong> If $f\in L^2([-L,L])$, then $f$ equals its Fourier series <em>almost everywhere</em>.<br>
+<em>almost everywhere</em> outside a measure zero set</p>
 
 </div>
 </div>

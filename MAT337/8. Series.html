@@ -2,7 +2,7 @@
 <html>
 <head><meta charset="utf-8" />
 
-<title>Week6</title>
+<title>8. Series</title>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.10/require.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
@@ -13056,6 +13056,31 @@ ul.typeahead-list  > li > a.pull-right {
 .ansi-bold { font-weight: bold; }
 
     </style>
+<style type="text/css">
+    /*This file contains any manual css for this page that needs to override the global styles.
+This is only required when different pages style the same element differently. This is just
+a hack to deal with our current css styles and no new styling should be added in this file.*/
+
+#ipython-main-app {
+    position: relative;
+	font-size: 13pt;
+	font-family: 'Cambria', serif;
+}
+#jupyter-main-app {
+    position: relative;
+	font-size: 13pt;
+}
+.tab-content .row {
+	margin-bottom: 10px;
+}
+
+.text_cell_render {
+	font-size: 16pt;
+	font-family: "Cambria", serif;
+	line-height: 1.5;
+}
+
+    </style>
 
 
 <style type="text/css">
@@ -13116,19 +13141,16 @@ div#notebook {
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h4 id="Inner-Products-Spaces">Inner Products Spaces<a class="anchor-link" href="#Inner-Products-Spaces">&#182;</a></h4>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>An inner product $\langle \cdot, \cdot\rangle :V\rightarrow \mathbb R$ is a function that satisfies</p>
-<ul>
-<li><strong>positive definite</strong> $\langle x,x\rangle &gt; 0$ and $\langle x,x\rangle =0$ IFF $x\equiv0$</li>
-<li><strong>symmetry</strong> $\langle x,y\rangle =\langle y,x\rangle $</li>
-<li><strong>bilinear</strong> $\langle ax+cy,z\rangle =a\langle x,z\rangle +c\langle y,z\rangle $</li>
-</ul>
+<h3 id="Series">Series<a class="anchor-link" href="#Series">&#182;</a></h3><p><strong>Claim</strong> For $S_n(x)= \sum_{k=1}^n a_k(x)$, $(S_n,\|\cdot\|_\infty)$ Cacuhy IFF $S_n \rightarrow^{u.c.}S$</p>
+<p><em>proof</em>. $\Rightarrow$<br>
+Find $S(x)$ s.t. $S_k(x)\rightarrow^{p.w.}S(x)$.<br>
+\begin{align*}
+|S_k(x)-S(x)| &amp;\leq |S_k(x)-s_n(x)| + |s_n(x)-S(x)| \\
+&amp;\leq \epsilon + |S_n(x)-S(x)| &amp;\text{by p.w. convergence} \\
+&amp;\leq \epsilon + \sup_{x\in\mathbb{R}} |S_n(x)-S(x)|\\
+\end{align*}
+Apply limit on $n\rightarrow\infty$, since $n$ is independent on $k$, 
+$|S_k(x)-S(x)|\leq \epsilon + \lim_{n\rightarrow\infty}\sup_{x\in\mathbb{R}} |S_n(x)-S(x)| = \epsilon + 0\Rightarrow \|S_k-S\|_\infty \leq \epsilon$</p>
 
 </div>
 </div>
@@ -13136,12 +13158,12 @@ div#notebook {
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p><strong>Example</strong> On $\mathbb R^n, x\cdot y = \sum_1^n x_i y_i$</p>
-<ul>
-<li>$x\cdot x =\sum^n x_i^2 \geq 0$</li>
-<li>$x\cdot y = \sum x_i y_i = \sum y_i x_i = y\cdot x$</li>
-<li>$(ax+cy)\cdot z = \sum (ax_i + cy_i) z_i = a\sum x_i z_i + c\sum y_i z_i = ax\cdot z + cy\cdot z$ </li>
-</ul>
+<p><strong>Example</strong> $S_n :=\sum_{k=1}^n \frac{x^k}{k!}\rightarrow^{u.c.}\sum^\infty \frac{x^k}{k!},x\in [-R,R]$<br>
+\begin{align*}
+\|S_k - S_n\|_\infty &amp;= \sup_{|x|\leq R} |\sum^{n+m}\frac{x^k}{k!} - \sum^n \frac{x^k}{k!}| \\
+&amp;= \sup|\sum_{n+1}^{n+m}\frac{x^k}{k!}| \\
+&amp;\leq \sum \frac{R^k}{k!} = e^R - \sum^n \frac{R^k}{k!}\rightarrow 0
+\end{align*}</p>
 
 </div>
 </div>
@@ -13149,12 +13171,29 @@ div#notebook {
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p><strong>Example</strong> Let $A_{n\times n}$ be a positive definite symmetric matrix, i.e. all its eigenvalues are strictly positive. Then $\langle x\cdot y\rangle _A = x A y^T$ is an inner product on $\mathbb R^n$</p>
-<p>Note that such $A$ can be diagonalized into $A=PDP^T$</p>
-<ul>
-<li>$\langle x,x\rangle _A = xAx^T = xPDPx^T = vDv^T = \sum v_k^2 \lambda_k \rangle  0$ (since $A$ is definite, $\lambda_k \rangle  0$)<br>
-$\langle x,x\rangle =0$ IFF $\sum v_k^2 \lambda_k = 0\Rightarrow v_k = 0 \Rightarrow xP = 0$, since $P$ is orthogonal, $x=0$</li>
-</ul>
+<p><strong>Example</strong> $S_n = \sum^n \frac{x^2}{k(k+x^2)}, x\in \mathbb R$</p>
+<p><em>proof</em>. $S_n\rightarrow^{p.w.}S$ but $S_n \not\rightarrow^{u.c.}S$<br>
+Fix $x_0$, $S_n \leq x^2 \sum_{k=1}^n k^{-2} \leq x^2\pi^2/6 &lt; \infty$</p>
+\begin{align*}
+\|S_n-S\|_\infty &amp;= \|\sum_{k\geq n}\frac{x^2}{k(k+x^2)}\|_\infty \\
+&amp;= \sup_{x\in\mathbb R}|\sum_{k\geq n}\frac{x^2}{k(k+x^2)}| \\
+&amp;\geq \sup_{|x|\leq N}|\sum_{k\geq n} \frac{1}{k}\frac{x^2}{k+x^2}|\\
+\text{take N large so that }\frac{x^2}{k+x^2}&amp;\geq 1-\epsilon \text{ and k is fixed} \\
+&amp;\geq \sum_{k\geq n}\frac{1-\epsilon}{k} = \infty
+\end{align*}
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><strong>M-Test</strong> For $S_n(x) = \sum_{k=1}^n a_k(x), \|a_k\|_\infty \leq M_k \land \sum M_k &lt; \infty \Rightarrow S_n \rightarrow^{u.c.}S &lt; \infty$.</p>
+<p><em>proof</em>. We'll show Cauchy so that uniform convergent.<br>
+\begin{align*}
+\|S_n - S_{n+m}\|_\infty &amp;= \sup|\sum_{n+1}^{n+m}a_k(x)| \\ 
+&amp;\leq \sum_{n+1}^{n+m} \sup|a_k(x)| \\
+&amp;\leq \sum_{n+1}^{n+m} M_k &lt; \epsilon \text{ for N large}
+\end{align*}</p>
 
 </div>
 </div>
@@ -13162,13 +13201,20 @@ $\langle x,x\rangle =0$ IFF $\sum v_k^2 \lambda_k = 0\Rightarrow v_k = 0 \Righta
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p><strong>Lemma Cauchy Schwartz</strong> For $x,y\in (V,\langle ,\rangle ), |\langle x,y\rangle |\leq \langle x,x\rangle ^2\langle y,y\rangle ^2$</p>
-<p><em>proof</em>. By positive definite, for $t\in\mathbb R$, $\langle x-ty, x-ty\rangle  \geq 0$.<br>
-Take $t = \frac{\langle x,y\rangle }{y,y}$,<br>
-$\langle x,x\rangle  - 2t |\langle x,y\rangle | + t^2 \langle y,y\rangle  $<br>
-$= \langle x,x\rangle  - 2\frac{\langle x,y\rangle ^2}{\langle y,y\rangle} + \frac{\langle x,y\rangle ^2}{\langle y,y\rangle }$<br>
-$=\langle x,x\rangle  - \frac{\langle x,y\rangle ^2}{\langle x,y\rangle } \geq 0$<br>
-$\Rightarrow \langle x,y\rangle ^2 \leq \langle x,x\rangle \langle y,y\rangle $</p>
+<p><strong>Example</strong> $S_n = \sum_{k=1}^n (-x^2)^k\rightarrow^{u.c.}S, x\in [-r,r]\subset (-1,1)$ but not for $x\in(-1,1)$</p>
+<p><em>proof</em>. For $x\in [-r,r]$.<br>
+$$\|(-x^2)^k\| \leq r^{2k} =:M_k$$
+Since $\sum^\infty r^{2k} = (1-r^2)^{-1}-1 &lt; \infty$, apply M-test, $S_n\rightarrow^{u.c.}S$</p>
+<p>However, take $x\in(-1,1)$
+\begin{align*}
+\|S_n - S_{m+n}\|_\infty &amp;= \sup_{x\in(-1,1)}|\sum_n^{n+m}(-x^2)^k| \\
+\text{take }x_0 = 0.5^{1/2N} &amp;\in (-1,1) \text{ and }n + m\leq N \\
+&amp;\geq |\sum_n^{n+m} (-1)^k 0.5^{k/N}| \\
+&amp;= |0.5^{n/N} + (-1)^{n+1}0.5^{\frac{n+1}{N}}| \\
+&amp;\sim 0.5^{n/N} &amp;\text{ for N large} \\
+&amp;&gt; \epsilon &amp;\text{since }N\rightarrow\infty, 0.5^{n/N}\rightarrow 1
+\end{align*}</p>
+<p>Alternatively, take $\lim_{N\rightarrow\infty} = |-1+1-1+1...| = 1$ when $n+m$ is odd</p>
 
 </div>
 </div>
@@ -13176,16 +13222,14 @@ $\Rightarrow \langle x,y\rangle ^2 \leq \langle x,x\rangle \langle y,y\rangle $<
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p><strong>Example</strong> Over $C[a,b]$, $\langle f,g\rangle _{L^2} = \int_a^b f g dx$</p>
-<ul>
-<li>$\langle f,f\rangle _{L^2} = \int_a^b f^2 dx \geq 0$<br>
-$\langle f,f\rangle _{L^2}=0$ IFF $\int_a^b |f|^2 dx = 0$ IFF $f(x)=0$ because $f$ is continuous<br>
-Assume $f(x_0) &gt;  0$, then by continuity, take $I_\delta(x_0):=[x_0-\delta, x_0+\delta], \forall x\in I_\delta(x_0). f(x) \rangle  \epsilon \rangle  0$ so that $\int_a^b |f|^2 dx &gt;  \int_{I_\delta(x_0)} |f(x)|^2 dx &gt;  \epsilon^2 $ contradicts with $\langle f,f\rangle _{L^2}=0$ (other details to be filled)</li>
-</ul>
-<p>By Cauchy Schwartz inequality, $\int fg\leq \sqrt{\int f^2}\sqrt{\int g^2}$<br>
- $\Rightarrow \langle f,g\rangle _{L^2} \leq \|f\|_{L^2}\|g\|_{L^2}$<br>
- $\Rightarrow f\in L^2([a,b]) \Rightarrow f\in L^1([a,b])$</p>
-<p>Therefore, every inner product gives rise to a norm $\|x\|_v := \sqrt{\langle x,x\rangle }$</p>
+<p><strong>Example</strong> For the series for $\arctan(x)$
+\begin{align*}
+\arctan(x) &amp;= \int_0^x \frac{1}{1+t^2}dt \\
+&amp;= \int_0^x \sum (-t^2)^k dt &amp;|x|&lt;1 \\
+&amp;= \sum \int_0^x (-t^2)^k dt &amp;\text{ICT} \\
+&amp;= \sum (-1)^k (\frac{t^{2k+1}}{2k+1}\Big|_0^x) \\
+&amp;= \sum (-1)^k (\frac{x^{2k+1}}{2k+1})
+\end{align*}</p>
 
 </div>
 </div>
@@ -13193,10 +13237,14 @@ Assume $f(x_0) &gt;  0$, then by continuity, take $I_\delta(x_0):=[x_0-\delta, x
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p><strong>Hilbert space</strong> a complete inner product space is called Hilbert space</p>
-<p><strong>Completeness over inner product space</strong> A inner product space is complete if every Cauchy sequence $x_n$ has a limit in the space. i.e.<br>
-$\|x_n - x\|_V^2 = \langle x_n - x, x_n - x\rangle \rightarrow 0$</p>
-<p>$L^2([a,b]):= \{f:[a,b]\rightarrow \mathbb R: \int_a^b |f|^2 \langle  \infty\}$</p>
+<p>$\arctan(1)$ is defined and $\arctan(1) = \pi/4$</p>
+<p>if $a_k \geq a_{k+1} &gt; 0, |\sum^\infty a_k(-1)^k| \leq a_n$</p>
+<p><em>proof</em>. 
+\begin{align*}
+\sup_{x\in[-1,1]}|S_n(x)-S(x)| &amp;= \sup_{|x|\leq 1}|\sum^\infty_n (-1)^k \frac{x^{2k+1}}{2k+1}| \\
+&amp;= \sup_{|x|\leq 1} |\frac{x^{2n+1}}{2n+1}(-1)^n)|&amp;\text{since }\frac{x^{2k+1}}{2k+1} \text{ decreasing} \\
+&amp;= \frac{1}{2n+1} \leq \epsilon
+\end{align*}</p>
 
 </div>
 </div>
@@ -13204,7 +13252,18 @@ $\|x_n - x\|_V^2 = \langle x_n - x, x_n - x\rangle \rightarrow 0$</p>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p><strong>Remark</strong> The space $S:=(C[a,b], \|\cdot\|_{L^2})$ is not complete, but $L^2([a,b])$ is the completion of $S$. which means taking any Cauchy sequence, then it has a limit in $L^2$. In another words, continuous functions can approximate any square integrable function in $L^2$-norm.</p>
+<p><strong>Claim</strong>. For $f_n \in C([a,b])$ If $\exists c \in [a,b], f_n(c)\rightarrow \gamma, f'_n \rightarrow^{u.c.}g$, then $f_n \rightarrow f$ where $f'=g$</p>
+<p><em>proof</em>. By FTC, 
+\begin{align*}
+f_n(x)&amp;=f_n(c) + \int_c^x f'_n(t)dt \\
+&amp;\rightarrow\gamma + \int_c^x g(t)dt =:f(x) \\
+|f_n(x)-f(x)| &amp;= |f_n(x)-\gamma -\int_c^x g(t)dt| \\
+&amp;\leq |f_n(x)-\gamma| + |\int_c^x f'_n(t)-g(t)dt| \\
+&amp;\leq \epsilon/2 + \|f'_n - g\|_\infty \int_c^x dt \\
+&amp;= \epsilon/2 + \|f'_n-g\|(x-c)\\
+&amp;\leq \epsilon/2 + \frac{\epsilon}{b-a} (x-c)\\
+&amp;leq\epsilon
+\end{align*}</p>
 
 </div>
 </div>
@@ -13212,12 +13271,8 @@ $\|x_n - x\|_V^2 = \langle x_n - x, x_n - x\rangle \rightarrow 0$</p>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p><strong>Monotone Convergence Theorem</strong> Take nonnegative $f_n(x)\geq 0$, if</p>
-<ul>
-<li>$f_1(x)\leq f_2(x) \leq ...$  </li>
-<li>point-wise limit $f_n(x)\rightarrow f(x)$ i.e. $|f_n(x)-f(x)|\rightarrow 0$</li>
-</ul>
-<p><strong>Corollary</strong> By MCT, $\lim \int f_n = \int \lim f_n = \int f$</p>
+<p><strong>Corollary</strong> Swap derivative and sum<br>
+$$S'_n \rightarrow^{u.c.}S\land\exists c. S_n(c)\rightarrow S(c) \Rightarrow d_x \sum a_k(x) = \sum d_x a_k(x)$$</p>
 
 </div>
 </div>
@@ -13225,12 +13280,15 @@ $\|x_n - x\|_V^2 = \langle x_n - x, x_n - x\rangle \rightarrow 0$</p>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p><strong>Dominated/Integral Convergence Theorem</strong> If $\{h_n\}$ satisfy</p>
-<ul>
-<li>$|h_n(x)|\leq B(x)$, which $B$ is an integrable function</li>
-<li>$h_n(x)\rightarrow^{\text{point-wise}} h(x)$</li>
-</ul>
-<p>Then, $\lim \int f_n = \int \lim f_n = \int f$</p>
+<h4 id="Power-Series-$\sum-a_k-x^k$">Power Series $\sum a_k x^k$<a class="anchor-link" href="#Power-Series-$\sum-a_k-x^k$">&#182;</a></h4>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><strong>Ratio test</strong> $\lim_\infty \frac{a_k}{a_{k+1}}&lt; 1\Rightarrow \sum a_k &lt; \infty$</p>
+<p><strong>Root test</strong> $\lim\sup(|b_k|)^{1/k} &lt; 1\Rightarrow \sum b_k &lt; \infty$</p>
 
 </div>
 </div>
@@ -13238,26 +13296,12 @@ $\|x_n - x\|_V^2 = \langle x_n - x, x_n - x\rangle \rightarrow 0$</p>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p><strong>Theorem</strong> The space $(L^2, \|\cdot\|_{L^2})$ is complete</p>
-<p><em>proof</em>. Take Cauchy sequence $f_n \in L^2([a,b])$. By Cauchy, take subsequence $f_{n,k}$ s.t. $\|f_{n,k} - f_{n,k+1}\| \leq 2^{-k}$.<br>
-Let $f(x):=f_{n,1}(x) + \sum (f_{n, k+1} - f_{n,k}(x))$. WTS $f\in L^2 (i)$, $f_{n,k}\rightarrow^{L^2} f (ii)$.<br>
-Define $g:= |f_n,1| + \sum|f_{n,k+1}- f_{n,k}| $, $S_M(g) = |f_n,1| + \sum^M|f_{n,k+1}- f_{n,k}|$, then $f\leq g, S_M(f) \leq S_M(g)$<br>
-Apply MCT to $\{S_M(g)\}, 0\leq |f_{n,1}| \leq |f_{n,2}-f_{n,1}|\leq ..., S_1(g) \leq S_2(g) \leq S_3(g)$</p>
-<p>Then, WTS $S_M(g)\rightarrow g(x)$, which suffices to show that the sequence $g$ converges, a.k.a. $g\in L^2$<br>
-By triangle inequality $\|S_M(g)\|_{L^2} \leq \|f_{n,1}\|_{}L^2 + \sum^M \|f_{n,k+1} - f_{n,k}\| \leq \|f_{n,1}\| + \sum^M 2^{-k} \langle  \infty$</p>
-<p>$\int |g^2| dx = \int \lim_{M\rightarrow \infty} |S_M(g)^2|dx$<br>
-$=\lim_{n\rightarrow\infty} \int |S_M(g)|^2 dx$ by MCT<br>
-$\leq \lim_{M\rightarrow \infty} \|f_{n,1}\| + \sum^M 2^{-k} \leq \|f_{n,1}\| + 2 \langle  \infty $</p>
-<p>We have Cauchy seuqnce $f_n \in L^2$, WTS $\|f_n -f\|_{L^2}\rightarrow 0$<br>
-(i) Since $|f|\leq g$ and $g\in L^2, \int |f|^2 \leq \int |g|^2 \langle \infty\Rightarrow f\in L^2$</p>
-<p>(ii) $\|f_n - f\|_{L^2}^2 = \int |f_n - f|^2 dx\rightarrow 0$<br>
-Let $h_k:=|f_{n,k}- f|^2$, then<br>
-$h_k \leq |S_k(g)| + |g| \leq 2|g|\in L^2$<br>
-$f_{n,k}\rightarrow^{\text{point-wise}} f$ since $g\in L^2$ so $\lim_{k\rightarrow \infty} f_{n,k}(x)=f(x)$ exists<br>
-BY DCT, $\lim_{k\rightarrow \infty} \int |h_k|^2 = \int \lim_{k\rightarrow \infty} |h_k|^2 =0$,<br>
-Therefore, $f_{n,k}\rightarrow^{L^2}f$</p>
-<p>Then, expansion $f_{n,k} $ to $f_n$. i.e. $f_n \rightarrow^{L^2} f$.<br>
-By Cauchy sequence of $f_n$, if the sub-sequence converges to some limit, so that the whole sequence will do so.</p>
+<p><strong>Example</strong> $\sum \frac{x^n}{n}$ is u.c. for $x\in[-1,r], r&lt; 1$
+\begin{align*}
+\sup_{x\in[-1,1)}|S_N - S| &amp;= \sup_{x\in[-1,1)}|\sum_{n\geq N} x^n/n| \\
+(i) \sup_{x\in[-1,0]}|\sum_{n\geq N}x_n /n | = \sup_{y\in[0,1]}&amp;|\sum (-1)^n y^n/n| \leq \sup|y^N/N| \leq 1/N \quad\text{for large }N \\
+(ii) \sup_{x\in[0,r]}|\sum_{n\geq N}x_n /n | = \sup_{x\in[0,r]}&amp;\sum |x^n/n| \leq \sum r^n/n \leq \epsilon \quad\text{for large }N
+\end{align*}</p>
 
 </div>
 </div>
@@ -13265,8 +13309,10 @@ By Cauchy sequence of $f_n$, if the sub-sequence converges to some limit, so tha
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p><strong>Orthogonal</strong> Given $x,y\ in (V,\langle\cdot, \cdot\rangle)$, x,y are orthogonal if $\langle x,y\rangle  = 0$</p>
-<p><strong>Example</strong> $x\circ y = cos(\theta) |x||y|$, so when $\theta = \pi /2, x\circ y = 0$</p>
+<p><strong>Hadamard's Theorem</strong> Let $S(x)=\sum a_k x^k$ and $R^{-1} = \lim\sup(|a_n|)^{1/n}$, then $S_k \rightarrow^{u.c.}S, x\in (-R,R)$.</p>
+<p><em>proof</em>. By root test, $\lim\sup (a_kx^k)^{1/k} &lt; 1$<br>
+$|a_k x^k|^{1/k} = |x|\lim\sup |a_k|^{1/k} = |x|R^{-1} &lt; 1\Rightarrow |x|&lt; R$<br>
+Let $M_k := |a_k|r^k$ by root test, $\sum M_k &lt; \infty$, then by M-test, $S_k \rightarrow^{u.c.}S, \forall x\in[-r,r]$</p>
 
 </div>
 </div>
@@ -13274,7 +13320,7 @@ By Cauchy sequence of $f_n$, if the sub-sequence converges to some limit, so tha
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p><strong>Orthonormal</strong> A collection of $\{e_k\}$ is called orthonormal if $\langle e_k,e_m\rangle  = 1\mathbb I(k=m)$</p>
+<p>Ratio test can do the same work</p>
 
 </div>
 </div>
@@ -13282,7 +13328,19 @@ By Cauchy sequence of $f_n$, if the sub-sequence converges to some limit, so tha
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p><strong>Theorem</strong> Every Hilbert space has orthonormal basis, i.e. $\forall x\in H. x = \sum^\infty \langle x,e_k\rangle  e_k$</p>
+<p><strong>Example</strong> $\sum \frac{2^{2k}}{k^2} x^{2k}$<br>
+Let $y := x^2$,<br>
+\begin{align*}
+\frac{1}{R} &amp;= \lim\sup (|\frac{2^{2k}}{k^2}|^{1/k}) \\
+&amp;= \lim\sup 2^2 k^{-2/k} \\
+&amp;= 4 \lim\sup k^{-2/k} &amp;(i)\\
+&amp;= 4 \\
+\Rightarrow R &amp;= 1/4 \\ \\
+(i) \log L  &amp;= \lim\sup\log(k^{-2/k}) \\
+\frac{2}{k}\log(\frac{1}{k}) \rightarrow 0 &amp;\Rightarrow k^{-2/k}\rightarrow 1 \\
+|y| \leq R = 1/4 &amp;\Rightarrow |x|\leq 1/2
+\end{align*}
+So the interval of convergence $(-1/2, 1/2)$</p>
 
 </div>
 </div>
@@ -13290,8 +13348,9 @@ By Cauchy sequence of $f_n$, if the sub-sequence converges to some limit, so tha
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p><strong>Example</strong> Take $e_k = (0,...,0,1,0)$ where $1$ is at $k$th position, $\{e_k\}$ is orthonormal set.</p>
-<p><em>proof</em>. $e_k \cdot e_m = \sum^n (e_k)_i (e_m)_i = 1\mathbb I(k=m)$</p>
+<p><strong>Claim</strong> $\sum a_k x^k $ with radius $R_1$, $\sum b_k x^k$ with radius $R_2$. Then<br>
+(i) $\sum (a_k + b_k)x^k$ has radius $(R_1^{-1}+R_2^{-1})^{-1}$<br>
+(ii) $\sum_{n=1}^\infty (\sum_{k=1}^n a_k b_{n-k})x^n$</p>
 
 </div>
 </div>
@@ -13299,10 +13358,7 @@ By Cauchy sequence of $f_n$, if the sub-sequence converges to some limit, so tha
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p><strong>Example</strong> $\{1, \sqrt2\cos(n\theta), \sqrt2\sin(n\theta)\}$ is orthogonal for $(C([-\pi, \pi]), \|\cdot\|_{L^2})$</p>
-<p><em>proof</em>. $\frac{\sqrt2}{\pi}\int_{-\pi}^\pi \cos(n\theta)\cos(k\theta) = 1\mathbb I(n=k)$ and<br>
-$\frac{\sqrt2}{\pi}\int_{-\pi}^\pi \sin(n\theta)\sin(k\theta) = 1\mathbb I(n=k)$  and<br>
-$\frac{\sqrt2}{\pi}\int_{-\pi}^\pi \sin(n\theta)\cos(k\theta) = 0$</p>
+<p>Fix $\epsilon &gt; 0$, take $N = \max(N_1, N_2)$ s.t. $\forall n \geq N_1. |a_n|^{1/n}\leq R_1^{-1} + \epsilon, \forall n \geq N_2. |b_n|^{1/n} \leq R_2^{-1}$.</p>
 
 </div>
 </div>
@@ -13310,11 +13366,31 @@ $\frac{\sqrt2}{\pi}\int_{-\pi}^\pi \sin(n\theta)\cos(k\theta) = 0$</p>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p><strong>Fourier Series</strong> For function $f\in L^2([a,b])$, the Fourier series is defined to be 
-$$f(x):= a_0 + \sum a_n \frac{\cos(n\pi x)}{L} + b_n \frac{\sin(n\pi x)}{L}$$ where
-$$a_n = \langle f, \frac{\cos(n\pi x)}{L})\rangle _{L^2}, b_n = \langle f, \frac{\sin(n\pi x)}{L}\rangle _{L^2}$$</p>
-<p><strong>Carleson Hunt Theorem</strong> If $f\in L^2([-L,L])$, then $f$ equals its Fourier series <em>almost everywhere</em>.<br>
-<em>almost everywhere</em> outside a measure zero set</p>
+<p>(i) <em>proof</em>. 
+\begin{align*}
+R^{-1} &amp;= \lim\sup (|a_n| + |b_n|)^{1/n} \\
+&amp;\leq \lim\sup ((R_1^{-1}+\epsilon)^n + (R_2^{-1}+\epsilon)^n)^{1/n} \\
+&amp;\leq \lim\sup ((R_1^{-1}+\epsilon) + (R_2^{-1}+\epsilon))^{n/n} &amp;\text{by }|a|^q + |b|^q \leq (|a|+|b|)^q, \forall q &gt; 1 \\
+&amp; = R_1^{-1} + R_2^{-1} + 2\epsilon \\
+&amp;\rightarrow^{\epsilon\rightarrow 0} R_1^{-1} + R_2^{-1} \\
+\Rightarrow R &amp;= (R_1^{-1} + R_2^{-1})^{-1}
+\end{align*}</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>(ii) <em>proof</em>.  Let $M_1 = \max(\{1\}\cup \{\frac{|a_k|}{(R_1^{-1} + \epsilon)^k}\}), M_2 = \max(\{1\}\cup \{\frac{|b_k|}{(R_2^{-1} + \epsilon)^k}\})$.<br>
+Therefore, $|a_n|\leq M_1(R_1^{-1}+\epsilon)^n\land|b_n|\leq M_2(R_2^{-1}+\epsilon)^n. \forall n\geq 1$
+\begin{align*}
+R^{-1}&amp;\leq \lim\sup (\sum^n M_1(R_1^{-1}+\epsilon)^kM_2(R_2^{-1} +\epsilon)^{n-k})^{1/n} \\
+&amp;= \lim\sup (M_1M_2)^{1/n}\lim\sup ((R_2^{-1}+\epsilon)^n \sum^n r^k)^{1/n} &amp;r := \frac{R_1^{-1}+\epsilon}{R_2^{-1}+\epsilon} \\
+\end{align*}
+Take log limt for each lim sup, $\lim\sup(M_1M_2)^{1/n} = 1$.<br>
+$\lim\sup (R_2^{-1}+\epsilon)^{n/n}\lim\sup (\frac{1-r^{n+1}}{1-r})^{1/n} = R_2^{-1}+\epsilon$<br>
+If we swap $R_1,R_2$, similar conclusion can be made $=R_1^{-1}+\epsilon$, therefore $R^{-1} \leq \max(R_1^{-1}+\epsilon, R_2^{-1}+\epsilon)$</p>
 
 </div>
 </div>

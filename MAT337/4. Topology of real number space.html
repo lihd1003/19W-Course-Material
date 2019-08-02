@@ -2,7 +2,7 @@
 <html>
 <head><meta charset="utf-8" />
 
-<title>Week11</title>
+<title>4. Topology of real number space</title>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.10/require.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
@@ -13056,6 +13056,31 @@ ul.typeahead-list  > li > a.pull-right {
 .ansi-bold { font-weight: bold; }
 
     </style>
+<style type="text/css">
+    /*This file contains any manual css for this page that needs to override the global styles.
+This is only required when different pages style the same element differently. This is just
+a hack to deal with our current css styles and no new styling should be added in this file.*/
+
+#ipython-main-app {
+    position: relative;
+	font-size: 13pt;
+	font-family: 'Cambria', serif;
+}
+#jupyter-main-app {
+    position: relative;
+	font-size: 13pt;
+}
+.tab-content .row {
+	margin-bottom: 10px;
+}
+
+.text_cell_render {
+	font-size: 16pt;
+	font-family: "Cambria", serif;
+	line-height: 1.5;
+}
+
+    </style>
 
 
 <style type="text/css">
@@ -13116,9 +13141,9 @@ div#notebook {
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p><strong>Equicontinuous</strong> A family of function $\mathcal F \subset C(K,\mathbb R^m)$ is equicontinuous at $a\in K$<br>
-$$\forall f \in \mathcal F. \forall \epsilon &gt; 0. \exists \delta &gt; 0. \|x-a\|&lt;\delta \Rightarrow \|f(x)-f(a)\|&lt;\epsilon$$
-Then $\mathcal F$ is equicontinuous on $K$ is $\mathcal F$ is equicontinuous $\forall a\in K$.</p>
+<h3 id="Cauchy-sequence">Cauchy sequence<a class="anchor-link" href="#Cauchy-sequence">&#182;</a></h3><p>$\forall \epsilon &gt; 0. \exists N &gt;0 .\forall m,n \geq N. |a_m - a_n| \leq \epsilon$</p>
+<p>Any convergent sequence is Cauchy<br>
+Every Cauchy sequence is bounded</p>
 
 </div>
 </div>
@@ -13126,8 +13151,8 @@ Then $\mathcal F$ is equicontinuous on $K$ is $\mathcal F$ is equicontinuous $\f
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p><strong>Uniformly equicontinuous</strong> $\mathcal F$ is uniformly equicontinuous if 
-$$\forall \epsilon &gt; 0. \exists \delta &gt; 0. \forall f\in\mathcal F. \forall x,y\in K. \|x-y\|&lt;\delta \Rightarrow \|f(x)-f(y)\|&lt;\epsilon$$</p>
+<h3 id="Completeness">Completeness<a class="anchor-link" href="#Completeness">&#182;</a></h3><p><strong>Metric space</strong> a space X plus a notion of distance</p>
+<p><strong>Complete</strong> a metric space $S$ is complete if Cauchy sequence in $S$ converges to some point in that space.</p>
 
 </div>
 </div>
@@ -13135,16 +13160,12 @@ $$\forall \epsilon &gt; 0. \exists \delta &gt; 0. \forall f\in\mathcal F. \foral
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p><strong>Theorem</strong> $\mathcal G := \{g_n\}_{n\geq 1}\cup \{g\}$ where $g_n \in C(K,\mathbb R^m), g_n\rightarrow^{u.c.}g$, then $\mathcal G$ is equicontinuous.</p>
-<p><em>proof</em>. Let $a\in K, \epsilon &gt; 0$,<br>
-By completeness and uniform continuous, $g$ is also continuous,<br>
-take $\delta' &gt; 0$ s.t. $\forall x\in K. \|x-a\|&lt;\delta' \Rightarrow \|g(x)-g(a)\|&lt;\epsilon/3$.<br>
-By uniform continuous, take $N\geq 0$ s.t. $\forall n\geq N. \|g_n-g\|_\infty &lt;\epsilon/3$.<br>
-Then, $\forall n\geq N. \forall x, \|x-a\|&lt;\delta'$<br>
-$\|g_n(x)-g_n(a)\| \leq \|g_n(x)-g(x)\| + \|g(x)-g(a)\| + \|g(a)-g_n(a)\| \leq 3(\epsilon/3)=\epsilon$</p>
-<p>Then, for each $g_k \in \{g_1,g_2,...,g_N\}$, take $\delta_k$ by continuity of each $g_k$, 
-take $\delta = \min\{\delta_1,..,\delta_k, \delta'\}$<br>
-$\forall f \in \mathcal F. \forall \epsilon &gt; 0. \exists \delta &gt; 0. \|x-a\|&lt;\delta \Rightarrow \|f(x)-f(a)\|&lt;\epsilon$</p>
+<p><strong>Claim</strong> (D\&amp;D 2.8.5) every Cauchy sequence of reals converges. i.e. $\mathbb{R}$ is complete.</p>
+<p><em>proof</em>. Let $(x_n)\in\mathbb{R}$ be Cauchy and $x_n\rightarrow L$. WTS $L\in\mathbb{R}$</p>
+<p>We'll use diagonalization argument: For fixed $x_n\in\mathbb{R}, \exists (r_{n,k})$ be rational Cauchy s.t. $\lim_{k\rightarrow\infty}r_{n,k}=x_n$. 
+Let $a_n$ be s.t. $|a_n - x_n|\leq 1/n$ by choosing a candidate for each $n$. 
+$\Rightarrow |a_n-L|\leq |a_n-x_n| + |x_n-L|\leq 1/n + \epsilon_n$<br>
+$\Rightarrow \lim_{n\rightarrow\infty} a_n = L \in\mathbb{R}$</p>
 
 </div>
 </div>
@@ -13152,10 +13173,7 @@ $\forall f \in \mathcal F. \forall \epsilon &gt; 0. \exists \delta &gt; 0. \|x-a
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p><strong>Example</strong> $f_n(x)=x^n, x\in [0,1], \mathcal F = \{f_n\}_{n\geq 1}$ is not equicontinuous at 1.</p>
-<p><em>proof</em>. Take $\epsilon =1/2$, let $\delta &gt; 0$, wlog, $\delta &lt; 1$.<br>
-Take $y = 1-\delta/2&lt;1$, then $y^n \rightarrow 0$, hence we can take $N$ s.t. $\forall n\geq N, 1-y^n &gt; 1/2$<br>
-Therefore, $|1-y|=\delta/2 &lt; \delta$ but $|f_n(1)-f_n(y)|= 1-y^n &gt; 1/2$</p>
+<h3 id="Mean-Value-Theorem">Mean Value Theorem<a class="anchor-link" href="#Mean-Value-Theorem">&#182;</a></h3><p>$|f(x)-f(y)| = |f'(\xi)||x-y|$ for $\xi\in(x,y)$</p>
 
 </div>
 </div>
@@ -13163,12 +13181,12 @@ Therefore, $|1-y|=\delta/2 &lt; \delta$ but $|f_n(1)-f_n(y)|= 1-y^n &gt; 1/2$</p
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p><strong>Lemma 1</strong> If $\mathcal F$ compact, then $\mathcal F$ equicontinuous on $K$.</p>
-<p><em>proof</em>. Suppose $\mathcal F$ is not equicontinuous,<br>
-take $a\in K, \epsilon &gt; 0$ s.t. $\forall n\geq 1. \exists f_n\in\mathcal F. \exists x_n\in K$ s.t. $\|x_n-a\|&lt;1/n$ but $\|f_n(x_n) - f_n(a)\| \geq \epsilon$, hence we construct sequences $\{x_n\}, \{f_n\}$<br>
-Then, any subset of $\{f_n\}$ cannot be equicontinuous $(i)$<br>
-However, since $\mathcal F$ is compact, take $\{f_{n_k}\}$ converges uniformly to some $f\in\mathcal F$, and $\{f_{n_k}\}\cup \{f\}$
-is equicontinuous, this contradicts with $(i)$</p>
+<p><strong>Example</strong> $a_1 = 1, a_{n+1} = cos(a_n)$ show that $a_n\rightarrow L$.<br>
+<em>proof.</em> WTS $(a_n)$ is Cauchy<br>
+$|\cos(a_{n - 1})-\cos(a_n)|\leq |\sin(\xi)||a_{n-1}-a_n|$ for $\xi\in(a_n,a_{n-1})$<br>
+$\Rightarrow |a_n - a_{n+1}|\leq r|a_{n-1}-a_n|$<br>
+$\leq r^n|a_2 - a_1|$ by doing such recursively</p>
+<p>If $r &lt; 1$, then $\lim|a_n - a_{n-1}|=0$</p>
 
 </div>
 </div>
@@ -13176,15 +13194,17 @@ is equicontinuous, this contradicts with $(i)$</p>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p><strong>Lemma 2</strong> equicontinuous implies uniformly equicontinuous</p>
-<p><em>proof</em>. Suppose $\mathcal F$ not u.e.c.<br>
-Take $\epsilon &gt; 0$ s.t. $\forall n\geq 1, \exists x_n,y_n \in K. \exists f_n\in \mathcal F. \|x_n-y_n\| &lt; 1/n \land \|f_n(x_n)-f_n(y_n)\|\geq \epsilon$ hence we construct sequence $\{x_n\}, \{y_n\}, \{f_n\}$<br>
-Since $K$ is compact, take $x_{n_k}\rightarrow a \in K$, then $y_{n_k} = x_{n_k}-(x_{n_k}-y_{n_k})\rightarrow a$</p>
-<p>$\mathcal F$ is equicontinous at $a\in K\Rightarrow \exists \delta &gt; 0, \|f_n(x)-f_n(a)\|\leq \epsilon/2$ for all $\|x-a\|&lt;\delta, f\in\mathcal F$.<br>
-Since $x_{n_k}\rightarrow a, y_{n_k}\rightarrow a, \exists M\in \mathbb N, \forall m \geq M. \|x_{n_m}-a\|&lt;\delta\land \|y_{n_m}-a\|&lt;\delta$<br>
-Therefore, $\forall m\geq M$<br>
-$\|f_{n_m}(x_{n_m})- f_{n_m}(y_{n_m})\|\leq \|f_{n_m}(x_{n_m})- f_{n_m}(a)\| + \|f_{n_m}(a)- f_{n_m}(y_{n_m})\|&lt; 2(\epsilon/2)=\epsilon$<br>
-contradicts with assumption</p>
+<h3 id="Close-and-Open">Close and Open<a class="anchor-link" href="#Close-and-Open">&#182;</a></h3>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><strong>Limit point</strong> For a sequence $(x_n)\in\mathbb{R}$, its limit point $x\in\mathbb{R}$ satisfies $\lim_{n\rightarrow\infty}x_n = x$.</p>
+<p><strong>Closed</strong> if it contains all its limit points</p>
+<p><strong>Example</strong> $\mathbb{R}^n$ is closed because $\mathbb{R}$ is complete</p>
+<p><strong>Claim</strong> Finite union of closed sets is closed</p>
 
 </div>
 </div>
@@ -13192,8 +13212,9 @@ contradicts with assumption</p>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p><strong>Totally bouded</strong> $S\subseteq K$ is an $\epsilon$-net of $K$ if $K\subseteq \cup_{a\in S}B_\epsilon(a)$<br>
-$K$ is totally bounded if it has a finite $\epsilon$-net $\forall \epsilon &gt; 0$</p>
+<p><strong>Open</strong> if $\forall x\in U.\exists r_{x,v}&gt;0. B_r(x)\subseteq U$</p>
+<p>$U$ open, $f$ continuous $\Rightarrow f^{-1}(U)$ is open</p>
+<p><strong>Claim</strong> (D\&amp;D 4.3.8) $U$ open IFF $\mathbb{R}-U\rightarrow U^c$ is closed</p>
 
 </div>
 </div>
@@ -13201,16 +13222,9 @@ $K$ is totally bounded if it has a finite $\epsilon$-net $\forall \epsilon &gt; 
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p><strong>Lemma 3</strong> If $K\subseteq \mathbb R^m$ bounded, then totally bounded.</p>
-<p><em>proof</em>. Let $\epsilon &gt; 0$, choose $N, N \leq \min\{\epsilon, \frac{1}{\sqrt m}\}$<br>
-$K$ bounded, hence $\exists L &gt; 0, \forall x = (x_1,...,x_m)\in K, |x_i|\leq L, \forall i$<br>
-Let $F = \{\frac{k_i}{2N^2}\}_{k_i\in \mathbb Z}\subseteq [-L,L]$, then $F$ is a finite $\frac{1}{2N^2}$-net for $[-L,L]$.<br>
-Let $A = \{x_1,...,x_m\}\subseteq \mathbb R^m$ s.t. $x_i \in F, \forall i$<br>
-Let $\tilde A = \{a\in A: B_{\epsilon/2}(x)\cap K \neq \emptyset\}$. Then, for each $x\in \tilde A$, choose $x_a \in B_{\epsilon/2}(a)\cap K$.<br>
-Take $x = (x_1,...,x_m)\in K$ for each $i = 1,...,m, \exists a_i \in F$ s.t. $|x_i-a_i|&lt;\frac{1}{2N^2}$<br>
-Then, $\|x-a\| = \sqrt{\sum |x_i-a_i|^2} &lt; \sqrt{\frac{m}{4N^4}} = \sqrt M/2N^2 \leq N/2N^2 \leq (2N)^{-1} &lt; \epsilon/2$<br>
-Also, $B_{\epsilon/2}(a)\cap K\neq \emptyset, a\in \tilde A$, so that $x_a$ is defined.<br>
-Then, $\|x-x_a\|\leq \|x-a\|+\|x-x_a\|&lt; \epsilon/2+\epsilon/2 = \epsilon$</p>
+<p><strong>Theorem</strong> finite intersection of open sets is open.</p>
+<p><em>proof</em>. $(\cap^M U_i)^{c^c} = (\cup^M U_i^c)^c$<br>
+Since $U_i$ open, $U_i^c$ closed, $\cup^M U_i^c$ closed.</p>
 
 </div>
 </div>
@@ -13218,11 +13232,17 @@ Then, $\|x-x_a\|\leq \|x-a\|+\|x-x_a\|&lt; \epsilon/2+\epsilon/2 = \epsilon$</p>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p><strong>Lemma 4</strong> If $K$ bounded, then $K$ contains a sequence $\{x_i\}_{i\geq 1}$ dense in $K$. Moreover, $\forall \epsilon &gt; 0. \exists N\in\mathbb N$ s.t. $\{x_i\}_{i\leq N}$ is an $\epsilon$-net for $K$.</p>
-<p><em>proof</em>. For each $k\geq i$, let $B_k$ be a finite $k^{-1}$-net.<br>
-Take $\{x_i\}$ be the sequence which lists the $B_k$ consecutively, i.e. $x_0,...,x_{N_0}\in B_0, x_{N_0+1}, ...,x_{N_1} \in B_1,..$<br>
-Let $x\in K$, then $\forall k\geq 1. \exists n_k$ s.t. $x_{n_k}\in B_k$ and $\|x-x_{n_k}\|&lt; k^{-1}$, hence dense.<br>
-Also, given $\epsilon &gt; 0$, choose $k &gt; \epsilon^{-1}, \{x_i\}_{i\leq N_k}$ is a $\epsilon$-net.</p>
+<h3 id="Compactness">Compactness<a class="anchor-link" href="#Compactness">&#182;</a></h3>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><strong>Compact Defn 1</strong> $C\subseteq\mathbb{R}$ is compact if all sequence $\{x_n\}\subseteq C$ has a converging subsequence $\{x_{n_k}\}\subseteq C$<br>
+$\forall \{x_n\}\subseteq C. \exists \{x_{n_k}\}\subseteq \{x_n\}. x_{n_k}\rightarrow x\in C$</p>
+<p><strong>Compact Defn 2</strong> A set $C$ is compact if every open cover of $C$ has a finite subcover that covers $C$.</p>
+<p><strong>Open cover</strong> A collection of open balls $\{U_a\}_{a\geq 1}$ is an open cover if $c\subseteq \cup^\infty U_a$</p>
 
 </div>
 </div>
@@ -13230,31 +13250,8 @@ Also, given $\epsilon &gt; 0$, choose $k &gt; \epsilon^{-1}, \{x_i\}_{i\leq N_k}
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p><strong>Arzela-Ascoli Theorem</strong> $\mathcal F \subseteq C(K,\mathbb R^m)$ is compact IFF closed, bounded, euicontinuous</p>
-<p>$\Rightarrow$ <em>proof.</em> Suppose not closed, then take $\{f_n\}\subseteq \mathcal F$ s.t. $f_n\rightarrow f\not\in \mathcal F$ contradicts with compactness.<br>
-Suppose not bounded, take $\{f_n\}\subseteq \mathcal F$ that $\|f_n\|_\infty\rightarrow\infty$ contradicts<br>
-and Lemma 1</p>
-<p>$\Leftarrow$ <em>proof</em>. Fix $\{f_n\} \subseteq \mathcal F$, by the Lemma 4, $\exists \{x_i\}\subseteq K$ s.t. $\forall \epsilon &gt; 0. \exists \{x_i\}_{i\leq N}$ is a $\epsilon$-net.<br>
-WTF $\{f_{n_k}\} \subseteq \{f_n\}$ s.t. $f_{n_k}(x_i)\rightarrow^{k}L_i, \forall 1\leq i\leq N$.<br>
-Let $A_0=\mathbb N$, since $\{f_n(x_1)\}_{n\in A_0}$ bounded, by Bolzano-Weierstrass Theorem, take the convergent subsequence, i.e. $A_1\subseteq A_0, \lim_{n\in A_1}f_n(x_1) =L_1$.<br>
-Inductively take $\mathcal A = A_0\supseteq A_1\supseteq A_2\supseteq ...$ be a decreasing sequence, s.t. $\lim_{n\in A_i}f_n(x_i)=L_i$<br>
-Then, for each $k\geq 1$, let $n_k$ ne tje $k$th element of $A_k$, i.e. 
-\begin{matrix}
-&amp;A_1 &amp;n_1 &amp; &amp; \\
-&amp;A_2 &amp; &amp; n_2 &amp;\\
-&amp;A_3 &amp; &amp; &amp;n_3 \\
-&amp;...
-\end{matrix}
-Since $A_n$ is decreasing, for each $i\geq 1$, there are at most $i-1$ elements are not in $A_i$.<br>
-In particular, this implies $\lim_k f_{n_k}(x_i) = \lim_{n\in A_i} f_n(x_i) = L_i$<br>
-Let $g_k = f_{n_k}$, let $\epsilon &gt; 0$, since $\mathcal F$ is equicontinuous, i.e. uniform equicontinuous. Take $\delta &gt; 0. \|x-y\|&lt;\delta\Rightarrow\|f(x)-f(y)\|&lt;\epsilon/3, \forall f \in \mathcal F$<br>
-By definition of $\{x_i\}$, take $N\in\mathcal N, \{x_1,...,x_n\}$ is a $\delta$-net.<br>
-Since $\lim_{k\rightarrow\infty} g_k(x_i)$ exists for all $i\geq 1$.<br>
-$\exists M\in \mathbb N$ s.t. $\forall k,l\geq M. \forall 1\leq i\leq N\Rightarrow \|g_n(x_i)-g_l(x_i)\|&lt;\epsilon/3$<br>
-Since $\{x_1,...,x_N\}$ is a $\delta$-net, $\exists i, \|x_i-x\|&lt;\delta$
-$$\|g_k(x)-g_l(x)\|\leq \|g_k(x)-g_k(x_i)\| + \|g_k(x_i)-g_l(x_i)\| + \|g_l(x_i)-g_l(x)\|&lt;\epsilon$$
-Since $\{g_k\}$ is uniform Cauchy, and $C(K,\mathbb R^m)$ is complete, $g_k\rightarrow g\in C(K,\mathbb R^m)$<br>
-Since $\mathcal F$ closed, $g\in\mathcal F$, therefore, compact.</p>
+<p><strong>Claim</strong>  $[a,b]\subseteq \mathbb{R}$ is compact.</p>
+<p><em>proof</em>. By Bolzano Weierstrass Theorem. every bounded sequence has a convergent subsequence. Since $[a,b]$ closed, such limit falls in $[a,b]$.</p>
 
 </div>
 </div>
@@ -13262,7 +13259,117 @@ Since $\mathcal F$ closed, $g\in\mathcal F$, therefore, compact.</p>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Note that we only used closed at the very end. Therefore, If $\{f_n\}\subseteq C([a,b])$ and is bounded and equicontinuous, then it has a convergent subsequence.</p>
+<p><strong>Continuous mapping theorem</strong> For continous $f, x_n\rightarrow x\Rightarrow f(x_n)\rightarrow f(x)$.</p>
+<p><strong>Corollary</strong> $f:U\rightarrow V$, if $C\subseteq U$ is compact, then $f(C)$ is also compact.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Heine-Borel-Theorem">Heine-Borel Theorem<a class="anchor-link" href="#Heine-Borel-Theorem">&#182;</a></h3><p>$C\subseteq \mathbb{R}$ is compact IFF closed and bounded.</p>
+<p><strong>Claim 1</strong> compact $\Rightarrow$ bounded</p>
+<p><em>proof</em>. Suppose compact but not bounded. Then take $\{x_n\}\subset C$, wlop, $x_n\rightarrow \infty$. Then, we can take a monotone increasing subsequence $y_n$ of $x_n$. Then by compactness, take $y_{n_k}\rightarrow y\in C$. But a monotone divergent sequence cannot have convergent subsequence.</p>
+<p><strong>Claim 2</strong> compact $\Rightarrow$ closed</p>
+<p><em>proof</em>. Let $\{x_n\}\subseteq C. x_n\rightarrow x$, WTS $x\in C$.<br>
+By compactness, take $\{x_{n_k}\}\rightarrow L$. We can show that 
+$|x-L| = |x - x_{n_k} + x_{n_k} - L| \leq |x - x_{n_k}| + |x_{n_k} - L| \rightarrow 0$</p>
+<p><strong>Claim 3</strong> closed &amp; bounded $\Rightarrow$ compact</p>
+<p><em>proof</em>. Let $\{x_n\}\subseteq C$. Since bounded, by BWT, take $\{x_{n_k}\}$ where $x_{n_k}\rightarrow L\in\mathbb{R}$.<br>
+Since $C$ closed, its limit point is in $C$.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Extreme-value-theorem">Extreme value theorem<a class="anchor-link" href="#Extreme-value-theorem">&#182;</a></h3><p>If a function $f:K\rightarrow R$ is continous and $K$ is compact, then $f(K)$ is compact and $\exists a,b\in K. \forall k\in K. f(a)\leq f(k)\leq f(b)$</p>
+<p><strong>Part1</strong> $f(K)$ compact<br>
+<em>proof</em>. Let $(y_k)\subseteq f(K)$, take $(x_k)\subseteq K s.t. f(x_k)=y_k$. By compactness of $K$, take $(x_{k_n})\subseteq (x_k)$ and $x_k\rightarrow x\in K.$ Then by continuous mapping theorem, $f(x_{k_n})\rightarrow f(x)\in f(K)$</p>
+<p><strong>Part2</strong> $f(K)$ has max and min<br>
+<em>proof</em>. By compactness and least bound principle, take $M,m$ be the supremum and infimum of $f(X)$. WTS thats contained in $f(K)$.<br>
+Construct a sequence $(d_n)\subset K$ s.t. $M-\frac{1}{n}\leq f(d_n)\leq M$ (since M is the supremum we can do such construction).<br>
+Since $K$ is compact, by Bolz. Weis. Theorem, take $(d_{n_k})\subseteq (d_n), d_{n_k}\rightarrow d$ is convergent.</p>
+<p>Then by squeeze theorem, $M-\frac{1}{n}\leq f(d_{n_k})\leq M$ is squeezed by $M$, $\lim f(d_{n_k}) = f(\lim f(d_{n_k})) = M$. By compactness of $f(K), M\in f(K)$.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><strong>Example</strong> $f$ continuous on $[a,b]\subseteq \mathbb{R}$ has no local extremum, then $f$ is monotone.<br>
+<strong>local maxmimum/minimum</strong> $x_0$ is local max/min if $\exists \epsilon &gt; 0. \forall x\in [x_0-\epsilon, x_0+\epsilon], f(x)\leq | \geq f(x_0)$.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Uniform-Continuilty">Uniform Continuilty<a class="anchor-link" href="#Uniform-Continuilty">&#182;</a></h3><p>$f:S\rightarrow R$ is uniformly continuous if $\forall \epsilon &gt; 0. \exists \delta &gt; 0. \forall x,y. |x-y|\leq \delta \Rightarrow |f(x)-f(y)|&lt;\epsilon$</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><strong>Sequential criterion</strong> A function $f:S\rightarrow R$ is not uniform continuous if $\exists (x_n), (y_n)\subseteq S$ s.t. $|x_n - y_n|\rightarrow 0$ but $\exists \epsilon_0 &gt;0 s.t. |f(x_n)-f(y_n)|\geq \epsilon_0 &gt; 0$</p>
+<p><em>proof</em>. negation of the uniform continuous definition</p>
+<p><strong>Example</strong> $f(x):=x^2$<br>
+Let $x_n = n + n^{-1}, y_n = n$. Then $|x_n-y_n|= n^{-1}\rightarrow 0$, but $|(n+n^{-1})^2 - n^2| = |-2|+n^{-2}\rightarrow 2 &gt; 0$</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><strong>$\alpha$-Holder</strong> $f:S\rightarrow R$ is a-Holder if $|f(x)-f(y)|\leq c |x-y|^\alpha, \alpha\in[0,1]. \forall x,y\in S$.</p>
+<p><strong>Example</strong> $f(x)=x^p, p\in(0,1)$ is call p-Holder and is uniform continuous.</p>
+<p><em>proof</em>. Let $\epsilon &gt; 0$, take $\delta = (\epsilon / c)^{a^{-1}} &lt; 1$ because $\alpha \leq 1$<br>
+$|f(x)-f(y)|\leq c|x-y|^\alpha \leq c\delta^\alpha =\epsilon$</p>
+<p>When $\alpha = 1, i.e. |f(x)-f(y)|\leq c|x-y|$, they are called Lipschitz.</p>
+<p><strong>Example</strong> Any differentiable functions are Lipschitz (bounded derivative)</p>
+<p><em>proof</em>. by MVT, $|f(x)-f(y)| = |f'(c)||x-y|\leq B|x-y|$</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Heine-Cantar-Theorem">Heine-Cantar Theorem<a class="anchor-link" href="#Heine-Cantar-Theorem">&#182;</a></h3><p>if $K$ compact, and $f:K\rightarrow R$ is continuous, then $f$ is also uniform continuous.</p>
+<p><em>proof</em>. Suppose $f$ is not uniform continuous<br>
+Take $(x_n), (y_n)$ and for $\epsilon &gt; 0$ s.t. $|x_n - y_n|\leq 1/n$ but $|f(x_n)-f(y_n)|\geq \epsilon &gt; 0$. By $K$ compact, take $(x_{n_k})\rightarrow x\in K$。<br>
+However, $|y_{n_k}-x|\leq |y_{n_k}-x_{n_k}| + |x_{n_k}-x| \leq n_k^{-1} + \epsilon_k \rightarrow 0$ i.e. $y_{n_k}\rightarrow x$<br>
+$\forall n_k &gt; N_{\epsilon_0/4}|f(x_n)-f(y_n)|\leq |f(x_n)-f(x)| + |f(x)-f(y)| \leq \epsilon_0/2$ causes contradiction</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Intermediate-value-theorem">Intermediate value theorem<a class="anchor-link" href="#Intermediate-value-theorem">&#182;</a></h3><p>If $f:[a,b]\rightarrow \mathbb{R}$ is continuous and $z\in\mathbb{R}$ satisfy $f(a)\leq z\leq f(b)$, then $\exists c \in [a,b]$ s.t. $f(c)=z$.</p>
+<p><em>proof</em>. Let $A = \{x\in[a,b]: f(x) &lt; z\}$, then $A$ is upper bounded. Then, take $c = sup(A)$.</p>
+<p>$\forall \epsilon_n = n^{-1}$, take $a_n \in A$ s.t. $c - n^{-1} \leq a_n \leq c$ and  $f(a_n)\leq z$ so $f(c) = \lim_{n\rightarrow \infty} f(a_n)\leq z$ (1).<br>
+Explicitly assume $c &lt; b$ (otherwise we've done), then take $\exists b_n$ s.t. $c &lt; b_n \leq b, \lim_\infty b_n =c$.<br>
+Since $z$ is upper bound for $A, b_n\not\in A, f(b_n)\leq z$ (2). 
+By (1)(2) $f(c)=z$</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Connected">Connected<a class="anchor-link" href="#Connected">&#182;</a></h3><p><strong>Disconnected</strong> $A\subseteq \mathbb{R}$ is disconnected $U,V$ open cover s.t. $A = U\sqcup V$<br>
+<strong>Connected</strong> $A$ is connected if $\forall U,V. A\neq U\sqcup V$<br>
+<strong>Path connected</strong> of $\forall a,b \in A. \exists \gamma:[0,1]\rightarrow A$ be a continuous path i.e. $\gamma(0)=a, \gamma(1)=b, \gamma([0,1])\subseteq A$</p>
 
 </div>
 </div>
