@@ -1,177 +1,7 @@
 [
   {
-    "name": "CSC209",
-    "parent": ".",
-    "type": "folder"
-  },
-  {
-    "name": "w11",
-    "parent": "CSC209",
-    "type": "folder"
-  },
-  {
-    "name": "shell_worksheet2_solutions.pdf",
-    "parent": "w11",
-    "type": "book"
-  },
-  {
-    "name": "shell_worksheet_solutions.pdf",
-    "parent": "w11",
-    "type": "book"
-  },
-  {
-    "name": "w9",
-    "parent": "CSC209",
-    "type": "folder"
-  },
-  {
-    "name": "signals.pdf",
-    "parent": "w9",
-    "type": "book"
-  },
-  {
-    "name": "w2",
-    "parent": "CSC209",
-    "type": "folder"
-  },
-  {
-    "name": "array_and_pointer_basics_sol.pdf",
-    "parent": "w2",
-    "type": "book"
-  },
-  {
-    "name": "calls_and_pointers_sol.pdf",
-    "parent": "w2",
-    "type": "book"
-  },
-  {
-    "name": "w5",
-    "parent": "CSC209",
-    "type": "folder"
-  },
-  {
-    "name": "makefiles_sol.pdf",
-    "parent": "w5",
-    "type": "book"
-  },
-  {
-    "name": "io_conversions_sol.pdf",
-    "parent": "w5",
-    "type": "book"
-  },
-  {
-    "name": "makefiles_extra_sol.pdf",
-    "parent": "w5",
-    "type": "book"
-  },
-  {
-    "name": "w8",
-    "parent": "CSC209",
-    "type": "folder"
-  },
-  {
-    "name": "wait_sol.pdf",
-    "parent": "w8",
-    "type": "book"
-  },
-  {
-    "name": "pipe_sol.pdf",
-    "parent": "w8",
-    "type": "book"
-  },
-  {
-    "name": "w1",
-    "parent": "CSC209",
-    "type": "folder"
-  },
-  {
-    "name": "permissions_sol.pdf",
-    "parent": "w1",
-    "type": "book"
-  },
-  {
-    "name": "FilesDirectoriesGlobbingSlides.pdf",
-    "parent": "w1",
-    "type": "book"
-  },
-  {
-    "name": "running_programs_sol.pdf",
-    "parent": "w1",
-    "type": "book"
-  },
-  {
-    "name": "w3",
-    "parent": "CSC209",
-    "type": "folder"
-  },
-  {
-    "name": "malloc_basics_sol.pdf",
-    "parent": "w3",
-    "type": "book"
-  },
-  {
-    "name": "stack_vs_heap.pdf",
-    "parent": "w3",
-    "type": "book"
-  },
-  {
-    "name": "gdb-overview.pdf",
-    "parent": "w3",
-    "type": "book"
-  },
-  {
-    "name": "w10",
-    "parent": "CSC209",
-    "type": "folder"
-  },
-  {
-    "name": "select_sol.pdf",
-    "parent": "w10",
-    "type": "book"
-  },
-  {
-    "name": "sockets.pdf",
-    "parent": "w10",
-    "type": "book"
-  },
-  {
-    "name": "w4",
-    "parent": "CSC209",
-    "type": "folder"
-  },
-  {
-    "name": "structs_sol.pdf",
-    "parent": "w4",
-    "type": "book"
-  },
-  {
-    "name": "strings_sol.pdf",
-    "parent": "w4",
-    "type": "book"
-  },
-  {
-    "name": "w7",
-    "parent": "CSC209",
-    "type": "folder"
-  },
-  {
-    "name": "fork_solutions.pdf",
-    "parent": "w7",
-    "type": "book"
-  },
-  {
-    "name": "w6",
-    "parent": "CSC209",
-    "type": "folder"
-  },
-  {
-    "name": "errors_sol.pdf",
-    "parent": "w6",
-    "type": "book"
-  },
-  {
-    "name": "func_ptrs_errors_sol.pdf",
-    "parent": "w6",
+    "name": "tutorial_flipflops_slides.pdf",
+    "parent": "CSC258",
     "type": "book"
   },
   {
@@ -180,357 +10,17 @@
     "type": "folder"
   },
   {
-    "name": "hw1s.pdf",
-    "parent": "STA347",
+    "name": "Lecture Handout Week 2 T .pdf",
+    "parent": "lecture",
     "type": "book"
   },
   {
-    "name": "part4.pdf",
-    "parent": "STA347",
-    "type": "book"
-  },
-  {
-    "name": "part3.pdf",
-    "parent": "STA347",
-    "type": "book"
-  },
-  {
-    "name": "part0.pdf",
-    "parent": "STA347",
-    "type": "book"
-  },
-  {
-    "name": "hw2s.pdf",
-    "parent": "STA347",
-    "type": "book"
-  },
-  {
-    "name": "sta347-test-2018-fall-sol.pdf",
-    "parent": "STA347",
-    "type": "book"
-  },
-  {
-    "name": "sta347-syllabus.pdf",
-    "parent": "STA347",
-    "type": "book"
-  },
-  {
-    "name": "hw3s.pdf",
-    "parent": "STA347",
-    "type": "book"
-  },
-  {
-    "name": "problems-sol.pdf",
-    "parent": "STA347",
-    "type": "book"
-  },
-  {
-    "name": "part1.pdf",
-    "parent": "STA347",
-    "type": "book"
-  },
-  {
-    "name": "part2.pdf",
-    "parent": "STA347",
-    "type": "book"
-  },
-  {
-    "name": "part5.pdf",
-    "parent": "STA347",
-    "type": "book"
-  },
-  {
-    "name": "CSC265",
-    "parent": ".",
-    "type": "folder"
-  },
-  {
-    "name": "Assignment",
-    "parent": "CSC265",
-    "type": "folder"
-  },
-  {
-    "name": "A3S.pdf",
-    "parent": "Assignment",
-    "type": "book"
-  },
-  {
-    "name": "A4S.pdf",
-    "parent": "Assignment",
-    "type": "book"
-  },
-  {
-    "name": "A4solution.pdf",
-    "parent": "Assignment",
-    "type": "book"
-  },
-  {
-    "name": "A2Q.pdf",
-    "parent": "Assignment",
-    "type": "book"
-  },
-  {
-    "name": "A6Q.pdf",
-    "parent": "Assignment",
-    "type": "book"
-  },
-  {
-    "name": "A3Q.pdf",
-    "parent": "Assignment",
-    "type": "book"
-  },
-  {
-    "name": "A4Q.pdf",
-    "parent": "Assignment",
-    "type": "book"
-  },
-  {
-    "name": "A5s.pdf",
-    "parent": "Assignment",
-    "type": "book"
-  },
-  {
-    "name": "A6s.pdf",
-    "parent": "Assignment",
-    "type": "book"
-  },
-  {
-    "name": "A5Q.pdf",
-    "parent": "Assignment",
-    "type": "book"
-  },
-  {
-    "name": "A2S.pdf",
-    "parent": "Assignment",
-    "type": "book"
-  },
-  {
-    "name": "A1S.pdf",
-    "parent": "Assignment",
-    "type": "book"
-  },
-  {
-    "name": "lecture_notes",
-    "parent": "CSC265",
-    "type": "folder"
-  },
-  {
-    "name": "1.Priority_Queue.pdf",
-    "parent": "lecture_notes",
-    "type": "book"
-  },
-  {
-    "name": "10.BFS_and_DFS.pdf",
-    "parent": "lecture_notes",
-    "type": "book"
-  },
-  {
-    "name": "9.Disjoint_set.pdf",
-    "parent": "lecture_notes",
-    "type": "book"
-  },
-  {
-    "name": "11.MST.pdf",
-    "parent": "lecture_notes",
-    "type": "book"
-  },
-  {
-    "name": "2.Mergable_Heap.pdf",
-    "parent": "lecture_notes",
-    "type": "book"
-  },
-  {
-    "name": "5.Lower_bound.pdf",
-    "parent": "lecture_notes",
-    "type": "book"
-  },
-  {
-    "name": "6.Universal_hashing.pdf",
-    "parent": "lecture_notes",
-    "type": "book"
-  },
-  {
-    "name": "4.AVL_augmentation.pdf",
-    "parent": "lecture_notes",
-    "type": "book"
-  },
-  {
-    "name": "3.AVL_Trees.pdf",
-    "parent": "lecture_notes",
-    "type": "book"
-  },
-  {
-    "name": "8.Amortized_analysis.pdf",
-    "parent": "lecture_notes",
-    "type": "book"
-  },
-  {
-    "name": "7.Hashing_construction_and_rand_QS.pdf",
-    "parent": "lecture_notes",
-    "type": "book"
-  },
-  {
-    "name": "lecture_supplement",
-    "parent": "CSC265",
-    "type": "folder"
-  },
-  {
-    "name": "DSF-Amortized.pdf",
-    "parent": "lecture_supplement",
-    "type": "book"
-  },
-  {
-    "name": "Tutorial2.pdf",
-    "parent": "lecture_supplement",
-    "type": "book"
-  },
-  {
-    "name": "DisjointSets-logstar.pdf",
-    "parent": "lecture_supplement",
-    "type": "book"
-  },
-  {
-    "name": "tutorial1.pdf",
-    "parent": "lecture_supplement",
-    "type": "book"
-  },
-  {
-    "name": "AVL.pdf",
-    "parent": "lecture_supplement",
-    "type": "book"
-  },
-  {
-    "name": "Galil80.pdf",
-    "parent": "lecture_supplement",
-    "type": "book"
-  },
-  {
-    "name": "DFS_slides.pdf",
-    "parent": "lecture_supplement",
-    "type": "book"
-  },
-  {
-    "name": "CSC373",
-    "parent": ".",
-    "type": "folder"
-  },
-  {
-    "name": "tutorials",
-    "parent": "CSC373",
-    "type": "folder"
-  },
-  {
-    "name": "Week 2 Tutorial Problems.pdf",
-    "parent": "tutorials",
-    "type": "book"
-  },
-  {
-    "name": "Week 5 Tutorial Problems.pdf",
-    "parent": "tutorials",
-    "type": "book"
-  },
-  {
-    "name": "Week 3 Tutorial Problems.pdf",
-    "parent": "tutorials",
-    "type": "book"
-  },
-  {
-    "name": "Week 12 Tutorial Solutions.pdf",
-    "parent": "tutorials",
-    "type": "book"
-  },
-  {
-    "name": "Week 9 Tutorial Solutions.pdf",
-    "parent": "tutorials",
-    "type": "book"
-  },
-  {
-    "name": "Week 12 Tutorial Problems.pdf",
-    "parent": "tutorials",
-    "type": "book"
-  },
-  {
-    "name": "Week 8 Tutorial Solutions.pdf",
-    "parent": "tutorials",
-    "type": "book"
-  },
-  {
-    "name": "Week 6 Tutorial Solutions.pdf",
-    "parent": "tutorials",
-    "type": "book"
-  },
-  {
-    "name": "Week 4 Tutorial Problems.pdf",
-    "parent": "tutorials",
-    "type": "book"
-  },
-  {
-    "name": "Week 9 Tutorial Problems.pdf",
-    "parent": "tutorials",
-    "type": "book"
-  },
-  {
-    "name": "Week 5 Tutorial Solutions.pdf",
-    "parent": "tutorials",
-    "type": "book"
-  },
-  {
-    "name": "Week 6 Tutorial Problems.pdf",
-    "parent": "tutorials",
-    "type": "book"
-  },
-  {
-    "name": "Week 10 Tutorial Solutions.pdf",
-    "parent": "tutorials",
-    "type": "book"
-  },
-  {
-    "name": "Week 4 Tutorial Solutions.pdf",
-    "parent": "tutorials",
-    "type": "book"
-  },
-  {
-    "name": "Week 10 Tutorial Problems.pdf",
-    "parent": "tutorials",
-    "type": "book"
-  },
-  {
-    "name": "Week 3 Tutorial Solutions.pdf",
-    "parent": "tutorials",
-    "type": "book"
-  },
-  {
-    "name": "Week 8 Tutorial Problems.pdf",
-    "parent": "tutorials",
-    "type": "book"
-  },
-  {
-    "name": "Week 2 Tutorial Solutions.pdf",
-    "parent": "tutorials",
-    "type": "book"
-  },
-  {
-    "name": "notes",
-    "parent": "CSC373",
-    "type": "folder"
-  },
-  {
-    "name": "Dynamic Programming.html",
+    "name": "class6",
     "parent": "notes",
-    "type": "note"
+    "type": "folder"
   },
   {
     "name": "Dynamic Programming Tut.html",
-    "parent": "notes",
-    "type": "note"
-  },
-  {
-    "name": "Network Flow.html",
-    "parent": "notes",
-    "type": "note"
-  },
-  {
-    "name": "Self Reducibility.html",
     "parent": "notes",
     "type": "note"
   },
@@ -540,203 +30,28 @@
     "type": "note"
   },
   {
-    "name": "Greedy Algorithm.html",
-    "parent": "notes",
+    "name": "SQL queries TUT.html",
+    "parent": "tutorials",
     "type": "note"
   },
   {
-    "name": "Linear Programming.html",
-    "parent": "notes",
-    "type": "note"
-  },
-  {
-    "name": "NP-complete.html",
-    "parent": "notes",
-    "type": "note"
-  },
-  {
-    "name": "Greedy Algorithm Tut.html",
-    "parent": "notes",
-    "type": "note"
-  },
-  {
-    "name": "P_NP problem.html",
-    "parent": "notes",
-    "type": "note"
-  },
-  {
-    "name": "Network Flow Tut.html",
-    "parent": "notes",
-    "type": "note"
-  },
-  {
-    "name": "Linear Programming Tut.html",
-    "parent": "notes",
-    "type": "note"
-  },
-  {
-    "name": "Optimization Approxiamation.html",
-    "parent": "notes",
-    "type": "note"
-  },
-  {
-    "name": "NP-complete Tut.html",
-    "parent": "notes",
-    "type": "note"
-  },
-  {
-    "name": "lectures",
-    "parent": "CSC373",
+    "name": "w8",
+    "parent": "CSC209",
     "type": "folder"
   },
   {
-    "name": "Week 7 Lecture Summary.pdf",
-    "parent": "lectures",
+    "name": "loglinsol.pdf",
+    "parent": "Poisson Regression",
     "type": "book"
   },
   {
-    "name": "Week 3 Lecture Summary.pdf",
-    "parent": "lectures",
+    "name": "strings_sol.pdf",
+    "parent": "w4",
     "type": "book"
   },
   {
-    "name": "Week 1 Lecture Summary.pdf",
-    "parent": "lectures",
-    "type": "book"
-  },
-  {
-    "name": "Example of Network Flow.pdf",
-    "parent": "lectures",
-    "type": "book"
-  },
-  {
-    "name": "Week 2 Lecture Summary.pdf",
-    "parent": "lectures",
-    "type": "book"
-  },
-  {
-    "name": "Example of Self-Reducibility.pdf",
-    "parent": "lectures",
-    "type": "book"
-  },
-  {
-    "name": "Week 12 Lecture Summary.pdf",
-    "parent": "lectures",
-    "type": "book"
-  },
-  {
-    "name": "Test 2 Solutions.pdf",
-    "parent": "lectures",
-    "type": "book"
-  },
-  {
-    "name": "Week 5 Lecture Summary.pdf",
-    "parent": "lectures",
-    "type": "book"
-  },
-  {
-    "name": "Week 9 Lecture Summary.pdf",
-    "parent": "lectures",
-    "type": "book"
-  },
-  {
-    "name": "Week 8 Lecture Summary.pdf",
-    "parent": "lectures",
-    "type": "book"
-  },
-  {
-    "name": "Week 10 Lecture Summary.pdf",
-    "parent": "lectures",
-    "type": "book"
-  },
-  {
-    "name": "Week 6 Lecture Summary.pdf",
-    "parent": "lectures",
-    "type": "book"
-  },
-  {
-    "name": "Week 4 Lecture Summary.pdf",
-    "parent": "lectures",
-    "type": "book"
-  },
-  {
-    "name": "Test 1 Solutions.pdf",
-    "parent": "lectures",
-    "type": "book"
-  },
-  {
-    "name": "Week 11 Lecture Summary.pdf",
-    "parent": "lectures",
-    "type": "book"
-  },
-  {
-    "name": "Assignments",
-    "parent": "CSC373",
-    "type": "folder"
-  },
-  {
-    "name": "A1handout.pdf",
-    "parent": "Assignments",
-    "type": "book"
-  },
-  {
-    "name": "A5.1handout.pdf",
-    "parent": "Assignments",
-    "type": "book"
-  },
-  {
-    "name": "A3.2handout.pdf",
-    "parent": "Assignments",
-    "type": "book"
-  },
-  {
-    "name": "A3.1handout.pdf",
-    "parent": "Assignments",
-    "type": "book"
-  },
-  {
-    "name": "A2handout.pdf",
-    "parent": "Assignments",
-    "type": "book"
-  },
-  {
-    "name": "A5solution.pdf",
-    "parent": "Assignments",
-    "type": "book"
-  },
-  {
-    "name": "A3solution.pdf",
-    "parent": "Assignments",
-    "type": "book"
-  },
-  {
-    "name": "A5.2handout.pdf",
-    "parent": "Assignments",
-    "type": "book"
-  },
-  {
-    "name": "A2solution.pdf",
-    "parent": "Assignments",
-    "type": "book"
-  },
-  {
-    "name": "A1solution.pdf",
-    "parent": "Assignments",
-    "type": "book"
-  },
-  {
-    "name": "A4handout.pdf",
-    "parent": "Assignments",
-    "type": "book"
-  },
-  {
-    "name": "STA457",
-    "parent": ".",
-    "type": "folder"
-  },
-  {
-    "name": "2019 Summer course outline (U)-1.pdf",
-    "parent": "STA457",
+    "name": "tutorial_transistors_slides.pdf",
+    "parent": "CSC258",
     "type": "book"
   },
   {
@@ -745,33 +60,68 @@
     "type": "folder"
   },
   {
-    "name": "SARIMA-PARMA model-1.pdf",
-    "parent": "3-ARIMA",
+    "name": "Lecture Handout Week 3 R.pdf",
+    "parent": "lecture",
     "type": "book"
   },
   {
-    "name": "ARIMA and unit root tests (06Jan2019).pdf",
-    "parent": "3-ARIMA",
-    "type": "book"
-  },
-  {
-    "name": "Modeling_seasonality.html",
-    "parent": "3-ARIMA",
-    "type": "note"
-  },
-  {
-    "name": "6-Bootstrap",
-    "parent": "STA457",
+    "name": "lectures",
+    "parent": "CSC373",
     "type": "folder"
   },
   {
-    "name": "pros and cons.pdf",
-    "parent": "6-Bootstrap",
+    "name": "Week3.html",
+    "parent": "MAT337",
+    "type": "note"
+  },
+  {
+    "name": "part5.pdf",
+    "parent": "STA347",
     "type": "book"
   },
   {
-    "name": "Bootstrap regression.pdf",
-    "parent": "6-Bootstrap",
+    "name": "w10",
+    "parent": "CSC209",
+    "type": "folder"
+  },
+  {
+    "name": "class7",
+    "parent": "notes",
+    "type": "folder"
+  },
+  {
+    "name": "A4Q.pdf",
+    "parent": "Assignment",
+    "type": "book"
+  },
+  {
+    "name": "Two Way ANOVA",
+    "parent": "STA303",
+    "type": "folder"
+  },
+  {
+    "name": "CSC209",
+    "parent": ".",
+    "type": "folder"
+  },
+  {
+    "name": "MAT337 Week 2 TH.pdf",
+    "parent": "tutorials",
+    "type": "book"
+  },
+  {
+    "name": "8.Amortized_analysis.pdf",
+    "parent": "lecture_notes",
+    "type": "book"
+  },
+  {
+    "name": "Week10_annotated.pdf",
+    "parent": "Contingency tables",
+    "type": "book"
+  },
+  {
+    "name": "Week 4 Lecture Summary.pdf",
+    "parent": "lectures",
     "type": "book"
   },
   {
@@ -780,62 +130,87 @@
     "type": "book"
   },
   {
-    "name": "1-Introduction",
+    "name": "MAT337 Week 10 TH.pdf",
+    "parent": "tutorials",
+    "type": "book"
+  },
+  {
+    "name": "Binary Logistic Regression.html",
+    "parent": "Binary Logistic Regression",
+    "type": "note"
+  },
+  {
+    "name": "Lecture Handout Week 4 T .pdf",
+    "parent": "lecture",
+    "type": "book"
+  },
+  {
+    "name": "malloc_basics_sol.pdf",
+    "parent": "w3",
+    "type": "book"
+  },
+  {
+    "name": "slides-unit1_Tues11SepAnnotated.pdf",
+    "parent": "slides",
+    "type": "book"
+  },
+  {
+    "name": "Week 9 Tutorial Problems.pdf",
+    "parent": "tutorials",
+    "type": "book"
+  },
+  {
+    "name": "A2S.pdf",
+    "parent": "Assignment",
+    "type": "book"
+  },
+  {
+    "name": "2019 Summer course outline (U)-1.pdf",
     "parent": "STA457",
-    "type": "folder"
-  },
-  {
-    "name": "Introduction to time series data and visualization.pdf",
-    "parent": "1-Introduction",
     "type": "book"
   },
   {
-    "name": "Lecture 1 Fundamental concepts (May2019).pdf",
-    "parent": "1-Introduction",
+    "name": "makefiles_extra_sol.pdf",
+    "parent": "w5",
     "type": "book"
   },
   {
-    "name": "5-VAR",
-    "parent": "STA457",
-    "type": "folder"
+    "name": "Dynamic Programming.html",
+    "parent": "notes",
+    "type": "note"
   },
   {
-    "name": "MTS_R (27 Nov 2017).pdf",
-    "parent": "5-VAR",
+    "name": "JSC270-Class10.pdf",
+    "parent": "class10",
     "type": "book"
   },
   {
-    "name": "Multivariate time series (29Oct2018).pdf",
-    "parent": "5-VAR",
+    "name": "Week5_303_annotated.pdf",
+    "parent": "Binary Logistic Regression",
     "type": "book"
   },
   {
-    "name": "0-NOTES",
-    "parent": "STA457",
-    "type": "folder"
+    "name": "tutorial_week9_slides.pdf",
+    "parent": "CSC258",
+    "type": "book"
   },
   {
-    "name": "Midterm Review Questions.html",
-    "parent": "0-NOTES",
-    "type": "note"
+    "name": "gdb-overview.pdf",
+    "parent": "w3",
+    "type": "book"
   },
   {
-    "name": "Granger Causality and Cointegration.html",
-    "parent": "0-NOTES",
-    "type": "note"
+    "name": "Bootstrap regression.pdf",
+    "parent": "6-Bootstrap",
+    "type": "book"
   },
   {
-    "name": "Vector Series.html",
-    "parent": "0-NOTES",
-    "type": "note"
+    "name": "part1.pdf",
+    "parent": "STA347",
+    "type": "book"
   },
   {
-    "name": "ARIMA.html",
-    "parent": "0-NOTES",
-    "type": "note"
-  },
-  {
-    "name": "TFN model.html",
+    "name": "Introduction.html",
     "parent": "0-NOTES",
     "type": "note"
   },
@@ -845,88 +220,48 @@
     "type": "note"
   },
   {
-    "name": "Final Review Questions.html",
-    "parent": "0-NOTES",
+    "name": "part0.pdf",
+    "parent": "STA347",
+    "type": "book"
+  },
+  {
+    "name": "TUT5.html",
+    "parent": "tutorials",
     "type": "note"
   },
   {
-    "name": "Applications of ARMA models in investments.html",
-    "parent": "0-NOTES",
+    "name": "assignments",
+    "parent": "CSC343",
+    "type": "folder"
+  },
+  {
+    "name": "Schemas_DR.pdf",
+    "parent": "lecture_pdf",
+    "type": "book"
+  },
+  {
+    "name": "MAT337 Week 3 TH.pdf",
+    "parent": "tutorials",
+    "type": "book"
+  },
+  {
+    "name": "Embedded-SQL_DR.pdf",
+    "parent": "lecture_pdf",
+    "type": "book"
+  },
+  {
+    "name": "Projection and Minimal Basis TUT.html",
+    "parent": "tutorials",
     "type": "note"
   },
   {
     "name": "Introduction.html",
-    "parent": "0-NOTES",
+    "parent": "One Way ANOVA",
     "type": "note"
   },
   {
-    "name": "ARMA.html",
-    "parent": "0-NOTES",
-    "type": "note"
-  },
-  {
-    "name": "4-Forecast_and_TFN",
-    "parent": "STA457",
-    "type": "folder"
-  },
-  {
-    "name": "Diagnostic checks of TFN model.pdf",
-    "parent": "4-Forecast_and_TFN",
-    "type": "book"
-  },
-  {
-    "name": "June3-Applications.pdf",
-    "parent": "4-Forecast_and_TFN",
-    "type": "book"
-  },
-  {
-    "name": "May29-Forecast.pdf",
-    "parent": "4-Forecast_and_TFN",
-    "type": "book"
-  },
-  {
-    "name": "Introduction to Methods of Desmoothing, Lin 2019.pdf",
-    "parent": "4-Forecast_and_TFN",
-    "type": "book"
-  },
-  {
-    "name": "June5-Applications.pdf",
-    "parent": "4-Forecast_and_TFN",
-    "type": "book"
-  },
-  {
-    "name": "TFN and intervention analysis (06Jan2019).pdf",
-    "parent": "4-Forecast_and_TFN",
-    "type": "book"
-  },
-  {
-    "name": "Box and Tiao Transformation (Nov 2017).pdf",
-    "parent": "4-Forecast_and_TFN",
-    "type": "book"
-  },
-  {
-    "name": "7-GARCH",
-    "parent": "STA457",
-    "type": "folder"
-  },
-  {
-    "name": "June12-GARCH.pdf",
-    "parent": "7-GARCH",
-    "type": "book"
-  },
-  {
-    "name": "2-ARMA",
-    "parent": "STA457",
-    "type": "folder"
-  },
-  {
-    "name": "Lecture 2 IntroductionARMAModels (06Jan2019).pdf",
-    "parent": "2-ARMA",
-    "type": "book"
-  },
-  {
-    "name": "BJIllustrations2017F.html",
-    "parent": "2-ARMA",
+    "name": "Greedy Algorithm.html",
+    "parent": "notes",
     "type": "note"
   },
   {
@@ -935,33 +270,153 @@
     "type": "book"
   },
   {
-    "name": "CSC258",
+    "name": "tutorials",
+    "parent": "CSC373",
+    "type": "folder"
+  },
+  {
+    "name": "DDL.pdf",
+    "parent": "tutorials",
+    "type": "book"
+  },
+  {
+    "name": "A2",
+    "parent": "assignments",
+    "type": "folder"
+  },
+  {
+    "name": "2.Mergable_Heap.pdf",
+    "parent": "lecture_notes",
+    "type": "book"
+  },
+  {
+    "name": "A3",
+    "parent": "assignments",
+    "type": "folder"
+  },
+  {
+    "name": "A1S.pdf",
+    "parent": "Assignment",
+    "type": "book"
+  },
+  {
+    "name": "CSC265",
     "parent": ".",
     "type": "folder"
   },
   {
-    "name": "introduction_slides.pdf",
+    "name": "tutorial1.pdf",
+    "parent": "lecture_supplement",
+    "type": "book"
+  },
+  {
+    "name": "Linear Programming Tut.html",
+    "parent": "notes",
+    "type": "note"
+  },
+  {
+    "name": "jsc270_tut4_part2_questions.html",
+    "parent": "tutorials",
+    "type": "note"
+  },
+  {
+    "name": "STA302",
+    "parent": ".",
+    "type": "folder"
+  },
+  {
+    "name": "slides-weeks8-9annotated.pdf",
+    "parent": "slides",
+    "type": "book"
+  },
+  {
+    "name": "jsc270_tut4_part2-answers-moon-99999999.html",
+    "parent": "tut_answer",
+    "type": "note"
+  },
+  {
+    "name": "June3-Applications.pdf",
+    "parent": "4-Forecast_and_TFN",
+    "type": "book"
+  },
+  {
+    "name": "Week11.html",
+    "parent": "MAT337",
+    "type": "note"
+  },
+  {
+    "name": "A4solution.pdf",
+    "parent": "Assignments",
+    "type": "book"
+  },
+  {
+    "name": "MAT337",
+    "parent": ".",
+    "type": "folder"
+  },
+  {
+    "name": "Poisson Regression",
+    "parent": "STA303",
+    "type": "folder"
+  },
+  {
+    "name": "Week 1.html",
+    "parent": "class1",
+    "type": "note"
+  },
+  {
+    "name": "devices_slides.pdf",
     "parent": "CSC258",
     "type": "book"
   },
   {
-    "name": "tutorial_devices_slides.pdf",
-    "parent": "CSC258",
+    "name": "Properties of Decompositions TUT.html",
+    "parent": "tutorials",
+    "type": "note"
+  },
+  {
+    "name": "Class1_annotated.pdf",
+    "parent": "One Way ANOVA",
     "type": "book"
   },
   {
-    "name": "tutorial_week11_slides.pdf",
-    "parent": "CSC258",
+    "name": "Subqueries.pdf",
+    "parent": "tutorials",
     "type": "book"
   },
   {
-    "name": "tutorial_fsm_slides.pdf",
-    "parent": "CSC258",
+    "name": "Week 11 Lecture Summary.pdf",
+    "parent": "lectures",
     "type": "book"
   },
   {
-    "name": "tutorial_week9_slides.pdf",
-    "parent": "CSC258",
+    "name": "shell_worksheet2_solutions.pdf",
+    "parent": "w11",
+    "type": "book"
+  },
+  {
+    "name": "A2.pdf",
+    "parent": "A2",
+    "type": "book"
+  },
+  {
+    "name": "tutorials",
+    "parent": "JSC270",
+    "type": "folder"
+  },
+  {
+    "name": "Week 8 Tutorial Solutions.pdf",
+    "parent": "tutorials",
+    "type": "book"
+  },
+  {
+    "name": "plotly map plots.html",
+    "parent": "package examples",
+    "type": "note"
+  },
+  {
+    "name": "Week3_303_annotated2.pdf",
+    "parent": "One Way ANOVA",
     "type": "book"
   },
   {
@@ -970,22 +425,347 @@
     "type": "book"
   },
   {
-    "name": "tutorial_week10_slides.pdf",
+    "name": "class3",
+    "parent": "notes",
+    "type": "folder"
+  },
+  {
+    "name": "Binary Logistic Regression",
+    "parent": "STA303",
+    "type": "folder"
+  },
+  {
+    "name": "tutorials",
+    "parent": "CSC343",
+    "type": "folder"
+  },
+  {
+    "name": "pipe_sol.pdf",
+    "parent": "w8",
+    "type": "book"
+  },
+  {
+    "name": "lecture_notes",
+    "parent": "CSC343",
+    "type": "folder"
+  },
+  {
+    "name": "Lecture 1 Fundamental concepts (May2019).pdf",
+    "parent": "1-Introduction",
+    "type": "book"
+  },
+  {
+    "name": "Binomial Logistic Regression.html",
+    "parent": "Binomial Logistic Regression",
+    "type": "note"
+  },
+  {
+    "name": "slides-weeks7-8annotated.pdf",
+    "parent": "slides",
+    "type": "book"
+  },
+  {
+    "name": "Week 2 Tutorial Solutions.pdf",
+    "parent": "tutorials",
+    "type": "book"
+  },
+  {
+    "name": "Embedding SQL to another language.html",
+    "parent": "lecture_notes",
+    "type": "note"
+  },
+  {
+    "name": "class10",
+    "parent": "notes",
+    "type": "folder"
+  },
+  {
+    "name": "9.Disjoint_set.pdf",
+    "parent": "lecture_notes",
+    "type": "book"
+  },
+  {
+    "name": "Assignment2_w19.pdf",
+    "parent": "A2",
+    "type": "book"
+  },
+  {
+    "name": "Lecture Handout Week 1 R.pdf",
+    "parent": "lecture",
+    "type": "book"
+  },
+  {
+    "name": "stack_vs_heap.pdf",
+    "parent": "w3",
+    "type": "book"
+  },
+  {
+    "name": "lecture_pdf",
+    "parent": "CSC343",
+    "type": "folder"
+  },
+  {
+    "name": "MAT337 Week 13 TH.pdf",
+    "parent": "tutorials",
+    "type": "book"
+  },
+  {
+    "name": "NP-complete.html",
+    "parent": "notes",
+    "type": "note"
+  },
+  {
+    "name": "FilesDirectoriesGlobbingSlides.pdf",
+    "parent": "w1",
+    "type": "book"
+  },
+  {
+    "name": "Week 8 Lecture Summary.pdf",
+    "parent": "lectures",
+    "type": "book"
+  },
+  {
+    "name": "CSC258",
+    "parent": ".",
+    "type": "folder"
+  },
+  {
+    "name": "Rel Algebra_DR.pdf",
+    "parent": "lecture_pdf",
+    "type": "book"
+  },
+  {
+    "name": "SQL data manipulation.html",
+    "parent": "lecture_notes",
+    "type": "note"
+  },
+  {
+    "name": "Week 10 Lecture Summary.pdf",
+    "parent": "lectures",
+    "type": "book"
+  },
+  {
+    "name": "0-NOTES",
+    "parent": "STA457",
+    "type": "folder"
+  },
+  {
+    "name": "A3P1.pdf",
+    "parent": "A3",
+    "type": "book"
+  },
+  {
+    "name": "slides-week6-annotated.pdf",
+    "parent": "slides",
+    "type": "book"
+  },
+  {
+    "name": "MTS_R (27 Nov 2017).pdf",
+    "parent": "5-VAR",
+    "type": "book"
+  },
+  {
+    "name": "Week4.html",
+    "parent": "MAT337",
+    "type": "note"
+  },
+  {
+    "name": "6.Universal_hashing.pdf",
+    "parent": "lecture_notes",
+    "type": "book"
+  },
+  {
+    "name": "A5.2handout.pdf",
+    "parent": "Assignments",
+    "type": "book"
+  },
+  {
+    "name": "A3solution.pdf",
+    "parent": "Assignments",
+    "type": "book"
+  },
+  {
+    "name": "NP-complete Tut.html",
+    "parent": "notes",
+    "type": "note"
+  },
+  {
+    "name": "w6",
+    "parent": "CSC209",
+    "type": "folder"
+  },
+  {
+    "name": "Week 9 Lecture Summary.pdf",
+    "parent": "lectures",
+    "type": "book"
+  },
+  {
+    "name": "A1",
+    "parent": "assignments",
+    "type": "folder"
+  },
+  {
+    "name": "MAT337 Week 4 TH.pdf",
+    "parent": "tutorials",
+    "type": "book"
+  },
+  {
+    "name": "jsc270_tut2-answers_moon_999999999.html",
+    "parent": "tut_answer",
+    "type": "note"
+  },
+  {
+    "name": "week4_rm_annotated2.pdf",
+    "parent": "Two Way ANOVA",
+    "type": "book"
+  },
+  {
+    "name": "notes",
+    "parent": "JSC270",
+    "type": "folder"
+  },
+  {
+    "name": "w5",
+    "parent": "CSC209",
+    "type": "folder"
+  },
+  {
+    "name": "Week11_annotated.pdf",
+    "parent": "Contingency tables",
+    "type": "book"
+  },
+  {
+    "name": "Tutorial2.pdf",
+    "parent": "lecture_supplement",
+    "type": "book"
+  },
+  {
+    "name": "Week 9 Tutorial Solutions.pdf",
+    "parent": "tutorials",
+    "type": "book"
+  },
+  {
+    "name": "part2.pdf",
+    "parent": "STA347",
+    "type": "book"
+  },
+  {
+    "name": "tutorial_devices_slides.pdf",
     "parent": "CSC258",
     "type": "book"
   },
   {
-    "name": "fsm_slides.pdf",
+    "name": "SQL Schema.html",
+    "parent": "lecture_notes",
+    "type": "note"
+  },
+  {
+    "name": "notes",
+    "parent": "CSC373",
+    "type": "folder"
+  },
+  {
+    "name": "slides-week4and5annotated.pdf",
+    "parent": "slides",
+    "type": "book"
+  },
+  {
+    "name": "Two Way ANOVA.html",
+    "parent": "Two Way ANOVA",
+    "type": "note"
+  },
+  {
+    "name": "6-Bootstrap",
+    "parent": "STA457",
+    "type": "folder"
+  },
+  {
+    "name": "2-ARMA",
+    "parent": "STA457",
+    "type": "folder"
+  },
+  {
+    "name": "Relational Algebra TUT.html",
+    "parent": "tutorials",
+    "type": "note"
+  },
+  {
+    "name": "lecture2_slides-posted.html",
+    "parent": "class2",
+    "type": "note"
+  },
+  {
+    "name": "11.MST.pdf",
+    "parent": "lecture_notes",
+    "type": "book"
+  },
+  {
+    "name": "Summary.html",
+    "parent": "STA303",
+    "type": "note"
+  },
+  {
+    "name": "Class1-EDA_OkCupid.html",
+    "parent": "class1",
+    "type": "note"
+  },
+  {
+    "name": "CSC373",
+    "parent": ".",
+    "type": "folder"
+  },
+  {
+    "name": "Joins.pdf",
+    "parent": "tutorials",
+    "type": "book"
+  },
+  {
+    "name": "MAT337 Week 12 TH.pdf",
+    "parent": "tutorials",
+    "type": "book"
+  },
+  {
+    "name": "jsc270_lecture4.html",
+    "parent": "class4",
+    "type": "note"
+  },
+  {
+    "name": "ROSI.pdf",
+    "parent": "tutorials",
+    "type": "book"
+  },
+  {
+    "name": "4.AVL_augmentation.pdf",
+    "parent": "lecture_notes",
+    "type": "book"
+  },
+  {
+    "name": "calls_and_pointers_sol.pdf",
+    "parent": "w2",
+    "type": "book"
+  },
+  {
+    "name": "processor_slides.pdf",
     "parent": "CSC258",
     "type": "book"
   },
   {
-    "name": "FSMexample_slides.pdf",
-    "parent": "CSC258",
+    "name": "TUT3.html",
+    "parent": "tutorials",
+    "type": "note"
+  },
+  {
+    "name": "w7",
+    "parent": "CSC209",
+    "type": "folder"
+  },
+  {
+    "name": "Test 1 Solutions.pdf",
+    "parent": "lectures",
     "type": "book"
   },
   {
-    "name": "flipflops_slides.pdf",
+    "name": "assembly_slides.pdf",
     "parent": "CSC258",
     "type": "book"
   },
@@ -995,478 +775,43 @@
     "type": "book"
   },
   {
-    "name": "tutorial_transistors_slides.pdf",
-    "parent": "CSC258",
-    "type": "book"
-  },
-  {
-    "name": "tutorial_flipflops_slides.pdf",
-    "parent": "CSC258",
-    "type": "book"
-  },
-  {
-    "name": "processor_slides.pdf",
-    "parent": "CSC258",
-    "type": "book"
-  },
-  {
-    "name": "assembly_slides.pdf",
-    "parent": "CSC258",
-    "type": "book"
-  },
-  {
-    "name": "devices_slides.pdf",
-    "parent": "CSC258",
-    "type": "book"
-  },
-  {
-    "name": "circuits_slides.pdf",
-    "parent": "CSC258",
-    "type": "book"
-  },
-  {
-    "name": "transistors_slides.pdf",
-    "parent": "CSC258",
-    "type": "book"
-  },
-  {
-    "name": "tutorial_alu_slides.pdf",
-    "parent": "CSC258",
-    "type": "book"
-  },
-  {
-    "name": "STA303",
-    "parent": ".",
-    "type": "folder"
-  },
-  {
-    "name": "Summary.html",
-    "parent": "STA303",
-    "type": "note"
-  },
-  {
-    "name": "Two Way ANOVA",
-    "parent": "STA303",
-    "type": "folder"
-  },
-  {
-    "name": "week4_rm_annotated2.pdf",
-    "parent": "Two Way ANOVA",
-    "type": "book"
-  },
-  {
-    "name": "Week4_s303_annotated2.pdf",
-    "parent": "Two Way ANOVA",
-    "type": "book"
-  },
-  {
-    "name": "Two Way ANOVA.html",
-    "parent": "Two Way ANOVA",
-    "type": "note"
-  },
-  {
-    "name": "Poisson Regression",
-    "parent": "STA303",
-    "type": "folder"
-  },
-  {
-    "name": "loglinsol.pdf",
-    "parent": "Poisson Regression",
-    "type": "book"
-  },
-  {
-    "name": "loglinpp.pdf",
-    "parent": "Poisson Regression",
-    "type": "book"
-  },
-  {
-    "name": "Week9_annotated.pdf",
-    "parent": "Poisson Regression",
-    "type": "book"
-  },
-  {
-    "name": "Practice Problems.html",
-    "parent": "Poisson Regression",
-    "type": "note"
-  },
-  {
-    "name": "Log-linear Regression (Poisson Regression).html",
-    "parent": "Poisson Regression",
-    "type": "note"
-  },
-  {
-    "name": "assignments",
-    "parent": "STA303",
-    "type": "folder"
-  },
-  {
-    "name": "A2",
-    "parent": "assignments",
-    "type": "folder"
-  },
-  {
-    "name": "Assignment2_w19.pdf",
-    "parent": "A2",
-    "type": "book"
-  },
-  {
-    "name": "A2.pdf",
-    "parent": "A2",
-    "type": "book"
-  },
-  {
-    "name": "A3",
-    "parent": "assignments",
-    "type": "folder"
-  },
-  {
-    "name": "A3P1.pdf",
-    "parent": "A3",
-    "type": "book"
-  },
-  {
-    "name": "Assignment3_w19_part1.pdf",
-    "parent": "A3",
-    "type": "book"
-  },
-  {
-    "name": "A3P2.pdf",
-    "parent": "A3",
-    "type": "book"
-  },
-  {
-    "name": "A1",
-    "parent": "assignments",
-    "type": "folder"
-  },
-  {
-    "name": "A1.pdf",
-    "parent": "A1",
-    "type": "book"
-  },
-  {
-    "name": "Assignment1_w19.pdf",
-    "parent": "A1",
-    "type": "book"
-  },
-  {
-    "name": "One Way ANOVA",
-    "parent": "STA303",
-    "type": "folder"
-  },
-  {
-    "name": "One Way ANOVA.html",
-    "parent": "One Way ANOVA",
-    "type": "note"
-  },
-  {
-    "name": "Multi Comparisons.html",
-    "parent": "One Way ANOVA",
-    "type": "note"
-  },
-  {
-    "name": "Class1_annotated.pdf",
-    "parent": "One Way ANOVA",
-    "type": "book"
-  },
-  {
-    "name": "week3_s303_rm_annotated2.pdf",
-    "parent": "One Way ANOVA",
-    "type": "book"
-  },
-  {
-    "name": "Class2_annotated1.pdf",
-    "parent": "One Way ANOVA",
-    "type": "book"
-  },
-  {
-    "name": "Week3_303_annotated2.pdf",
-    "parent": "One Way ANOVA",
-    "type": "book"
-  },
-  {
-    "name": "Binary Logistic Regression",
-    "parent": "STA303",
-    "type": "folder"
-  },
-  {
-    "name": "Week6_s303ann.pdf",
-    "parent": "Binary Logistic Regression",
-    "type": "book"
-  },
-  {
-    "name": "Binary Logistic Regression.html",
-    "parent": "Binary Logistic Regression",
-    "type": "note"
-  },
-  {
-    "name": "Week5_303_annotated.pdf",
-    "parent": "Binary Logistic Regression",
-    "type": "book"
-  },
-  {
-    "name": "week5_rm_annotated.pdf",
-    "parent": "Binary Logistic Regression",
-    "type": "book"
-  },
-  {
-    "name": "Week6_rm_annotated.pdf",
-    "parent": "Binary Logistic Regression",
-    "type": "book"
-  },
-  {
     "name": "Contingency tables",
     "parent": "STA303",
     "type": "folder"
   },
   {
-    "name": "Week11_annotated.pdf",
-    "parent": "Contingency tables",
+    "name": "A5solution.pdf",
+    "parent": "Assignments",
     "type": "book"
   },
   {
-    "name": "Week10_annotated.pdf",
-    "parent": "Contingency tables",
-    "type": "book"
-  },
-  {
-    "name": "Factor independence.html",
-    "parent": "Contingency tables",
-    "type": "note"
-  },
-  {
-    "name": "Three-way Contingency .html",
-    "parent": "Contingency tables",
-    "type": "note"
-  },
-  {
-    "name": "Binomial Logistic Regression",
-    "parent": "STA303",
-    "type": "folder"
-  },
-  {
-    "name": "Binomial Logistic Regression.html",
-    "parent": "Binomial Logistic Regression",
-    "type": "note"
-  },
-  {
-    "name": "week8_rm_annotated.pdf",
-    "parent": "Binomial Logistic Regression",
-    "type": "book"
-  },
-  {
-    "name": "Week8_annotated.pdf",
-    "parent": "Binomial Logistic Regression",
-    "type": "book"
-  },
-  {
-    "name": "MAT337",
-    "parent": ".",
-    "type": "folder"
-  },
-  {
-    "name": "Week11.html",
-    "parent": "MAT337",
-    "type": "note"
-  },
-  {
-    "name": "Week10.html",
-    "parent": "MAT337",
-    "type": "note"
-  },
-  {
-    "name": "Week2.html",
-    "parent": "MAT337",
-    "type": "note"
-  },
-  {
-    "name": "Week3.html",
-    "parent": "MAT337",
-    "type": "note"
-  },
-  {
-    "name": "Week12.html",
-    "parent": "MAT337",
-    "type": "note"
-  },
-  {
-    "name": "Week1.html",
-    "parent": "MAT337",
-    "type": "note"
-  },
-  {
-    "name": "Week5.html",
-    "parent": "MAT337",
-    "type": "note"
-  },
-  {
-    "name": "Week9.html",
-    "parent": "MAT337",
-    "type": "note"
-  },
-  {
-    "name": "mat337h1.pdf",
-    "parent": "MAT337",
-    "type": "book"
-  },
-  {
-    "name": "Week6.html",
-    "parent": "MAT337",
-    "type": "note"
-  },
-  {
-    "name": "Week4.html",
-    "parent": "MAT337",
-    "type": "note"
-  },
-  {
-    "name": "lecture",
-    "parent": "MAT337",
-    "type": "folder"
-  },
-  {
-    "name": "Lecture Handout Week 2 R.pdf",
-    "parent": "lecture",
-    "type": "book"
-  },
-  {
-    "name": "Lecture Handout Week 1 R.pdf",
-    "parent": "lecture",
-    "type": "book"
-  },
-  {
-    "name": "Lecture Handout Week 3 R.pdf",
-    "parent": "lecture",
-    "type": "book"
-  },
-  {
-    "name": "Lecture Handout Week 1 T .pdf",
-    "parent": "lecture",
-    "type": "book"
-  },
-  {
-    "name": "Lecture Handout Week 2 T .pdf",
-    "parent": "lecture",
-    "type": "book"
-  },
-  {
-    "name": "Lecture Handout Week 4 R.pdf",
-    "parent": "lecture",
-    "type": "book"
-  },
-  {
-    "name": "Lecture Handout Week 4 T .pdf",
-    "parent": "lecture",
-    "type": "book"
-  },
-  {
-    "name": "Lecture Handout Week 3 T .pdf",
-    "parent": "lecture",
-    "type": "book"
-  },
-  {
-    "name": "MAT337 Week 6 TH.pdf",
-    "parent": "tutorials",
-    "type": "book"
-  },
-  {
-    "name": "TUT4.html",
+    "name": "jsc270_tut2_student.html",
     "parent": "tutorials",
     "type": "note"
   },
   {
-    "name": "MAT337 Week 9 TH.pdf",
-    "parent": "tutorials",
+    "name": "hw3s.pdf",
+    "parent": "STA347",
     "type": "book"
   },
   {
-    "name": "MAT337 Week 3 TH.pdf",
-    "parent": "tutorials",
-    "type": "book"
-  },
-  {
-    "name": "TUT6.html",
-    "parent": "tutorials",
+    "name": "BJIllustrations2017F.html",
+    "parent": "2-ARMA",
     "type": "note"
   },
   {
-    "name": "MAT337 Week 5 TH.pdf",
-    "parent": "tutorials",
+    "name": "FSMexample_slides.pdf",
+    "parent": "CSC258",
     "type": "book"
   },
   {
-    "name": "TUT2.html",
-    "parent": "tutorials",
-    "type": "note"
-  },
-  {
-    "name": "TUT10.html",
-    "parent": "tutorials",
-    "type": "note"
-  },
-  {
-    "name": "MAT337 Week 1 TH.pdf",
-    "parent": "tutorials",
+    "name": "Multivariate time series (29Oct2018).pdf",
+    "parent": "5-VAR",
     "type": "book"
   },
   {
-    "name": "MAT337 Week 2 TH.pdf",
+    "name": "jsc270_tut1_questions.html",
     "parent": "tutorials",
-    "type": "book"
-  },
-  {
-    "name": "MAT337 Week 10 TH.pdf",
-    "parent": "tutorials",
-    "type": "book"
-  },
-  {
-    "name": "MAT337 Week 13 TH.pdf",
-    "parent": "tutorials",
-    "type": "book"
-  },
-  {
-    "name": "MAT337 Week 11 TH.pdf",
-    "parent": "tutorials",
-    "type": "book"
-  },
-  {
-    "name": "TUT5.html",
-    "parent": "tutorials",
-    "type": "note"
-  },
-  {
-    "name": "MAT337 Week 4 TH.pdf",
-    "parent": "tutorials",
-    "type": "book"
-  },
-  {
-    "name": "TUT3.html",
-    "parent": "tutorials",
-    "type": "note"
-  },
-  {
-    "name": "TUT9.html",
-    "parent": "tutorials",
-    "type": "note"
-  },
-  {
-    "name": "MAT337 Week 12 TH.pdf",
-    "parent": "tutorials",
-    "type": "book"
-  },
-  {
-    "name": "STA302",
-    "parent": ".",
-    "type": "folder"
-  },
-  {
-    "name": "Lecture code - Intro R.html",
-    "parent": "STA302",
-    "type": "note"
-  },
-  {
-    "name": "R basics.html",
-    "parent": "STA302",
     "type": "note"
   },
   {
@@ -1475,108 +820,163 @@
     "type": "folder"
   },
   {
-    "name": "slides-week4and5annotated.pdf",
-    "parent": "slides",
-    "type": "book"
-  },
-  {
-    "name": "slides-weeks_3-4_annotated.pdf",
-    "parent": "slides",
-    "type": "book"
-  },
-  {
-    "name": "slides-weeks10-11annotated.pdf",
-    "parent": "slides",
-    "type": "book"
-  },
-  {
-    "name": "slides-weeks7-8annotated.pdf",
-    "parent": "slides",
-    "type": "book"
-  },
-  {
-    "name": "slides-weeks8-9annotated.pdf",
-    "parent": "slides",
-    "type": "book"
-  },
-  {
-    "name": "slides-unit2_annotated.pdf",
-    "parent": "slides",
-    "type": "book"
-  },
-  {
-    "name": "slides-week6-annotated.pdf",
-    "parent": "slides",
-    "type": "book"
-  },
-  {
-    "name": "slides-week12annotations.pdf",
-    "parent": "slides",
-    "type": "book"
-  },
-  {
-    "name": "slides-week5annotated.pdf",
-    "parent": "slides",
-    "type": "book"
-  },
-  {
-    "name": "slides-weeks11annotated.pdf",
-    "parent": "slides",
-    "type": "book"
-  },
-  {
-    "name": "slides-weeks9-10annotated.pdf",
-    "parent": "slides",
-    "type": "book"
-  },
-  {
-    "name": "slides-unit1_Tues11SepAnnotated.pdf",
-    "parent": "slides",
-    "type": "book"
-  },
-  {
-    "name": "JSC270",
-    "parent": ".",
+    "name": "class8",
+    "parent": "notes",
     "type": "folder"
   },
   {
-    "name": "jsc270_tut3_student.html",
-    "parent": "tutorials",
+    "name": "SQL Data Definition.html",
+    "parent": "lecture_notes",
     "type": "note"
   },
   {
-    "name": "jsc270_tut2_student.html",
+    "name": "Week 4 Tutorial Problems.pdf",
     "parent": "tutorials",
+    "type": "book"
+  },
+  {
+    "name": "Example of Self-Reducibility.pdf",
+    "parent": "lectures",
+    "type": "book"
+  },
+  {
+    "name": "MAT337 Week 1 TH.pdf",
+    "parent": "tutorials",
+    "type": "book"
+  },
+  {
+    "name": "SQL-DDL_DR.pdf",
+    "parent": "lecture_pdf",
+    "type": "book"
+  },
+  {
+    "name": "Week10.html",
+    "parent": "MAT337",
     "type": "note"
   },
   {
-    "name": "jsc270_tut1_questions.html",
+    "name": "MAT337 Week 11 TH.pdf",
     "parent": "tutorials",
+    "type": "book"
+  },
+  {
+    "name": "big query.html",
+    "parent": "package examples",
     "type": "note"
   },
   {
-    "name": "jsc270_tut4_part2_questions.html",
-    "parent": "tutorials",
+    "name": "ARIMA.html",
+    "parent": "0-NOTES",
     "type": "note"
   },
   {
-    "name": "tut_answer",
-    "parent": "tutorials",
+    "name": "lecture",
+    "parent": "MAT337",
     "type": "folder"
   },
   {
-    "name": "jsc270_tut2-answers_moon_999999999.html",
-    "parent": "tut_answer",
+    "name": "Week9.html",
+    "parent": "MAT337",
     "type": "note"
   },
   {
-    "name": "jsc270_tut4_part2-answers-moon-99999999.html",
-    "parent": "tut_answer",
+    "name": "DisjointSets-logstar.pdf",
+    "parent": "lecture_supplement",
+    "type": "book"
+  },
+  {
+    "name": "lecture_supplement",
+    "parent": "CSC265",
+    "type": "folder"
+  },
+  {
+    "name": "May29-Forecast.pdf",
+    "parent": "4-Forecast_and_TFN",
+    "type": "book"
+  },
+  {
+    "name": "Week 12 Tutorial Solutions.pdf",
+    "parent": "tutorials",
+    "type": "book"
+  },
+  {
+    "name": "Diagnostic checks of TFN model.pdf",
+    "parent": "4-Forecast_and_TFN",
+    "type": "book"
+  },
+  {
+    "name": "DSF-Amortized.pdf",
+    "parent": "lecture_supplement",
+    "type": "book"
+  },
+  {
+    "name": "tutorial_alu_slides.pdf",
+    "parent": "CSC258",
+    "type": "book"
+  },
+  {
+    "name": "signals.pdf",
+    "parent": "w9",
+    "type": "book"
+  },
+  {
+    "name": "week3_s303_rm_annotated2.pdf",
+    "parent": "One Way ANOVA",
+    "type": "book"
+  },
+  {
+    "name": "TUT10.html",
+    "parent": "tutorials",
     "type": "note"
   },
   {
-    "name": "jsc270_tut1_answers_moon_99999999.html",
-    "parent": "tut_answer",
+    "name": "lecture5_ver1.html",
+    "parent": "class5",
+    "type": "note"
+  },
+  {
+    "name": "Week8_annotated.pdf",
+    "parent": "Binomial Logistic Regression",
+    "type": "book"
+  },
+  {
+    "name": "TUT2.html",
+    "parent": "tutorials",
+    "type": "note"
+  },
+  {
+    "name": "Week9_annotated.pdf",
+    "parent": "Poisson Regression",
+    "type": "book"
+  },
+  {
+    "name": "Binomial Logistic Regression",
+    "parent": "STA303",
+    "type": "folder"
+  },
+  {
+    "name": "A2solution.pdf",
+    "parent": "Assignments",
+    "type": "book"
+  },
+  {
+    "name": "Week 8 Tutorial Problems.pdf",
+    "parent": "tutorials",
+    "type": "book"
+  },
+  {
+    "name": "Linear Programming.html",
+    "parent": "notes",
+    "type": "note"
+  },
+  {
+    "name": "DFS_slides.pdf",
+    "parent": "lecture_supplement",
+    "type": "book"
+  },
+  {
+    "name": "lecture2_slides_posted2.html",
+    "parent": "class2",
     "type": "note"
   },
   {
@@ -1585,299 +985,34 @@
     "type": "folder"
   },
   {
-    "name": "Class1-EDA_OkCupid.html",
-    "parent": "class1",
+    "name": "jsc270_tut3_student.html",
+    "parent": "tutorials",
     "type": "note"
   },
   {
-    "name": "Week 1.html",
-    "parent": "class1",
+    "name": "hw2s.pdf",
+    "parent": "STA347",
+    "type": "book"
+  },
+  {
+    "name": "A4handout.pdf",
+    "parent": "Assignments",
+    "type": "book"
+  },
+  {
+    "name": "Granger Causality and Cointegration.html",
+    "parent": "0-NOTES",
     "type": "note"
   },
   {
-    "name": "Class1-Part2.html",
-    "parent": "class1",
-    "type": "note"
-  },
-  {
-    "name": "Class1.html",
-    "parent": "class1",
-    "type": "note"
-  },
-  {
-    "name": "package examples",
-    "parent": "notes",
+    "name": "assignments",
+    "parent": "STA303",
     "type": "folder"
   },
   {
-    "name": "language processing.html",
-    "parent": "package examples",
+    "name": "Week5.html",
+    "parent": "MAT337",
     "type": "note"
-  },
-  {
-    "name": "big query.html",
-    "parent": "package examples",
-    "type": "note"
-  },
-  {
-    "name": "plotly map plots.html",
-    "parent": "package examples",
-    "type": "note"
-  },
-  {
-    "name": "Pandas_Cheat_Sheet.pdf",
-    "parent": "package examples",
-    "type": "book"
-  },
-  {
-    "name": "class7",
-    "parent": "notes",
-    "type": "folder"
-  },
-  {
-    "name": "lecture7.pdf",
-    "parent": "class7",
-    "type": "book"
-  },
-  {
-    "name": "visualization theory and principles.html",
-    "parent": "class7",
-    "type": "note"
-  },
-  {
-    "name": "class10",
-    "parent": "notes",
-    "type": "folder"
-  },
-  {
-    "name": "JSC270-Class10.pdf",
-    "parent": "class10",
-    "type": "book"
-  },
-  {
-    "name": "class6",
-    "parent": "notes",
-    "type": "folder"
-  },
-  {
-    "name": "Tut4.html",
-    "parent": "class6",
-    "type": "note"
-  },
-  {
-    "name": "lecture6_v1.html",
-    "parent": "class6",
-    "type": "note"
-  },
-  {
-    "name": "class5",
-    "parent": "notes",
-    "type": "folder"
-  },
-  {
-    "name": "lecture5_ver1.html",
-    "parent": "class5",
-    "type": "note"
-  },
-  {
-    "name": "class3",
-    "parent": "notes",
-    "type": "folder"
-  },
-  {
-    "name": "lecture3_slides-students.html",
-    "parent": "class3",
-    "type": "note"
-  },
-  {
-    "name": "class4",
-    "parent": "notes",
-    "type": "folder"
-  },
-  {
-    "name": "jsc270_lecture4.html",
-    "parent": "class4",
-    "type": "note"
-  },
-  {
-    "name": "jsc270randomizationtestworksheet.pdf",
-    "parent": "class4",
-    "type": "book"
-  },
-  {
-    "name": "class8",
-    "parent": "notes",
-    "type": "folder"
-  },
-  {
-    "name": "lecture8.pdf",
-    "parent": "class8",
-    "type": "book"
-  },
-  {
-    "name": "Pitfalls in Data Science.html",
-    "parent": "class8",
-    "type": "note"
-  },
-  {
-    "name": "class2",
-    "parent": "notes",
-    "type": "folder"
-  },
-  {
-    "name": "lecture2_slides-posted.html",
-    "parent": "class2",
-    "type": "note"
-  },
-  {
-    "name": "lecture2_slides_posted2.html",
-    "parent": "class2",
-    "type": "note"
-  },
-  {
-    "name": "CSC343",
-    "parent": ".",
-    "type": "folder"
-  },
-  {
-    "name": "lecture_pdf",
-    "parent": "CSC343",
-    "type": "folder"
-  },
-  {
-    "name": "SQL-DDL_DR.pdf",
-    "parent": "lecture_pdf",
-    "type": "book"
-  },
-  {
-    "name": "Schemas_DR.pdf",
-    "parent": "lecture_pdf",
-    "type": "book"
-  },
-  {
-    "name": "ER_DR.pdf",
-    "parent": "lecture_pdf",
-    "type": "book"
-  },
-  {
-    "name": "CSC343-Intro_DR.pdf",
-    "parent": "lecture_pdf",
-    "type": "book"
-  },
-  {
-    "name": "DB_Design_DR.pdf",
-    "parent": "lecture_pdf",
-    "type": "book"
-  },
-  {
-    "name": "Rel Algebra_DR.pdf",
-    "parent": "lecture_pdf",
-    "type": "book"
-  },
-  {
-    "name": "Embedded-SQL_DR.pdf",
-    "parent": "lecture_pdf",
-    "type": "book"
-  },
-  {
-    "name": "Relational-Model.pdf",
-    "parent": "lecture_pdf",
-    "type": "book"
-  },
-  {
-    "name": "SQL-DML_DR.pdf",
-    "parent": "lecture_pdf",
-    "type": "book"
-  },
-  {
-    "name": "Assignment2-handout.pdf",
-    "parent": "assignments",
-    "type": "book"
-  },
-  {
-    "name": "CSC343_Winter2019_A1.pdf",
-    "parent": "assignments",
-    "type": "book"
-  },
-  {
-    "name": "CSC343_A3_Winter2019.pdf",
-    "parent": "assignments",
-    "type": "book"
-  },
-  {
-    "name": "Schemas_PI.pdf",
-    "parent": "tutorials",
-    "type": "book"
-  },
-  {
-    "name": "Properties of Decompositions TUT.html",
-    "parent": "tutorials",
-    "type": "note"
-  },
-  {
-    "name": "Projection and Minimal Basis TUT.html",
-    "parent": "tutorials",
-    "type": "note"
-  },
-  {
-    "name": "Functional Dependencies TUT.html",
-    "parent": "tutorials",
-    "type": "note"
-  },
-  {
-    "name": "Subqueries.pdf",
-    "parent": "tutorials",
-    "type": "book"
-  },
-  {
-    "name": "ROSI-solutions.pdf",
-    "parent": "tutorials",
-    "type": "book"
-  },
-  {
-    "name": "The Chase Test.html",
-    "parent": "tutorials",
-    "type": "note"
-  },
-  {
-    "name": "ROSI.pdf",
-    "parent": "tutorials",
-    "type": "book"
-  },
-  {
-    "name": "Joins.pdf",
-    "parent": "tutorials",
-    "type": "book"
-  },
-  {
-    "name": "MoviesSol.pdf",
-    "parent": "tutorials",
-    "type": "book"
-  },
-  {
-    "name": "SQL queries TUT.html",
-    "parent": "tutorials",
-    "type": "note"
-  },
-  {
-    "name": "DDL.pdf",
-    "parent": "tutorials",
-    "type": "book"
-  },
-  {
-    "name": "Relational Algebra TUT.html",
-    "parent": "tutorials",
-    "type": "note"
-  },
-  {
-    "name": "Groupby-having.pdf",
-    "parent": "tutorials",
-    "type": "book"
-  },
-  {
-    "name": "Set-ops.pdf",
-    "parent": "tutorials",
-    "type": "book"
   },
   {
     "name": "BCNF TUT.html",
@@ -1885,19 +1020,84 @@
     "type": "note"
   },
   {
-    "name": "Schemas_PI-solutions.pdf",
-    "parent": "tutorials",
+    "name": "Test 2 Solutions.pdf",
+    "parent": "lectures",
     "type": "book"
   },
   {
-    "name": "SQL queries.html",
+    "name": "3.AVL_Trees.pdf",
     "parent": "lecture_notes",
+    "type": "book"
+  },
+  {
+    "name": "pros and cons.pdf",
+    "parent": "6-Bootstrap",
+    "type": "book"
+  },
+  {
+    "name": "A5.1handout.pdf",
+    "parent": "Assignments",
+    "type": "book"
+  },
+  {
+    "name": "A4S.pdf",
+    "parent": "Assignment",
+    "type": "book"
+  },
+  {
+    "name": "lecture6_v1.html",
+    "parent": "class6",
     "type": "note"
   },
   {
-    "name": "Relational Algebra.html",
-    "parent": "lecture_notes",
+    "name": "slides-weeks10-11annotated.pdf",
+    "parent": "slides",
+    "type": "book"
+  },
+  {
+    "name": "loglinpp.pdf",
+    "parent": "Poisson Regression",
+    "type": "book"
+  },
+  {
+    "name": "Assignment3_w19_part1.pdf",
+    "parent": "A3",
+    "type": "book"
+  },
+  {
+    "name": "TUT9.html",
+    "parent": "tutorials",
     "type": "note"
+  },
+  {
+    "name": "tutorial_fsm_slides.pdf",
+    "parent": "CSC258",
+    "type": "book"
+  },
+  {
+    "name": "tutorial_week11_slides.pdf",
+    "parent": "CSC258",
+    "type": "book"
+  },
+  {
+    "name": "Week6_rm_annotated.pdf",
+    "parent": "Binary Logistic Regression",
+    "type": "book"
+  },
+  {
+    "name": "Assignment1_w19.pdf",
+    "parent": "A1",
+    "type": "book"
+  },
+  {
+    "name": "Final Review Questions.html",
+    "parent": "0-NOTES",
+    "type": "note"
+  },
+  {
+    "name": "w3",
+    "parent": "CSC209",
+    "type": "folder"
   },
   {
     "name": "Functional dependency.html",
@@ -1910,23 +1110,863 @@
     "type": "note"
   },
   {
-    "name": "SQL data manipulation.html",
+    "name": "Week 7 Lecture Summary.pdf",
+    "parent": "lectures",
+    "type": "book"
+  },
+  {
+    "name": "A3S.pdf",
+    "parent": "Assignment",
+    "type": "book"
+  },
+  {
+    "name": "w9",
+    "parent": "CSC209",
+    "type": "folder"
+  },
+  {
+    "name": "Applications of ARMA models in investments.html",
+    "parent": "0-NOTES",
+    "type": "note"
+  },
+  {
+    "name": "10.BFS_and_DFS.pdf",
+    "parent": "lecture_notes",
+    "type": "book"
+  },
+  {
+    "name": "Week 3 Lecture Summary.pdf",
+    "parent": "lectures",
+    "type": "book"
+  },
+  {
+    "name": "jsc270randomizationtestworksheet.pdf",
+    "parent": "class4",
+    "type": "book"
+  },
+  {
+    "name": "Week 10 Tutorial Solutions.pdf",
+    "parent": "tutorials",
+    "type": "book"
+  },
+  {
+    "name": "Week6_s303ann.pdf",
+    "parent": "Binary Logistic Regression",
+    "type": "book"
+  },
+  {
+    "name": "Week 5 Tutorial Solutions.pdf",
+    "parent": "tutorials",
+    "type": "book"
+  },
+  {
+    "name": "A1handout.pdf",
+    "parent": "Assignments",
+    "type": "book"
+  },
+  {
+    "name": "A2Q.pdf",
+    "parent": "Assignment",
+    "type": "book"
+  },
+  {
+    "name": "MoviesSol.pdf",
+    "parent": "tutorials",
+    "type": "book"
+  },
+  {
+    "name": "Network Flow Tut.html",
+    "parent": "notes",
+    "type": "note"
+  },
+  {
+    "name": "Tut4.html",
+    "parent": "class6",
+    "type": "note"
+  },
+  {
+    "name": "A2handout.pdf",
+    "parent": "Assignments",
+    "type": "book"
+  },
+  {
+    "name": "tutorials",
+    "parent": "MAT337",
+    "type": "folder"
+  },
+  {
+    "name": "lecture_notes",
+    "parent": "CSC265",
+    "type": "folder"
+  },
+  {
+    "name": "MAT337 Week 9 TH.pdf",
+    "parent": "tutorials",
+    "type": "book"
+  },
+  {
+    "name": "Introduction to time series data and visualization.pdf",
+    "parent": "1-Introduction",
+    "type": "book"
+  },
+  {
+    "name": "week5_rm_annotated.pdf",
+    "parent": "Binary Logistic Regression",
+    "type": "book"
+  },
+  {
+    "name": "1-Introduction",
+    "parent": "STA457",
+    "type": "folder"
+  },
+  {
+    "name": "Lecture Handout Week 1 T .pdf",
+    "parent": "lecture",
+    "type": "book"
+  },
+  {
+    "name": "part3.pdf",
+    "parent": "STA347",
+    "type": "book"
+  },
+  {
+    "name": "Lecture code - Intro R.html",
+    "parent": "STA302",
+    "type": "note"
+  },
+  {
+    "name": "A6s.pdf",
+    "parent": "Assignment",
+    "type": "book"
+  },
+  {
+    "name": "P_NP problem.html",
+    "parent": "notes",
+    "type": "note"
+  },
+  {
+    "name": "A3P2.pdf",
+    "parent": "A3",
+    "type": "book"
+  },
+  {
+    "name": "sockets.pdf",
+    "parent": "w10",
+    "type": "book"
+  },
+  {
+    "name": "hw1s.pdf",
+    "parent": "STA347",
+    "type": "book"
+  },
+  {
+    "name": "A5Q.pdf",
+    "parent": "Assignment",
+    "type": "book"
+  },
+  {
+    "name": "language processing.html",
+    "parent": "package examples",
+    "type": "note"
+  },
+  {
+    "name": "flipflops_slides.pdf",
+    "parent": "CSC258",
+    "type": "book"
+  },
+  {
+    "name": "class4",
+    "parent": "notes",
+    "type": "folder"
+  },
+  {
+    "name": "w2",
+    "parent": "CSC209",
+    "type": "folder"
+  },
+  {
+    "name": "slides-weeks_3-4_annotated.pdf",
+    "parent": "slides",
+    "type": "book"
+  },
+  {
+    "name": "Week 5 Tutorial Problems.pdf",
+    "parent": "tutorials",
+    "type": "book"
+  },
+  {
+    "name": "array_and_pointer_basics_sol.pdf",
+    "parent": "w2",
+    "type": "book"
+  },
+  {
+    "name": "Class1-Part2.html",
+    "parent": "class1",
+    "type": "note"
+  },
+  {
+    "name": "Box and Tiao Transformation (Nov 2017).pdf",
+    "parent": "4-Forecast_and_TFN",
+    "type": "book"
+  },
+  {
+    "name": "Week 5 Lecture Summary.pdf",
+    "parent": "lectures",
+    "type": "book"
+  },
+  {
+    "name": "A3.2handout.pdf",
+    "parent": "Assignments",
+    "type": "book"
+  },
+  {
+    "name": "Galil80.pdf",
+    "parent": "lecture_supplement",
+    "type": "book"
+  },
+  {
+    "name": "w4",
+    "parent": "CSC209",
+    "type": "folder"
+  },
+  {
+    "name": "slides-unit2_annotated.pdf",
+    "parent": "slides",
+    "type": "book"
+  },
+  {
+    "name": "Optimization Approxiamation.html",
+    "parent": "notes",
+    "type": "note"
+  },
+  {
+    "name": "Pandas_Cheat_Sheet.pdf",
+    "parent": "package examples",
+    "type": "book"
+  },
+  {
+    "name": "Class1.html",
+    "parent": "class1",
+    "type": "note"
+  },
+  {
+    "name": "Introduction to Methods of Desmoothing, Lin 2019.pdf",
+    "parent": "4-Forecast_and_TFN",
+    "type": "book"
+  },
+  {
+    "name": "slides-week5annotated.pdf",
+    "parent": "slides",
+    "type": "book"
+  },
+  {
+    "name": "Factor independence.html",
+    "parent": "Contingency tables",
+    "type": "note"
+  },
+  {
+    "name": "Greedy Algorithm Tut.html",
+    "parent": "notes",
+    "type": "note"
+  },
+  {
+    "name": "Three-way Contingency .html",
+    "parent": "Contingency tables",
+    "type": "note"
+  },
+  {
+    "name": "A1solution.pdf",
+    "parent": "Assignments",
+    "type": "book"
+  },
+  {
+    "name": "MAT337 Week 5 TH.pdf",
+    "parent": "tutorials",
+    "type": "book"
+  },
+  {
+    "name": "fork_solutions.pdf",
+    "parent": "w7",
+    "type": "book"
+  },
+  {
+    "name": "5-VAR",
+    "parent": "STA457",
+    "type": "folder"
+  },
+  {
+    "name": "Groupby-having.pdf",
+    "parent": "tutorials",
+    "type": "book"
+  },
+  {
+    "name": "Week 2 Lecture Summary.pdf",
+    "parent": "lectures",
+    "type": "book"
+  },
+  {
+    "name": "Week6.html",
+    "parent": "MAT337",
+    "type": "note"
+  },
+  {
+    "name": "Week 4 Tutorial Solutions.pdf",
+    "parent": "tutorials",
+    "type": "book"
+  },
+  {
+    "name": "SQL-DML_DR.pdf",
+    "parent": "lecture_pdf",
+    "type": "book"
+  },
+  {
+    "name": "Midterm Review Questions.html",
+    "parent": "0-NOTES",
+    "type": "note"
+  },
+  {
+    "name": "Week 6 Lecture Summary.pdf",
+    "parent": "lectures",
+    "type": "book"
+  },
+  {
+    "name": "mat337h1.pdf",
+    "parent": "MAT337",
+    "type": "book"
+  },
+  {
+    "name": "slides-week12annotations.pdf",
+    "parent": "slides",
+    "type": "book"
+  },
+  {
+    "name": "circuits_slides.pdf",
+    "parent": "CSC258",
+    "type": "book"
+  },
+  {
+    "name": "JSC270",
+    "parent": ".",
+    "type": "folder"
+  },
+  {
+    "name": "io_conversions_sol.pdf",
+    "parent": "w5",
+    "type": "book"
+  },
+  {
+    "name": "Modeling_seasonality.html",
+    "parent": "3-ARIMA",
+    "type": "note"
+  },
+  {
+    "name": "Pitfalls in Data Science.html",
+    "parent": "class8",
+    "type": "note"
+  },
+  {
+    "name": "Assignment",
+    "parent": "CSC265",
+    "type": "folder"
+  },
+  {
+    "name": "running_programs_sol.pdf",
+    "parent": "w1",
+    "type": "book"
+  },
+  {
+    "name": "lecture7.pdf",
+    "parent": "class7",
+    "type": "book"
+  },
+  {
+    "name": "tutorial_week10_slides.pdf",
+    "parent": "CSC258",
+    "type": "book"
+  },
+  {
+    "name": "Week 2 Tutorial Problems.pdf",
+    "parent": "tutorials",
+    "type": "book"
+  },
+  {
+    "name": "Week 1 Lecture Summary.pdf",
+    "parent": "lectures",
+    "type": "book"
+  },
+  {
+    "name": "STA457",
+    "parent": ".",
+    "type": "folder"
+  },
+  {
+    "name": "Week4_s303_annotated2.pdf",
+    "parent": "Two Way ANOVA",
+    "type": "book"
+  },
+  {
+    "name": "lecture8.pdf",
+    "parent": "class8",
+    "type": "book"
+  },
+  {
+    "name": "makefiles_sol.pdf",
+    "parent": "w5",
+    "type": "book"
+  },
+  {
+    "name": "Functional Dependencies TUT.html",
+    "parent": "tutorials",
+    "type": "note"
+  },
+  {
+    "name": "Week12.html",
+    "parent": "MAT337",
+    "type": "note"
+  },
+  {
+    "name": "TUT6.html",
+    "parent": "tutorials",
+    "type": "note"
+  },
+  {
+    "name": "Network Flow.html",
+    "parent": "notes",
+    "type": "note"
+  },
+  {
+    "name": "TFN and intervention analysis (06Jan2019).pdf",
+    "parent": "4-Forecast_and_TFN",
+    "type": "book"
+  },
+  {
+    "name": "MAT337 Week 6 TH.pdf",
+    "parent": "tutorials",
+    "type": "book"
+  },
+  {
+    "name": "Assignment2-handout.pdf",
+    "parent": "assignments",
+    "type": "book"
+  },
+  {
+    "name": "A3Q.pdf",
+    "parent": "Assignment",
+    "type": "book"
+  },
+  {
+    "name": "Set-ops.pdf",
+    "parent": "tutorials",
+    "type": "book"
+  },
+  {
+    "name": "CSC343",
+    "parent": ".",
+    "type": "folder"
+  },
+  {
+    "name": "Week 3 Tutorial Problems.pdf",
+    "parent": "tutorials",
+    "type": "book"
+  },
+  {
+    "name": "Relational Algebra.html",
     "parent": "lecture_notes",
     "type": "note"
   },
   {
-    "name": "SQL Data Definition.html",
+    "name": "Lecture Handout Week 3 T .pdf",
+    "parent": "lecture",
+    "type": "book"
+  },
+  {
+    "name": "visualization theory and principles.html",
+    "parent": "class7",
+    "type": "note"
+  },
+  {
+    "name": "ARMA.html",
+    "parent": "0-NOTES",
+    "type": "note"
+  },
+  {
+    "name": "problems-sol.pdf",
+    "parent": "STA347",
+    "type": "book"
+  },
+  {
+    "name": "func_ptrs_errors_sol.pdf",
+    "parent": "w6",
+    "type": "book"
+  },
+  {
+    "name": "Week1.html",
+    "parent": "MAT337",
+    "type": "note"
+  },
+  {
+    "name": "fsm_slides.pdf",
+    "parent": "CSC258",
+    "type": "book"
+  },
+  {
+    "name": "structs_sol.pdf",
+    "parent": "w4",
+    "type": "book"
+  },
+  {
+    "name": "week8_rm_annotated.pdf",
+    "parent": "Binomial Logistic Regression",
+    "type": "book"
+  },
+  {
+    "name": "Assignments",
+    "parent": "CSC373",
+    "type": "folder"
+  },
+  {
+    "name": "5.Lower_bound.pdf",
+    "parent": "lecture_notes",
+    "type": "book"
+  },
+  {
+    "name": "A5s.pdf",
+    "parent": "Assignment",
+    "type": "book"
+  },
+  {
+    "name": "Week 12 Lecture Summary.pdf",
+    "parent": "lectures",
+    "type": "book"
+  },
+  {
+    "name": "4-Forecast_and_TFN",
+    "parent": "STA457",
+    "type": "folder"
+  },
+  {
+    "name": "Log-linear Regression (Poisson Regression).html",
+    "parent": "Poisson Regression",
+    "type": "note"
+  },
+  {
+    "name": "One Way ANOVA.html",
+    "parent": "One Way ANOVA",
+    "type": "note"
+  },
+  {
+    "name": "slides-weeks11annotated.pdf",
+    "parent": "slides",
+    "type": "book"
+  },
+  {
+    "name": "part4.pdf",
+    "parent": "STA347",
+    "type": "book"
+  },
+  {
+    "name": "jsc270_tut1_answers_moon_99999999.html",
+    "parent": "tut_answer",
+    "type": "note"
+  },
+  {
+    "name": "permissions_sol.pdf",
+    "parent": "w1",
+    "type": "book"
+  },
+  {
+    "name": "AVL.pdf",
+    "parent": "lecture_supplement",
+    "type": "book"
+  },
+  {
+    "name": "CSC343-Intro_DR.pdf",
+    "parent": "lecture_pdf",
+    "type": "book"
+  },
+  {
+    "name": "One Way ANOVA",
+    "parent": "STA303",
+    "type": "folder"
+  },
+  {
+    "name": "A4solution.pdf",
+    "parent": "Assignment",
+    "type": "book"
+  },
+  {
+    "name": "Week 3 Tutorial Solutions.pdf",
+    "parent": "tutorials",
+    "type": "book"
+  },
+  {
+    "name": "Lecture Handout Week 4 R.pdf",
+    "parent": "lecture",
+    "type": "book"
+  },
+  {
+    "name": "Practice Problems.html",
+    "parent": "Poisson Regression",
+    "type": "note"
+  },
+  {
+    "name": "Week 12 Tutorial Problems.pdf",
+    "parent": "tutorials",
+    "type": "book"
+  },
+  {
+    "name": "Class2_annotated1.pdf",
+    "parent": "One Way ANOVA",
+    "type": "book"
+  },
+  {
+    "name": "DB_Design_DR.pdf",
+    "parent": "lecture_pdf",
+    "type": "book"
+  },
+  {
+    "name": "transistors_slides.pdf",
+    "parent": "CSC258",
+    "type": "book"
+  },
+  {
+    "name": "Week 6 Tutorial Solutions.pdf",
+    "parent": "tutorials",
+    "type": "book"
+  },
+  {
+    "name": "introduction_slides.pdf",
+    "parent": "CSC258",
+    "type": "book"
+  },
+  {
+    "name": "wait_sol.pdf",
+    "parent": "w8",
+    "type": "book"
+  },
+  {
+    "name": "A6Q.pdf",
+    "parent": "Assignment",
+    "type": "book"
+  },
+  {
+    "name": "class2",
+    "parent": "notes",
+    "type": "folder"
+  },
+  {
+    "name": "shell_worksheet_solutions.pdf",
+    "parent": "w11",
+    "type": "book"
+  },
+  {
+    "name": "Week2.html",
+    "parent": "MAT337",
+    "type": "note"
+  },
+  {
+    "name": "sta347-test-2018-fall-sol.pdf",
+    "parent": "STA347",
+    "type": "book"
+  },
+  {
+    "name": "package examples",
+    "parent": "notes",
+    "type": "folder"
+  },
+  {
+    "name": "7.Hashing_construction_and_rand_QS.pdf",
+    "parent": "lecture_notes",
+    "type": "book"
+  },
+  {
+    "name": "The Chase Test.html",
+    "parent": "tutorials",
+    "type": "note"
+  },
+  {
+    "name": "slides-weeks9-10annotated.pdf",
+    "parent": "slides",
+    "type": "book"
+  },
+  {
+    "name": "SARIMA-PARMA model-1.pdf",
+    "parent": "3-ARIMA",
+    "type": "book"
+  },
+  {
+    "name": "CSC343_Winter2019_A1.pdf",
+    "parent": "assignments",
+    "type": "book"
+  },
+  {
+    "name": "w11",
+    "parent": "CSC209",
+    "type": "folder"
+  },
+  {
+    "name": "tut_answer",
+    "parent": "tutorials",
+    "type": "folder"
+  },
+  {
+    "name": "TUT4.html",
+    "parent": "tutorials",
+    "type": "note"
+  },
+  {
+    "name": "Schemas_PI.pdf",
+    "parent": "tutorials",
+    "type": "book"
+  },
+  {
+    "name": "Example of Network Flow.pdf",
+    "parent": "lectures",
+    "type": "book"
+  },
+  {
+    "name": "Self Reducibility.html",
+    "parent": "notes",
+    "type": "note"
+  },
+  {
+    "name": "A3.1handout.pdf",
+    "parent": "Assignments",
+    "type": "book"
+  },
+  {
+    "name": "ARIMA and unit root tests (06Jan2019).pdf",
+    "parent": "3-ARIMA",
+    "type": "book"
+  },
+  {
+    "name": "Relational-Model.pdf",
+    "parent": "lecture_pdf",
+    "type": "book"
+  },
+  {
+    "name": "June5-Applications.pdf",
+    "parent": "4-Forecast_and_TFN",
+    "type": "book"
+  },
+  {
+    "name": "select_sol.pdf",
+    "parent": "w10",
+    "type": "book"
+  },
+  {
+    "name": "sta347-syllabus.pdf",
+    "parent": "STA347",
+    "type": "book"
+  },
+  {
+    "name": "1.Priority_Queue.pdf",
+    "parent": "lecture_notes",
+    "type": "book"
+  },
+  {
+    "name": "STA303",
+    "parent": ".",
+    "type": "folder"
+  },
+  {
+    "name": "Multi Comparisons.html",
+    "parent": "One Way ANOVA",
+    "type": "note"
+  },
+  {
+    "name": "SQL queries.html",
     "parent": "lecture_notes",
     "type": "note"
   },
   {
-    "name": "SQL Schema.html",
-    "parent": "lecture_notes",
+    "name": "Week 10 Tutorial Problems.pdf",
+    "parent": "tutorials",
+    "type": "book"
+  },
+  {
+    "name": "TFN model.html",
+    "parent": "0-NOTES",
     "type": "note"
   },
   {
-    "name": "Embedding SQL to another language.html",
-    "parent": "lecture_notes",
+    "name": "Vector Series.html",
+    "parent": "0-NOTES",
     "type": "note"
+  },
+  {
+    "name": "A1.pdf",
+    "parent": "A1",
+    "type": "book"
+  },
+  {
+    "name": "errors_sol.pdf",
+    "parent": "w6",
+    "type": "book"
+  },
+  {
+    "name": "w1",
+    "parent": "CSC209",
+    "type": "folder"
+  },
+  {
+    "name": "R basics.html",
+    "parent": "STA302",
+    "type": "note"
+  },
+  {
+    "name": "June12-GARCH.pdf",
+    "parent": "7-GARCH",
+    "type": "book"
+  },
+  {
+    "name": "Week 6 Tutorial Problems.pdf",
+    "parent": "tutorials",
+    "type": "book"
+  },
+  {
+    "name": "class5",
+    "parent": "notes",
+    "type": "folder"
+  },
+  {
+    "name": "lecture3_slides-students.html",
+    "parent": "class3",
+    "type": "note"
+  },
+  {
+    "name": "ROSI-solutions.pdf",
+    "parent": "tutorials",
+    "type": "book"
+  },
+  {
+    "name": "ER_DR.pdf",
+    "parent": "lecture_pdf",
+    "type": "book"
+  },
+  {
+    "name": "Schemas_PI-solutions.pdf",
+    "parent": "tutorials",
+    "type": "book"
+  },
+  {
+    "name": "7-GARCH",
+    "parent": "STA457",
+    "type": "folder"
+  },
+  {
+    "name": "Lecture 2 IntroductionARMAModels (06Jan2019).pdf",
+    "parent": "2-ARMA",
+    "type": "book"
+  },
+  {
+    "name": "Lecture Handout Week 2 R.pdf",
+    "parent": "lecture",
+    "type": "book"
+  },
+  {
+    "name": "CSC343_A3_Winter2019.pdf",
+    "parent": "assignments",
+    "type": "book"
   }
 ]
