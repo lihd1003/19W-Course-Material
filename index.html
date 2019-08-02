@@ -1,5 +1,4 @@
-<!doctype html>
-
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -24,7 +23,15 @@
         <!-- Add spacer, to align navigation to the right -->
         <div class="mdl-layout-spacer"></div>
         <!-- Navigation. We hide it in small screens. -->
-        <nav class="mdl-navigation mdl-layout--large-screen-only">
+        <nav class="mdl-navigation">
+          <a class="mdl-navigation__link" href="https://github.com/lihd1003/UofT-Course-Material-Repo">
+            <i class="material-icons mdl-list__item-icon mdl-color-text--white">link</i>
+            REPOSITORY
+          </a>
+          <a class="mdl-navigation__link" href="https://lihd1003.github.io">
+            <i class="material-icons mdl-list__item-icon mdl-color-text--white">home</i>
+            HOME
+          </a>
         </nav>
       </div>
     </header>
@@ -32,12 +39,14 @@
       <div class="page-content">
         <div class="mdl-grid">
           <div class="mdl-cell mdl-cell--10-col">
-            <li class="mdl-list__item">
+            <ul class="mdl-list">
+              <li class="mdl-list__item">
               <a class="mdl-list__item-primary-content mdl-color-text--blue-grey-800" onclick="back()">
                 <i class="material-icons mdl-list__item-icon ">navigate_before</i>
-                <span id="path"></d>
+                <span id="path"></span>
               </a>
             </li>
+          </ul>
 
             <div id="list">
               <ul class="mdl-list list">
@@ -48,6 +57,7 @@
 
           </div>
         </div>
+      </div>
     </main>
   </div>
 
