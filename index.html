@@ -41,12 +41,19 @@
           <div class="mdl-cell mdl-cell--10-col">
             <ul class="mdl-list">
               <li class="mdl-list__item">
-              <a class="mdl-list__item-primary-content mdl-color-text--blue-grey-800" onclick="back()">
-                <i class="material-icons mdl-list__item-icon ">navigate_before</i>
-                <span id="path"></span>
-              </a>
-            </li>
-          </ul>
+                <a class="mdl-list__item-primary-content mdl-color-text--blue-grey-800" onclick="back()">
+                  <i class="material-icons mdl-list__item-icon ">navigate_before</i>
+                  <span id="path"></span>
+                </a>
+                <button class="mdl-button mdl-js-button mdl-button--icon mdl-button--colored" id="search_b">
+                  <i class="material-icons">search</i>
+                </button>
+                <div class="mdl-textfield mdl-js-textfield">
+                  <input class="mdl-textfield__input" type="text" id="search">
+                  <label class="mdl-textfield__label" for="search">Search</label>
+                </div>
+              </li>
+            </ul>
 
             <div id="list">
               <ul class="mdl-list list">
@@ -67,6 +74,14 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/list.js/1.5.0/list.min.js"></script>
   <script src="./index.js"></script>
+  <script>
+    $("#search_b").click(() => {
+      list.search($("#search").val())
+    })
+    $("#search").on("input", () => {
+      list.search($("#search").val())
+    })
+  </script>
 </body>
 
 </html>

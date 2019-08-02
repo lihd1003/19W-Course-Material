@@ -39,6 +39,8 @@ const update = (t) => {
   if (t.firstChild.innerHTML === "folder") {
     current = t.getAttribute("data-path") + "/" + target
     $("#path").text(current)
+    list.search()
+    $("#saerch").val("")
     list.filter()
     list.filter((i) => {
       return i.values().path === current
@@ -58,6 +60,8 @@ const back = () => {
     backed.pop()
     current = backed.join("/")
     $("#path").text(current)
+    list.search()
+    $("#saerch").val("")
     list.filter()
     list.filter((i) => {
       return i.values().path === current
