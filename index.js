@@ -6,7 +6,8 @@ $.ajax({
   data: data,
   success: (data) => {
     path = data
-  })
+  }),
+  async: false
 });
 
 let current = ["."]
