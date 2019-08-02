@@ -59,7 +59,7 @@ const back = () => {
     const backed = current.split("/")
     backed.pop()
     current = backed.join("/")
-    $("#path").text(current)
+    $("#path").text(current + “/”)
     list.search()
     $("#saerch").val("")
     list.filter()
