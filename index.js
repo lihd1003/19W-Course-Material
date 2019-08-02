@@ -3,10 +3,9 @@ let path = []
 $.ajax({
   dataType: "json",
   url: "./table_if_content.js",
-  data: data,
   success: (data) => {
     path = data
-  }),
+  },
   async: false
 });
 
