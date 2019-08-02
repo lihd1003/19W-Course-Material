@@ -2,7 +2,7 @@ let path = []
 
 $.ajax({
   dataType: "json",
-  url: "./table_if_content.js",
+  url: "./table_if_content.json",
   success: (data) => {
     path = data
   },
