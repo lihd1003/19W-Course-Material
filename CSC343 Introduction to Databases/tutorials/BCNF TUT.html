@@ -13056,6 +13056,31 @@ ul.typeahead-list  > li > a.pull-right {
 .ansi-bold { font-weight: bold; }
 
     </style>
+<style type="text/css">
+    /*This file contains any manual css for this page that needs to override the global styles.
+This is only required when different pages style the same element differently. This is just
+a hack to deal with our current css styles and no new styling should be added in this file.*/
+
+#ipython-main-app {
+    position: relative;
+	font-size: 13pt;
+	font-family: 'Cambria', serif;
+}
+#jupyter-main-app {
+    position: relative;
+	font-size: 13pt;
+}
+.tab-content .row {
+	margin-bottom: 10px;
+}
+
+.text_cell_render {
+	font-size: 16pt;
+	font-family: "Cambria", serif;
+	line-height: 1.5;
+}
+
+    </style>
 
 
 <style type="text/css">
@@ -13117,37 +13142,36 @@ div#notebook {
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <ol>
-<li>(a) Create an instance of relation $R(A,B,C,D,E)$ that violates FD $ABC\rightarrow DE$
-<table>
-<pre><code> &lt;tr&gt;
-         &lt;th&gt;A&lt;/th&gt;&lt;th&gt;B&lt;/th&gt;&lt;th&gt;C&lt;/th&gt;&lt;th&gt;D&lt;/th&gt;&lt;th&gt;E&lt;/th&gt;
- &lt;/tr&gt;
- &lt;tr&gt;
-         &lt;td&gt;1&lt;/td&gt;&lt;td&gt;1&lt;/td&gt;&lt;td&gt;1&lt;/td&gt;&lt;td&gt;2&lt;/td&gt;&lt;td&gt;2&lt;/td&gt;
- &lt;/tr&gt;
- &lt;tr&gt;
-         &lt;td&gt;1&lt;/td&gt;&lt;td&gt;1&lt;/td&gt;&lt;td&gt;1&lt;/td&gt;&lt;td&gt;2&lt;/td&gt;&lt;td&gt;3&lt;/td&gt;
- &lt;/tr&gt;
-</code></pre>
-&lt;/table&gt;
-(b) Given the instance below, does FD $DB\rightarrow A$ holds
-<table>
-<pre><code> &lt;tr&gt;
-         &lt;th&gt;A&lt;/th&gt;&lt;th&gt;B&lt;/th&gt;&lt;th&gt;C&lt;/th&gt;&lt;th&gt;D&lt;/th&gt;&lt;th&gt;E&lt;/th&gt;
- &lt;/tr&gt;
- &lt;tr&gt;
-         &lt;td&gt;5&lt;/td&gt;&lt;td&gt;3&lt;/td&gt;&lt;td&gt;2&lt;/td&gt;&lt;td&gt;1&lt;/td&gt;&lt;td&gt;6&lt;/td&gt;
- &lt;/tr&gt;
- &lt;tr&gt;
-         &lt;td&gt;5&lt;/td&gt;&lt;td&gt;3&lt;/td&gt;&lt;td&gt;3&lt;/td&gt;&lt;td&gt;1&lt;/td&gt;&lt;td&gt;2&lt;/td&gt;
- &lt;/tr&gt;
- &lt;tr&gt;
-         &lt;td&gt;5&lt;/td&gt;&lt;td&gt;8&lt;/td&gt;&lt;td&gt;4&lt;/td&gt;&lt;td&gt;1&lt;/td&gt;&lt;td&gt;5&lt;/td&gt;
- &lt;/tr&gt;
-</code></pre>
-&lt;/table&gt;
-YES</li>
+<li>(a) Create an instance of relation $R(A,B,C,D,E)$ that violates FD $ABC\rightarrow DE$</li>
 </ol>
+<table>
+        <tr>
+                <th>A</th><th>B</th><th>C</th><th>D</th><th>E</th>
+        </tr>
+        <tr>
+                <td>1</td><td>1</td><td>1</td><td>2</td><td>2</td>
+        </tr>
+        <tr>
+                <td>1</td><td>1</td><td>1</td><td>2</td><td>3</td>
+        </tr>
+
+</table>
+(b) Given the instance below, does FD $DB\rightarrow A$ holds
+
+<table>
+        <tr>
+                <th>A</th><th>B</th><th>C</th><th>D</th><th>E</th>
+        </tr>
+        <tr>
+                <td>5</td><td>3</td><td>2</td><td>1</td><td>6</td>
+        </tr>
+        <tr>
+                <td>5</td><td>3</td><td>3</td><td>1</td><td>2</td>
+        </tr>
+        <tr>
+                <td>5</td><td>8</td><td>4</td><td>1</td><td>5</td>
+        </tr>
+</table><p>YES</p>
 
 </div>
 </div>
