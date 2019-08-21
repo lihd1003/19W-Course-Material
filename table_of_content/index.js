@@ -1,9 +1,10 @@
 'use strict'
+
 let paths = []
 
 $.ajax({
   dataType: "json",
-  url: "./table_of_content.json",
+  url: "./table_of_content/table_of_content.json",
   success: (data) => {
     paths = data
   },

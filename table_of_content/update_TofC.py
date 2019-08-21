@@ -5,14 +5,13 @@ import json
 if __name__ == "__main__":
 
     files = []
-    for i in os.walk("./"):
+    for i in os.walk("../"):
         for f in i[2]:
-            if re.match(".+(.html|.pdf)", f):
-                fname = i[0] + "/"+f
-                if any(k in fname for k in ["checkpoint", "FORM", "CSC309", "index.html"]):
-                    continue
-                else:
-                    files.append(fname)
+            fname = i[0] + "/"+f
+            if any(k in fname for k in ["checkpoint", "index.html", ".ipynb", ".tex", ".md", ".git", "table_of_content"]):
+                continue
+            else:
+                files.append(fname[1:])
 
     tups = []
     for file in files:
@@ -27,6 +26,8 @@ if __name__ == "__main__":
                 type_ = "note"
             elif ".pdf" in document[i]:
                 type_ = "book"
+            else:
+                type_ = "build"
             tups.append((name, path, type_))
     folders = []
     for t in set(tups):
