@@ -5,10 +5,13 @@ import json
 if __name__ == "__main__":
 
     files = []
+    with open("./host_info.json", "r") as f:
+        filters = json.load(f)['filter']
+
     for i in os.walk("../"):
         for f in i[2]:
             fname = i[0] + "/"+f
-            if any(k in fname for k in ["checkpoint", "index.html", ".ipynb", ".tex", ".md", ".git", "table_of_content"]):
+            if any(k in fname for k in filters):
                 continue
             else:
                 files.append(fname[1:])
