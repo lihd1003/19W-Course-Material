@@ -38,16 +38,15 @@
     <header class="mdl-layout__header">
       <div class="mdl-layout__header-row">
         <!-- Title -->
-        <span class="mdl-layout-title">UOFT COURSE MATERIAL REPO PORTAL</span>
+        <span class="mdl-layout-title page_name"></span>
         <!-- Add spacer, to align navigation to the right -->
         <div class="mdl-layout-spacer"></div>
         <!-- Navigation. We hide it in small screens. -->
         <nav class="mdl-navigation">
-          <a class="mdl-navigation__link" href="https://github.com/lihd1003/UofT-Course-Material-Repo">
+          <a class="mdl-navigation__link repo"href="">
             <i class="far fa-star mdl-color-text--white"></i>
-
           </a>
-          <a class="mdl-navigation__link" href="https://lihd1003.github.io">
+          <a class="mdl-navigation__link personal_page"  href="https://lihd1003.github.io">
             <i class="fab fa-github mdl-color-text--white"></i>
 
           </a>
@@ -55,14 +54,14 @@
       </div>
     </header>
     <div class="mdl-layout__drawer">
-       <span class="mdl-layout-title">Note Portal</span>
+       <span class="mdl-layout-title page_name_short"></span>
 
       <nav class="mdl-navigation">
-        <a class="mdl-navigation__link" href="https://github.com/lihd1003/UofT-Course-Material-Repo">
+        <a class="mdl-navigation__link repo">
           <i class="far fa-star"></i>
           Star the Repo
         </a>
-        <a class="mdl-navigation__link" href="https://lihd1003.github.io">
+        <a class="mdl-navigation__link personal_page">
           <i class="fab fa-github"></i>
           Main Page
         </a>
@@ -117,6 +116,18 @@
     $("#search").on("input", () => {
       list.search($("#search").val())
     })
+
+    $.ajax({
+      dataType: "json",
+      url: "./table_of_content/host_info.json",
+      success: (data) => {
+        $(".repo").attr("href", data.repo);
+        $(".personal_page").attr("href", data.personal_page);
+        $(".page_name").text(data.page_name);
+        $(".page_name_short").text(data.page_name_short);
+      },
+      async: false
+    });
   </script>
 </body>
 
