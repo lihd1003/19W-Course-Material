@@ -3,5 +3,5 @@
   "personal_page": "https://lihd1003.github.io/",
   "page_name": "UOFT COURSE MATERIAL REPO PORTAL",
   "page_name_short": "Note Portal",
-  "filter": ["checkpoint", "index.html", ".ipynb", ".tex", ".md", ".git", "table_of_content"]
+  "filter": ["checkpoint", "index.html", ".ipynb", ".tex", ".md", ".git", "table_of_content", "png", "jpg"]
 }
