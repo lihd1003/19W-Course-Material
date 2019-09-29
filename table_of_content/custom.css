@@ -1,0 +1,25 @@
+#ipython-main-app {
+    position: relative;
+	font-size: 12pt;
+	font-family: 'Roboto', serif;
+}
+#jupyter-main-app {
+    position: relative;
+	font-size: 12pt;
+}
+.tab-content .row {
+	margin-bottom: 10px;
+}
+
+.text_cell_render {
+	font-size: 12pt;
+	font-family: "Roboto", serif;
+	line-height: 2;
+}
+
+#notebook { padding-top:0px !important; } /* eliminate top gray */
+.container { width:80% !important; } /* eliminate side gray */
+.end_space { min-height:0px !important; } /* eliminate bottom gray */
+.prompt.input_prompt {
+	display: none;
+}
