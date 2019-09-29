@@ -17,9 +17,12 @@
 	line-height: 2;
 }
 
-#notebook { padding-top:0px !important; } /* eliminate top gray */
-.container { width:80% !important; } /* eliminate side gray */
-.end_space { min-height:0px !important; } /* eliminate bottom gray */
+@media only screen and (max-width: 600px) {
+.container { width:100%}
+}
+ .container { width:80% }
+
+
 .prompt.input_prompt {
 	display: none;
 }
