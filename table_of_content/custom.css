@@ -1,28 +1,32 @@
 #ipython-main-app {
     position: relative;
-	font-size: 12pt;
-	font-family: 'Roboto', serif;
+    font-size: 12pt;
+    font-family: 'Roboto', serif;
 }
 #jupyter-main-app {
     position: relative;
-	font-size: 12pt;
+    font-size: 12pt;
 }
 .tab-content .row {
-	margin-bottom: 10px;
+    margin-bottom: 10px;
 }
 
 .text_cell_render {
-	font-size: 12pt;
-	font-family: "Roboto", serif;
-	line-height: 2;
+    font-size: 12pt;
+    font-family: "Roboto Mono",;
+    line-height: 2;
 }
 
 @media only screen and (max-width: 600px) {
-.container { width:100%}
+    .container {
+        width:100%
+    }
 }
- .container { width:80% }
 
+.container {
+    width:80% 
+}
 
 .prompt.input_prompt {
-	display: none;
+    display: none;
 }
