@@ -1,8 +1,15 @@
+{%- extends 'base.tpl' -%}
+{% from 'mathjax.tpl' import mathjax %}
+
+
+{%- block header -%}
 <!DOCTYPE html>
 <html>
-<head><meta charset="utf-8" />
-
-<title>TUT3 - Notes Portal</title>
+<head>
+{%- block html_head -%}
+<meta charset="utf-8" />
+{% set nb_title = nb.metadata.get('title', '') or resources['metadata']['name'] %}
+<title>{{nb_title}} - Notes Portal</title>
 
 <link rel="icon" type="image/gif" href="https://lihd1003.github.io/assets/images/logo.png">
 <link rel="stylesheet" href="https://lihd1003.github.io/assets/css/vendor.css" />
@@ -10,7 +17,34 @@
 <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
 <script src="https://kit.fontawesome.com/98fa07784c.js"></script>
 
+{% block ipywidgets %}
+{%- if "widgets" in nb.metadata -%}
+<script>
+(function() {
+  function addWidgetsRenderer() {
+    var mimeElement = document.querySelector('script[type="application/vnd.jupyter.widget-view+json"]');
+    var scriptElement = document.createElement('script');
+    var widgetRendererSrc = '{{ resources.ipywidgets_base_url }}@jupyter-widgets/html-manager@*/dist/embed-amd.js';
+    var widgetState;
 
+    // Fallback for older version:
+    try {
+      widgetState = mimeElement && JSON.parse(mimeElement.innerHTML);
+
+      if (widgetState && (widgetState.version_major < 2 || !widgetState.version_major)) {
+        widgetRendererSrc = '{{ resources.ipywidgets_base_url }}jupyter-js-widgets@*/dist/embed.js';
+      }
+    } catch(e) {}
+
+    scriptElement.src = widgetRendererSrc;
+    document.body.appendChild(scriptElement);
+  }
+
+  document.addEventListener('DOMContentLoaded', addWidgetsRenderer);
+}());
+</script>
+{%- endif -%}
+{% endblock ipywidgets %}
 
 <style type="text/css">
 /* Overrides of notebook CSS for static HTML export */
@@ -18,7 +52,15 @@
 div#notebook {
   overflow: visible;
   border-top: none;
-}@media print {
+}
+
+{%- if resources.global_content_filter.no_prompt-%}
+div#notebook-container{
+  padding: 6ex 12ex 8ex 12ex;
+}
+{%- endif -%}
+
+@media print {
   div.cell {
     display: block;
     page-break-inside: avoid;
@@ -38,27 +80,12 @@ div#notebook {
 <link rel="stylesheet" href="https://lihd1003.github.io/UofT-Course-Material-Repo/table_of_content/custom.css">
 
 <!-- Loading mathjax macro -->
-<!-- Load mathjax -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS_HTML"></script>
-    <!-- MathJax configuration -->
-    <script type="text/x-mathjax-config">
-    MathJax.Hub.Config({
-        tex2jax: {
-            inlineMath: [ ['$','$'], ["\\(","\\)"] ],
-            displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
-            processEscapes: true,
-            processEnvironments: true
-        },
-        // Center justify equations in code and markdown cells. Elsewhere
-        // we use CSS to left justify single line equations in code cells.
-        displayAlign: 'center',
-        "HTML-CSS": {
-            styles: {'.MathJax_Display': {"margin": 0}},
-            linebreaks: { automatic: true }
-        }
-    });
-    </script>
-    <!-- End of mathjax configuration --></head>
+{{ mathjax() }}
+{%- endblock html_head -%}
+</head>
+{%- endblock header -%}
+
+{% block body %}
 <body>
 	<!-- header -->
    <header class="header-sticky header-dark">
@@ -95,8 +122,8 @@ div#notebook {
     <div class="container">
       <div class="row align-items-center">
         <div class="col text-shadow">
-
-          <h1 class="mb-0">TUT3</h1>
+{% set nb_title = nb.metadata.get('title', '') or resources['metadata']['name'] %}
+          <h1 class="mb-0">{{nb_title}}</h1>
         </div>
       </div>
     </div>
@@ -104,53 +131,7 @@ div#notebook {
  <section class="bg-white sec" id="project">
   <div tabindex="-1" id="notebook" class="border-box-sizing">
     <div class="container" id="notebook-container">
-
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<ol>
-<li>A closed subset $C\subseteq \mathbb{R}$ is complete.   </li>
-</ol>
-<p><em>proof</em>. Let $\{x_n\}$ be Cauchy, then it's convergent, since closed, its convergent limit is in $C$.</p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<ol>
-<li>$S = \{\sum^n_{k=1} k^{-2}: n\in\mathbb{N}^+\}$  </li>
-</ol>
-<p>Not open: $1+\epsilon$ is not in the set.</p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<ol>
-<li>An arbitrary intersection $\cap_{n\geq 1}C_n$ of compact sets $C_n$ is compact. </li>
-</ol>
-<p><em>proof</em>. Compact $\Rightarrow C_n$ closed $\Rightarrow$ $\cap C_n$ closed.<br>
-Also, $\cap C_n$ is bounded by any $C_n$</p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<ol>
-<li>$\mathbb{Q}\cap[0,1]$ is not compact</li>
-</ol>
-<p>Consider the sequence $x_1 = 3, x_2 = 3.1, x_3 = 3.14, ...$<br>
-$x_n\rightarrow \pi\in\mathbb{Q}^c$. This sequence is monotone increasing, All its subsequence then must convergent to $\pi$</p>
-
-</div>
-</div>
-</div>
+{{ super() }}
     </div>
   </div>
 </section>
@@ -158,8 +139,9 @@ $x_n\rightarrow \pi\in\mathbb{Q}^c$. This sequence is monotone increasing, All i
   <script src="https://lihd1003.github.io/assets/js/app.js"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 </body>
+{%- endblock body %}
 
- 
-
-
+{% block footer %}
+{{ super() }}
 </html>
+{% endblock footer %}

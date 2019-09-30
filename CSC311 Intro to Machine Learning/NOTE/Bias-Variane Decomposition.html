@@ -2,7 +2,7 @@
 <html>
 <head><meta charset="utf-8" />
 
-<title>ARIMA - Notes Portal</title>
+<title>Bias-Variane Decomposition - Notes Portal</title>
 
 <link rel="icon" type="image/gif" href="https://lihd1003.github.io/assets/images/logo.png">
 <link rel="stylesheet" href="https://lihd1003.github.io/assets/css/vendor.css" />
@@ -96,7 +96,7 @@ div#notebook {
       <div class="row align-items-center">
         <div class="col text-shadow">
 
-          <h1 class="mb-0">ARIMA</h1>
+          <h1 class="mb-0">Bias-Variane Decomposition</h1>
         </div>
       </div>
     </div>
@@ -108,10 +108,7 @@ div#notebook {
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h4 id="ARIMA">ARIMA<a class="anchor-link" href="#ARIMA">&#182;</a></h4><p>For nonstationary time series, applying difference operators repeatedly to the data $\{X_t\}$ until the differenced observations resemble a realization of some stationary process $\{W_t\}$</p>
-<p><strong>ARIMA(p,q,d)</strong> $\{X_t\}$ is said to follow an ARIMA(p,q,d) model if $W_t = (1-B)^d X_t$ is stationary ARMA model. i.e. 
-$$(1-B)^d \Phi(B)X_t = \Theta(B)a_t, a_t \sim NID(0,\sigma^2)$$</p>
-<p>A series follows a stationary ARMA model after differencing $d$ times, i.e. $(1-B)^d X_t$, such process is called an $I(d)$ process.</p>
+<h3 id="Loss-function">Loss function<a class="anchor-link" href="#Loss-function">&#182;</a></h3><p>A loss function $L(y,t)$ defines how bad it is if, for some example $x$, the algorithm predicts $y$, but the target is actually $t$</p>
 
 </div>
 </div>
@@ -119,8 +116,11 @@ $$(1-B)^d \Phi(B)X_t = \Theta(B)a_t, a_t \sim NID(0,\sigma^2)$$</p>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p><strong>Example</strong> whether $(1-B)^2 X_y$ is stationary</p>
-<p>$(1-B)^2 X_t = X_t-2B X_t + B^2 X_t = X_t - 2X_{t-1}+X_{t-2}$</p>
+<h3 id="Bias-Variance-Decomposition">Bias-Variance Decomposition<a class="anchor-link" href="#Bias-Variance-Decomposition">&#182;</a></h3><p>Suppose the training set $\mathcal D$ consists of $N$ pairs sampled IID from a sample generating distribution, i.e. $(x^{(i)}, t^{(i)})\sim p_{sample}$<br>
+Let $p_{\mathcal D}$ denote the induced distribution over training set $i.e. \mathcal D\sim p_{\mathcal D}$</p>
+<p>Pick a fixed query point $\vec x$, then consider an experiment where we sample lots of (say $m$ times) training datasets IID from $p_{\mathcal D}$</p>
+<p>Then, we can produce $h_{k,\mathcal D}, k\in\{1,2,...,m\}$ and we compute each classifier's prediction $h_{k,\mathcal D}(\vec x) = y$ at the chosen query point $\vec x$</p>
+<p>Therefore, $y$ is a random variable, i.e. $D\Rightarrow h_{\mathcal D}\Rightarrow h_{\mathcal D}(\vec x)=y, \mathcal D$ is randomly chosen.</p>
 
 </div>
 </div>
@@ -128,39 +128,12 @@ $$(1-B)^d \Phi(B)X_t = \Theta(B)a_t, a_t \sim NID(0,\sigma^2)$$</p>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h4 id="Dickey-Fuller-unit-root-test">Dickey Fuller unit root test<a class="anchor-link" href="#Dickey-Fuller-unit-root-test">&#182;</a></h4><p>The DF test is used to test $I(1)$ processes.<br>
-Consider $X_t = \phi X_{t-1} + a_t. a_t \sim NID(0,\sigma^2)$,<br>
-then $\Delta X_t = (\phi - 1) X_{t-1} + a_t = \pi X_{t-1} + a_t$<br>
-$H_0: \pi = 0, i.e. X_t\sim I(1)$</p>
-<p>The general DF test may contain an intercept and a deterministic time trend as $\Delta X_t = a+\tau^T DR_t + \pi X_{t-1} + a_t$</p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h4 id="Augmented-Dickey-Fuller-test">Augmented Dickey-Fuller test<a class="anchor-link" href="#Augmented-Dickey-Fuller-test">&#182;</a></h4><p>Problems with basic DF</p>
-<ul>
-<li>The basic DF test considers only a single unit root</li>
-<li>Correct model specification<ul>
-<li>correct specification of time trend and intercept</li>
-<li>The DGP may contain both AR and MA terms </li>
-<li>There might be structural breaks in the data</li>
-</ul>
-</li>
-</ul>
-<p>ADF test equation</p>
-$$\Delta X_t = \tau^T DR_t + \pi X_{t-1}+\sum_{j=1}^k \gamma_j\Delta X_{t-j} + a_t$$<p>where $k=p-1$, the equation use the autoregression to take into account the presence of serial correlated errors.</p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h4 id="Box-cov-transformation">Box-cov transformation<a class="anchor-link" href="#Box-cov-transformation">&#182;</a></h4><p>If the variance is not stationary, we can try stablize it with a Box Cox transformation, i.e. include $\lambda$ as one of the parameters 
-$\Phi(B)(X_t^\lambda - \mu) = \Theta(B)a_t$, then choose $\lambda, \Phi, \Theta$ based on Minimized RMSE.</p>
+<h4 id="Basic-setup">Basic setup<a class="anchor-link" href="#Basic-setup">&#182;</a></h4><p>Assume $t$ is deterministic given $x$<br>
+There is a distribution over the loss at $\vec x$, with $E_{\mathcal D\sim p_{\mathcal D}}(L(h_{\mathcal D}(x), t))$<br>
+For each query point, the expected loss is different. We are interested in quantifying how well our classifier does over $p_{sample}$ average over training set $E_{\vec x\sim p_{sample}, \mathcal D\sim p_{\mathcal D}}(L(h_{\mathcal D}(\vec x), t))$<br>
+Then, we can decompose the expected loss 
+$$\begin{align}</p>
+<p>\end{align}$$</p>
 
 </div>
 </div>
