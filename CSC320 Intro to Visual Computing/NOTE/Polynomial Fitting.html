@@ -2,7 +2,7 @@
 <html>
 <head><meta charset="utf-8" />
 
-<title>Image Features - Interest Point Detection - Notes Portal</title>
+<title>Polynomial Fitting - Notes Portal</title>
 
 <link rel="icon" type="image/gif" href="https://lihd1003.github.io/assets/images/logo.png">
 <link rel="stylesheet" href="https://lihd1003.github.io/assets/css/vendor.css" />
@@ -96,7 +96,7 @@ div#notebook {
       <div class="row align-items-center">
         <div class="col text-shadow">
 
-          <h1 class="mb-0">Image Features - Interest Point Detection</h1>
+          <h1 class="mb-0">Polynomial Fitting</h1>
         </div>
       </div>
     </div>
@@ -108,15 +108,71 @@ div#notebook {
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Image-Stitching">Image Stitching<a class="anchor-link" href="#Image-Stitching">&#182;</a></h2><p>When matching to images, and even to merge into one.<br>
-<strong>Detection</strong> identify the interest points<br>
-<strong>Description</strong> extract <strong>feature vector</strong> around each interest point<br>
-<strong>Matching</strong> determine correspondence between descriptors in two views</p>
-<p>The goal is to detect the same points in both images, the number of points must be generated in each image independently, and must have a sufficient number for comparison, while at the same time not too many, which makes the algorithm slow.</p>
-<h4 id="What-are-good-characteristics-for-a-interest-point">What are good characteristics for a interest point<a class="anchor-link" href="#What-are-good-characteristics-for-a-interest-point">&#182;</a></h4><p>Must have somewhat unique texture in the local sense<br>
-Large contrast changes, i.e. gradients<br>
-Edge is less useful since line segments can be localized on any place with the same orientation (aperture problem)<br>
-Therefore, we need at least two different orientations, which can be reliably matched</p>
+<h4 id="Goal">Goal<a class="anchor-link" href="#Goal">&#182;</a></h4><p>Since an image is a discrete mapping of pixels, while the real world is "continuous", we want to fit the pixels by a continuous functions so that we can extract information.</p>
+<h4 id="Sliding-Window-Algorithm">Sliding Window Algorithm<a class="anchor-link" href="#Sliding-Window-Algorithm">&#182;</a></h4><ul>
+<li>Define a "pixel window" centered at pixel $(x, y)$ so that an 1D patch can be $(0, y)\sim (2x,y)$</li>
+<li>Fit a n-degree polynomial to the intensities (commonly $n \leq 2$)</li>
+<li>Assign the poly's derivatives at $x=0$ to pixel at windows's center</li>
+<li>Slide window one pixel over until window reaches border</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h4 id="Taylor-series-Approximation-of-Images">Taylor-series Approximation of Images<a class="anchor-link" href="#Taylor-series-Approximation-of-Images">&#182;</a></h4><p>Consider a 1D patch from $(0,y)$ to $(2x,y)$<br>
+Consider the Taylor expansion of $I$ centered at $0$
+$$I(\vec x) = \sum_{i=0}^\infty \frac{d^iI}{d\vec x^i}\vec x^i I(0) \approx \sum_{i=0}^N \frac{d^iI}{d\vec x^i}\vec x^i I(0) + R_{N+1}(x)$$
+Thus, we can write it as 
+$$I(x) = [1, x, x^2/2, x^3/6,...,x^n/n!][I(0), d_xI(0), d^2_{x^2}I(0), ..., d^n_{x^n}I(0)]^T$$</p>
+<p>Note that we have $2x+1$ pixels in the patch, ranges from $-x$ to $x$, let their intensities be $I_x$. So that we have
+$$
+\begin{bmatrix}
+I_{-x}\\
+I_{-x+1}\\
+...\\
+I_{x-1}\\
+I_{x}
+\end{bmatrix}=
+\begin{bmatrix}
+1 &amp;-x &amp;...&amp;(-x)^n/n!\\
+1 &amp;(-x+1) &amp;...&amp;(-x+1)^n/n!\\
+... &amp;... &amp;...&amp;...\\
+1 &amp;(x-1) &amp;...&amp;(x-1)^n/n!\\
+1 &amp;x &amp;...&amp;x^n/n!\\
+\end{bmatrix}  
+\begin{bmatrix}
+I(0)\\d_xI(0)\\...\\d^{n-1}_{x^{n-1}}I(0)\\d^n_{x^n}I(0)\end{bmatrix}$$
+$$I_{(2x+1)\times 1}=X_{(2x+1)\times n}d_{n\times 1}$$
+where $I, X$ are known and we want to solve $d$</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Since this is not always have a solution. We want to minimize the "fit error" $\|I-Xd\|^2 = \sqrt{\sum^n I_i^2}$</p>
+<p>When $n = 1$, obviously $d$ is minimized at mean, i.e. $\sum^{2x+1} I_i / (2x+1)$</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h4 id="Weighted-least-square-estimation">Weighted least square estimation<a class="anchor-link" href="#Weighted-least-square-estimation">&#182;</a></h4><p>If we want to extract more information, or in favor of, the neighboring points, we can have $I' = \Omega I$ where $\Omega$ is the weight function.</p>
+<p>In 1-D case, let $\Omega = diag(\omega_1, ..., \omega_{2x+1})$, we want to solve $\Omega I = \Omega X d$ which is to minimize $\|\Omega(I-Xd)\|^2$</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h4 id="RANSAC">RANSAC<a class="anchor-link" href="#RANSAC">&#182;</a></h4><p>See CSC420 Notes</p>
 
 </div>
 </div>

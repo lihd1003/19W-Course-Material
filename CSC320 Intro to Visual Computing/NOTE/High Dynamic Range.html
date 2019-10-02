@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html>
+<head><meta charset="utf-8" />
+
+<title>High Dynamic Range - Notes Portal</title>
+
+<link rel="icon" type="image/gif" href="https://lihd1003.github.io/assets/images/logo.png">
+<link rel="stylesheet" href="https://lihd1003.github.io/assets/css/vendor.css" />
+<link rel="stylesheet" href="https://lihd1003.github.io/assets/css/style.css" />
+<link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
+<script src="https://kit.fontawesome.com/98fa07784c.js"></script>
+
+
+
+<style type="text/css">
+/* Overrides of notebook CSS for static HTML export */
+
+div#notebook {
+  overflow: visible;
+  border-top: none;
+}@media print {
+  div.cell {
+    display: block;
+    page-break-inside: avoid;
+  } 
+  div.output_wrapper { 
+    display: block;
+    page-break-inside: avoid; 
+  }
+  div.output { 
+    display: block;
+    page-break-inside: avoid; 
+  }
+}
+</style>
+
+<!-- Custom stylesheet, it must be in the same directory as the html file -->
+<link rel="stylesheet" href="https://lihd1003.github.io/UofT-Course-Material-Repo/table_of_content/custom.css">
+
+<!-- Loading mathjax macro -->
+<!-- Load mathjax -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS_HTML"></script>
+    <!-- MathJax configuration -->
+    <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+            displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+            processEscapes: true,
+            processEnvironments: true
+        },
+        // Center justify equations in code and markdown cells. Elsewhere
+        // we use CSS to left justify single line equations in code cells.
+        displayAlign: 'center',
+        "HTML-CSS": {
+            styles: {'.MathJax_Display': {"margin": 0}},
+            linebreaks: { automatic: true }
+        }
+    });
+    </script>
+    <!-- End of mathjax configuration --></head>
+<body>
+	<!-- header -->
+   <header class="header-sticky header-dark">
+    <div class="container">
+      <nav class="navbar navbar-expand-lg navbar-dark">
+        <a class="navbar-brand" href="./index.html">
+          <img class="navbar-logo navbar-logo-light" src="https://lihd1003.github.io/assets/images/logo.png" alt="Logo">
+          <img class="navbar-logo navbar-logo-dark" src="https://lihd1003.github.io/assets/images/logo.png" alt="Logo">
+        </a>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav align-items-center mr-auto">
+          </ul>
+
+          <ul class="navbar-nav align-items-center mr-0">
+            <li class="nav-item">
+              <a href="https://github.com/lihd1003" class="nav-link waves-effect waves-light" target="_blank">
+                <i class="icon-github mr-2"></i>GitHub
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="https://github.com/lihd1003/UofT-Course-Material-Repo" class="nav-link waves-effect waves-light" target="_blank">
+                <i class="icon-star mr-2"></i>Star the Repo
+              </a>
+            </li>
+          </ul>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+<section class="hero hero-with-header text-white" data-top-top="transform: translateY(0px);" data-top-bottom="transform: translateY(250px);">
+    <div class="image image-overlay" style="background-image:url(https://lihd1003.github.io/assets/images/black.jpg)"></div>
+    <div class="container">
+      <div class="row align-items-center">
+        <div class="col text-shadow">
+
+          <h1 class="mb-0">High Dynamic Range</h1>
+        </div>
+      </div>
+    </div>
+ </section>
+ <section class="bg-white sec" id="project">
+  <div tabindex="-1" id="notebook" class="border-box-sizing">
+    <div class="container" id="notebook-container">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Dynamic-Range">Dynamic Range<a class="anchor-link" href="#Dynamic-Range">&#182;</a></h3><p>$DR := \frac{L_{max}}{L_{min}}$ where $L$ is the the brightness of the visible in the photo<br>
+Measured in $EV := \lg(DR)$</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h4 id="Problem-with-DR">Problem with DR<a class="anchor-link" href="#Problem-with-DR">&#182;</a></h4><p>Human perception can detect $\sim 14 EV$ stops, while 8-bit image can only represent $\sim 6$ stops (due to the $\gamma$-function), even the best sensor can capture $14$ bits.pixel, and TV can only display $6-10$ stops</p>
+<p>On the images, bright pixels will saturate the sensor, while the dark pixels are below the the threshold required to be represented</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h4 id="General-Ideas-of-HDR">General Ideas of HDR<a class="anchor-link" href="#General-Ideas-of-HDR">&#182;</a></h4><p><strong>Capturing</strong> taking photos at multiple EV to capture more<br>
+<strong>Display</strong> find a mapping function that can display more tones from HDR images in 8-bit LDR display</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Inverse-Camera-Response-Function">Inverse Camera Response Function<a class="anchor-link" href="#Inverse-Camera-Response-Function">&#182;</a></h3><p>Let $\Phi$ represent the scene irradiance, $Z(x,y)$ be the camera recorded value on $(x,y)$. 
+Consider $\Delta t$ be he different exposure time. Then, $$Z = f_{camera}(\Phi\Delta_t)$$
+where $f_{camera}$ is all the remapping from RAW (i.e. gamma function). 
+Then if we know how to approximate the inverse of $f_{camera}$, then we can know the original $\Phi\Delta_t$, then the algorithm is to</p>
+<div class="highlight"><pre><span></span><span class="k">for</span> <span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span> <span class="ow">in</span> <span class="nb">all</span> <span class="n">image</span> <span class="n">pixel</span><span class="p">:</span>
+    <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="n">photos</span> <span class="k">with</span> <span class="n">exposure</span> <span class="n">time</span> <span class="n">delta_t</span><span class="p">(</span><span class="n">j</span><span class="p">):</span>
+        <span class="n">estimate</span> <span class="n">Phi_ij</span> <span class="n">by</span> <span class="n">Z</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">)</span> <span class="ow">and</span> <span class="n">delta_t</span><span class="p">(</span><span class="n">j</span><span class="p">)</span>
+<span class="n">estimate</span> <span class="n">Phi_i</span> <span class="n">by</span> <span class="n">Phi_ij</span><span class="s1">&#39;s</span>
+<span class="n">output</span> <span class="n">Phi_i</span> <span class="k">with</span> <span class="n">image</span> <span class="n">response</span> <span class="n">function</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h4 id="Log-inverse-Response-Function">Log-inverse Response Function<a class="anchor-link" href="#Log-inverse-Response-Function">&#182;</a></h4>$$g(Z) = log(f^{-1}(Z)) = \log\Phi + \log\Delta_t$$<p>i.e. the log of inverse response function<br>
+Also, note $Z\in \mathbb N. Z \leq 255$, thus we only need to approximate $256$ values</p>
+<p>Then, note that we have $N$ pixels and $P$ images, i.e. $NP$ equations and $N + 256$ unknowns. i.e.</p>
+$$g(Z_{ij}) - \log \Phi_i = \log \Delta t_{j}$$<p>
+where $Z_{ij}, \log\Delta t_j$ are known, $g, \log\Phi_i$ are unknown
+Then, denote $g_{ij} = g(Z_{ij}), \phi_i = \log \Phi_i, \delta_j = \log \Delta t_j$<br>
+Let 
+$$\vec x = [g(0), g(1), ..., g(255), \phi_1,...,\phi_N]^T$$<br>
+$$\vec b = [\underset{j\text{ times}}{\delta_1,...,\delta_1},...,\underset{j\text{ times}}{\delta_i,...,\delta_i}]$$
+$$A_{NP\times 256+N}$$
+where for the $ij$th row, $A[Z_{ij}+1] = 1, A[256+i] = -1$</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h4 id="Smoothness-Constraints">Smoothness Constraints<a class="anchor-link" href="#Smoothness-Constraints">&#182;</a></h4><p>Since we know that $g$ is a smoothly increasing function, i.e. 
+$$g_{z+1} - g_z \approx g_{z} - g_{z-i}\Rightarrow 2g_z - g_{z+1} - g_{z-1}\approx 0$$ 
+so we add the $254$ equations</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h4 id="Final-Equation">Final Equation<a class="anchor-link" href="#Final-Equation">&#182;</a></h4>$$\Phi_i = \exp(\frac{\sum^P w(Z_{ij} \log \phi_{ij})}{\sum^P w(Z_{ij})})$$<p>$w$ is a weighting factor that depends on the pixel value, i.e. the integer approximation of $g$</p>
+
+</div>
+</div>
+</div>
+    </div>
+  </div>
+</section>
+  <script src="https://lihd1003.github.io/assets/js/vendor.js"></script>
+  <script src="https://lihd1003.github.io/assets/js/app.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+</body>
+
+ 
+
+
+</html>
