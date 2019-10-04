@@ -2,7 +2,7 @@
 <html>
 <head><meta charset="utf-8" />
 
-<title>2. Extremum - Notes Portal</title>
+<title>Bagging and Random Forest - Notes Portal</title>
 
 <link rel="icon" type="image/gif" href="https://lihd1003.github.io/assets/images/logo.png">
 <link rel="stylesheet" href="https://lihd1003.github.io/assets/css/vendor.css" />
@@ -96,7 +96,7 @@ div#notebook {
       <div class="row align-items-center">
         <div class="col text-shadow">
 
-          <h1 class="mb-0">2. Extremum</h1>
+          <h1 class="mb-0">Bagging and Random Forest</h1>
         </div>
       </div>
     </div>
@@ -108,19 +108,15 @@ div#notebook {
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Extremum">Extremum<a class="anchor-link" href="#Extremum">&#182;</a></h3>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p><strong>Bound</strong>  A set $S\subset\mathbb{R}$ is<br>
-<strong>bounded above</strong> $\exists M\in\mathbb{R}. \forall s \in S. s\leq M. $<br>
-<strong>bounded below</strong> $\exists L\in\mathbb{R}. \forall s \in S. s\geq L. $</p>
-<p><strong>Supremum</strong> $sup(S)\in\mathbb{R}$ is a upper bound and $\forall v. v\geq sup(S)\land v$ is upper bound.<br>
-<strong>Infimum</strong> $inf(S)\in\mathbb{R}$ is a lower bound and $\forall v. v\leq inf(S)\land v$ is lower bound.</p>
-<p><strong>Proposition</strong> $u$ is a supremum of $S$ IFF $u$ is a upper bound and $\forall \epsilon &gt; 0. \exists s_\epsilon \in S. u-\epsilon &lt; s_\epsilon$</p>
+<h2 id="Bagging">Bagging<a class="anchor-link" href="#Bagging">&#182;</a></h2><h3 id="Intuition">Intuition<a class="anchor-link" href="#Intuition">&#182;</a></h3><p>Suppose we sample $m$ indep. training set $D_i$ from $p_d$, we could then learn a predictor $h_i := h_{D_i}$ based on each one, then take the average $h = \sum^m h_i /m$</p>
+<p>Bias unchanged
+$$E_{D_1,...,D_m \sim p_d}h(x) = \frac{1}{m} \sum^m E_{D_i\sim p_{d}}h_i(x) = E_{D\sim p_d} h_D(x)$$</p>
+<p>Variance becomes $1/m$ of the original 
+$$var_{D_1,...,D_m}(h(x)) = \frac{1}{m^2}var_{D_i}(h_i(x)) = \frac{1}{m}var_D(h_D(x))$$</p>
+<p>However, we don't such iid datasets from $p_d$</p>
+<p>So we have to take a single dataset $D$ with $n$ examples<br>
+Generate $m$ new datasets by sampling $n$ training examples from $D$, with replacement<br>
+Average the predictions of models trained on each of these</p>
 
 </div>
 </div>
@@ -128,19 +124,13 @@ div#notebook {
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h4 id="Least-upper-bound-principle">Least upper bound principle<a class="anchor-link" href="#Least-upper-bound-principle">&#182;</a></h4><p>$\forall S\neq \emptyset, S$ bounded above. $S$ has a supremum.</p>
-<p><em>proof</em>.  Since bounded above, take $M\in\mathbb{R}$ where $\forall s \in S. M\geq s$.<br>
-Pick $s'=s_0.s_1 \in S\Rightarrow M\geq s'\Rightarrow m_0 + 1 &gt; s_0$.<br>
-Find lowest $a_0\in \{s_0, ..., m_0 + 1\}$ that is an upper bound for $S$.</p>
-<p><em>Induction</em> $y_n = \sum_0^n a_i / 10^i$ where $a_i=\min\{a \in \{0, 1, ..., 9\}\mid y_i \geq S\}$. Take $x_n \in S$ s.t. $a_0.a_1...a_n - 10^{-n}\leq x_n \leq y_n$</p>
-<p><em>WTS</em> $L = a_0.a_1... = sup(S)$</p>
-<p>Upper bound property: start with any $s_0.s_1,... \in S$ either</p>
-<ol>
-<li>$\forall i. s_i = a_i\Rightarrow S = L$  </li>
-<li>$\exists k$ be the first different digit and $s_k &gt; a_k$
-Construct $y_k^* = a_0.a_1...a_{k-1}s_k$. then $L &lt; y_k^*\leq s_0.s_1$, while by the ordering this cannot happen. </li>
-</ol>
-<p>Subsequence Property: For each $\epsilon$, you can pick $n &gt; 0$ s.t. $L-\epsilon \leq L - 10^{-n} \leq x_n \leq y_n &lt; L$</p>
+<h4 id="Problem-with-independence">Problem with independence<a class="anchor-link" href="#Problem-with-independence">&#182;</a></h4><p>Let correlation be $\rho$, the variance with correlated datasets is 
+$$var(h(x)) = \frac{1}{m}(1-\rho)\sigma^2 + \rho\sigma^2$$</p>
+<p>Ironically, introduce additional variability reduces correlation between samples</p>
+<ul>
+<li>invest a diversified portfolio, not just one stock</li>
+<li>help to use average over multiple algorithms, or multiple configurations</li>
+</ul>
 
 </div>
 </div>
@@ -148,8 +138,9 @@ Construct $y_k^* = a_0.a_1...a_{k-1}s_k$. then $L &lt; y_k^*\leq s_0.s_1$, while
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p><strong>Claim</strong> Uniqueness of supremum</p>
-<p><em>proof</em> Assume $\exists u,v$ be two supremums, $v &lt; u$. Take $\epsilon = u -v, \forall \epsilon &gt; 0. \exists s_\epsilon \in S \Rightarrow u - (u-v) &lt; s_\epsilon \Rightarrow v &lt; s_\epsilon$.</p>
+<h3 id="Random-Forests">Random Forests<a class="anchor-link" href="#Random-Forests">&#182;</a></h3><h4 id="General-Idea">General Idea<a class="anchor-link" href="#General-Idea">&#182;</a></h4><p>When choose each node of the decision tree, choose a random set of $d$ features, and only consider splits on those features</p>
+<p>The main idea is to improve the variance reduction of bagging by reducing the correlation between the trees</p>
+<p>One of the example for black-box ML algorithm</p>
 
 </div>
 </div>
@@ -157,10 +148,11 @@ Construct $y_k^* = a_0.a_1...a_{k-1}s_k$. then $L &lt; y_k^*\leq s_0.s_1$, while
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p><strong>Claim</strong> For all bounded above set $A$ and $c\geq 0$. $\sup(cA) = c \sup(A)$</p>
-<p><em>proof</em>. Let $M = \sup(A)$.<br>
-Upper bound property: $\forall s. s\leq M \Rightarrow cs \leq cM$<br>
-Subsequence property: Let $\epsilon \geq 0$, take $s_{\epsilon/c}$, then $cs_{\epsilon/c}\geq u - \epsilon$</p>
+<h3 id="Bayes-Optimality">Bayes Optimality<a class="anchor-link" href="#Bayes-Optimality">&#182;</a></h3><p>What if $t$ is not deterministic given $\vec x$, i.e. $p(t\mid \vec x)$.</p>
+<p>Since there is a distribution over targets, we measure distance from $y_*(x) = E(t\mid \vec x)$<br>
+$$E[(y-t)^2 \mid \vec x] = (y - y_*(\vec x))^2 + var[t\mid \vec x]$$<br>
+The first term show that s $y=y_*(\vec x)$ is the minimized value</p>
+<p><strong>Bayes error / irreducible error</strong> The second term is the inherent unpredicatability, or noise, of the target.</p>
 
 </div>
 </div>

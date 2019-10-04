@@ -150,6 +150,8 @@ $$\|x\| - \|y\| = \|y + x -y\| - \|y\|\leq \|y\| + \|x - y\| - \|y\| = \|x-y\|$$
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h4 id="Norm-for-matrices">Norm for matrices<a class="anchor-link" href="#Norm-for-matrices">&#182;</a></h4><p>One common way to get a matrix norm is from a vector norm $\|A\| = \max_{x\neq 0} \frac{\|A\vec x\|}{\|\vec x\|}$, i.e. how much $A$ can expand $\vec x$.</p>
+<p><strong>Theorem</strong> $\|A\| = \max_{x\neq 0} \frac{\|Ax\|}{\|x\|} = \max_{\|x\|=1} \|Ax\|$</p>
+<p><em>proof</em>. $$\max_{x\neq 0} \frac{\|Ax\|}{\|x\|} = \max\frac{\|A(x/\|x\|)\|}{\|x\|/\|x\|} = \max_{\|x\|=1}\|Ax\|$$</p>
 <p>Matrix norm is <strong>induced by / subordinate to</strong> the vector norm,</p>
 <p><strong>Examples</strong> Given $A_{n\times n}$ 
 $$\|A\|_1 = \max \frac{\|Ax\|_1}{\|x\|_1} = \max_{j = 1...n} \sum_{i=1}^n |A_{ij}| = \text{max column sum}$$
@@ -181,6 +183,9 @@ $\forall n\in\mathbb Z^+. \exists c_{1, n}, c_{2, n} &gt; 0. \forall x\in \mathb
   <script src="https://lihd1003.github.io/assets/js/vendor.js"></script>
   <script src="https://lihd1003.github.io/assets/js/app.js"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script>
+    $("table").addClass("table table-lined")
+  </script>
 </body>
 
  

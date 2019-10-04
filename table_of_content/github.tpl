@@ -138,6 +138,9 @@ div#notebook-container{
   <script src="https://lihd1003.github.io/assets/js/vendor.js"></script>
   <script src="https://lihd1003.github.io/assets/js/app.js"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script>
+    $("table").addClass("table table-lined")
+  </script>
 </body>
 {%- endblock body %}
 
