@@ -1,1258 +1,23 @@
 [
   {
-    "name": "Week 11 Lecture Summary.pdf",
-    "path": "./CSC373 Algorithm Design, Analysis and Complexity/LECTURE",
-    "type": "book"
-  },
-  {
-    "name": "Functional dependency.html",
-    "path": "./CSC343 Introduction to Databases/NOTES",
-    "type": "note"
-  },
-  {
-    "name": "Summary.html",
-    "path": "./STA303 Methods of Data Analysis II",
-    "type": "note"
-  },
-  {
-    "name": "SQL Schema.html",
-    "path": "./CSC343 Introduction to Databases/NOTES",
-    "type": "note"
-  },
-  {
-    "name": "pub",
-    "path": "./CSC309 Programming on the Web/nodejs/mar11_express",
-    "type": "folder"
-  },
-  {
-    "name": "A4solution.pdf",
-    "path": "./CSC265 Enriched Data Structures and Analysis/ASSIGNMENT",
-    "type": "book"
-  },
-  {
-    "name": "ARMA.html",
-    "path": "./STA457 Time Series Analysis/0-NOTES",
-    "type": "note"
-  },
-  {
-    "name": "9. Arzela-Ascoli Theorem.html",
-    "path": "./MAT337 Introduction to Real Analysis/NOTE",
-    "type": "note"
-  },
-  {
-    "name": "ll.c",
-    "path": "./CSC209 Software Tools and Systems Programming/w9/header_files_demo/version3",
-    "type": "build"
-  },
-  {
-    "name": "Multivariate time series (29Oct2018).pdf",
-    "path": "./STA457 Time Series Analysis/5-VAR",
-    "type": "book"
-  },
-  {
-    "name": "A1handout.pdf",
-    "path": "./CSC373 Algorithm Design, Analysis and Complexity/ASSIGNMENT",
-    "type": "book"
-  },
-  {
-    "name": "data",
-    "path": "./JSC270 Data Science I/class3",
-    "type": "folder"
-  },
-  {
-    "name": "feb25_node",
-    "path": "./CSC309 Programming on the Web/nodejs",
-    "type": "folder"
-  },
-  {
-    "name": "w9",
-    "path": "./CSC209 Software Tools and Systems Programming",
-    "type": "folder"
-  },
-  {
-    "name": "calls_and_pointers_sol.pdf",
-    "path": "./CSC209 Software Tools and Systems Programming/w2",
-    "type": "book"
-  },
-  {
-    "name": "Final Review.html",
-    "path": "./MAT337 Introduction to Real Analysis",
-    "type": "note"
-  },
-  {
-    "name": "assembly_slides.pdf",
-    "path": "./CSC258 Computer Organization",
-    "type": "book"
-  },
-  {
-    "name": "basic prereqiosote  mat.pdf",
-    "path": "./CSC240 Enriched Introduction to the Theory of Computation",
-    "type": "book"
-  },
-  {
-    "name": "week5_rm_annotated.pdf",
-    "path": "./STA303 Methods of Data Analysis II/Binary Logistic Regression",
-    "type": "book"
-  },
-  {
-    "name": "feb11_library.js",
-    "path": "./CSC309 Programming on the Web/DOM/feb11_event2",
-    "type": "build"
-  },
-  {
-    "name": "Week6_rm_annotated.pdf",
-    "path": "./STA303 Methods of Data Analysis II/Binary Logistic Regression",
-    "type": "book"
-  },
-  {
-    "name": "CSC309 Programming on the Web",
-    "path": ".",
-    "type": "folder"
-  },
-  {
-    "name": "lecture5_ver1.html",
-    "path": "./JSC270 Data Science I/class5",
-    "type": "note"
-  },
-  {
-    "name": "stack.c",
-    "path": "./CSC209 Software Tools and Systems Programming/w9/header_files_demo/version3",
-    "type": "build"
-  },
-  {
-    "name": "todo.js",
+    "name": "todo_list.html",
     "path": "./CSC309 Programming on the Web/javascript/lab4",
-    "type": "build"
-  },
-  {
-    "name": "mongoose.js",
-    "path": "./CSC309 Programming on the Web/nodejs/mar18-mongo/db",
-    "type": "build"
-  },
-  {
-    "name": "MTS_R (27 Nov 2017).pdf",
-    "path": "./STA457 Time Series Analysis/5-VAR",
-    "type": "book"
-  },
-  {
-    "name": "Greedy Algorithm Tut.html",
-    "path": "./CSC373 Algorithm Design, Analysis and Complexity/NOTE",
     "type": "note"
   },
   {
-    "name": "Week 8 Lecture Summary.pdf",
-    "path": "./CSC373 Algorithm Design, Analysis and Complexity/LECTURE",
-    "type": "book"
-  },
-  {
-    "name": "correctargs.c",
-    "path": "./CSC209 Software Tools and Systems Programming/w6",
-    "type": "build"
-  },
-  {
-    "name": "P_NP problem Tut.html",
-    "path": "./CSC373 Algorithm Design, Analysis and Complexity/NOTE",
-    "type": "note"
-  },
-  {
-    "name": "MAT224 Linear Algebra II",
-    "path": ".",
-    "type": "folder"
-  },
-  {
-    "name": "student.json",
-    "path": "./CSC309 Programming on the Web/nodejs/feb25_node",
-    "type": "build"
-  },
-  {
-    "name": "Introduction to Methods of Desmoothing, Lin 2019.pdf",
-    "path": "./STA457 Time Series Analysis/4-Forecast_and_TFN",
-    "type": "book"
-  },
-  {
-    "name": "w6",
-    "path": "./CSC209 Software Tools and Systems Programming",
-    "type": "folder"
-  },
-  {
-    "name": "tutorial1.pdf",
-    "path": "./CSC265 Enriched Data Structures and Analysis/LECTURE",
-    "type": "book"
-  },
-  {
-    "name": "strings_sol.pdf",
-    "path": "./CSC209 Software Tools and Systems Programming/w4",
-    "type": "book"
-  },
-  {
-    "name": "LInear Regression.html",
-    "path": "./CSC311 Intro to Machine Learning/NOTE",
-    "type": "note"
-  },
-  {
-    "name": "mongo-update-student.js",
-    "path": "./CSC309 Programming on the Web/nodejs/mar11_mongo",
-    "type": "build"
-  },
-  {
-    "name": "A6Q.pdf",
-    "path": "./CSC265 Enriched Data Structures and Analysis/ASSIGNMENT",
-    "type": "book"
-  },
-  {
-    "name": "jan28_object_create.js",
-    "path": "./CSC309 Programming on the Web/javascript/lecDemo",
-    "type": "build"
-  },
-  {
-    "name": "ASSIGNMENT",
-    "path": "./CSC265 Enriched Data Structures and Analysis",
-    "type": "folder"
-  },
-  {
-    "name": "part0.pdf",
-    "path": "./STA347 Probability",
-    "type": "book"
-  },
-  {
-    "name": "Lecture Handout week 12.pdf",
-    "path": "./MAT337 Introduction to Real Analysis/LECTURE",
-    "type": "book"
-  },
-  {
-    "name": "ll.h",
-    "path": "./CSC209 Software Tools and Systems Programming/w9/header_files_demo/version4",
-    "type": "build"
-  },
-  {
-    "name": "app.js",
-    "path": "./CSC309 Programming on the Web/nodejs/mar4_request",
-    "type": "build"
-  },
-  {
-    "name": "June5-Applications.pdf",
-    "path": "./STA457 Time Series Analysis/4-Forecast_and_TFN",
-    "type": "book"
-  },
-  {
-    "name": "index2.html",
-    "path": "./",
-    "type": "note"
-  },
-  {
-    "name": "whatday.sh",
-    "path": "./CSC209 Software Tools and Systems Programming/w11",
-    "type": "build"
-  },
-  {
-    "name": "feb6.js",
-    "path": "./CSC309 Programming on the Web/DOM/feb6_event",
-    "type": "build"
-  },
-  {
-    "name": "P_NP problem.html",
-    "path": "./CSC373 Algorithm Design, Analysis and Complexity/NOTE",
-    "type": "note"
-  },
-  {
-    "name": "Correctness of Algorithm.pdf",
-    "path": "./CSC240 Enriched Introduction to the Theory of Computation",
-    "type": "book"
-  },
-  {
-    "name": "CSC420_2019_Tutorial_A.html",
-    "path": "./CSC420 Intro to Image Understanding/TUTORIAL",
-    "type": "note"
-  },
-  {
-    "name": "class8",
-    "path": "./JSC270 Data Science I",
-    "type": "folder"
-  },
-  {
-    "name": "Notes Eigenvalue and Eigenvector.pdf",
-    "path": "./MAT223 Linear Algebra I",
-    "type": "book"
-  },
-  {
-    "name": "Extra. Stone Weierstrass Theorem.html",
-    "path": "./MAT337 Introduction to Real Analysis/NOTE",
-    "type": "note"
-  },
-  {
-    "name": "Assignment2-handout.pdf",
-    "path": "./CSC343 Introduction to Databases/ASSIGNMENT",
-    "type": "book"
-  },
-  {
-    "name": "mongo-find-student.js",
-    "path": "./CSC309 Programming on the Web/nodejs/mar11_mongo",
-    "type": "build"
-  },
-  {
-    "name": "Lecture Handout Week 4 T .pdf",
-    "path": "./MAT337 Introduction to Real Analysis/LECTURE",
-    "type": "book"
-  },
-  {
-    "name": "fork_solutions.pdf",
-    "path": "./CSC209 Software Tools and Systems Programming/w7",
-    "type": "book"
-  },
-  {
-    "name": "1. Real Number Construction.html",
-    "path": "./MAT337 Introduction to Real Analysis/NOTE",
-    "type": "note"
-  },
-  {
-    "name": "Relational Model.html",
-    "path": "./CSC343 Introduction to Databases/NOTES",
-    "type": "note"
-  },
-  {
-    "name": "students.js",
-    "path": "./CSC309 Programming on the Web/nodejs/mar4_node_api",
-    "type": "build"
-  },
-  {
-    "name": "STA457 Time Series Analysis",
-    "path": ".",
-    "type": "folder"
-  },
-  {
-    "name": "ll.h",
-    "path": "./CSC209 Software Tools and Systems Programming/w9/header_files_demo/version2",
-    "type": "build"
-  },
-  {
-    "name": "10. Function Approximations.html",
-    "path": "./MAT337 Introduction to Real Analysis/NOTE",
-    "type": "note"
-  },
-  {
-    "name": "TUTORIAL",
-    "path": "./CSC373 Algorithm Design, Analysis and Complexity",
-    "type": "folder"
-  },
-  {
-    "name": "nodejs",
-    "path": "./CSC309 Programming on the Web",
-    "type": "folder"
-  },
-  {
-    "name": "Galil80.pdf",
-    "path": "./CSC265 Enriched Data Structures and Analysis/LECTURE",
-    "type": "book"
-  },
-  {
-    "name": "5-VAR",
-    "path": "./STA457 Time Series Analysis",
-    "type": "folder"
-  },
-  {
-    "name": "Lecture Handout Week 3 T .pdf",
-    "path": "./MAT337 Introduction to Real Analysis/LECTURE",
-    "type": "book"
-  },
-  {
-    "name": "lie.c",
-    "path": "./CSC209 Software Tools and Systems Programming/w2",
-    "type": "build"
-  },
-  {
-    "name": "Class1-Part2.html",
-    "path": "./JSC270 Data Science I/class1",
-    "type": "note"
-  },
-  {
-    "name": "TUT4.html",
-    "path": "./MAT337 Introduction to Real Analysis/TUTORIAL",
-    "type": "note"
-  },
-  {
-    "name": "week4_rm_annotated2.pdf",
-    "path": "./STA303 Methods of Data Analysis II/Two Way ANOVA",
-    "type": "book"
-  },
-  {
-    "name": "Week6_s303ann.pdf",
-    "path": "./STA303 Methods of Data Analysis II/Binary Logistic Regression",
-    "type": "book"
-  },
-  {
-    "name": "student_queue.html",
-    "path": "./CSC309 Programming on the Web/DOM/feb4_DOM_manipulation_2",
-    "type": "note"
-  },
-  {
-    "name": "MT2_solutions.pdf",
-    "path": "./MAT337 Introduction to Real Analysis/TUTORIAL",
-    "type": "book"
-  },
-  {
-    "name": "Pitfalls in Data Science.html",
-    "path": "./JSC270 Data Science I/class8",
-    "type": "note"
-  },
-  {
-    "name": "Week 6 Tutorial Problems.pdf",
-    "path": "./CSC373 Algorithm Design, Analysis and Complexity/TUTORIAL",
-    "type": "book"
-  },
-  {
-    "name": "Week 3 Tutorial Solutions.pdf",
-    "path": "./CSC373 Algorithm Design, Analysis and Complexity/TUTORIAL",
-    "type": "book"
-  },
-  {
-    "name": "ARIMA.html",
-    "path": "./STA457 Time Series Analysis/0-NOTES",
-    "type": "note"
-  },
-  {
-    "name": "Norms of vectors and matrices.html",
-    "path": "./CSC336 Numerical Methods",
-    "type": "note"
-  },
-  {
-    "name": ".DS_Store",
-    "path": "./CSC309 Programming on the Web/nodejs/mar11_express",
-    "type": "build"
-  },
-  {
-    "name": "slides-weeks9-10annotated.pdf",
-    "path": "./STA302 Methods of Data Analysis I/LECTURE",
-    "type": "book"
-  },
-  {
-    "name": "Notes subspace and basis.pdf",
-    "path": "./MAT223 Linear Algebra I",
-    "type": "book"
-  },
-  {
-    "name": "A3P2.rmd",
-    "path": "./STA303 Methods of Data Analysis II/ASSIGNMENT/A3",
-    "type": "build"
-  },
-  {
-    "name": "Week 3 Lecture Summary.pdf",
-    "path": "./CSC373 Algorithm Design, Analysis and Complexity/LECTURE",
-    "type": "book"
-  },
-  {
-    "name": "Week 9 Tutorial Problems.pdf",
-    "path": "./CSC373 Algorithm Design, Analysis and Complexity/TUTORIAL",
-    "type": "book"
-  },
-  {
-    "name": "part5.pdf",
-    "path": "./STA347 Probability",
-    "type": "book"
-  },
-  {
-    "name": "slides-weeks8-9annotated.pdf",
-    "path": "./STA302 Methods of Data Analysis I/LECTURE",
-    "type": "book"
-  },
-  {
-    "name": "TUTORIAL",
-    "path": "./CSC343 Introduction to Databases",
-    "type": "folder"
-  },
-  {
-    "name": "Lecture Handout Week 5 T .pdf",
-    "path": "./MAT337 Introduction to Real Analysis/LECTURE",
-    "type": "book"
-  },
-  {
-    "name": "stack.c",
-    "path": "./CSC209 Software Tools and Systems Programming/w9/header_files_demo/version4",
-    "type": "build"
-  },
-  {
-    "name": "dom_style.css",
-    "path": "./CSC309 Programming on the Web/DOM/jan30_DOM_manipulation_1",
-    "type": "build"
-  },
-  {
-    "name": "Week5_303_annotated.pdf",
-    "path": "./STA303 Methods of Data Analysis II/Binary Logistic Regression",
-    "type": "book"
-  },
-  {
-    "name": "A2",
-    "path": "./STA303 Methods of Data Analysis II/ASSIGNMENT",
-    "type": "folder"
-  },
-  {
-    "name": "jsc270_tut1_answers_moon_99999999.html",
-    "path": "./JSC270 Data Science I/TUTORIAL/tut_answer",
-    "type": "note"
-  },
-  {
-    "name": "A2handout.pdf",
-    "path": "./CSC373 Algorithm Design, Analysis and Complexity/ASSIGNMENT",
-    "type": "book"
-  },
-  {
-    "name": "models",
-    "path": "./CSC309 Programming on the Web/nodejs/mar11_mongo",
-    "type": "folder"
-  },
-  {
-    "name": "slides-weeks11annotated.pdf",
-    "path": "./STA302 Methods of Data Analysis I/LECTURE",
-    "type": "book"
-  },
-  {
-    "name": "jan30_dom.js",
-    "path": "./CSC309 Programming on the Web/DOM/jan30_DOM_manipulation_1",
-    "type": "build"
-  },
-  {
-    "name": "MAT224_FinalExam_Review.pdf",
-    "path": "./MAT224 Linear Algebra II",
-    "type": "book"
-  },
-  {
-    "name": "4.AVL_augmentation.pdf",
-    "path": "./CSC265 Enriched Data Structures and Analysis/NOTE",
-    "type": "book"
-  },
-  {
-    "name": "FSMexample_slides.pdf",
-    "path": "./CSC258 Computer Organization",
-    "type": "book"
-  },
-  {
-    "name": "check_errors.c",
-    "path": "./CSC209 Software Tools and Systems Programming/w6",
-    "type": "build"
-  },
-  {
-    "name": "Week 3 Tutorial Problems.pdf",
-    "path": "./CSC373 Algorithm Design, Analysis and Complexity/TUTORIAL",
-    "type": "book"
-  },
-  {
-    "name": "Log-linear Regression (Poisson Regression).html",
-    "path": "./STA303 Methods of Data Analysis II/Poisson Regression",
-    "type": "note"
-  },
-  {
-    "name": "TFN and intervention analysis (06Jan2019).pdf",
-    "path": "./STA457 Time Series Analysis/4-Forecast_and_TFN",
-    "type": "book"
-  },
-  {
-    "name": "main.c",
-    "path": "./CSC209 Software Tools and Systems Programming/w9/header_files_demo/version3",
-    "type": "build"
-  },
-  {
-    "name": "lab2",
-    "path": "./CSC309 Programming on the Web/javascript",
-    "type": "folder"
-  },
-  {
-    "name": "func_ptrs_errors_sol.pdf",
-    "path": "./CSC209 Software Tools and Systems Programming/w6",
-    "type": "book"
-  },
-  {
-    "name": "bike-location-promise.js",
-    "path": "./CSC309 Programming on the Web/nodejs/mar11_request_promises",
-    "type": "build"
-  },
-  {
-    "name": "CSC320 Intro to Visual Computing",
-    "path": ".",
-    "type": "folder"
-  },
-  {
-    "name": "slides-week4and5annotated.pdf",
-    "path": "./STA302 Methods of Data Analysis I/LECTURE",
-    "type": "book"
-  },
-  {
-    "name": "SQL-DML_DR.pdf",
-    "path": "./CSC343 Introduction to Databases/LECTURE",
-    "type": "book"
-  },
-  {
-    "name": "Greedy Algorithm.html",
-    "path": "./CSC373 Algorithm Design, Analysis and Complexity/NOTE",
-    "type": "note"
-  },
-  {
-    "name": "Notes Ortho bases Complements .pdf",
-    "path": "./MAT223 Linear Algebra I",
-    "type": "book"
-  },
-  {
-    "name": "Projection and Minimal Basis TUT.html",
-    "path": "./CSC343 Introduction to Databases/TUTORIAL",
-    "type": "note"
-  },
-  {
-    "name": "student.js",
-    "path": "./CSC309 Programming on the Web/nodejs/mar25-authentication/models",
-    "type": "build"
-  },
-  {
-    "name": "Lecture Handout Week 1 T .pdf",
-    "path": "./MAT337 Introduction to Real Analysis/LECTURE",
-    "type": "book"
-  },
-  {
-    "name": "11. Fixed Point and ODE.html",
-    "path": "./MAT337 Introduction to Real Analysis/NOTE",
-    "type": "note"
-  },
-  {
-    "name": "w8",
-    "path": "./CSC209 Software Tools and Systems Programming",
-    "type": "folder"
-  },
-  {
-    "name": "errors_sol.pdf",
-    "path": "./CSC209 Software Tools and Systems Programming/w6",
-    "type": "book"
-  },
-  {
-    "name": "data2.csv",
-    "path": "./STA303 Methods of Data Analysis II/ASSIGNMENT/A2",
-    "type": "build"
-  },
-  {
-    "name": "Syllabus for MAT337H1 Y LEC0101 20195_Introduction to Real Analysis.pdf",
-    "path": "./MAT337 Introduction to Real Analysis",
-    "type": "book"
-  },
-  {
-    "name": "JavaScript.html",
-    "path": "./CSC309 Programming on the Web/javascript",
-    "type": "note"
-  },
-  {
-    "name": "Schemas_PI-solutions.pdf",
-    "path": "./CSC343 Introduction to Databases/TUTORIAL",
-    "type": "book"
-  },
-  {
-    "name": "Lecture code - Intro R.html",
-    "path": "./STA302 Methods of Data Analysis I",
-    "type": "note"
-  },
-  {
-    "name": "lab2_handout.pdf",
-    "path": "./CSC309 Programming on the Web/javascript/lab2",
-    "type": "book"
-  },
-  {
-    "name": "fsm_slides.pdf",
-    "path": "./CSC258 Computer Organization",
-    "type": "book"
-  },
-  {
-    "name": "w1",
-    "path": "./CSC209 Software Tools and Systems Programming",
-    "type": "folder"
-  },
-  {
-    "name": "tutorial_week10_slides.pdf",
-    "path": "./CSC258 Computer Organization",
-    "type": "book"
-  },
-  {
-    "name": "db",
-    "path": "./CSC309 Programming on the Web/nodejs/mar11_mongo",
-    "type": "folder"
-  },
-  {
-    "name": "jsc270_tut2-answers_moon_999999999.html",
-    "path": "./JSC270 Data Science I/TUTORIAL/tut_answer",
-    "type": "note"
-  },
-  {
-    "name": "Granger Causality and Cointegration.html",
-    "path": "./STA457 Time Series Analysis/0-NOTES",
-    "type": "note"
-  },
-  {
-    "name": "A6s.pdf",
-    "path": "./CSC265 Enriched Data Structures and Analysis/ASSIGNMENT",
-    "type": "book"
-  },
-  {
-    "name": "greeting-sing-dance.c",
-    "path": "./CSC209 Software Tools and Systems Programming/w9",
-    "type": "build"
-  },
-  {
-    "name": "pipe_sol.pdf",
-    "path": "./CSC209 Software Tools and Systems Programming/w8",
-    "type": "book"
-  },
-  {
-    "name": "app.js",
-    "path": "./CSC309 Programming on the Web/nodejs/feb13_node",
-    "type": "build"
-  },
-  {
-    "name": "style2.css",
-    "path": "./CSC309 Programming on the Web/html&css/lecDemo/CSC309boxes_files",
-    "type": "build"
-  },
-  {
-    "name": "Two Way ANOVA.html",
-    "path": "./STA303 Methods of Data Analysis II/Two Way ANOVA",
-    "type": "note"
-  },
-  {
-    "name": "Week 8 Tutorial Solutions.pdf",
-    "path": "./CSC373 Algorithm Design, Analysis and Complexity/TUTORIAL",
-    "type": "book"
-  },
-  {
-    "name": "Bootstrap regression.pdf",
-    "path": "./STA457 Time Series Analysis/6-Bootstrap",
-    "type": "book"
-  },
-  {
-    "name": "SQL queries TUT.html",
-    "path": "./CSC343 Introduction to Databases/TUTORIAL",
-    "type": "note"
-  },
-  {
-    "name": "May29-Forecast.pdf",
-    "path": "./STA457 Time Series Analysis/4-Forecast_and_TFN",
-    "type": "book"
-  },
-  {
-    "name": "sta347-test-2018-fall-sol.pdf",
-    "path": "./STA347 Probability",
-    "type": "book"
-  },
-  {
-    "name": "Week11_annotated.pdf",
-    "path": "./STA303 Methods of Data Analysis II/Contingency tables",
-    "type": "book"
-  },
-  {
-    "name": "JSC270-Class10.pdf",
-    "path": "./JSC270 Data Science I/class10",
-    "type": "book"
-  },
-  {
-    "name": "tutorial_gates_slides.pdf",
-    "path": "./CSC258 Computer Organization",
-    "type": "book"
-  },
-  {
-    "name": "CSC336 Numerical Methods",
-    "path": ".",
-    "type": "folder"
-  },
-  {
-    "name": "REVIEW QUESTIONS.html",
-    "path": "./MAT337 Introduction to Real Analysis/TUTORIAL",
-    "type": "note"
-  },
-  {
-    "name": "feb6.css",
-    "path": "./CSC309 Programming on the Web/DOM/feb6_event",
-    "type": "build"
-  },
-  {
-    "name": "db",
-    "path": "./CSC309 Programming on the Web/nodejs/mar18-mongo",
-    "type": "folder"
-  },
-  {
-    "name": "Week 5 Tutorial Problems.pdf",
-    "path": "./CSC373 Algorithm Design, Analysis and Complexity/TUTORIAL",
-    "type": "book"
-  },
-  {
-    "name": "High Dynamic Range.html",
-    "path": "./CSC320 Intro to Visual Computing/NOTE",
-    "type": "note"
-  },
-  {
-    "name": "sta347-syllabus.pdf",
-    "path": "./STA347 Probability",
-    "type": "book"
-  },
-  {
-    "name": "Approxmation Errors and Conditioning, Stability.html",
-    "path": "./CSC336 Numerical Methods",
-    "type": "note"
-  },
-  {
-    "name": "signals.pdf",
-    "path": "./CSC209 Software Tools and Systems Programming/w9",
-    "type": "book"
-  },
-  {
-    "name": "FA and Regex.pdf",
-    "path": "./CSC240 Enriched Introduction to the Theory of Computation",
-    "type": "book"
-  },
-  {
-    "name": "tutorial_alu_slides.pdf",
-    "path": "./CSC258 Computer Organization",
-    "type": "book"
-  },
-  {
-    "name": "A1solution.pdf",
-    "path": "./CSC373 Algorithm Design, Analysis and Complexity/ASSIGNMENT",
-    "type": "book"
-  },
-  {
-    "name": "lab3.js",
-    "path": "./CSC309 Programming on the Web/javascript/lab3",
-    "type": "build"
-  },
-  {
-    "name": "Lecture Handout Week 4 R.pdf",
-    "path": "./MAT337 Introduction to Real Analysis/LECTURE",
-    "type": "book"
-  },
-  {
-    "name": "test.html",
-    "path": "./CSC309 Programming on the Web/final",
-    "type": "note"
-  },
-  {
-    "name": "package.json",
-    "path": "./CSC309 Programming on the Web/nodejs/mar11_request_promises",
-    "type": "build"
-  },
-  {
-    "name": "Assignment3_w19_part1.pdf",
-    "path": "./STA303 Methods of Data Analysis II/ASSIGNMENT/A3",
-    "type": "book"
-  },
-  {
-    "name": "style.css",
-    "path": "./CSC309 Programming on the Web/html&css/lab1",
-    "type": "build"
-  },
-  {
-    "name": "Network Flow Tut.html",
-    "path": "./CSC373 Algorithm Design, Analysis and Complexity/NOTE",
-    "type": "note"
-  },
-  {
-    "name": "feb11_event2",
-    "path": "./CSC309 Programming on the Web/DOM",
-    "type": "folder"
-  },
-  {
-    "name": "Image Matting.html",
-    "path": "./CSC320 Intro to Visual Computing/NOTE",
-    "type": "note"
-  },
-  {
-    "name": "mar4_request",
-    "path": "./CSC309 Programming on the Web/nodejs",
-    "type": "folder"
-  },
-  {
-    "name": "MAT337 Week 2 TH.pdf",
-    "path": "./MAT337 Introduction to Real Analysis/TUTORIAL",
-    "type": "book"
-  },
-  {
-    "name": "Poisson Regression",
-    "path": "./STA303 Methods of Data Analysis II",
-    "type": "folder"
-  },
-  {
-    "name": "TFN model.html",
-    "path": "./STA457 Time Series Analysis/0-NOTES",
-    "type": "note"
-  },
-  {
-    "name": "CSC311_Fall_2019_Tutorial3_worksheet.html",
-    "path": "./CSC311 Intro to Machine Learning/TUTORIAL",
-    "type": "note"
-  },
-  {
-    "name": "class7",
-    "path": "./JSC270 Data Science I",
-    "type": "folder"
-  },
-  {
-    "name": "lab4",
-    "path": "./CSC309 Programming on the Web/javascript",
-    "type": "folder"
-  },
-  {
-    "name": "jan28_object_create.html",
-    "path": "./CSC309 Programming on the Web/javascript/lecDemo",
-    "type": "note"
-  },
-  {
-    "name": "server.js",
-    "path": "./CSC309 Programming on the Web/nodejs/mar25-authentication",
-    "type": "build"
-  },
-  {
-    "name": "jan30_dom.html",
-    "path": "./CSC309 Programming on the Web/DOM/jan30_DOM_manipulation_1",
-    "type": "note"
-  },
-  {
-    "name": "ll.h",
-    "path": "./CSC209 Software Tools and Systems Programming/w9/header_files_demo/version3",
-    "type": "build"
-  },
-  {
-    "name": "Right Linear Grammar.pdf",
-    "path": "./CSC240 Enriched Introduction to the Theory of Computation",
-    "type": "book"
-  },
-  {
-    "name": "7.Hashing_construction_and_rand_QS.pdf",
-    "path": "./CSC265 Enriched Data Structures and Analysis/NOTE",
-    "type": "book"
-  },
-  {
-    "name": "a1q1.PNG",
-    "path": "./STA303 Methods of Data Analysis II/ASSIGNMENT/A1",
-    "type": "build"
-  },
-  {
-    "name": "3-ARIMA",
-    "path": "./STA457 Time Series Analysis",
-    "type": "folder"
-  },
-  {
-    "name": "select_sol.pdf",
-    "path": "./CSC209 Software Tools and Systems Programming/w10",
-    "type": "book"
-  },
-  {
-    "name": "Example of Self-Reducibility.pdf",
-    "path": "./CSC373 Algorithm Design, Analysis and Complexity/LECTURE",
-    "type": "book"
-  },
-  {
-    "name": "Groupby-having.pdf",
-    "path": "./CSC343 Introduction to Databases/TUTORIAL",
-    "type": "book"
-  },
-  {
-    "name": "NOTES",
-    "path": "./CSC343 Introduction to Databases",
-    "type": "folder"
-  },
-  {
-    "name": "hw2s.pdf",
-    "path": "./STA347 Probability",
-    "type": "book"
-  },
-  {
-    "name": "Relational Algebra TUT.html",
-    "path": "./CSC343 Introduction to Databases/TUTORIAL",
-    "type": "note"
-  },
-  {
-    "name": "HTML&CSS.html",
-    "path": "./CSC309 Programming on the Web/html&css",
-    "type": "note"
-  },
-  {
-    "name": "Edge Detection.html",
-    "path": "./CSC420 Intro to Image Understanding/NOTE",
-    "type": "note"
-  },
-  {
-    "name": "jsc270_tut1_questions.html",
-    "path": "./JSC270 Data Science I/TUTORIAL",
-    "type": "note"
-  },
-  {
-    "name": "Optimization Approxiamation.html",
-    "path": "./CSC373 Algorithm Design, Analysis and Complexity/NOTE",
-    "type": "note"
-  },
-  {
-    "name": "Correctness of While Loops.pdf",
-    "path": "./CSC240 Enriched Introduction to the Theory of Computation",
-    "type": "book"
-  },
-  {
-    "name": "W11_CookiesSessions.pdf",
-    "path": "./CSC309 Programming on the Web/nodejs/mar25-authentication",
-    "type": "book"
-  },
-  {
-    "name": "Finite Automata.pdf",
-    "path": "./CSC240 Enriched Introduction to the Theory of Computation",
-    "type": "book"
-  },
-  {
-    "name": "mar4_node_api",
-    "path": "./CSC309 Programming on the Web/nodejs",
-    "type": "folder"
-  },
-  {
-    "name": "A4S.pdf",
-    "path": "./CSC265 Enriched Data Structures and Analysis/ASSIGNMENT",
-    "type": "book"
-  },
-  {
-    "name": "A2S.pdf",
-    "path": "./CSC265 Enriched Data Structures and Analysis/ASSIGNMENT",
-    "type": "book"
-  },
-  {
-    "name": "test_fib.sh",
-    "path": "./CSC209 Software Tools and Systems Programming/w11",
-    "type": "build"
-  },
-  {
-    "name": "Bias-Variane Decomposition.html",
-    "path": "./CSC311 Intro to Machine Learning/NOTE",
-    "type": "note"
-  },
-  {
-    "name": "CSC343_Winter2019_A1.pdf",
-    "path": "./CSC343 Introduction to Databases/ASSIGNMENT",
-    "type": "book"
-  },
-  {
-    "name": "Conditioning of Linear Equation Systems.html",
-    "path": "./CSC336 Numerical Methods",
-    "type": "note"
-  },
-  {
-    "name": "README",
-    "path": "./CSC209 Software Tools and Systems Programming/w9/header_files_demo",
-    "type": "build"
-  },
-  {
-    "name": "transistors_slides.pdf",
-    "path": "./CSC258 Computer Organization",
-    "type": "book"
-  },
-  {
-    "name": "Notes dim and nullity .pdf",
-    "path": "./MAT223 Linear Algebra I",
-    "type": "book"
-  },
-  {
-    "name": "student.js",
-    "path": "./CSC309 Programming on the Web/nodejs/mar18-mongo/models",
-    "type": "build"
-  },
-  {
-    "name": "functional.js",
-    "path": "./CSC309 Programming on the Web/nodejs/feb25_node",
-    "type": "build"
-  },
-  {
-    "name": "Week8_annotated.pdf",
-    "path": "./STA303 Methods of Data Analysis II/Binomial Logistic Regression",
-    "type": "book"
-  },
-  {
-    "name": "Strong and weak induction.pdf",
-    "path": "./CSC240 Enriched Introduction to the Theory of Computation",
-    "type": "book"
-  },
-  {
-    "name": "public",
-    "path": "./CSC309 Programming on the Web/nodejs/mar25-authentication",
-    "type": "folder"
-  },
-  {
-    "name": "TUT9.html",
-    "path": "./MAT337 Introduction to Real Analysis/TUTORIAL",
-    "type": "note"
-  },
-  {
-    "name": "2. Extremum.html",
-    "path": "./MAT337 Introduction to Real Analysis/NOTE",
-    "type": "note"
-  },
-  {
-    "name": "lab2.js",
-    "path": "./CSC309 Programming on the Web/javascript/lab2",
-    "type": "build"
-  },
-  {
-    "name": "lecture7.pdf",
-    "path": "./JSC270 Data Science I/class7",
-    "type": "book"
-  },
-  {
-    "name": "Notes Solving s.l.e.pdf",
-    "path": "./MAT223 Linear Algebra I",
-    "type": "book"
-  },
-  {
-    "name": "Variance_Stabilizing_Transformations.pdf",
-    "path": "./STA457 Time Series Analysis/2-ARMA",
-    "type": "book"
-  },
-  {
-    "name": "Week10_annotated.pdf",
-    "path": "./STA303 Methods of Data Analysis II/Contingency tables",
-    "type": "book"
-  },
-  {
-    "name": "course.html",
-    "path": "./CSC309 Programming on the Web/html&css",
-    "type": "note"
-  },
-  {
-    "name": "June12-GARCH.pdf",
-    "path": "./STA457 Time Series Analysis/7-GARCH",
-    "type": "book"
-  },
-  {
-    "name": "mydb.js",
-    "path": "./CSC309 Programming on the Web/final",
-    "type": "build"
-  },
-  {
-    "name": "A1S.pdf",
-    "path": "./CSC265 Enriched Data Structures and Analysis/ASSIGNMENT",
-    "type": "book"
-  },
-  {
-    "name": "feb11.js",
-    "path": "./CSC309 Programming on the Web/DOM/feb11_event2",
-    "type": "build"
-  },
-  {
-    "name": "A5.2handout.pdf",
-    "path": "./CSC373 Algorithm Design, Analysis and Complexity/ASSIGNMENT",
-    "type": "book"
-  },
-  {
-    "name": "box.html",
-    "path": "./CSC309 Programming on the Web/html&css",
-    "type": "note"
-  },
-  {
-    "name": "Lecture Handout Week 10.pdf",
-    "path": "./MAT337 Introduction to Real Analysis/LECTURE",
-    "type": "book"
-  },
-  {
-    "name": "a3data.csv",
-    "path": "./STA303 Methods of Data Analysis II/ASSIGNMENT/A3",
-    "type": "build"
-  },
-  {
-    "name": "lab1.html",
-    "path": "./CSC309 Programming on the Web/html&css/lab1",
-    "type": "note"
-  },
-  {
-    "name": "bbw99.csv",
-    "path": "./STA303 Methods of Data Analysis II/ASSIGNMENT/A1",
-    "type": "build"
-  },
-  {
-    "name": "w11",
-    "path": "./CSC209 Software Tools and Systems Programming",
-    "type": "folder"
-  },
-  {
-    "name": "STA347 Probability",
-    "path": ".",
-    "type": "folder"
-  },
-  {
-    "name": "MoviesSol.pdf",
-    "path": "./CSC343 Introduction to Databases/TUTORIAL",
-    "type": "book"
-  },
-  {
-    "name": "LECTURE",
-    "path": "./STA302 Methods of Data Analysis I",
-    "type": "folder"
-  },
-  {
-    "name": "jan21_variables.js",
-    "path": "./CSC309 Programming on the Web/javascript/lecDemo",
-    "type": "build"
-  },
-  {
-    "name": "part4.pdf",
-    "path": "./STA347 Probability",
-    "type": "book"
-  },
-  {
-    "name": "Week 12 Tutorial Problems.pdf",
-    "path": "./CSC373 Algorithm Design, Analysis and Complexity/TUTORIAL",
-    "type": "book"
-  },
-  {
-    "name": "tutorial_devices_slides.pdf",
-    "path": "./CSC258 Computer Organization",
-    "type": "book"
-  },
-  {
-    "name": "Class1_annotated.pdf",
-    "path": "./STA303 Methods of Data Analysis II/One Way ANOVA",
-    "type": "book"
-  },
-  {
-    "name": "Final Review Questions.html",
-    "path": "./STA457 Time Series Analysis/0-NOTES",
-    "type": "note"
-  },
-  {
-    "name": "Image Features - Harris Corner Detector.html",
-    "path": "./CSC420 Intro to Image Understanding/NOTE",
-    "type": "note"
-  },
-  {
-    "name": ".DS_Store",
-    "path": "./CSC309 Programming on the Web/nodejs/mar25-authentication/public",
-    "type": "build"
-  },
-  {
-    "name": "apr3",
-    "path": "./CSC309 Programming on the Web/nodejs",
-    "type": "folder"
-  },
-  {
-    "name": "309WrapUp.pdf",
-    "path": "./CSC309 Programming on the Web/nodejs/apr3",
-    "type": "book"
-  },
-  {
-    "name": "style.css",
-    "path": "./CSC309 Programming on the Web/DOM/feb4_DOM_manipulation_2",
-    "type": "build"
-  },
-  {
-    "name": "numpy_demo_week1.html",
+    "name": "opencv_demo_week1_2.html",
     "path": "./CSC320 Intro to Visual Computing/TUTORIAL",
     "type": "note"
   },
   {
-    "name": "50movies-clean.csv",
-    "path": "./JSC270 Data Science I/class3/data",
-    "type": "build"
+    "name": "Contingency tables",
+    "path": "./STA303 Methods of Data Analysis II",
+    "type": "folder"
   },
   {
-    "name": "Dynamic Programming Tut.html",
-    "path": "./CSC373 Algorithm Design, Analysis and Complexity/NOTE",
-    "type": "note"
-  },
-  {
-    "name": "Image Features - Blob Detection.html",
-    "path": "./CSC420 Intro to Image Understanding/NOTE",
-    "type": "note"
+    "name": "views",
+    "path": "./CSC309 Programming on the Web/nodejs/mar25-authentication",
+    "type": "folder"
   },
   {
     "name": "Midterm Review Questions.html",
@@ -1260,84 +25,19 @@
     "type": "note"
   },
   {
-    "name": "tut_answer",
-    "path": "./JSC270 Data Science I/TUTORIAL",
-    "type": "folder"
-  },
-  {
-    "name": "Computer Arithmetic.html",
-    "path": "./CSC336 Numerical Methods",
-    "type": "note"
-  },
-  {
-    "name": "lab3.html",
-    "path": "./CSC309 Programming on the Web/javascript/lab3",
-    "type": "note"
-  },
-  {
-    "name": "main.c",
-    "path": "./CSC209 Software Tools and Systems Programming/w9/header_files_demo/version4",
+    "name": "Notes.txt",
+    "path": "./CSC209 Software Tools and Systems Programming/w9/header_files_demo/version2",
     "type": "build"
   },
   {
-    "name": "SARIMA-PARMA model-1.pdf",
-    "path": "./STA457 Time Series Analysis/3-ARIMA",
+    "name": "sta347-test-2018-fall-sol.pdf",
+    "path": "./STA347 Probability",
     "type": "book"
   },
   {
-    "name": "Assignment2_w19.pdf",
-    "path": "./STA303 Methods of Data Analysis II/ASSIGNMENT/A2",
-    "type": "book"
-  },
-  {
-    "name": "package.json",
-    "path": "./CSC309 Programming on the Web/nodejs/mar25-authentication",
+    "name": "bike-location.js",
+    "path": "./CSC309 Programming on the Web/nodejs/mar4_request",
     "type": "build"
-  },
-  {
-    "name": "A3S.pdf",
-    "path": "./CSC265 Enriched Data Structures and Analysis/ASSIGNMENT",
-    "type": "book"
-  },
-  {
-    "name": "w10",
-    "path": "./CSC209 Software Tools and Systems Programming",
-    "type": "folder"
-  },
-  {
-    "name": "promises.js",
-    "path": "./CSC309 Programming on the Web/nodejs",
-    "type": "build"
-  },
-  {
-    "name": "package.json",
-    "path": "./CSC309 Programming on the Web/nodejs/mar11_express",
-    "type": "build"
-  },
-  {
-    "name": "Set-ops.pdf",
-    "path": "./CSC343 Introduction to Databases/TUTORIAL",
-    "type": "book"
-  },
-  {
-    "name": "Week3_303_annotated2.pdf",
-    "path": "./STA303 Methods of Data Analysis II/One Way ANOVA",
-    "type": "book"
-  },
-  {
-    "name": "Induction Template.pdf",
-    "path": "./CSC240 Enriched Introduction to the Theory of Computation",
-    "type": "book"
-  },
-  {
-    "name": "CSC265 Enriched Data Structures and Analysis",
-    "path": ".",
-    "type": "folder"
-  },
-  {
-    "name": "slides-week5annotated.pdf",
-    "path": "./STA302 Methods of Data Analysis I/LECTURE",
-    "type": "book"
   },
   {
     "name": "Two Way ANOVA",
@@ -1345,23 +45,118 @@
     "type": "folder"
   },
   {
-    "name": "Practice Problems.html",
-    "path": "./STA303 Methods of Data Analysis II/Poisson Regression",
+    "name": "w10",
+    "path": "./CSC209 Software Tools and Systems Programming",
+    "type": "folder"
+  },
+  {
+    "name": "Week 2 Lecture Summary.pdf",
+    "path": "./CSC373 Algorithm Design, Analysis and Complexity/LECTURE",
+    "type": "book"
+  },
+  {
+    "name": "0-NOTES",
+    "path": "./STA457 Time Series Analysis",
+    "type": "folder"
+  },
+  {
+    "name": ".DS_Store",
+    "path": "./CSC309 Programming on the Web/nodejs/mar18-mongo",
+    "type": "build"
+  },
+  {
+    "name": "Applications of ARMA models in investments.html",
+    "path": "./STA457 Time Series Analysis/0-NOTES",
     "type": "note"
   },
   {
-    "name": "Modeling_seasonality.html",
-    "path": "./STA457 Time Series Analysis/3-ARIMA",
+    "name": "Week 4 Lecture Summary.pdf",
+    "path": "./CSC373 Algorithm Design, Analysis and Complexity/LECTURE",
+    "type": "book"
+  },
+  {
+    "name": "Linear Classification & Optimization.html",
+    "path": "./CSC311 Intro to Machine Learning/NOTE",
     "type": "note"
   },
   {
-    "name": "BJIllustrations2017F.html",
-    "path": "./STA457 Time Series Analysis/2-ARMA",
+    "name": "test_floop.sh",
+    "path": "./CSC209 Software Tools and Systems Programming/w11",
+    "type": "build"
+  },
+  {
+    "name": "Test 1 Solutions.pdf",
+    "path": "./CSC373 Algorithm Design, Analysis and Complexity/LECTURE",
+    "type": "book"
+  },
+  {
+    "name": "lecDemo",
+    "path": "./CSC309 Programming on the Web/javascript",
+    "type": "folder"
+  },
+  {
+    "name": "style2.css",
+    "path": "./CSC309 Programming on the Web/html&css/lecDemo/CSC309boxes_files",
+    "type": "build"
+  },
+  {
+    "name": "big query.html",
+    "path": "./JSC270 Data Science I/package examples",
     "type": "note"
   },
   {
-    "name": "version1",
-    "path": "./CSC209 Software Tools and Systems Programming/w9/header_files_demo",
+    "name": "functional.js",
+    "path": "./CSC309 Programming on the Web/nodejs/feb25_node",
+    "type": "build"
+  },
+  {
+    "name": "app.js",
+    "path": "./CSC309 Programming on the Web/nodejs/mar11_request_promises",
+    "type": "build"
+  },
+  {
+    "name": "NHEFS_Codebook.xls",
+    "path": "./JSC270 Data Science I/class6",
+    "type": "build"
+  },
+  {
+    "name": ".DS_Store",
+    "path": "./CSC309 Programming on the Web/nodejs/apr3",
+    "type": "build"
+  },
+  {
+    "name": "strings_sol.pdf",
+    "path": "./CSC209 Software Tools and Systems Programming/w4",
+    "type": "book"
+  },
+  {
+    "name": "Lecture Handout Week 2 R.pdf",
+    "path": "./MAT337 Introduction to Real Analysis/lecture",
+    "type": "book"
+  },
+  {
+    "name": "style.css",
+    "path": "./CSC309 Programming on the Web/html&css/lab1",
+    "type": "build"
+  },
+  {
+    "name": "permissions_sol.pdf",
+    "path": "./CSC209 Software Tools and Systems Programming/w1",
+    "type": "book"
+  },
+  {
+    "name": "strings.c",
+    "path": "./CSC209 Software Tools and Systems Programming/w4",
+    "type": "build"
+  },
+  {
+    "name": "FSMexample_slides.pdf",
+    "path": "./CSC258 Computer Organization",
+    "type": "book"
+  },
+  {
+    "name": "apr3",
+    "path": "./CSC309 Programming on the Web/nodejs",
     "type": "folder"
   },
   {
@@ -1370,9 +165,214 @@
     "type": "folder"
   },
   {
-    "name": "pipe.c",
-    "path": "./CSC209 Software Tools and Systems Programming/w8",
+    "name": "public",
+    "path": "./CSC309 Programming on the Web/nodejs/mar25-authentication",
+    "type": "folder"
+  },
+  {
+    "name": ".DS_Store",
+    "path": "./CSC309 Programming on the Web/nodejs/mar25-authentication",
     "type": "build"
+  },
+  {
+    "name": "6. Inner Product Space and Fourier Series.html",
+    "path": "./MAT337 Introduction to Real Analysis/NOTE",
+    "type": "note"
+  },
+  {
+    "name": "MAT337 Week 9 TH.pdf",
+    "path": "./MAT337 Introduction to Real Analysis/TUTORIAL",
+    "type": "book"
+  },
+  {
+    "name": "STA302 Methods of Data Analysis I",
+    "path": ".",
+    "type": "folder"
+  },
+  {
+    "name": "hw2s.pdf",
+    "path": "./STA347 Probability",
+    "type": "book"
+  },
+  {
+    "name": "TFN model.html",
+    "path": "./STA457 Time Series Analysis/0-NOTES",
+    "type": "note"
+  },
+  {
+    "name": "Modeling_seasonality.html",
+    "path": "./STA457 Time Series Analysis/3-ARIMA",
+    "type": "note"
+  },
+  {
+    "name": "array_and_pointer_basics_sol.pdf",
+    "path": "./CSC209 Software Tools and Systems Programming/w2",
+    "type": "book"
+  },
+  {
+    "name": "Advertising.csv",
+    "path": "./JSC270 Data Science I/class6",
+    "type": "build"
+  },
+  {
+    "name": "Vector Series.html",
+    "path": "./STA457 Time Series Analysis/0-NOTES",
+    "type": "note"
+  },
+  {
+    "name": "50movies-clean.csv",
+    "path": "./JSC270 Data Science I/class3/data",
+    "type": "build"
+  },
+  {
+    "name": "Pitfalls in Data Science.html",
+    "path": "./JSC270 Data Science I/class8",
+    "type": "note"
+  },
+  {
+    "name": "circuits_slides.pdf",
+    "path": "./CSC258 Computer Organization",
+    "type": "book"
+  },
+  {
+    "name": "loglin_Routput.txt",
+    "path": "./STA303 Methods of Data Analysis II/Poisson Regression",
+    "type": "build"
+  },
+  {
+    "name": "ll.c",
+    "path": "./CSC209 Software Tools and Systems Programming/w9/header_files_demo/version2",
+    "type": "build"
+  },
+  {
+    "name": "W12_Security.pdf",
+    "path": "./CSC309 Programming on the Web/nodejs/apr3",
+    "type": "book"
+  },
+  {
+    "name": "lab2.js",
+    "path": "./CSC309 Programming on the Web/javascript/lab2",
+    "type": "build"
+  },
+  {
+    "name": "Groupby-having.pdf",
+    "path": "./CSC343 Introduction to Databases/TUTORIAL",
+    "type": "book"
+  },
+  {
+    "name": "server.js",
+    "path": "./CSC309 Programming on the Web/nodejs/mar11_mongo",
+    "type": "build"
+  },
+  {
+    "name": "Diagnostic checks of TFN model.pdf",
+    "path": "./STA457 Time Series Analysis/4-Forecast_and_TFN",
+    "type": "book"
+  },
+  {
+    "name": "A3solution.pdf",
+    "path": "./CSC373 Algorithm Design, Analysis and Complexity/ASSIGNMENT",
+    "type": "book"
+  },
+  {
+    "name": "11.MST.pdf",
+    "path": "./CSC265 Enriched Data Structures and Analysis/NOTE",
+    "type": "book"
+  },
+  {
+    "name": "stack.c",
+    "path": "./CSC209 Software Tools and Systems Programming/w9/header_files_demo/version4",
+    "type": "build"
+  },
+  {
+    "name": "style2.css",
+    "path": "./CSC309 Programming on the Web/html&css",
+    "type": "build"
+  },
+  {
+    "name": "server.js",
+    "path": "./CSC309 Programming on the Web/nodejs/mar11_express",
+    "type": "build"
+  },
+  {
+    "name": "Dynamic Programming.html",
+    "path": "./CSC373 Algorithm Design, Analysis and Complexity/NOTE",
+    "type": "note"
+  },
+  {
+    "name": "titanic.csv",
+    "path": "./JSC270 Data Science I/class3/data",
+    "type": "build"
+  },
+  {
+    "name": "DOM.html",
+    "path": "./CSC309 Programming on the Web/DOM",
+    "type": "note"
+  },
+  {
+    "name": "LECTURE",
+    "path": "./STA302 Methods of Data Analysis I",
+    "type": "folder"
+  },
+  {
+    "name": "jan21_variables.html",
+    "path": "./CSC309 Programming on the Web/javascript/lecDemo",
+    "type": "note"
+  },
+  {
+    "name": "user.js",
+    "path": "./CSC309 Programming on the Web/nodejs/mar25-authentication/models",
+    "type": "build"
+  },
+  {
+    "name": "Network Flow Tut.html",
+    "path": "./CSC373 Algorithm Design, Analysis and Complexity/NOTE",
+    "type": "note"
+  },
+  {
+    "name": "CSC420_2019_Tutorial_B.html",
+    "path": "./CSC420 Intro to Image Understanding/TUTORIAL",
+    "type": "note"
+  },
+  {
+    "name": "tutorial1.pdf",
+    "path": "./CSC265 Enriched Data Structures and Analysis/LECTURE",
+    "type": "book"
+  },
+  {
+    "name": "Introduction to time series data and visualization.pdf",
+    "path": "./STA457 Time Series Analysis/1-Introduction",
+    "type": "book"
+  },
+  {
+    "name": "Week 3 Tutorial Solutions.pdf",
+    "path": "./CSC373 Algorithm Design, Analysis and Complexity/TUTORIAL",
+    "type": "book"
+  },
+  {
+    "name": "package.json",
+    "path": "./CSC309 Programming on the Web/nodejs/mar25-authentication",
+    "type": "build"
+  },
+  {
+    "name": "slides-week4and5annotated.pdf",
+    "path": "./STA302 Methods of Data Analysis I/LECTURE",
+    "type": "book"
+  },
+  {
+    "name": "a1q1.PNG",
+    "path": "./STA303 Methods of Data Analysis II/ASSIGNMENT/A1",
+    "type": "build"
+  },
+  {
+    "name": "hw3s.pdf",
+    "path": "./STA347 Probability",
+    "type": "book"
+  },
+  {
+    "name": "Lecture Handout Week 9.pdf",
+    "path": "./MAT337 Introduction to Real Analysis/lecture",
+    "type": "book"
   },
   {
     "name": "lab2.html",
@@ -1380,17 +380,752 @@
     "type": "note"
   },
   {
-    "name": "lecture2_slides_posted2.html",
-    "path": "./JSC270 Data Science I/class2",
+    "name": "JSC270-Class10.pdf",
+    "path": "./JSC270 Data Science I/class10",
+    "type": "book"
+  },
+  {
+    "name": "SARIMA-PARMA model-1.pdf",
+    "path": "./STA457 Time Series Analysis/3-ARIMA",
+    "type": "book"
+  },
+  {
+    "name": "ASSIGNMENT",
+    "path": "./STA303 Methods of Data Analysis II",
+    "type": "folder"
+  },
+  {
+    "name": "8.Amortized_analysis.pdf",
+    "path": "./CSC265 Enriched Data Structures and Analysis/NOTE",
+    "type": "book"
+  },
+  {
+    "name": "ASSIGNMENT",
+    "path": "./CSC343 Introduction to Databases",
+    "type": "folder"
+  },
+  {
+    "name": "app.js",
+    "path": "./CSC309 Programming on the Web/nodejs/mar4_node_api",
+    "type": "build"
+  },
+  {
+    "name": "Well-ordered Proof.pdf",
+    "path": "./CSC240 Enriched Introduction to the Theory of Computation",
+    "type": "book"
+  },
+  {
+    "name": "Week 9 Tutorial Solutions.pdf",
+    "path": "./CSC373 Algorithm Design, Analysis and Complexity/TUTORIAL",
+    "type": "book"
+  },
+  {
+    "name": "javascript",
+    "path": "./CSC309 Programming on the Web",
+    "type": "folder"
+  },
+  {
+    "name": "jan28_object_create.html",
+    "path": "./CSC309 Programming on the Web/javascript/lecDemo",
     "type": "note"
   },
   {
-    "name": "DisjointSets-logstar.pdf",
+    "name": "loglinpp.pdf",
+    "path": "./STA303 Methods of Data Analysis II/Poisson Regression",
+    "type": "book"
+  },
+  {
+    "name": "feb6.css",
+    "path": "./CSC309 Programming on the Web/DOM/feb6_event",
+    "type": "build"
+  },
+  {
+    "name": "CSC343_A3_Winter2019.pdf",
+    "path": "./CSC343 Introduction to Databases/ASSIGNMENT",
+    "type": "book"
+  },
+  {
+    "name": "",
+    "path": ".",
+    "type": "folder"
+  },
+  {
+    "name": "change.c",
+    "path": "./CSC209 Software Tools and Systems Programming/w2",
+    "type": "build"
+  },
+  {
+    "name": "Week 6 Tutorial Problems.pdf",
+    "path": "./CSC373 Algorithm Design, Analysis and Complexity/TUTORIAL",
+    "type": "book"
+  },
+  {
+    "name": "Week6_s303ann.pdf",
+    "path": "./STA303 Methods of Data Analysis II/Binary Logistic Regression",
+    "type": "book"
+  },
+  {
+    "name": "processor_slides.pdf",
+    "path": "./CSC258 Computer Organization",
+    "type": "book"
+  },
+  {
+    "name": "plotly map plots.html",
+    "path": "./JSC270 Data Science I/package examples",
+    "type": "note"
+  },
+  {
+    "name": "NOTE",
+    "path": "./CSC320 Intro to Visual Computing",
+    "type": "folder"
+  },
+  {
+    "name": "A5Q.pdf",
+    "path": "./CSC265 Enriched Data Structures and Analysis/Assignment",
+    "type": "book"
+  },
+  {
+    "name": "w4",
+    "path": "./CSC209 Software Tools and Systems Programming",
+    "type": "folder"
+  },
+  {
+    "name": "Bootstrap regression.pdf",
+    "path": "./STA457 Time Series Analysis/6-Bootstrap",
+    "type": "book"
+  },
+  {
+    "name": "feb6.js",
+    "path": "./CSC309 Programming on the Web/DOM/feb6_event",
+    "type": "build"
+  },
+  {
+    "name": "Lecture Handout Week 3 R.pdf",
+    "path": "./MAT337 Introduction to Real Analysis/lecture",
+    "type": "book"
+  },
+  {
+    "name": "Edge Detection.html",
+    "path": "./CSC420 Intro to Image Understanding/NOTE",
+    "type": "note"
+  },
+  {
+    "name": "pipe_sol.pdf",
+    "path": "./CSC209 Software Tools and Systems Programming/w8",
+    "type": "book"
+  },
+  {
+    "name": "Class2_annotated1.pdf",
+    "path": "./STA303 Methods of Data Analysis II/One Way ANOVA",
+    "type": "book"
+  },
+  {
+    "name": "CSC343_Winter2019_A1.pdf",
+    "path": "./CSC343 Introduction to Databases/ASSIGNMENT",
+    "type": "book"
+  },
+  {
+    "name": "Class1.html",
+    "path": "./JSC270 Data Science I/class1",
+    "type": "note"
+  },
+  {
+    "name": "slides-weeks_3-4_annotated.pdf",
+    "path": "./STA302 Methods of Data Analysis I/LECTURE",
+    "type": "book"
+  },
+  {
+    "name": "Tut4.html",
+    "path": "./JSC270 Data Science I/class6",
+    "type": "note"
+  },
+  {
+    "name": "Notes.txt",
+    "path": "./CSC209 Software Tools and Systems Programming/w9/header_files_demo/version3",
+    "type": "build"
+  },
+  {
+    "name": "NOTE",
+    "path": "./CSC420 Intro to Image Understanding",
+    "type": "folder"
+  },
+  {
+    "name": "Week 1 Lecture Summary.pdf",
+    "path": "./CSC373 Algorithm Design, Analysis and Complexity/LECTURE",
+    "type": "book"
+  },
+  {
+    "name": "pros and cons.pdf",
+    "path": "./STA457 Time Series Analysis/6-Bootstrap",
+    "type": "book"
+  },
+  {
+    "name": "Log-linear Regression (Poisson Regression).html",
+    "path": "./STA303 Methods of Data Analysis II/Poisson Regression",
+    "type": "note"
+  },
+  {
+    "name": "mongoose.js",
+    "path": "./CSC309 Programming on the Web/nodejs/mar25-authentication/db",
+    "type": "build"
+  },
+  {
+    "name": "TUTORIAL",
+    "path": "./JSC270 Data Science I",
+    "type": "folder"
+  },
+  {
+    "name": "select_sol.pdf",
+    "path": "./CSC209 Software Tools and Systems Programming/w10",
+    "type": "book"
+  },
+  {
+    "name": "main.c",
+    "path": "./CSC209 Software Tools and Systems Programming/w9/header_files_demo/version2",
+    "type": "build"
+  },
+  {
+    "name": "CSC420 Intro to Image Understanding",
+    "path": ".",
+    "type": "folder"
+  },
+  {
+    "name": "problems-sol.pdf",
+    "path": "./STA347 Probability",
+    "type": "book"
+  },
+  {
+    "name": "Binomial Logistic Regression.html",
+    "path": "./STA303 Methods of Data Analysis II/Binomial Logistic Regression",
+    "type": "note"
+  },
+  {
+    "name": "server.js",
+    "path": "./CSC309 Programming on the Web/nodejs/mar25-authentication",
+    "type": "build"
+  },
+  {
+    "name": "devices_slides.pdf",
+    "path": "./CSC258 Computer Organization",
+    "type": "book"
+  },
+  {
+    "name": "Week 6 Tutorial Solutions.pdf",
+    "path": "./CSC373 Algorithm Design, Analysis and Complexity/TUTORIAL",
+    "type": "book"
+  },
+  {
+    "name": "MAT337 Week 10 TH.pdf",
+    "path": "./MAT337 Introduction to Real Analysis/TUTORIAL",
+    "type": "book"
+  },
+  {
+    "name": "TUT4.html",
+    "path": "./MAT337 Introduction to Real Analysis/TUTORIAL",
+    "type": "note"
+  },
+  {
+    "name": "instructions.txt",
+    "path": "./CSC309 Programming on the Web/nodejs/mar11_mongo",
+    "type": "build"
+  },
+  {
+    "name": "LECTURE",
+    "path": "./CSC373 Algorithm Design, Analysis and Complexity",
+    "type": "folder"
+  },
+  {
+    "name": "10.BFS_and_DFS.pdf",
+    "path": "./CSC265 Enriched Data Structures and Analysis/NOTE",
+    "type": "book"
+  },
+  {
+    "name": "lab1.html",
+    "path": "./CSC309 Programming on the Web/html&css/lab1",
+    "type": "note"
+  },
+  {
+    "name": "Week 10 Tutorial Problems.pdf",
+    "path": "./CSC373 Algorithm Design, Analysis and Complexity/TUTORIAL",
+    "type": "book"
+  },
+  {
+    "name": "Projection and Minimal Basis TUT.html",
+    "path": "./CSC343 Introduction to Databases/TUTORIAL",
+    "type": "note"
+  },
+  {
+    "name": "TUT5.html",
+    "path": "./MAT337 Introduction to Real Analysis/TUTORIAL",
+    "type": "note"
+  },
+  {
+    "name": "lab3.html",
+    "path": "./CSC309 Programming on the Web/javascript/lab3",
+    "type": "note"
+  },
+  {
+    "name": "mar11_request_promises",
+    "path": "./CSC309 Programming on the Web/nodejs",
+    "type": "folder"
+  },
+  {
+    "name": "saved_resource.html",
+    "path": "./CSC309 Programming on the Web/html&css/lecDemo/CSC309boxes_files",
+    "type": "note"
+  },
+  {
+    "name": "mongo-find-student.js",
+    "path": "./CSC309 Programming on the Web/nodejs/mar11_mongo",
+    "type": "build"
+  },
+  {
+    "name": "DB_Design_DR.pdf",
+    "path": "./CSC343 Introduction to Databases/LECTURE",
+    "type": "book"
+  },
+  {
+    "name": "Notes Vector.pdf",
+    "path": "./MAT223 Linear Algebra I",
+    "type": "book"
+  },
+  {
+    "name": "jsc270_lecture4.html",
+    "path": "./JSC270 Data Science I/class4",
+    "type": "note"
+  },
+  {
+    "name": "7-GARCH",
+    "path": "./STA457 Time Series Analysis",
+    "type": "folder"
+  },
+  {
+    "name": "Computer Arithmetic.html",
+    "path": "./CSC336 Numerical Methods",
+    "type": "note"
+  },
+  {
+    "name": "correctargs.c",
+    "path": "./CSC209 Software Tools and Systems Programming/w6",
+    "type": "build"
+  },
+  {
+    "name": ".DS_Store",
+    "path": "./CSC309 Programming on the Web/nodejs/mar11_express",
+    "type": "build"
+  },
+  {
+    "name": "week8_rm_annotated.pdf",
+    "path": "./STA303 Methods of Data Analysis II/Binomial Logistic Regression",
+    "type": "book"
+  },
+  {
+    "name": "package.json",
+    "path": "./CSC309 Programming on the Web/nodejs/mar11_request_promises",
+    "type": "build"
+  },
+  {
+    "name": "A3P1.pdf",
+    "path": "./STA303 Methods of Data Analysis II/ASSIGNMENT/A3",
+    "type": "book"
+  },
+  {
+    "name": "June12-GARCH.pdf",
+    "path": "./STA457 Time Series Analysis/7-GARCH",
+    "type": "book"
+  },
+  {
+    "name": "jan23_object_and_funciton.js",
+    "path": "./CSC309 Programming on the Web/javascript/lecDemo",
+    "type": "build"
+  },
+  {
+    "name": "224NOTES ALL.pdf",
+    "path": "./MAT224 Linear Algebra II",
+    "type": "book"
+  },
+  {
+    "name": "tut_answer",
+    "path": "./JSC270 Data Science I/TUTORIAL",
+    "type": "folder"
+  },
+  {
+    "name": "Week 8 Tutorial Problems.pdf",
+    "path": "./CSC373 Algorithm Design, Analysis and Complexity/TUTORIAL",
+    "type": "book"
+  },
+  {
+    "name": "jsc270_tut2_student.html",
+    "path": "./JSC270 Data Science I/TUTORIAL",
+    "type": "note"
+  },
+  {
+    "name": "ASSIGNMENT",
+    "path": "./CSC373 Algorithm Design, Analysis and Complexity",
+    "type": "folder"
+  },
+  {
+    "name": "TUTORIAL",
+    "path": "./CSC311 Intro to Machine Learning",
+    "type": "folder"
+  },
+  {
+    "name": "STA303 Methods of Data Analysis II",
+    "path": ".",
+    "type": "folder"
+  },
+  {
+    "name": "Galil80.pdf",
     "path": "./CSC265 Enriched Data Structures and Analysis/LECTURE",
     "type": "book"
   },
   {
-    "name": "A3.2handout.pdf",
+    "name": "Strong and weak induction.pdf",
+    "path": "./CSC240 Enriched Introduction to the Theory of Computation",
+    "type": "book"
+  },
+  {
+    "name": "Week9_annotated.pdf",
+    "path": "./STA303 Methods of Data Analysis II/Poisson Regression",
+    "type": "book"
+  },
+  {
+    "name": "header_files_demo",
+    "path": "./CSC209 Software Tools and Systems Programming/w9",
+    "type": "folder"
+  },
+  {
+    "name": "slides-weeks10-11annotated.pdf",
+    "path": "./STA302 Methods of Data Analysis I/LECTURE",
+    "type": "book"
+  },
+  {
+    "name": "slides-unit1_Tues11SepAnnotated.pdf",
+    "path": "./STA302 Methods of Data Analysis I/LECTURE",
+    "type": "book"
+  },
+  {
+    "name": "script.js",
+    "path": "./CSC309 Programming on the Web/nodejs/mar25-authentication/public/js",
+    "type": "build"
+  },
+  {
+    "name": "Binary Logistic Regression",
+    "path": "./STA303 Methods of Data Analysis II",
+    "type": "folder"
+  },
+  {
+    "name": "jsc270_tut4_part2_questions.html",
+    "path": "./JSC270 Data Science I/TUTORIAL",
+    "type": "note"
+  },
+  {
+    "name": "a1q2p3.PNG",
+    "path": "./STA303 Methods of Data Analysis II/ASSIGNMENT/A1",
+    "type": "build"
+  },
+  {
+    "name": "Binomial Logistic Regression",
+    "path": "./STA303 Methods of Data Analysis II",
+    "type": "folder"
+  },
+  {
+    "name": "ll.h",
+    "path": "./CSC209 Software Tools and Systems Programming/w9/header_files_demo/version2",
+    "type": "build"
+  },
+  {
+    "name": "Example of Network Flow.pdf",
+    "path": "./CSC373 Algorithm Design, Analysis and Complexity/LECTURE",
+    "type": "book"
+  },
+  {
+    "name": "func_ptrs_errors_sol.pdf",
+    "path": "./CSC209 Software Tools and Systems Programming/w6",
+    "type": "book"
+  },
+  {
+    "name": "A3P2.rmd",
+    "path": "./STA303 Methods of Data Analysis II/ASSIGNMENT/A3",
+    "type": "build"
+  },
+  {
+    "name": "Schemas_PI-solutions.pdf",
+    "path": "./CSC343 Introduction to Databases/TUTORIAL",
+    "type": "book"
+  },
+  {
+    "name": "w5",
+    "path": "./CSC209 Software Tools and Systems Programming",
+    "type": "folder"
+  },
+  {
+    "name": "fsm_slides.pdf",
+    "path": "./CSC258 Computer Organization",
+    "type": "book"
+  },
+  {
+    "name": "part5.pdf",
+    "path": "./STA347 Probability",
+    "type": "book"
+  },
+  {
+    "name": "Linear Recurrence.pdf",
+    "path": "./CSC240 Enriched Introduction to the Theory of Computation",
+    "type": "book"
+  },
+  {
+    "name": "js",
+    "path": "./CSC309 Programming on the Web/nodejs/mar25-authentication/public",
+    "type": "folder"
+  },
+  {
+    "name": "Week 12 Tutorial Solutions.pdf",
+    "path": "./CSC373 Algorithm Design, Analysis and Complexity/TUTORIAL",
+    "type": "book"
+  },
+  {
+    "name": "Lecture Handout Week 4 R.pdf",
+    "path": "./MAT337 Introduction to Real Analysis/lecture",
+    "type": "book"
+  },
+  {
+    "name": "CSC311_Fall_2019_Tutorial3_lecture.html",
+    "path": "./CSC311 Intro to Machine Learning/TUTORIAL",
+    "type": "note"
+  },
+  {
+    "name": "Embedded-SQL_DR.pdf",
+    "path": "./CSC343 Introduction to Databases/LECTURE",
+    "type": "book"
+  },
+  {
+    "name": "Multi Comparisons.html",
+    "path": "./STA303 Methods of Data Analysis II/One Way ANOVA",
+    "type": "note"
+  },
+  {
+    "name": "Lecture Handout Week 4 T .pdf",
+    "path": "./MAT337 Introduction to Real Analysis/lecture",
+    "type": "book"
+  },
+  {
+    "name": "Solving Overdetermined Equations.html",
+    "path": "./CSC320 Intro to Visual Computing/TUTORIAL",
+    "type": "note"
+  },
+  {
+    "name": "pipe.c",
+    "path": "./CSC209 Software Tools and Systems Programming/w8",
+    "type": "build"
+  },
+  {
+    "name": "Notes subspace and basis.pdf",
+    "path": "./MAT223 Linear Algebra I",
+    "type": "book"
+  },
+  {
+    "name": "april18q7.js",
+    "path": "./CSC309 Programming on the Web/final",
+    "type": "build"
+  },
+  {
+    "name": "bike-location-promise.js",
+    "path": "./CSC309 Programming on the Web/nodejs/mar11_request_promises",
+    "type": "build"
+  },
+  {
+    "name": "mongoose.js",
+    "path": "./CSC309 Programming on the Web/nodejs/mar11_mongo/db",
+    "type": "build"
+  },
+  {
+    "name": "basic prereqiosote  mat.pdf",
+    "path": "./CSC240 Enriched Introduction to the Theory of Computation",
+    "type": "book"
+  },
+  {
+    "name": "dashboard.html",
+    "path": "./CSC309 Programming on the Web/nodejs/mar25-authentication/public",
+    "type": "note"
+  },
+  {
+    "name": "tutorial_transistors_slides.pdf",
+    "path": "./CSC258 Computer Organization",
+    "type": "book"
+  },
+  {
+    "name": "MAT337 Week 13 TH.pdf",
+    "path": "./MAT337 Introduction to Real Analysis/TUTORIAL",
+    "type": "book"
+  },
+  {
+    "name": "Introduction.html",
+    "path": "./STA303 Methods of Data Analysis II/One Way ANOVA",
+    "type": "note"
+  },
+  {
+    "name": "A2S.pdf",
+    "path": "./CSC265 Enriched Data Structures and Analysis/Assignment",
+    "type": "book"
+  },
+  {
+    "name": "jan30_dom.js",
+    "path": "./CSC309 Programming on the Web/DOM/jan30_DOM_manipulation_1",
+    "type": "build"
+  },
+  {
+    "name": "feb6.html",
+    "path": "./CSC309 Programming on the Web/DOM/feb6_event",
+    "type": "note"
+  },
+  {
+    "name": "Conditioning of Linear Equation Systems.html",
+    "path": "./CSC336 Numerical Methods",
+    "type": "note"
+  },
+  {
+    "name": "Week 3 Tutorial Problems.pdf",
+    "path": "./CSC373 Algorithm Design, Analysis and Complexity/TUTORIAL",
+    "type": "book"
+  },
+  {
+    "name": "Greedy Algorithm.html",
+    "path": "./CSC373 Algorithm Design, Analysis and Complexity/NOTE",
+    "type": "note"
+  },
+  {
+    "name": "LInear Regression.html",
+    "path": "./CSC311 Intro to Machine Learning/NOTE",
+    "type": "note"
+  },
+  {
+    "name": "w3",
+    "path": "./CSC209 Software Tools and Systems Programming",
+    "type": "folder"
+  },
+  {
+    "name": "Set-ops.pdf",
+    "path": "./CSC343 Introduction to Databases/TUTORIAL",
+    "type": "book"
+  },
+  {
+    "name": "final",
+    "path": "./CSC309 Programming on the Web",
+    "type": "folder"
+  },
+  {
+    "name": "Lecture Handout week 12.pdf",
+    "path": "./MAT337 Introduction to Real Analysis/lecture",
+    "type": "book"
+  },
+  {
+    "name": "data2.csv",
+    "path": "./STA303 Methods of Data Analysis II/ASSIGNMENT/A2",
+    "type": "build"
+  },
+  {
+    "name": "CSC311 Intro to Machine Learning",
+    "path": ".",
+    "type": "folder"
+  },
+  {
+    "name": "ll.h",
+    "path": "./CSC209 Software Tools and Systems Programming/w9/header_files_demo/version4",
+    "type": "build"
+  },
+  {
+    "name": "app.js",
+    "path": "./CSC309 Programming on the Web/nodejs/feb13_node",
+    "type": "build"
+  },
+  {
+    "name": "data2.csv",
+    "path": "./STA303 Methods of Data Analysis II",
+    "type": "build"
+  },
+  {
+    "name": "jupyter.tplx",
+    "path": "./STA303 Methods of Data Analysis II/ASSIGNMENT/A3",
+    "type": "build"
+  },
+  {
+    "name": "JavaScript.html",
+    "path": "./CSC309 Programming on the Web/javascript",
+    "type": "note"
+  },
+  {
+    "name": "fork_solutions.pdf",
+    "path": "./CSC209 Software Tools and Systems Programming/w7",
+    "type": "book"
+  },
+  {
+    "name": "Network Flow.html",
+    "path": "./CSC373 Algorithm Design, Analysis and Complexity/NOTE",
+    "type": "note"
+  },
+  {
+    "name": "3. MCT and BWT.html",
+    "path": "./MAT337 Introduction to Real Analysis/NOTE",
+    "type": "note"
+  },
+  {
+    "name": "2019 Summer course outline (U)-1.pdf",
+    "path": "./STA457 Time Series Analysis",
+    "type": "book"
+  },
+  {
+    "name": "Structural Induction.pdf",
+    "path": "./CSC240 Enriched Introduction to the Theory of Computation",
+    "type": "book"
+  },
+  {
+    "name": "stack.h",
+    "path": "./CSC209 Software Tools and Systems Programming/w9/header_files_demo/version4",
+    "type": "build"
+  },
+  {
+    "name": "ROSI.pdf",
+    "path": "./CSC343 Introduction to Databases/TUTORIAL",
+    "type": "book"
+  },
+  {
+    "name": "NOTE",
+    "path": "./CSC373 Algorithm Design, Analysis and Complexity",
+    "type": "folder"
+  },
+  {
+    "name": "greeting-sing-dance.c",
+    "path": "./CSC209 Software Tools and Systems Programming/w9",
+    "type": "build"
+  },
+  {
+    "name": "signals.pdf",
+    "path": "./CSC209 Software Tools and Systems Programming/w9",
+    "type": "book"
+  },
+  {
+    "name": "Subqueries.pdf",
+    "path": "./CSC343 Introduction to Databases/TUTORIAL",
+    "type": "book"
+  },
+  {
+    "name": "slides-weeks7-8annotated.pdf",
+    "path": "./STA302 Methods of Data Analysis I/LECTURE",
+    "type": "book"
+  },
+  {
+    "name": "Schemas_DR.pdf",
+    "path": "./CSC343 Introduction to Databases/LECTURE",
+    "type": "book"
+  },
+  {
+    "name": "stack_vs_heap.pdf",
+    "path": "./CSC209 Software Tools and Systems Programming/w3",
+    "type": "book"
+  },
+  {
+    "name": "A5solution.pdf",
     "path": "./CSC373 Algorithm Design, Analysis and Complexity/ASSIGNMENT",
     "type": "book"
   },
@@ -1400,8 +1135,68 @@
     "type": "note"
   },
   {
-    "name": "Linear Filters.html",
-    "path": "./CSC420 Intro to Image Understanding/NOTE",
+    "name": "bbw99.csv",
+    "path": "./STA303 Methods of Data Analysis II/ASSIGNMENT/A1",
+    "type": "build"
+  },
+  {
+    "name": "Lecture 2 IntroductionARMAModels (06Jan2019).pdf",
+    "path": "./STA457 Time Series Analysis/2-ARMA",
+    "type": "book"
+  },
+  {
+    "name": "promises.js",
+    "path": "./CSC309 Programming on the Web/nodejs",
+    "type": "build"
+  },
+  {
+    "name": "Final Review Questions.html",
+    "path": "./STA457 Time Series Analysis/0-NOTES",
+    "type": "note"
+  },
+  {
+    "name": "ARIMA and unit root tests (06Jan2019).pdf",
+    "path": "./STA457 Time Series Analysis/3-ARIMA",
+    "type": "book"
+  },
+  {
+    "name": "student.json",
+    "path": "./CSC309 Programming on the Web/nodejs/feb25_node",
+    "type": "build"
+  },
+  {
+    "name": "Week 12 Lecture Summary.pdf",
+    "path": "./CSC373 Algorithm Design, Analysis and Complexity/LECTURE",
+    "type": "book"
+  },
+  {
+    "name": "Week11_annotated.pdf",
+    "path": "./STA303 Methods of Data Analysis II/Contingency tables",
+    "type": "book"
+  },
+  {
+    "name": "main.c",
+    "path": "./CSC209 Software Tools and Systems Programming/w9/header_files_demo/version4",
+    "type": "build"
+  },
+  {
+    "name": "A4solution.pdf",
+    "path": "./CSC265 Enriched Data Structures and Analysis/Assignment",
+    "type": "book"
+  },
+  {
+    "name": "CSC373 Algorithm Design, Analysis and Complexity",
+    "path": ".",
+    "type": "folder"
+  },
+  {
+    "name": "TUTORIAL",
+    "path": "./MAT337 Introduction to Real Analysis",
+    "type": "folder"
+  },
+  {
+    "name": "Properties of Decompositions TUT.html",
+    "path": "./CSC343 Introduction to Databases/TUTORIAL",
     "type": "note"
   },
   {
@@ -1410,29 +1205,69 @@
     "type": "build"
   },
   {
-    "name": "Week 10 Tutorial Problems.pdf",
-    "path": "./CSC373 Algorithm Design, Analysis and Complexity/TUTORIAL",
+    "name": "Assignment",
+    "path": "./CSC265 Enriched Data Structures and Analysis",
+    "type": "folder"
+  },
+  {
+    "name": "309WrapUp.pdf",
+    "path": "./CSC309 Programming on the Web/nodejs/apr3",
     "type": "book"
   },
   {
-    "name": "CSC343-Intro_DR.pdf",
-    "path": "./CSC343 Introduction to Databases/LECTURE",
+    "name": "A4handout.pdf",
+    "path": "./CSC373 Algorithm Design, Analysis and Complexity/ASSIGNMENT",
     "type": "book"
   },
   {
-    "name": "tutorial_fsm_slides.pdf",
-    "path": "./CSC258 Computer Organization",
+    "name": "juries.csv",
+    "path": "./STA303 Methods of Data Analysis II/ASSIGNMENT/A1",
+    "type": "build"
+  },
+  {
+    "name": "w11",
+    "path": "./CSC209 Software Tools and Systems Programming",
+    "type": "folder"
+  },
+  {
+    "name": "structs_sol.pdf",
+    "path": "./CSC209 Software Tools and Systems Programming/w4",
     "type": "book"
   },
   {
-    "name": "8.Amortized_analysis.pdf",
-    "path": "./CSC265 Enriched Data Structures and Analysis/NOTE",
+    "name": "A3Q.pdf",
+    "path": "./CSC265 Enriched Data Structures and Analysis/Assignment",
     "type": "book"
   },
   {
-    "name": "loglinpp.pdf",
-    "path": "./STA303 Methods of Data Analysis II/Poisson Regression",
+    "name": "Introduction to Methods of Desmoothing, Lin 2019.pdf",
+    "path": "./STA457 Time Series Analysis/4-Forecast_and_TFN",
     "type": "book"
+  },
+  {
+    "name": "Week4_s303_annotated2.pdf",
+    "path": "./STA303 Methods of Data Analysis II/Two Way ANOVA",
+    "type": "book"
+  },
+  {
+    "name": "lab3",
+    "path": "./CSC309 Programming on the Web/javascript",
+    "type": "folder"
+  },
+  {
+    "name": "Week5_303_annotated.pdf",
+    "path": "./STA303 Methods of Data Analysis II/Binary Logistic Regression",
+    "type": "book"
+  },
+  {
+    "name": "db",
+    "path": "./CSC309 Programming on the Web/nodejs/mar25-authentication",
+    "type": "folder"
+  },
+  {
+    "name": "greeting.c",
+    "path": "./CSC209 Software Tools and Systems Programming/w9",
+    "type": "build"
   },
   {
     "name": "Language Theory.pdf",
@@ -1440,263 +1275,48 @@
     "type": "book"
   },
   {
-    "name": "ASSIGNMENT",
-    "path": "./STA303 Methods of Data Analysis II",
-    "type": "folder"
-  },
-  {
-    "name": "mat337h1.pdf",
-    "path": "./MAT337 Introduction to Real Analysis/LECTURE",
-    "type": "book"
-  },
-  {
-    "name": "flipflops_slides.pdf",
-    "path": "./CSC258 Computer Organization",
-    "type": "book"
-  },
-  {
-    "name": "Week 1 Lecture Summary.pdf",
-    "path": "./CSC373 Algorithm Design, Analysis and Complexity/LECTURE",
-    "type": "book"
-  },
-  {
-    "name": "package examples",
-    "path": "./JSC270 Data Science I",
-    "type": "folder"
-  },
-  {
-    "name": "MAT337 Week 11 TH.pdf",
-    "path": "./MAT337 Introduction to Real Analysis/TUTORIAL",
-    "type": "book"
-  },
-  {
-    "name": "NOTE",
-    "path": "./MAT337 Introduction to Real Analysis",
-    "type": "folder"
-  },
-  {
-    "name": "Week 4 Tutorial Solutions.pdf",
-    "path": "./CSC373 Algorithm Design, Analysis and Complexity/TUTORIAL",
-    "type": "book"
-  },
-  {
-    "name": "A3solution.pdf",
-    "path": "./CSC373 Algorithm Design, Analysis and Complexity/ASSIGNMENT",
-    "type": "book"
-  },
-  {
-    "name": "MAT337 Week 12 TH.pdf",
-    "path": "./MAT337 Introduction to Real Analysis/TUTORIAL",
-    "type": "book"
-  },
-  {
-    "name": "user.js",
-    "path": "./CSC309 Programming on the Web/nodejs/mar25-authentication/models",
-    "type": "build"
-  },
-  {
-    "name": "Network Flow.html",
-    "path": "./CSC373 Algorithm Design, Analysis and Complexity/NOTE",
-    "type": "note"
-  },
-  {
-    "name": "user.js",
-    "path": "./CSC309 Programming on the Web/nodejs/mar18-mongo/models",
-    "type": "build"
-  },
-  {
-    "name": "Week 5 Tutorial Solutions.pdf",
-    "path": "./CSC373 Algorithm Design, Analysis and Complexity/TUTORIAL",
-    "type": "book"
-  },
-  {
-    "name": "A3.1handout.pdf",
-    "path": "./CSC373 Algorithm Design, Analysis and Complexity/ASSIGNMENT",
-    "type": "book"
-  },
-  {
-    "name": "lecture8.pdf",
-    "path": "./JSC270 Data Science I/class8",
-    "type": "book"
-  },
-  {
-    "name": "1-Introduction",
-    "path": "./STA457 Time Series Analysis",
-    "type": "folder"
-  },
-  {
-    "name": "models",
-    "path": "./CSC309 Programming on the Web/nodejs/mar25-authentication",
-    "type": "folder"
-  },
-  {
-    "name": "loglin_Routput.txt",
-    "path": "./STA303 Methods of Data Analysis II/Poisson Regression",
-    "type": "build"
-  },
-  {
-    "name": "lab1",
-    "path": "./CSC309 Programming on the Web/html&css",
-    "type": "folder"
-  },
-  {
-    "name": "NOTE",
+    "name": "TUTORIAL",
     "path": "./CSC420 Intro to Image Understanding",
     "type": "folder"
   },
   {
-    "name": "3.AVL_Trees.pdf",
-    "path": "./CSC265 Enriched Data Structures and Analysis/NOTE",
-    "type": "book"
-  },
-  {
-    "name": "AVL.pdf",
-    "path": "./CSC265 Enriched Data Structures and Analysis/LECTURE",
-    "type": "book"
-  },
-  {
-    "name": "Week 12 Lecture Summary.pdf",
-    "path": "./CSC373 Algorithm Design, Analysis and Complexity/LECTURE",
-    "type": "book"
-  },
-  {
-    "name": "A2.Rmd",
-    "path": "./STA303 Methods of Data Analysis II/ASSIGNMENT/A2",
-    "type": "build"
-  },
-  {
-    "name": "io_conversions_sol.pdf",
-    "path": "./CSC209 Software Tools and Systems Programming/w5",
-    "type": "book"
-  },
-  {
-    "name": "april18q7.js",
-    "path": "./CSC309 Programming on the Web/final",
-    "type": "build"
-  },
-  {
-    "name": "change.c",
+    "name": "lie.c",
     "path": "./CSC209 Software Tools and Systems Programming/w2",
     "type": "build"
   },
   {
-    "name": "saved_resource.html",
-    "path": "./CSC309 Programming on the Web/html&css/lecDemo/CSC309boxes_files",
+    "name": "jsc270_tut3_student.html",
+    "path": "./JSC270 Data Science I/TUTORIAL",
     "type": "note"
   },
   {
-    "name": "STA303 Methods of Data Analysis II",
+    "name": "app.js",
+    "path": "./CSC309 Programming on the Web/nodejs/mar4_request",
+    "type": "build"
+  },
+  {
+    "name": "STA347 Probability",
     "path": ".",
     "type": "folder"
   },
   {
-    "name": "js",
-    "path": "./CSC309 Programming on the Web/nodejs/mar25-authentication/public",
-    "type": "folder"
-  },
-  {
-    "name": "slides-weeks10-11annotated.pdf",
-    "path": "./STA302 Methods of Data Analysis I/LECTURE",
-    "type": "book"
-  },
-  {
-    "name": "Linear Classification & Optimization.html",
-    "path": "./CSC311 Intro to Machine Learning/NOTE",
+    "name": "Lecture code - Intro R.html",
+    "path": "./STA302 Methods of Data Analysis I",
     "type": "note"
   },
   {
-    "name": "Tut4.html",
-    "path": "./JSC270 Data Science I/class6",
+    "name": "introduction_slides.pdf",
+    "path": "./CSC258 Computer Organization",
+    "type": "book"
+  },
+  {
+    "name": "Greedy Algorithm Tut.html",
+    "path": "./CSC373 Algorithm Design, Analysis and Complexity/NOTE",
     "type": "note"
   },
   {
-    "name": "7. Convergence of Functions.html",
-    "path": "./MAT337 Introduction to Real Analysis/NOTE",
-    "type": "note"
-  },
-  {
-    "name": "slides-unit2_annotated.pdf",
-    "path": "./STA302 Methods of Data Analysis I/LECTURE",
-    "type": "book"
-  },
-  {
-    "name": "Class1-EDA_OkCupid.html",
-    "path": "./JSC270 Data Science I/class1",
-    "type": "note"
-  },
-  {
-    "name": "hw1s.pdf",
-    "path": "./STA347 Probability",
-    "type": "book"
-  },
-  {
-    "name": "permissions_sol.pdf",
-    "path": "./CSC209 Software Tools and Systems Programming/w1",
-    "type": "book"
-  },
-  {
-    "name": "A3Q.pdf",
-    "path": "./CSC265 Enriched Data Structures and Analysis/ASSIGNMENT",
-    "type": "book"
-  },
-  {
-    "name": "LECTURE",
-    "path": "./CSC343 Introduction to Databases",
-    "type": "folder"
-  },
-  {
-    "name": "DFA & NFA.pdf",
-    "path": "./CSC240 Enriched Introduction to the Theory of Computation",
-    "type": "book"
-  },
-  {
-    "name": "MT1_solutions.pdf",
-    "path": "./MAT337 Introduction to Real Analysis/TUTORIAL",
-    "type": "book"
-  },
-  {
-    "name": "lie2.c",
-    "path": "./CSC209 Software Tools and Systems Programming/w2",
-    "type": "build"
-  },
-  {
-    "name": "Assignment1_w19.pdf",
-    "path": "./STA303 Methods of Data Analysis II/ASSIGNMENT/A1",
-    "type": "book"
-  },
-  {
-    "name": "Makefile",
-    "path": "./CSC209 Software Tools and Systems Programming/w9/header_files_demo/version2",
-    "type": "build"
-  },
-  {
-    "name": "Week 5 Lecture Summary.pdf",
-    "path": "./CSC373 Algorithm Design, Analysis and Complexity/LECTURE",
-    "type": "book"
-  },
-  {
-    "name": "Analysis of Algorithm.pdf",
-    "path": "./CSC240 Enriched Introduction to the Theory of Computation",
-    "type": "book"
-  },
-  {
-    "name": "A5solution.pdf",
+    "name": "A3.2handout.pdf",
     "path": "./CSC373 Algorithm Design, Analysis and Complexity/ASSIGNMENT",
-    "type": "book"
-  },
-  {
-    "name": "mar18-mongo",
-    "path": "./CSC309 Programming on the Web/nodejs",
-    "type": "folder"
-  },
-  {
-    "name": "mongo-add-student.js",
-    "path": "./CSC309 Programming on the Web/nodejs/mar11_mongo",
-    "type": "build"
-  },
-  {
-    "name": "MAT337 Week 9 TH.pdf",
-    "path": "./MAT337 Introduction to Real Analysis/TUTORIAL",
     "type": "book"
   },
   {
@@ -1705,24 +1325,459 @@
     "type": "book"
   },
   {
+    "name": "w9",
+    "path": "./CSC209 Software Tools and Systems Programming",
+    "type": "folder"
+  },
+  {
+    "name": "student_queue.js",
+    "path": "./CSC309 Programming on the Web/DOM/feb4_DOM_manipulation_2",
+    "type": "build"
+  },
+  {
+    "name": "Correctness of While Loops.pdf",
+    "path": "./CSC240 Enriched Introduction to the Theory of Computation",
+    "type": "book"
+  },
+  {
+    "name": "tutorial_fsm_slides.pdf",
+    "path": "./CSC258 Computer Organization",
+    "type": "book"
+  },
+  {
+    "name": "part0.pdf",
+    "path": "./STA347 Probability",
+    "type": "book"
+  },
+  {
+    "name": "package.json",
+    "path": "./CSC309 Programming on the Web/nodejs/mar18-mongo",
+    "type": "build"
+  },
+  {
+    "name": "LECTURE",
+    "path": "./CSC265 Enriched Data Structures and Analysis",
+    "type": "folder"
+  },
+  {
+    "name": "course.html",
+    "path": "./CSC309 Programming on the Web/html&css",
+    "type": "note"
+  },
+  {
+    "name": "1-Introduction",
+    "path": "./STA457 Time Series Analysis",
+    "type": "folder"
+  },
+  {
+    "name": "dashboard.hbs",
+    "path": "./CSC309 Programming on the Web/nodejs/mar25-authentication/views",
+    "type": "build"
+  },
+  {
+    "name": "tutorial_gates_slides.pdf",
+    "path": "./CSC258 Computer Organization",
+    "type": "book"
+  },
+  {
+    "name": "SQL queries TUT.html",
+    "path": "./CSC343 Introduction to Databases/TUTORIAL",
+    "type": "note"
+  },
+  {
+    "name": "class6",
+    "path": "./JSC270 Data Science I",
+    "type": "folder"
+  },
+  {
+    "name": "BJIllustrations2017F.html",
+    "path": "./STA457 Time Series Analysis/2-ARMA",
+    "type": "note"
+  },
+  {
+    "name": "tutorial_alu_slides.pdf",
+    "path": "./CSC258 Computer Organization",
+    "type": "book"
+  },
+  {
+    "name": "calls_and_pointers_sol.pdf",
+    "path": "./CSC209 Software Tools and Systems Programming/w2",
+    "type": "book"
+  },
+  {
+    "name": "students.js",
+    "path": "./CSC309 Programming on the Web/nodejs/mar4_node_api",
+    "type": "build"
+  },
+  {
+    "name": "student.js",
+    "path": "./CSC309 Programming on the Web/nodejs/mar18-mongo/models",
+    "type": "build"
+  },
+  {
+    "name": "html&css",
+    "path": "./CSC309 Programming on the Web",
+    "type": "folder"
+  },
+  {
+    "name": "MoviesSol.pdf",
+    "path": "./CSC343 Introduction to Databases/TUTORIAL",
+    "type": "book"
+  },
+  {
+    "name": "class7",
+    "path": "./JSC270 Data Science I",
+    "type": "folder"
+  },
+  {
+    "name": "TUTORIAL",
+    "path": "./CSC373 Algorithm Design, Analysis and Complexity",
+    "type": "folder"
+  },
+  {
+    "name": "Notes Vector equations.pdf",
+    "path": "./MAT223 Linear Algebra I",
+    "type": "book"
+  },
+  {
+    "name": "language processing.html",
+    "path": "./JSC270 Data Science I/package examples",
+    "type": "note"
+  },
+  {
+    "name": "todo.js",
+    "path": "./CSC309 Programming on the Web/javascript/lab4",
+    "type": "build"
+  },
+  {
+    "name": "TUT3.html",
+    "path": "./MAT337 Introduction to Real Analysis/TUTORIAL",
+    "type": "note"
+  },
+  {
     "name": "The Camera.html",
     "path": "./CSC320 Intro to Visual Computing/NOTE",
     "type": "note"
   },
   {
-    "name": "Decision Trees.html",
-    "path": "./CSC311 Intro to Machine Learning/NOTE",
+    "name": "Joins.pdf",
+    "path": "./CSC343 Introduction to Databases/TUTORIAL",
+    "type": "book"
+  },
+  {
+    "name": "part3.pdf",
+    "path": "./STA347 Probability",
+    "type": "book"
+  },
+  {
+    "name": "version1",
+    "path": "./CSC209 Software Tools and Systems Programming/w9/header_files_demo",
+    "type": "folder"
+  },
+  {
+    "name": "lecture5_ver1.html",
+    "path": "./JSC270 Data Science I/class5",
     "type": "note"
   },
   {
-    "name": "Notes Determinants.pdf",
+    "name": "assembly_slides.pdf",
+    "path": "./CSC258 Computer Organization",
+    "type": "book"
+  },
+  {
+    "name": "Week 7 Lecture Summary.pdf",
+    "path": "./CSC373 Algorithm Design, Analysis and Complexity/LECTURE",
+    "type": "book"
+  },
+  {
+    "name": "CSC320 Intro to Visual Computing",
+    "path": ".",
+    "type": "folder"
+  },
+  {
+    "name": "9.Disjoint_set.pdf",
+    "path": "./CSC265 Enriched Data Structures and Analysis/NOTE",
+    "type": "book"
+  },
+  {
+    "name": "Class1-Part2.html",
+    "path": "./JSC270 Data Science I/class1",
+    "type": "note"
+  },
+  {
+    "name": "A5.2handout.pdf",
+    "path": "./CSC373 Algorithm Design, Analysis and Complexity/ASSIGNMENT",
+    "type": "book"
+  },
+  {
+    "name": "shell_worksheet2_solutions.pdf",
+    "path": "./CSC209 Software Tools and Systems Programming/w11",
+    "type": "book"
+  },
+  {
+    "name": "5-VAR",
+    "path": "./STA457 Time Series Analysis",
+    "type": "folder"
+  },
+  {
+    "name": "mar11_mongo",
+    "path": "./CSC309 Programming on the Web/nodejs",
+    "type": "folder"
+  },
+  {
+    "name": "mar4_request",
+    "path": "./CSC309 Programming on the Web/nodejs",
+    "type": "folder"
+  },
+  {
+    "name": "A2.pdf",
+    "path": "./STA303 Methods of Data Analysis II/ASSIGNMENT/A2",
+    "type": "book"
+  },
+  {
+    "name": "A1.Rmd",
+    "path": "./STA303 Methods of Data Analysis II/ASSIGNMENT/A1",
+    "type": "build"
+  },
+  {
+    "name": "3-ARIMA",
+    "path": "./STA457 Time Series Analysis",
+    "type": "folder"
+  },
+  {
+    "name": "makefiles_sol.pdf",
+    "path": "./CSC209 Software Tools and Systems Programming/w5",
+    "type": "book"
+  },
+  {
+    "name": "CSC309 Programming on the Web",
+    "path": ".",
+    "type": "folder"
+  },
+  {
+    "name": "SQL-DML_DR.pdf",
+    "path": "./CSC343 Introduction to Databases/LECTURE",
+    "type": "book"
+  },
+  {
+    "name": "A6s.pdf",
+    "path": "./CSC265 Enriched Data Structures and Analysis/Assignment",
+    "type": "book"
+  },
+  {
+    "name": "package.json",
+    "path": "./CSC309 Programming on the Web/nodejs/mar4_request",
+    "type": "build"
+  },
+  {
+    "name": "CSC240 Enriched Introduction to the Theory of Computation",
+    "path": ".",
+    "type": "folder"
+  },
+  {
+    "name": "NP-complete.html",
+    "path": "./CSC373 Algorithm Design, Analysis and Complexity/NOTE",
+    "type": "note"
+  },
+  {
+    "name": "Notes Inverse.pdf",
     "path": "./MAT223 Linear Algebra I",
     "type": "book"
   },
   {
-    "name": "structs_sol.pdf",
-    "path": "./CSC209 Software Tools and Systems Programming/w4",
+    "name": "2-ARMA",
+    "path": "./STA457 Time Series Analysis",
+    "type": "folder"
+  },
+  {
+    "name": "weekday.sh",
+    "path": "./CSC209 Software Tools and Systems Programming/w11",
+    "type": "build"
+  },
+  {
+    "name": "stack.c",
+    "path": "./CSC209 Software Tools and Systems Programming/w9/header_files_demo/version2",
+    "type": "build"
+  },
+  {
+    "name": "jan28_object_create.js",
+    "path": "./CSC309 Programming on the Web/javascript/lecDemo",
+    "type": "build"
+  },
+  {
+    "name": "7. Convergence of Functions.html",
+    "path": "./MAT337 Introduction to Real Analysis/NOTE",
+    "type": "note"
+  },
+  {
+    "name": "Right Linear Grammar.pdf",
+    "path": "./CSC240 Enriched Introduction to the Theory of Computation",
     "type": "book"
+  },
+  {
+    "name": "Week 4 Tutorial Problems.pdf",
+    "path": "./CSC373 Algorithm Design, Analysis and Complexity/TUTORIAL",
+    "type": "book"
+  },
+  {
+    "name": "check_errors.c",
+    "path": "./CSC209 Software Tools and Systems Programming/w6",
+    "type": "build"
+  },
+  {
+    "name": "Week 8 Tutorial Solutions.pdf",
+    "path": "./CSC373 Algorithm Design, Analysis and Complexity/TUTORIAL",
+    "type": "book"
+  },
+  {
+    "name": "simple_strings.c",
+    "path": "./CSC209 Software Tools and Systems Programming/w2",
+    "type": "build"
+  },
+  {
+    "name": "BadTechniques.pdf",
+    "path": "./CSC240 Enriched Introduction to the Theory of Computation",
+    "type": "book"
+  },
+  {
+    "name": "1.Priority_Queue.pdf",
+    "path": "./CSC265 Enriched Data Structures and Analysis/NOTE",
+    "type": "book"
+  },
+  {
+    "name": "Formal Proof.pdf",
+    "path": "./CSC240 Enriched Introduction to the Theory of Computation",
+    "type": "book"
+  },
+  {
+    "name": "A1S.pdf",
+    "path": "./CSC265 Enriched Data Structures and Analysis/Assignment",
+    "type": "book"
+  },
+  {
+    "name": "NHEFS.xls",
+    "path": "./JSC270 Data Science I/class6",
+    "type": "build"
+  },
+  {
+    "name": "Week 5 Tutorial Solutions.pdf",
+    "path": "./CSC373 Algorithm Design, Analysis and Complexity/TUTORIAL",
+    "type": "book"
+  },
+  {
+    "name": "A4solution.pdf",
+    "path": "./CSC373 Algorithm Design, Analysis and Complexity/ASSIGNMENT",
+    "type": "book"
+  },
+  {
+    "name": "CSC311_Fall_2019_Tutorial3_worksheet.html",
+    "path": "./CSC311 Intro to Machine Learning/TUTORIAL",
+    "type": "note"
+  },
+  {
+    "name": "MAT223 Linear Algebra I",
+    "path": ".",
+    "type": "folder"
+  },
+  {
+    "name": "Variance_Stabilizing_Transformations.pdf",
+    "path": "./STA457 Time Series Analysis/2-ARMA",
+    "type": "book"
+  },
+  {
+    "name": "Week 2 Tutorial Solutions.pdf",
+    "path": "./CSC373 Algorithm Design, Analysis and Complexity/TUTORIAL",
+    "type": "book"
+  },
+  {
+    "name": "Approxmation Errors and Conditioning, Stability.html",
+    "path": "./CSC336 Numerical Methods",
+    "type": "note"
+  },
+  {
+    "name": "Relational Model.html",
+    "path": "./CSC343 Introduction to Databases/NOTES",
+    "type": "note"
+  },
+  {
+    "name": "lecture2_slides_posted2.html",
+    "path": "./JSC270 Data Science I/class2",
+    "type": "note"
+  },
+  {
+    "name": "makefiles_extra_sol.pdf",
+    "path": "./CSC209 Software Tools and Systems Programming/w5",
+    "type": "book"
+  },
+  {
+    "name": "Week 10 Tutorial Solutions.pdf",
+    "path": "./CSC373 Algorithm Design, Analysis and Complexity/TUTORIAL",
+    "type": "book"
+  },
+  {
+    "name": "CSC309.html",
+    "path": "./CSC309 Programming on the Web/html&css/lecDemo",
+    "type": "note"
+  },
+  {
+    "name": "io_conversions_sol.pdf",
+    "path": "./CSC209 Software Tools and Systems Programming/w5",
+    "type": "book"
+  },
+  {
+    "name": "mar18-mongo",
+    "path": "./CSC309 Programming on the Web/nodejs",
+    "type": "folder"
+  },
+  {
+    "name": "The Chase Test.html",
+    "path": "./CSC343 Introduction to Databases/TUTORIAL",
+    "type": "note"
+  },
+  {
+    "name": "ll.c",
+    "path": "./CSC209 Software Tools and Systems Programming/w9/header_files_demo/version4",
+    "type": "build"
+  },
+  {
+    "name": "NOTE",
+    "path": "./CSC311 Intro to Machine Learning",
+    "type": "folder"
+  },
+  {
+    "name": "plot_bias_variance.html",
+    "path": "./CSC311 Intro to Machine Learning/TUTORIAL",
+    "type": "note"
+  },
+  {
+    "name": "feb25_node",
+    "path": "./CSC309 Programming on the Web/nodejs",
+    "type": "folder"
+  },
+  {
+    "name": "whatday.sh",
+    "path": "./CSC209 Software Tools and Systems Programming/w11",
+    "type": "build"
+  },
+  {
+    "name": "One Way ANOVA",
+    "path": "./STA303 Methods of Data Analysis II",
+    "type": "folder"
+  },
+  {
+    "name": "MT2_solutions.pdf",
+    "path": "./MAT337 Introduction to Real Analysis/TUTORIAL",
+    "type": "book"
+  },
+  {
+    "name": "lab4",
+    "path": "./CSC309 Programming on the Web/javascript",
+    "type": "folder"
+  },
+  {
+    "name": "class8",
+    "path": "./JSC270 Data Science I",
+    "type": "folder"
   },
   {
     "name": "mongo-delete-student.js",
@@ -1730,12 +1785,242 @@
     "type": "build"
   },
   {
-    "name": "server.js",
-    "path": "./CSC309 Programming on the Web/nodejs/mar11_express",
+    "name": "DOM",
+    "path": "./CSC309 Programming on the Web",
+    "type": "folder"
+  },
+  {
+    "name": "db",
+    "path": "./CSC309 Programming on the Web/nodejs/mar18-mongo",
+    "type": "folder"
+  },
+  {
+    "name": "numpy_demo_week1.html",
+    "path": "./CSC320 Intro to Visual Computing/TUTORIAL",
+    "type": "note"
+  },
+  {
+    "name": "Week 2 Tutorial Problems.pdf",
+    "path": "./CSC373 Algorithm Design, Analysis and Complexity/TUTORIAL",
+    "type": "book"
+  },
+  {
+    "name": "CSC309boxes_files",
+    "path": "./CSC309 Programming on the Web/html&css/lecDemo",
+    "type": "folder"
+  },
+  {
+    "name": "6-Bootstrap",
+    "path": "./STA457 Time Series Analysis",
+    "type": "folder"
+  },
+  {
+    "name": "Functional Dependencies TUT.html",
+    "path": "./CSC343 Introduction to Databases/TUTORIAL",
+    "type": "note"
+  },
+  {
+    "name": "Bootstrap TS.pdf",
+    "path": "./STA457 Time Series Analysis/6-Bootstrap",
+    "type": "book"
+  },
+  {
+    "name": "feb11.js",
+    "path": "./CSC309 Programming on the Web/DOM/feb11_event2",
     "type": "build"
   },
   {
-    "name": "A4solution.pdf",
+    "name": "pub",
+    "path": "./CSC309 Programming on the Web/nodejs/mar11_express",
+    "type": "folder"
+  },
+  {
+    "name": "Lecture Handout Week 6.pdf",
+    "path": "./MAT337 Introduction to Real Analysis/lecture",
+    "type": "book"
+  },
+  {
+    "name": "TUT10.html",
+    "path": "./MAT337 Introduction to Real Analysis/TUTORIAL",
+    "type": "note"
+  },
+  {
+    "name": "slides-weeks9-10annotated.pdf",
+    "path": "./STA302 Methods of Data Analysis I/LECTURE",
+    "type": "book"
+  },
+  {
+    "name": "MTS_R (27 Nov 2017).pdf",
+    "path": "./STA457 Time Series Analysis/5-VAR",
+    "type": "book"
+  },
+  {
+    "name": "tutorial_flipflops_slides.pdf",
+    "path": "./CSC258 Computer Organization",
+    "type": "book"
+  },
+  {
+    "name": "A3S.pdf",
+    "path": "./CSC265 Enriched Data Structures and Analysis/Assignment",
+    "type": "book"
+  },
+  {
+    "name": "A2.Rmd",
+    "path": "./STA303 Methods of Data Analysis II/ASSIGNMENT/A2",
+    "type": "build"
+  },
+  {
+    "name": "9. Arzela-Ascoli Theorem.html",
+    "path": "./MAT337 Introduction to Real Analysis/NOTE",
+    "type": "note"
+  },
+  {
+    "name": "slides-week6-annotated.pdf",
+    "path": "./STA302 Methods of Data Analysis I/LECTURE",
+    "type": "book"
+  },
+  {
+    "name": "version3",
+    "path": "./CSC209 Software Tools and Systems Programming/w9/header_files_demo",
+    "type": "folder"
+  },
+  {
+    "name": "slides-week5annotated.pdf",
+    "path": "./STA302 Methods of Data Analysis I/LECTURE",
+    "type": "book"
+  },
+  {
+    "name": "tutorial_week9_slides.pdf",
+    "path": "./CSC258 Computer Organization",
+    "type": "book"
+  },
+  {
+    "name": "ll.c",
+    "path": "./CSC209 Software Tools and Systems Programming/w9/header_files_demo/version1",
+    "type": "build"
+  },
+  {
+    "name": "Summary.html",
+    "path": "./STA303 Methods of Data Analysis II",
+    "type": "note"
+  },
+  {
+    "name": "saved_resource.html",
+    "path": "./CSC309 Programming on the Web/html&css/lecDemo/CSC309_files",
+    "type": "note"
+  },
+  {
+    "name": "w1",
+    "path": "./CSC209 Software Tools and Systems Programming",
+    "type": "folder"
+  },
+  {
+    "name": "lecture7.pdf",
+    "path": "./JSC270 Data Science I/class7",
+    "type": "book"
+  },
+  {
+    "name": "SQL Schema.html",
+    "path": "./CSC343 Introduction to Databases/NOTES",
+    "type": "note"
+  },
+  {
+    "name": "MAT337 Week 5 TH.pdf",
+    "path": "./MAT337 Introduction to Real Analysis/TUTORIAL",
+    "type": "book"
+  },
+  {
+    "name": "2.Mergable_Heap.pdf",
+    "path": "./CSC265 Enriched Data Structures and Analysis/NOTE",
+    "type": "book"
+  },
+  {
+    "name": "Rel Algebra_DR.pdf",
+    "path": "./CSC343 Introduction to Databases/LECTURE",
+    "type": "book"
+  },
+  {
+    "name": "CSC420_2019_Tutorial_A.html",
+    "path": "./CSC420 Intro to Image Understanding/TUTORIAL",
+    "type": "note"
+  },
+  {
+    "name": "week5_rm_annotated.pdf",
+    "path": "./STA303 Methods of Data Analysis II/Binary Logistic Regression",
+    "type": "book"
+  },
+  {
+    "name": "Lecture Handout Week 5 T .pdf",
+    "path": "./MAT337 Introduction to Real Analysis/lecture",
+    "type": "book"
+  },
+  {
+    "name": "Syllabus for MAT337H1 Y LEC0101 20195_Introduction to Real Analysis.pdf",
+    "path": "./MAT337 Introduction to Real Analysis",
+    "type": "book"
+  },
+  {
+    "name": "Lecture Handout Week 1 R.pdf",
+    "path": "./MAT337 Introduction to Real Analysis/lecture",
+    "type": "book"
+  },
+  {
+    "name": "ER_DR.pdf",
+    "path": "./CSC343 Introduction to Databases/LECTURE",
+    "type": "book"
+  },
+  {
+    "name": "nodejs",
+    "path": "./CSC309 Programming on the Web",
+    "type": "folder"
+  },
+  {
+    "name": "Example of Self-Reducibility.pdf",
+    "path": "./CSC373 Algorithm Design, Analysis and Complexity/LECTURE",
+    "type": "book"
+  },
+  {
+    "name": "instructions.txt",
+    "path": "./CSC309 Programming on the Web/nodejs/mar18-mongo",
+    "type": "build"
+  },
+  {
+    "name": "server.js",
+    "path": "./CSC309 Programming on the Web/nodejs/mar18-mongo",
+    "type": "build"
+  },
+  {
+    "name": "jsc270_tut2-answers_moon_999999999.html",
+    "path": "./JSC270 Data Science I/TUTORIAL/tut_answer",
+    "type": "note"
+  },
+  {
+    "name": "class1",
+    "path": "./JSC270 Data Science I",
+    "type": "folder"
+  },
+  {
+    "name": "class2",
+    "path": "./JSC270 Data Science I",
+    "type": "folder"
+  },
+  {
+    "name": "package.json",
+    "path": "./CSC309 Programming on the Web/nodejs/feb13_node",
+    "type": "build"
+  },
+  {
+    "name": "6.Universal_hashing.pdf",
+    "path": "./CSC265 Enriched Data Structures and Analysis/NOTE",
+    "type": "book"
+  },
+  {
+    "name": "async_await.js",
+    "path": "./CSC309 Programming on the Web/nodejs/apr3",
+    "type": "build"
+  },
+  {
+    "name": "A5.1handout.pdf",
     "path": "./CSC373 Algorithm Design, Analysis and Complexity/ASSIGNMENT",
     "type": "book"
   },
@@ -1745,648 +2030,33 @@
     "type": "book"
   },
   {
-    "name": "7-GARCH",
-    "path": "./STA457 Time Series Analysis",
-    "type": "folder"
-  },
-  {
-    "name": "Week 8 Tutorial Problems.pdf",
-    "path": "./CSC373 Algorithm Design, Analysis and Complexity/TUTORIAL",
-    "type": "book"
-  },
-  {
-    "name": "class10",
-    "path": "./JSC270 Data Science I",
-    "type": "folder"
-  },
-  {
-    "name": "A5.1handout.pdf",
-    "path": "./CSC373 Algorithm Design, Analysis and Complexity/ASSIGNMENT",
-    "type": "book"
-  },
-  {
-    "name": "week3_s303_rm_annotated2.pdf",
-    "path": "./STA303 Methods of Data Analysis II/One Way ANOVA",
-    "type": "book"
-  },
-  {
-    "name": "Bootstrap TS.pdf",
-    "path": "./STA457 Time Series Analysis/6-Bootstrap",
-    "type": "book"
-  },
-  {
-    "name": "4-Forecast_and_TFN",
-    "path": "./STA457 Time Series Analysis",
-    "type": "folder"
-  },
-  {
-    "name": "Rel Algebra_DR.pdf",
-    "path": "./CSC343 Introduction to Databases/LECTURE",
-    "type": "book"
-  },
-  {
-    "name": "6-Bootstrap",
-    "path": "./STA457 Time Series Analysis",
-    "type": "folder"
-  },
-  {
-    "name": "login.html",
-    "path": "./CSC309 Programming on the Web/nodejs/mar25-authentication/public",
-    "type": "note"
-  },
-  {
-    "name": "Week 2 Tutorial Solutions.pdf",
-    "path": "./CSC373 Algorithm Design, Analysis and Complexity/TUTORIAL",
-    "type": "book"
-  },
-  {
-    "name": "db",
-    "path": "./CSC309 Programming on the Web/nodejs/mar25-authentication",
-    "type": "folder"
-  },
-  {
-    "name": "3. MCT and BWT.html",
-    "path": "./MAT337 Introduction to Real Analysis/NOTE",
-    "type": "note"
-  },
-  {
-    "name": "MAT337 Week 10 TH.pdf",
-    "path": "./MAT337 Introduction to Real Analysis/TUTORIAL",
-    "type": "book"
-  },
-  {
-    "name": "simple_strings.c",
-    "path": "./CSC209 Software Tools and Systems Programming/w2",
-    "type": "build"
-  },
-  {
-    "name": "R basics.html",
-    "path": "./STA302 Methods of Data Analysis I",
-    "type": "note"
-  },
-  {
-    "name": "malloc_basics_sol.pdf",
-    "path": "./CSC209 Software Tools and Systems Programming/w3",
-    "type": "book"
-  },
-  {
-    "name": "jsc270randomizationtestworksheet.pdf",
-    "path": "./JSC270 Data Science I/class4",
-    "type": "book"
-  },
-  {
-    "name": "Class1.html",
-    "path": "./JSC270 Data Science I/class1",
-    "type": "note"
-  },
-  {
-    "name": "part1.pdf",
-    "path": "./STA347 Probability",
-    "type": "book"
-  },
-  {
-    "name": "lecDemo",
-    "path": "./CSC309 Programming on the Web/javascript",
-    "type": "folder"
-  },
-  {
-    "name": "Week 4 Tutorial Problems.pdf",
-    "path": "./CSC373 Algorithm Design, Analysis and Complexity/TUTORIAL",
-    "type": "book"
-  },
-  {
-    "name": "One Way ANOVA",
-    "path": "./STA303 Methods of Data Analysis II",
-    "type": "folder"
-  },
-  {
-    "name": "greeting.c",
-    "path": "./CSC209 Software Tools and Systems Programming/w9",
-    "type": "build"
-  },
-  {
-    "name": "wait_sol.pdf",
-    "path": "./CSC209 Software Tools and Systems Programming/w8",
-    "type": "book"
-  },
-  {
-    "name": "0-NOTES",
-    "path": "./STA457 Time Series Analysis",
-    "type": "folder"
-  },
-  {
-    "name": "package.json",
-    "path": "./CSC309 Programming on the Web/nodejs/mar18-mongo",
-    "type": "build"
-  },
-  {
-    "name": "MAT337 Week 4 TH.pdf",
-    "path": "./MAT337 Introduction to Real Analysis/TUTORIAL",
-    "type": "book"
-  },
-  {
-    "name": ".DS_Store",
-    "path": "./CSC309 Programming on the Web/nodejs/mar11_request_promises",
-    "type": "build"
-  },
-  {
-    "name": "data2.csv",
-    "path": "./STA303 Methods of Data Analysis II",
-    "type": "build"
-  },
-  {
-    "name": "Linear Programming Tut.html",
-    "path": "./CSC373 Algorithm Design, Analysis and Complexity/NOTE",
-    "type": "note"
-  },
-  {
-    "name": "Makefile",
-    "path": "./CSC209 Software Tools and Systems Programming/w9/header_files_demo/version3",
-    "type": "build"
-  },
-  {
-    "name": "style.css",
-    "path": "./CSC309 Programming on the Web/html&css/lecDemo/CSC309_files",
-    "type": "build"
-  },
-  {
-    "name": "DB_Design_DR.pdf",
-    "path": "./CSC343 Introduction to Databases/LECTURE",
-    "type": "book"
-  },
-  {
-    "name": "CSC420_2019_Tutorial_B.html",
-    "path": "./CSC420 Intro to Image Understanding/TUTORIAL",
-    "type": "note"
-  },
-  {
-    "name": "Week4_s303_annotated2.pdf",
-    "path": "./STA303 Methods of Data Analysis II/Two Way ANOVA",
-    "type": "book"
-  },
-  {
-    "name": "Schemas_DR.pdf",
-    "path": "./CSC343 Introduction to Databases/LECTURE",
-    "type": "book"
-  },
-  {
-    "name": "TUT2.html",
-    "path": "./MAT337 Introduction to Real Analysis/TUTORIAL",
-    "type": "note"
-  },
-  {
-    "name": "makefiles_extra_sol.pdf",
-    "path": "./CSC209 Software Tools and Systems Programming/w5",
-    "type": "book"
-  },
-  {
-    "name": "app.js",
-    "path": "./CSC309 Programming on the Web/nodejs/mar11_request_promises",
-    "type": "build"
-  },
-  {
-    "name": "class1",
-    "path": "./JSC270 Data Science I",
-    "type": "folder"
-  },
-  {
-    "name": "server.js",
-    "path": "./CSC309 Programming on the Web/nodejs/mar18-mongo",
-    "type": "build"
-  },
-  {
-    "name": "Self Reducibility.html",
-    "path": "./CSC373 Algorithm Design, Analysis and Complexity/NOTE",
-    "type": "note"
-  },
-  {
-    "name": "9.Disjoint_set.pdf",
-    "path": "./CSC265 Enriched Data Structures and Analysis/NOTE",
-    "type": "book"
-  },
-  {
-    "name": "juries.csv",
-    "path": "./STA303 Methods of Data Analysis II/ASSIGNMENT/A1",
-    "type": "build"
-  },
-  {
-    "name": "header_files_demo",
-    "path": "./CSC209 Software Tools and Systems Programming/w9",
-    "type": "folder"
-  },
-  {
-    "name": "Notes Vector equations.pdf",
-    "path": "./MAT223 Linear Algebra I",
-    "type": "book"
-  },
-  {
-    "name": "Introduction.html",
-    "path": "./STA457 Time Series Analysis/0-NOTES",
-    "type": "note"
-  },
-  {
-    "name": "Three-way Contingency .html",
-    "path": "./STA303 Methods of Data Analysis II/Contingency tables",
-    "type": "note"
-  },
-  {
-    "name": "ER_DR.pdf",
-    "path": "./CSC343 Introduction to Databases/LECTURE",
-    "type": "book"
-  },
-  {
-    "name": "Advertising.csv",
-    "path": "./JSC270 Data Science I/class6",
-    "type": "build"
-  },
-  {
-    "name": "views",
-    "path": "./CSC309 Programming on the Web/nodejs/mar25-authentication",
-    "type": "folder"
-  },
-  {
-    "name": "4. Topology of real number space.html",
-    "path": "./MAT337 Introduction to Real Analysis/NOTE",
-    "type": "note"
-  },
-  {
-    "name": "NOTE",
-    "path": "./CSC373 Algorithm Design, Analysis and Complexity",
-    "type": "folder"
-  },
-  {
-    "name": "The Chase Test.html",
-    "path": "./CSC343 Introduction to Databases/TUTORIAL",
-    "type": "note"
-  },
-  {
-    "name": "Test 2 Solutions.pdf",
-    "path": "./CSC373 Algorithm Design, Analysis and Complexity/LECTURE",
-    "type": "book"
-  },
-  {
-    "name": "Lecture Handout Week 9.pdf",
-    "path": "./MAT337 Introduction to Real Analysis/LECTURE",
-    "type": "book"
-  },
-  {
-    "name": "TUTORIAL",
-    "path": "./CSC311 Intro to Machine Learning",
-    "type": "folder"
-  },
-  {
-    "name": "NHEFS.xls",
-    "path": "./JSC270 Data Science I/class6",
-    "type": "build"
-  },
-  {
-    "name": "DFS_slides.pdf",
-    "path": "./CSC265 Enriched Data Structures and Analysis/LECTURE",
-    "type": "book"
-  },
-  {
-    "name": "Diagnostic checks of TFN model.pdf",
-    "path": "./STA457 Time Series Analysis/4-Forecast_and_TFN",
-    "type": "book"
-  },
-  {
-    "name": ".DS_Store",
-    "path": "./CSC309 Programming on the Web/nodejs/mar18-mongo",
-    "type": "build"
-  },
-  {
-    "name": "Test Questions.html",
-    "path": "./MAT337 Introduction to Real Analysis",
-    "type": "note"
-  },
-  {
-    "name": "version4",
-    "path": "./CSC209 Software Tools and Systems Programming/w9/header_files_demo",
-    "type": "folder"
-  },
-  {
-    "name": "Image Pyramids.html",
-    "path": "./CSC420 Intro to Image Understanding/NOTE",
-    "type": "note"
-  },
-  {
-    "name": "CSC309_files",
-    "path": "./CSC309 Programming on the Web/html&css/lecDemo",
-    "type": "folder"
-  },
-  {
-    "name": "address.js",
-    "path": "./CSC309 Programming on the Web/nodejs/mar4_request",
-    "type": "build"
-  },
-  {
-    "name": "CSC311_Fall_2019_Tutorial3_lecture.html",
-    "path": "./CSC311 Intro to Machine Learning/TUTORIAL",
-    "type": "note"
-  },
-  {
-    "name": "LECTURE",
-    "path": "./CSC373 Algorithm Design, Analysis and Complexity",
-    "type": "folder"
-  },
-  {
-    "name": "html&css",
-    "path": "./CSC309 Programming on the Web",
-    "type": "folder"
-  },
-  {
-    "name": "One Way ANOVA.html",
-    "path": "./STA303 Methods of Data Analysis II/One Way ANOVA",
-    "type": "note"
-  },
-  {
-    "name": "Week 2 Lecture Summary.pdf",
-    "path": "./CSC373 Algorithm Design, Analysis and Complexity/LECTURE",
-    "type": "book"
-  },
-  {
-    "name": "shell_worksheet2_solutions.pdf",
-    "path": "./CSC209 Software Tools and Systems Programming/w11",
-    "type": "book"
-  },
-  {
-    "name": "Lecture Handout Week 2 R.pdf",
-    "path": "./MAT337 Introduction to Real Analysis/LECTURE",
-    "type": "book"
-  },
-  {
-    "name": "models",
-    "path": "./CSC309 Programming on the Web/nodejs/mar18-mongo",
-    "type": "folder"
-  },
-  {
-    "name": "jsc270_tut2_student.html",
-    "path": "./JSC270 Data Science I/TUTORIAL",
-    "type": "note"
-  },
-  {
-    "name": "Structural Induction.pdf",
+    "name": "Finite Automata.pdf",
     "path": "./CSC240 Enriched Introduction to the Theory of Computation",
     "type": "book"
   },
   {
-    "name": "Polynomial Fitting.html",
-    "path": "./CSC320 Intro to Visual Computing/NOTE",
-    "type": "note"
-  },
-  {
-    "name": "10.BFS_and_DFS.pdf",
-    "path": "./CSC265 Enriched Data Structures and Analysis/NOTE",
+    "name": "part4.pdf",
+    "path": "./STA347 Probability",
     "type": "book"
   },
   {
-    "name": "MAT337 Week 1 TH.pdf",
-    "path": "./MAT337 Introduction to Real Analysis/TUTORIAL",
+    "name": "Class1.css",
+    "path": "./JSC270 Data Science I/class1",
+    "type": "build"
+  },
+  {
+    "name": "week4_rm_annotated2.pdf",
+    "path": "./STA303 Methods of Data Analysis II/Two Way ANOVA",
     "type": "book"
   },
   {
-    "name": "feb6_event",
-    "path": "./CSC309 Programming on the Web/DOM",
-    "type": "folder"
-  },
-  {
-    "name": ".DS_Store",
-    "path": "./CSC309 Programming on the Web/nodejs/mar25-authentication",
-    "type": "build"
-  },
-  {
-    "name": "course.js",
-    "path": "./CSC309 Programming on the Web/nodejs/feb13_node",
-    "type": "build"
-  },
-  {
-    "name": "A4Q.pdf",
-    "path": "./CSC265 Enriched Data Structures and Analysis/ASSIGNMENT",
-    "type": "book"
-  },
-  {
-    "name": "mar11_mongo",
-    "path": "./CSC309 Programming on the Web/nodejs",
-    "type": "folder"
-  },
-  {
-    "name": "CSC309.html",
-    "path": "./CSC309 Programming on the Web/html&css/lecDemo",
-    "type": "note"
-  },
-  {
-    "name": "mar25-authentication",
-    "path": "./CSC309 Programming on the Web/nodejs",
-    "type": "folder"
-  },
-  {
-    "name": "instructions.txt",
-    "path": "./CSC309 Programming on the Web/nodejs/mar18-mongo",
-    "type": "build"
-  },
-  {
-    "name": "Tutorial2.pdf",
-    "path": "./CSC265 Enriched Data Structures and Analysis/LECTURE",
-    "type": "book"
-  },
-  {
-    "name": "6.Universal_hashing.pdf",
-    "path": "./CSC265 Enriched Data Structures and Analysis/NOTE",
-    "type": "book"
-  },
-  {
-    "name": "feb11.html",
-    "path": "./CSC309 Programming on the Web/DOM/feb11_event2",
-    "type": "note"
-  },
-  {
-    "name": "circuits_slides.pdf",
-    "path": "./CSC258 Computer Organization",
-    "type": "book"
-  },
-  {
-    "name": "CSC369 Operating Systems",
-    "path": ".",
-    "type": "folder"
-  },
-  {
-    "name": "package.json",
-    "path": "./CSC309 Programming on the Web/nodejs/feb13_node",
-    "type": "build"
-  },
-  {
-    "name": "A3",
-    "path": "./STA303 Methods of Data Analysis II/ASSIGNMENT",
-    "type": "folder"
-  },
-  {
-    "name": "script.js",
-    "path": "./CSC309 Programming on the Web/nodejs/mar25-authentication/public/js",
-    "type": "build"
-  },
-  {
-    "name": "class5",
-    "path": "./JSC270 Data Science I",
-    "type": "folder"
-  },
-  {
-    "name": "server.js",
-    "path": "./CSC309 Programming on the Web/nodejs/mar11_mongo",
-    "type": "build"
-  },
-  {
-    "name": "jan23_object_and_funciton.html",
-    "path": "./CSC309 Programming on the Web/javascript/lecDemo",
-    "type": "note"
-  },
-  {
-    "name": "Lecture Handout Week 2 T .pdf",
-    "path": "./MAT337 Introduction to Real Analysis/LECTURE",
-    "type": "book"
-  },
-  {
-    "name": "MAT337 Week 6 TH.pdf",
-    "path": "./MAT337 Introduction to Real Analysis/TUTORIAL",
-    "type": "book"
-  },
-  {
-    "name": "NHEFS_Codebook.xls",
-    "path": "./JSC270 Data Science I/class6",
-    "type": "build"
-  },
-  {
-    "name": "instructions.txt",
-    "path": "./CSC309 Programming on the Web/nodejs/mar25-authentication",
-    "type": "build"
-  },
-  {
-    "name": "a1q2p3.PNG",
-    "path": "./STA303 Methods of Data Analysis II/ASSIGNMENT/A1",
-    "type": "build"
-  },
-  {
-    "name": "mongoose.js",
-    "path": "./CSC309 Programming on the Web/nodejs/mar11_mongo/db",
-    "type": "build"
-  },
-  {
-    "name": "main.c",
-    "path": "./CSC209 Software Tools and Systems Programming/w9/header_files_demo/version1",
-    "type": "build"
-  },
-  {
-    "name": "big query.html",
-    "path": "./JSC270 Data Science I/package examples",
-    "type": "note"
-  },
-  {
-    "name": "dashboard.hbs",
-    "path": "./CSC309 Programming on the Web/nodejs/mar25-authentication/views",
-    "type": "build"
-  },
-  {
-    "name": "Week 12 Tutorial Solutions.pdf",
-    "path": "./CSC373 Algorithm Design, Analysis and Complexity/TUTORIAL",
-    "type": "book"
-  },
-  {
-    "name": "Makefile",
-    "path": "./CSC209 Software Tools and Systems Programming/w9/header_files_demo/version4",
-    "type": "build"
-  },
-  {
-    "name": "Lecture 1 Fundamental concepts (May2019).pdf",
-    "path": "./STA457 Time Series Analysis/1-Introduction",
-    "type": "book"
-  },
-  {
-    "name": "Joins.pdf",
-    "path": "./CSC343 Introduction to Databases/TUTORIAL",
-    "type": "book"
-  },
-  {
-    "name": "jan30_DOM_manipulation_1",
-    "path": "./CSC309 Programming on the Web/DOM",
-    "type": "folder"
-  },
-  {
-    "name": "Lecture Handout Week 3 R.pdf",
-    "path": "./MAT337 Introduction to Real Analysis/LECTURE",
-    "type": "book"
-  },
-  {
-    "name": "STA302 Methods of Data Analysis I",
-    "path": ".",
-    "type": "folder"
-  },
-  {
-    "name": "Binomial Logistic Regression.html",
-    "path": "./STA303 Methods of Data Analysis II/Binomial Logistic Regression",
-    "type": "note"
-  },
-  {
-    "name": "tutorial_week11_slides.pdf",
-    "path": "./CSC258 Computer Organization",
-    "type": "book"
-  },
-  {
-    "name": "w5",
-    "path": "./CSC209 Software Tools and Systems Programming",
-    "type": "folder"
-  },
-  {
-    "name": "style2.css",
-    "path": "./CSC309 Programming on the Web/html&css",
-    "type": "build"
-  },
-  {
-    "name": "async_await.js",
-    "path": "./CSC309 Programming on the Web/nodejs/apr3",
-    "type": "build"
-  },
-  {
-    "name": "processor_slides.pdf",
-    "path": "./CSC258 Computer Organization",
-    "type": "book"
-  },
-  {
-    "name": "A2Q.pdf",
-    "path": "./CSC265 Enriched Data Structures and Analysis/ASSIGNMENT",
-    "type": "book"
-  },
-  {
-    "name": "k-Nearest Neighbors.html",
+    "name": "Bias-Variane Decomposition.html",
     "path": "./CSC311 Intro to Machine Learning/NOTE",
     "type": "note"
   },
   {
-    "name": "class6",
-    "path": "./JSC270 Data Science I",
-    "type": "folder"
-  },
-  {
-    "name": "jan21_variables.html",
-    "path": "./CSC309 Programming on the Web/javascript/lecDemo",
-    "type": "note"
-  },
-  {
-    "name": "students.json",
-    "path": "./CSC309 Programming on the Web/nodejs/feb25_node",
-    "type": "build"
-  },
-  {
-    "name": "introduction_slides.pdf",
-    "path": "./CSC258 Computer Organization",
-    "type": "book"
-  },
-  {
-    "name": "A1.pdf",
-    "path": "./STA303 Methods of Data Analysis II/ASSIGNMENT/A1",
-    "type": "book"
-  },
-  {
-    "name": "jsc270_tut3_student.html",
-    "path": "./JSC270 Data Science I/TUTORIAL",
+    "name": "Forecasting.html",
+    "path": "./STA457 Time Series Analysis/0-NOTES",
     "type": "note"
   },
   {
@@ -2395,883 +2065,13 @@
     "type": "note"
   },
   {
-    "name": "slides-week12annotations.pdf",
-    "path": "./STA302 Methods of Data Analysis I/LECTURE",
-    "type": "book"
-  },
-  {
-    "name": "8. Series.html",
+    "name": "Extra. Stone Weierstrass Theorem.html",
     "path": "./MAT337 Introduction to Real Analysis/NOTE",
     "type": "note"
   },
   {
-    "name": "A4handout.pdf",
-    "path": "./CSC373 Algorithm Design, Analysis and Complexity/ASSIGNMENT",
-    "type": "book"
-  },
-  {
-    "name": "Introduction.html",
-    "path": "./STA303 Methods of Data Analysis II/One Way ANOVA",
-    "type": "note"
-  },
-  {
-    "name": "version2",
-    "path": "./CSC209 Software Tools and Systems Programming/w9/header_files_demo",
-    "type": "folder"
-  },
-  {
-    "name": "CSC343 Introduction to Databases",
-    "path": ".",
-    "type": "folder"
-  },
-  {
-    "name": "Computer Arithmetic Examples.html",
-    "path": "./CSC336 Numerical Methods",
-    "type": "note"
-  },
-  {
-    "name": "saved_resource.html",
-    "path": "./CSC309 Programming on the Web/html&css/lecDemo/CSC309_files",
-    "type": "note"
-  },
-  {
-    "name": "slides-weeks_3-4_annotated.pdf",
-    "path": "./STA302 Methods of Data Analysis I/LECTURE",
-    "type": "book"
-  },
-  {
-    "name": "feb13_node",
-    "path": "./CSC309 Programming on the Web/nodejs",
-    "type": "folder"
-  },
-  {
-    "name": "Week 9 Tutorial Solutions.pdf",
-    "path": "./CSC373 Algorithm Design, Analysis and Complexity/TUTORIAL",
-    "type": "book"
-  },
-  {
-    "name": "",
-    "path": ".",
-    "type": "folder"
-  },
-  {
-    "name": "More closure properties.pdf",
-    "path": "./CSC240 Enriched Introduction to the Theory of Computation",
-    "type": "book"
-  },
-  {
-    "name": "makefiles_sol.pdf",
-    "path": "./CSC209 Software Tools and Systems Programming/w5",
-    "type": "book"
-  },
-  {
-    "name": "class2",
-    "path": "./JSC270 Data Science I",
-    "type": "folder"
-  },
-  {
-    "name": "language processing.html",
-    "path": "./JSC270 Data Science I/package examples",
-    "type": "note"
-  },
-  {
-    "name": "SQL-DDL_DR.pdf",
-    "path": "./CSC343 Introduction to Databases/LECTURE",
-    "type": "book"
-  },
-  {
-    "name": "Subqueries.pdf",
-    "path": "./CSC343 Introduction to Databases/TUTORIAL",
-    "type": "book"
-  },
-  {
-    "name": "stack_vs_heap.pdf",
-    "path": "./CSC209 Software Tools and Systems Programming/w3",
-    "type": "book"
-  },
-  {
-    "name": "structs.c",
-    "path": "./CSC209 Software Tools and Systems Programming/w4",
-    "type": "build"
-  },
-  {
-    "name": "NOTE",
-    "path": "./CSC311 Intro to Machine Learning",
-    "type": "folder"
-  },
-  {
-    "name": "MAT337 Introduction to Real Analysis",
-    "path": ".",
-    "type": "folder"
-  },
-  {
-    "name": "Forecasting.html",
-    "path": "./STA457 Time Series Analysis/0-NOTES",
-    "type": "note"
-  },
-  {
-    "name": "todo_list.html",
-    "path": "./CSC309 Programming on the Web/javascript/lab4",
-    "type": "note"
-  },
-  {
-    "name": "Well-ordered Proof.pdf",
-    "path": "./CSC240 Enriched Introduction to the Theory of Computation",
-    "type": "book"
-  },
-  {
-    "name": "6. Inner Product Space and Fourier Series.html",
-    "path": "./MAT337 Introduction to Real Analysis/NOTE",
-    "type": "note"
-  },
-  {
-    "name": "Week 6 Tutorial Solutions.pdf",
-    "path": "./CSC373 Algorithm Design, Analysis and Complexity/TUTORIAL",
-    "type": "book"
-  },
-  {
-    "name": "titanic.csv",
-    "path": "./JSC270 Data Science I/class3/data",
-    "type": "build"
-  },
-  {
-    "name": "TUTORIAL",
-    "path": "./JSC270 Data Science I",
-    "type": "folder"
-  },
-  {
-    "name": "JSC270 Data Science I",
-    "path": ".",
-    "type": "folder"
-  },
-  {
-    "name": "Recurrence.pdf",
-    "path": "./CSC240 Enriched Introduction to the Theory of Computation",
-    "type": "book"
-  },
-  {
-    "name": "DSF-Amortized.pdf",
-    "path": "./CSC265 Enriched Data Structures and Analysis/LECTURE",
-    "type": "book"
-  },
-  {
-    "name": "style.css",
-    "path": "./CSC309 Programming on the Web/html&css",
-    "type": "build"
-  },
-  {
-    "name": "week8_rm_annotated.pdf",
-    "path": "./STA303 Methods of Data Analysis II/Binomial Logistic Regression",
-    "type": "book"
-  },
-  {
-    "name": "Notes.txt",
-    "path": "./CSC209 Software Tools and Systems Programming/w9/header_files_demo/version4",
-    "type": "build"
-  },
-  {
-    "name": "SQL Data Definition.html",
-    "path": "./CSC343 Introduction to Databases/NOTES",
-    "type": "note"
-  },
-  {
-    "name": "stack.c",
-    "path": "./CSC209 Software Tools and Systems Programming/w9/header_files_demo/version2",
-    "type": "build"
-  },
-  {
-    "name": "Class1.css",
-    "path": "./JSC270 Data Science I/class1",
-    "type": "build"
-  },
-  {
-    "name": "NP-complete Tut.html",
-    "path": "./CSC373 Algorithm Design, Analysis and Complexity/NOTE",
-    "type": "note"
-  },
-  {
-    "name": "5. Normed Space.html",
-    "path": "./MAT337 Introduction to Real Analysis/NOTE",
-    "type": "note"
-  },
-  {
-    "name": "Introduction to time series data and visualization.pdf",
-    "path": "./STA457 Time Series Analysis/1-Introduction",
-    "type": "book"
-  },
-  {
-    "name": "MAT223 Linear Algebra I",
-    "path": ".",
-    "type": "folder"
-  },
-  {
-    "name": "A3P1.pdf",
-    "path": "./STA303 Methods of Data Analysis II/ASSIGNMENT/A3",
-    "type": "book"
-  },
-  {
-    "name": "stack.h",
-    "path": "./CSC209 Software Tools and Systems Programming/w9/header_files_demo/version2",
-    "type": "build"
-  },
-  {
-    "name": "Week 7 Lecture Summary.pdf",
-    "path": "./CSC373 Algorithm Design, Analysis and Complexity/LECTURE",
-    "type": "book"
-  },
-  {
-    "name": "Functional Dependencies TUT.html",
-    "path": "./CSC343 Introduction to Databases/TUTORIAL",
-    "type": "note"
-  },
-  {
-    "name": "student_queue.js",
-    "path": "./CSC309 Programming on the Web/DOM/feb4_DOM_manipulation_2",
-    "type": "build"
-  },
-  {
-    "name": "mar11_request_promises",
-    "path": "./CSC309 Programming on the Web/nodejs",
-    "type": "folder"
-  },
-  {
-    "name": "jan23_object_and_funciton.js",
-    "path": "./CSC309 Programming on the Web/javascript/lecDemo",
-    "type": "build"
-  },
-  {
-    "name": "Course Outline.pdf",
-    "path": "./CSC336 Numerical Methods",
-    "type": "book"
-  },
-  {
-    "name": "lecDemo",
-    "path": "./CSC309 Programming on the Web/html&css",
-    "type": "folder"
-  },
-  {
-    "name": "Example of Network Flow.pdf",
-    "path": "./CSC373 Algorithm Design, Analysis and Complexity/LECTURE",
-    "type": "book"
-  },
-  {
-    "name": "hw3s.pdf",
-    "path": "./STA347 Probability",
-    "type": "book"
-  },
-  {
-    "name": "part3.pdf",
-    "path": "./STA347 Probability",
-    "type": "book"
-  },
-  {
-    "name": "A5Q.pdf",
-    "path": "./CSC265 Enriched Data Structures and Analysis/ASSIGNMENT",
-    "type": "book"
-  },
-  {
-    "name": "Notes.txt",
-    "path": "./CSC209 Software Tools and Systems Programming/w9/header_files_demo/version1",
-    "type": "build"
-  },
-  {
-    "name": "FilesDirectoriesGlobbingSlides.pdf",
-    "path": "./CSC209 Software Tools and Systems Programming/w1",
-    "type": "book"
-  },
-  {
-    "name": "Box and Tiao Transformation (Nov 2017).pdf",
+    "name": "May29-Forecast.pdf",
     "path": "./STA457 Time Series Analysis/4-Forecast_and_TFN",
-    "type": "book"
-  },
-  {
-    "name": "11.MST.pdf",
-    "path": "./CSC265 Enriched Data Structures and Analysis/NOTE",
-    "type": "book"
-  },
-  {
-    "name": "5.Lower_bound.pdf",
-    "path": "./CSC265 Enriched Data Structures and Analysis/NOTE",
-    "type": "book"
-  },
-  {
-    "name": "LECTURE",
-    "path": "./MAT337 Introduction to Real Analysis",
-    "type": "folder"
-  },
-  {
-    "name": "final",
-    "path": "./CSC309 Programming on the Web",
-    "type": "folder"
-  },
-  {
-    "name": "Notes.txt",
-    "path": "./CSC209 Software Tools and Systems Programming/w9/header_files_demo/version2",
-    "type": "build"
-  },
-  {
-    "name": "Week 2 Tutorial Problems.pdf",
-    "path": "./CSC373 Algorithm Design, Analysis and Complexity/TUTORIAL",
-    "type": "book"
-  },
-  {
-    "name": "Formal Proof.pdf",
-    "path": "./CSC240 Enriched Introduction to the Theory of Computation",
-    "type": "book"
-  },
-  {
-    "name": "Factor independence.html",
-    "path": "./STA303 Methods of Data Analysis II/Contingency tables",
-    "type": "note"
-  },
-  {
-    "name": "test.js",
-    "path": "./CSC309 Programming on the Web/final",
-    "type": "build"
-  },
-  {
-    "name": "TUT3.html",
-    "path": "./MAT337 Introduction to Real Analysis/TUTORIAL",
-    "type": "note"
-  },
-  {
-    "name": "NOTE",
-    "path": "./CSC320 Intro to Visual Computing",
-    "type": "folder"
-  },
-  {
-    "name": "app.js",
-    "path": "./CSC309 Programming on the Web/nodejs/mar4_node_api",
-    "type": "build"
-  },
-  {
-    "name": "student.js",
-    "path": "./CSC309 Programming on the Web/nodejs/mar11_mongo/models",
-    "type": "build"
-  },
-  {
-    "name": "lego_game.c",
-    "path": "./CSC209 Software Tools and Systems Programming/w10",
-    "type": "build"
-  },
-  {
-    "name": "TUTORIAL",
-    "path": "./CSC320 Intro to Visual Computing",
-    "type": "folder"
-  },
-  {
-    "name": "CSC343_A3_Winter2019.pdf",
-    "path": "./CSC343 Introduction to Databases/ASSIGNMENT",
-    "type": "book"
-  },
-  {
-    "name": "BadTechniques.pdf",
-    "path": "./CSC240 Enriched Introduction to the Theory of Computation",
-    "type": "book"
-  },
-  {
-    "name": "pros and cons.pdf",
-    "path": "./STA457 Time Series Analysis/6-Bootstrap",
-    "type": "book"
-  },
-  {
-    "name": "Week 4 Lecture Summary.pdf",
-    "path": "./CSC373 Algorithm Design, Analysis and Complexity/LECTURE",
-    "type": "book"
-  },
-  {
-    "name": "SQL data manipulation.html",
-    "path": "./CSC343 Introduction to Databases/NOTES",
-    "type": "note"
-  },
-  {
-    "name": "plotly map plots.html",
-    "path": "./JSC270 Data Science I/package examples",
-    "type": "note"
-  },
-  {
-    "name": "ll.c",
-    "path": "./CSC209 Software Tools and Systems Programming/w9/header_files_demo/version4",
-    "type": "build"
-  },
-  {
-    "name": ".DS_Store",
-    "path": "./CSC309 Programming on the Web/nodejs/mar25-authentication/db",
-    "type": "build"
-  },
-  {
-    "name": "running_programs_sol.pdf",
-    "path": "./CSC209 Software Tools and Systems Programming/w1",
-    "type": "book"
-  },
-  {
-    "name": "instructions.txt",
-    "path": "./CSC309 Programming on the Web/nodejs/mar11_mongo",
-    "type": "build"
-  },
-  {
-    "name": "Embedding SQL to another language.html",
-    "path": "./CSC343 Introduction to Databases/NOTES",
-    "type": "note"
-  },
-  {
-    "name": "lab3",
-    "path": "./CSC309 Programming on the Web/javascript",
-    "type": "folder"
-  },
-  {
-    "name": "feb4_DOM_manipulation_2",
-    "path": "./CSC309 Programming on the Web/DOM",
-    "type": "folder"
-  },
-  {
-    "name": "tutorial_flipflops_slides.pdf",
-    "path": "./CSC258 Computer Organization",
-    "type": "book"
-  },
-  {
-    "name": "opencv_demo_week1_2.html",
-    "path": "./CSC320 Intro to Visual Computing/TUTORIAL",
-    "type": "note"
-  },
-  {
-    "name": "BCNF TUT.html",
-    "path": "./CSC343 Introduction to Databases/TUTORIAL",
-    "type": "note"
-  },
-  {
-    "name": "course.html",
-    "path": "./CSC309 Programming on the Web/nodejs/mar11_express/pub",
-    "type": "note"
-  },
-  {
-    "name": "Binomial Logistic Regression",
-    "path": "./STA303 Methods of Data Analysis II",
-    "type": "folder"
-  },
-  {
-    "name": "Lecture Handout week 13,14.pdf",
-    "path": "./MAT337 Introduction to Real Analysis/LECTURE",
-    "type": "book"
-  },
-  {
-    "name": "2.Mergable_Heap.pdf",
-    "path": "./CSC265 Enriched Data Structures and Analysis/NOTE",
-    "type": "book"
-  },
-  {
-    "name": "Week 1.html",
-    "path": "./JSC270 Data Science I/class1",
-    "type": "note"
-  },
-  {
-    "name": "package-lock.json",
-    "path": "./CSC309 Programming on the Web/nodejs/mar4_request",
-    "type": "build"
-  },
-  {
-    "name": "visualization theory and principles.html",
-    "path": "./JSC270 Data Science I/class7",
-    "type": "note"
-  },
-  {
-    "name": "stack.h",
-    "path": "./CSC209 Software Tools and Systems Programming/w9/header_files_demo/version3",
-    "type": "build"
-  },
-  {
-    "name": "sockets.pdf",
-    "path": "./CSC209 Software Tools and Systems Programming/w10",
-    "type": "book"
-  },
-  {
-    "name": "app.js",
-    "path": "./CSC309 Programming on the Web/nodejs/feb25_node",
-    "type": "build"
-  },
-  {
-    "name": "part2.pdf",
-    "path": "./STA347 Probability",
-    "type": "book"
-  },
-  {
-    "name": "June3-Applications.pdf",
-    "path": "./STA457 Time Series Analysis/4-Forecast_and_TFN",
-    "type": "book"
-  },
-  {
-    "name": "2019 Summer course outline (U)-1.pdf",
-    "path": "./STA457 Time Series Analysis",
-    "type": "book"
-  },
-  {
-    "name": "1.Priority_Queue.pdf",
-    "path": "./CSC265 Enriched Data Structures and Analysis/NOTE",
-    "type": "book"
-  },
-  {
-    "name": "LECTURE",
-    "path": "./CSC265 Enriched Data Structures and Analysis",
-    "type": "folder"
-  },
-  {
-    "name": "w7",
-    "path": "./CSC209 Software Tools and Systems Programming",
-    "type": "folder"
-  },
-  {
-    "name": "ll.c",
-    "path": "./CSC209 Software Tools and Systems Programming/w9/header_files_demo/version2",
-    "type": "build"
-  },
-  {
-    "name": "DDL.pdf",
-    "path": "./CSC343 Introduction to Databases/TUTORIAL",
-    "type": "book"
-  },
-  {
-    "name": "DOM.html",
-    "path": "./CSC309 Programming on the Web/DOM",
-    "type": "note"
-  },
-  {
-    "name": "Notes Linear Transf.pdf",
-    "path": "./MAT223 Linear Algebra I",
-    "type": "book"
-  },
-  {
-    "name": "DOM",
-    "path": "./CSC309 Programming on the Web",
-    "type": "folder"
-  },
-  {
-    "name": "Lecture Handout Week 1 R.pdf",
-    "path": "./MAT337 Introduction to Real Analysis/LECTURE",
-    "type": "book"
-  },
-  {
-    "name": "Week 9 Lecture Summary.pdf",
-    "path": "./CSC373 Algorithm Design, Analysis and Complexity/LECTURE",
-    "type": "book"
-  },
-  {
-    "name": "jsc270_tut4_part2-answers-moon-99999999.html",
-    "path": "./JSC270 Data Science I/TUTORIAL/tut_answer",
-    "type": "note"
-  },
-  {
-    "name": "CSC373 Algorithm Design, Analysis and Complexity",
-    "path": ".",
-    "type": "folder"
-  },
-  {
-    "name": "MAT337 Week 5 TH.pdf",
-    "path": "./MAT337 Introduction to Real Analysis/TUTORIAL",
-    "type": "book"
-  },
-  {
-    "name": "CSC240 Enriched Introduction to the Theory of Computation",
-    "path": ".",
-    "type": "folder"
-  },
-  {
-    "name": "CSC420 Intro to Image Understanding",
-    "path": ".",
-    "type": "folder"
-  },
-  {
-    "name": "Relational-Model.pdf",
-    "path": "./CSC343 Introduction to Databases/LECTURE",
-    "type": "book"
-  },
-  {
-    "name": "Vector Series.html",
-    "path": "./STA457 Time Series Analysis/0-NOTES",
-    "type": "note"
-  },
-  {
-    "name": "Week 10 Lecture Summary.pdf",
-    "path": "./CSC373 Algorithm Design, Analysis and Complexity/LECTURE",
-    "type": "book"
-  },
-  {
-    "name": "CSC311 Intro to Machine Learning",
-    "path": ".",
-    "type": "folder"
-  },
-  {
-    "name": "jupyter.tplx",
-    "path": "./STA303 Methods of Data Analysis II/ASSIGNMENT/A3",
-    "type": "build"
-  },
-  {
-    "name": "Countability and diagonalization proof.pdf",
-    "path": "./CSC240 Enriched Introduction to the Theory of Computation",
-    "type": "book"
-  },
-  {
-    "name": "Class2_annotated1.pdf",
-    "path": "./STA303 Methods of Data Analysis II/One Way ANOVA",
-    "type": "book"
-  },
-  {
-    "name": "shell_worksheet_solutions.pdf",
-    "path": "./CSC209 Software Tools and Systems Programming/w11",
-    "type": "book"
-  },
-  {
-    "name": "224NOTES ALL.pdf",
-    "path": "./MAT224 Linear Algebra II",
-    "type": "book"
-  },
-  {
-    "name": "version3",
-    "path": "./CSC209 Software Tools and Systems Programming/w9/header_files_demo",
-    "type": "folder"
-  },
-  {
-    "name": "Notes Vector.pdf",
-    "path": "./MAT223 Linear Algebra I",
-    "type": "book"
-  },
-  {
-    "name": "L3-FileSystems.pdf",
-    "path": "./CSC369 Operating Systems",
-    "type": "book"
-  },
-  {
-    "name": "transistors_handout.pdf",
-    "path": "./CSC258 Computer Organization",
-    "type": "book"
-  },
-  {
-    "name": "lecture2_slides-posted.html",
-    "path": "./JSC270 Data Science I/class2",
-    "type": "note"
-  },
-  {
-    "name": "bike-location.js",
-    "path": "./CSC309 Programming on the Web/nodejs/mar4_request",
-    "type": "build"
-  },
-  {
-    "name": "Pandas_Cheat_Sheet.pdf",
-    "path": "./JSC270 Data Science I/package examples",
-    "type": "book"
-  },
-  {
-    "name": "gdb-overview.pdf",
-    "path": "./CSC209 Software Tools and Systems Programming/w3",
-    "type": "book"
-  },
-  {
-    "name": "lecture3_slides-students.html",
-    "path": "./JSC270 Data Science I/class3",
-    "type": "note"
-  },
-  {
-    "name": "loglinsol.pdf",
-    "path": "./STA303 Methods of Data Analysis II/Poisson Regression",
-    "type": "book"
-  },
-  {
-    "name": "Binary Logistic Regression",
-    "path": "./STA303 Methods of Data Analysis II",
-    "type": "folder"
-  },
-  {
-    "name": "dashboard.html",
-    "path": "./CSC309 Programming on the Web/nodejs/mar25-authentication/public",
-    "type": "note"
-  },
-  {
-    "name": "apr3.js",
-    "path": "./CSC309 Programming on the Web/nodejs/apr3",
-    "type": "build"
-  },
-  {
-    "name": "javascript",
-    "path": "./CSC309 Programming on the Web",
-    "type": "folder"
-  },
-  {
-    "name": "array_and_pointer_basics_sol.pdf",
-    "path": "./CSC209 Software Tools and Systems Programming/w2",
-    "type": "book"
-  },
-  {
-    "name": "CSC209 Software Tools and Systems Programming",
-    "path": ".",
-    "type": "folder"
-  },
-  {
-    "name": "Week9_annotated.pdf",
-    "path": "./STA303 Methods of Data Analysis II/Poisson Regression",
-    "type": "book"
-  },
-  {
-    "name": "ARIMA and unit root tests (06Jan2019).pdf",
-    "path": "./STA457 Time Series Analysis/3-ARIMA",
-    "type": "book"
-  },
-  {
-    "name": "package.json",
-    "path": "./CSC309 Programming on the Web/nodejs/mar11_mongo",
-    "type": "build"
-  },
-  {
-    "name": "tutorial_transistors_slides.pdf",
-    "path": "./CSC258 Computer Organization",
-    "type": "book"
-  },
-  {
-    "name": "ll.c",
-    "path": "./CSC209 Software Tools and Systems Programming/w9/header_files_demo/version1",
-    "type": "build"
-  },
-  {
-    "name": "ROSI-solutions.pdf",
-    "path": "./CSC343 Introduction to Databases/TUTORIAL",
-    "type": "book"
-  },
-  {
-    "name": "Linear Programming.html",
-    "path": "./CSC373 Algorithm Design, Analysis and Complexity/NOTE",
-    "type": "note"
-  },
-  {
-    "name": "apr3.test.js",
-    "path": "./CSC309 Programming on the Web/nodejs/apr3",
-    "type": "build"
-  },
-  {
-    "name": "SQL queries.html",
-    "path": "./CSC343 Introduction to Databases/NOTES",
-    "type": "note"
-  },
-  {
-    "name": "2-ARMA",
-    "path": "./STA457 Time Series Analysis",
-    "type": "folder"
-  },
-  {
-    "name": "Relational Algebra.html",
-    "path": "./CSC343 Introduction to Databases/NOTES",
-    "type": "note"
-  },
-  {
-    "name": "problems-sol.pdf",
-    "path": "./STA347 Probability",
-    "type": "book"
-  },
-  {
-    "name": "Lecture 2 IntroductionARMAModels (06Jan2019).pdf",
-    "path": "./STA457 Time Series Analysis/2-ARMA",
-    "type": "book"
-  },
-  {
-    "name": "Applications of ARMA models in investments.html",
-    "path": "./STA457 Time Series Analysis/0-NOTES",
-    "type": "note"
-  },
-  {
-    "name": "test_time_reads.sh",
-    "path": "./CSC209 Software Tools and Systems Programming/w11",
-    "type": "build"
-  },
-  {
-    "name": "mongoose.js",
-    "path": "./CSC309 Programming on the Web/nodejs/mar25-authentication/db",
-    "type": "build"
-  },
-  {
-    "name": "Lecture Handout Week 6.pdf",
-    "path": "./MAT337 Introduction to Real Analysis/LECTURE",
-    "type": "book"
-  },
-  {
-    "name": "NOTE",
-    "path": "./CSC265 Enriched Data Structures and Analysis",
-    "type": "folder"
-  },
-  {
-    "name": "TUTORIAL",
-    "path": "./MAT337 Introduction to Real Analysis",
-    "type": "folder"
-  },
-  {
-    "name": "test_floop.sh",
-    "path": "./CSC209 Software Tools and Systems Programming/w11",
-    "type": "build"
-  },
-  {
-    "name": "address-promise.js",
-    "path": "./CSC309 Programming on the Web/nodejs/mar11_request_promises",
-    "type": "build"
-  },
-  {
-    "name": "Notes.txt",
-    "path": "./CSC209 Software Tools and Systems Programming/w9/header_files_demo/version3",
-    "type": "build"
-  },
-  {
-    "name": "Multi Comparisons.html",
-    "path": "./STA303 Methods of Data Analysis II/One Way ANOVA",
-    "type": "note"
-  },
-  {
-    "name": "package.json",
-    "path": "./CSC309 Programming on the Web/nodejs/mar4_request",
-    "type": "build"
-  },
-  {
-    "name": "ASSIGNMENT",
-    "path": "./CSC343 Introduction to Databases",
-    "type": "folder"
-  },
-  {
-    "name": "w4",
-    "path": "./CSC209 Software Tools and Systems Programming",
-    "type": "folder"
-  },
-  {
-    "name": "slides-weeks7-8annotated.pdf",
-    "path": "./STA302 Methods of Data Analysis I/LECTURE",
-    "type": "book"
-  },
-  {
-    "name": "Properties of Decompositions TUT.html",
-    "path": "./CSC343 Introduction to Databases/TUTORIAL",
-    "type": "note"
-  },
-  {
-    "name": "plot_bias_variance.html",
-    "path": "./CSC311 Intro to Machine Learning/TUTORIAL",
-    "type": "note"
-  },
-  {
-    "name": "stack.h",
-    "path": "./CSC209 Software Tools and Systems Programming/w9/header_files_demo/version4",
-    "type": "build"
-  },
-  {
-    "name": "CSC258 Computer Organization",
-    "path": ".",
-    "type": "folder"
-  },
-  {
-    "name": "w3",
-    "path": "./CSC209 Software Tools and Systems Programming",
-    "type": "folder"
-  },
-  {
-    "name": "L1-Intro.pdf",
-    "path": "./CSC369 Operating Systems",
-    "type": "book"
-  },
-  {
-    "name": "L2-Files.pdf",
-    "path": "./CSC369 Operating Systems",
     "type": "book"
   },
   {
@@ -3280,203 +2080,8 @@
     "type": "note"
   },
   {
-    "name": "A5s.pdf",
-    "path": "./CSC265 Enriched Data Structures and Analysis/ASSIGNMENT",
-    "type": "book"
-  },
-  {
-    "name": "devices_slides.pdf",
-    "path": "./CSC258 Computer Organization",
-    "type": "book"
-  },
-  {
-    "name": "TUT5.html",
-    "path": "./MAT337 Introduction to Real Analysis/TUTORIAL",
-    "type": "note"
-  },
-  {
-    "name": "jsc270_lecture4.html",
-    "path": "./JSC270 Data Science I/class4",
-    "type": "note"
-  },
-  {
-    "name": "TUT10.html",
-    "path": "./MAT337 Introduction to Real Analysis/TUTORIAL",
-    "type": "note"
-  },
-  {
-    "name": ".DS_Store",
-    "path": "./CSC309 Programming on the Web/nodejs/apr3",
-    "type": "build"
-  },
-  {
-    "name": "weekday.sh",
-    "path": "./CSC209 Software Tools and Systems Programming/w11",
-    "type": "build"
-  },
-  {
-    "name": "feb6.html",
-    "path": "./CSC309 Programming on the Web/DOM/feb6_event",
-    "type": "note"
-  },
-  {
-    "name": "Week 10 Tutorial Solutions.pdf",
-    "path": "./CSC373 Algorithm Design, Analysis and Complexity/TUTORIAL",
-    "type": "book"
-  },
-  {
-    "name": "MAT337 Week 3 TH.pdf",
-    "path": "./MAT337 Introduction to Real Analysis/TUTORIAL",
-    "type": "book"
-  },
-  {
-    "name": "MAT337 Week 13 TH.pdf",
-    "path": "./MAT337 Introduction to Real Analysis/TUTORIAL",
-    "type": "book"
-  },
-  {
-    "name": "tutorial_week9_slides.pdf",
-    "path": "./CSC258 Computer Organization",
-    "type": "book"
-  },
-  {
-    "name": "NP-complete.html",
-    "path": "./CSC373 Algorithm Design, Analysis and Complexity/NOTE",
-    "type": "note"
-  },
-  {
-    "name": "Linear Recurrence.pdf",
-    "path": "./CSC240 Enriched Introduction to the Theory of Computation",
-    "type": "book"
-  },
-  {
-    "name": "Test 1 Solutions.pdf",
-    "path": "./CSC373 Algorithm Design, Analysis and Complexity/LECTURE",
-    "type": "book"
-  },
-  {
-    "name": "Schemas_PI.pdf",
-    "path": "./CSC343 Introduction to Databases/TUTORIAL",
-    "type": "book"
-  },
-  {
-    "name": "class4",
-    "path": "./JSC270 Data Science I",
-    "type": "folder"
-  },
-  {
-    "name": "class3",
-    "path": "./JSC270 Data Science I",
-    "type": "folder"
-  },
-  {
-    "name": "style.css",
-    "path": "./CSC309 Programming on the Web/javascript/lab4",
-    "type": "build"
-  },
-  {
-    "name": "W12_Security.pdf",
-    "path": "./CSC309 Programming on the Web/nodejs/apr3",
-    "type": "book"
-  },
-  {
-    "name": "strings.c",
-    "path": "./CSC209 Software Tools and Systems Programming/w4",
-    "type": "build"
-  },
-  {
-    "name": "Notes Inverse.pdf",
-    "path": "./MAT223 Linear Algebra I",
-    "type": "book"
-  },
-  {
-    "name": "A1",
-    "path": "./STA303 Methods of Data Analysis II/ASSIGNMENT",
-    "type": "folder"
-  },
-  {
-    "name": "main.c",
-    "path": "./CSC209 Software Tools and Systems Programming/w9/header_files_demo/version2",
-    "type": "build"
-  },
-  {
-    "name": "Dynamic Programming.html",
-    "path": "./CSC373 Algorithm Design, Analysis and Complexity/NOTE",
-    "type": "note"
-  },
-  {
-    "name": "ROSI.pdf",
-    "path": "./CSC343 Introduction to Databases/TUTORIAL",
-    "type": "book"
-  },
-  {
-    "name": "TUTORIAL",
-    "path": "./CSC420 Intro to Image Understanding",
-    "type": "folder"
-  },
-  {
-    "name": "slides-unit1_Tues11SepAnnotated.pdf",
-    "path": "./STA302 Methods of Data Analysis I/LECTURE",
-    "type": "book"
-  },
-  {
-    "name": "slides-week6-annotated.pdf",
-    "path": "./STA302 Methods of Data Analysis I/LECTURE",
-    "type": "book"
-  },
-  {
-    "name": "lecture6_v1.html",
-    "path": "./JSC270 Data Science I/class6",
-    "type": "note"
-  },
-  {
-    "name": "Contingency tables",
-    "path": "./STA303 Methods of Data Analysis II",
-    "type": "folder"
-  },
-  {
-    "name": "w2",
-    "path": "./CSC209 Software Tools and Systems Programming",
-    "type": "folder"
-  },
-  {
-    "name": "Solving Overdetermined Equations.html",
-    "path": "./CSC320 Intro to Visual Computing/TUTORIAL",
-    "type": "note"
-  },
-  {
-    "name": "Irregular Language.pdf",
-    "path": "./CSC240 Enriched Introduction to the Theory of Computation",
-    "type": "book"
-  },
-  {
-    "name": "A1.Rmd",
-    "path": "./STA303 Methods of Data Analysis II/ASSIGNMENT/A1",
-    "type": "build"
-  },
-  {
-    "name": "CSC309boxes_files",
-    "path": "./CSC309 Programming on the Web/html&css/lecDemo",
-    "type": "folder"
-  },
-  {
-    "name": "A2.pdf",
-    "path": "./STA303 Methods of Data Analysis II/ASSIGNMENT/A2",
-    "type": "book"
-  },
-  {
-    "name": "Embedded-SQL_DR.pdf",
-    "path": "./CSC343 Introduction to Databases/LECTURE",
-    "type": "book"
-  },
-  {
-    "name": "A2solution.pdf",
-    "path": "./CSC373 Algorithm Design, Analysis and Complexity/ASSIGNMENT",
-    "type": "book"
-  },
-  {
-    "name": "ASSIGNMENT",
-    "path": "./CSC373 Algorithm Design, Analysis and Complexity",
+    "name": "version2",
+    "path": "./CSC209 Software Tools and Systems Programming/w9/header_files_demo",
     "type": "folder"
   },
   {
@@ -3485,8 +2090,1403 @@
     "type": "build"
   },
   {
-    "name": "jsc270_tut4_part2_questions.html",
+    "name": "Image Features - Harris Corner Detector.html",
+    "path": "./CSC420 Intro to Image Understanding/NOTE",
+    "type": "note"
+  },
+  {
+    "name": "Irregular Language.pdf",
+    "path": "./CSC240 Enriched Introduction to the Theory of Computation",
+    "type": "book"
+  },
+  {
+    "name": "ll.c",
+    "path": "./CSC209 Software Tools and Systems Programming/w9/header_files_demo/version3",
+    "type": "build"
+  },
+  {
+    "name": "wait_sol.pdf",
+    "path": "./CSC209 Software Tools and Systems Programming/w8",
+    "type": "book"
+  },
+  {
+    "name": "part2.pdf",
+    "path": "./STA347 Probability",
+    "type": "book"
+  },
+  {
+    "name": "Induction Template.pdf",
+    "path": "./CSC240 Enriched Introduction to the Theory of Computation",
+    "type": "book"
+  },
+  {
+    "name": "A3",
+    "path": "./STA303 Methods of Data Analysis II/ASSIGNMENT",
+    "type": "folder"
+  },
+  {
+    "name": "a3data.csv",
+    "path": "./STA303 Methods of Data Analysis II/ASSIGNMENT/A3",
+    "type": "build"
+  },
+  {
+    "name": "Lecture Handout Week 3 T .pdf",
+    "path": "./MAT337 Introduction to Real Analysis/lecture",
+    "type": "book"
+  },
+  {
+    "name": "Image Pyramids.html",
+    "path": "./CSC420 Intro to Image Understanding/NOTE",
+    "type": "note"
+  },
+  {
+    "name": "address-promise.js",
+    "path": "./CSC309 Programming on the Web/nodejs/mar11_request_promises",
+    "type": "build"
+  },
+  {
+    "name": "Lecture Handout week 13,14.pdf",
+    "path": "./MAT337 Introduction to Real Analysis/lecture",
+    "type": "book"
+  },
+  {
+    "name": "NP-complete Tut.html",
+    "path": "./CSC373 Algorithm Design, Analysis and Complexity/NOTE",
+    "type": "note"
+  },
+  {
+    "name": "8. Series.html",
+    "path": "./MAT337 Introduction to Real Analysis/NOTE",
+    "type": "note"
+  },
+  {
+    "name": "lecDemo",
+    "path": "./CSC309 Programming on the Web/html&css",
+    "type": "folder"
+  },
+  {
+    "name": "version4",
+    "path": "./CSC209 Software Tools and Systems Programming/w9/header_files_demo",
+    "type": "folder"
+  },
+  {
+    "name": "package.json",
+    "path": "./CSC309 Programming on the Web/nodejs/mar11_express",
+    "type": "build"
+  },
+  {
+    "name": "feb11_library.js",
+    "path": "./CSC309 Programming on the Web/DOM/feb11_event2",
+    "type": "build"
+  },
+  {
+    "name": "TFN and intervention analysis (06Jan2019).pdf",
+    "path": "./STA457 Time Series Analysis/4-Forecast_and_TFN",
+    "type": "book"
+  },
+  {
+    "name": "SQL-DDL_DR.pdf",
+    "path": "./CSC343 Introduction to Databases/LECTURE",
+    "type": "book"
+  },
+  {
+    "name": "Week 9 Lecture Summary.pdf",
+    "path": "./CSC373 Algorithm Design, Analysis and Complexity/LECTURE",
+    "type": "book"
+  },
+  {
+    "name": "Week 9 Tutorial Problems.pdf",
+    "path": "./CSC373 Algorithm Design, Analysis and Complexity/TUTORIAL",
+    "type": "book"
+  },
+  {
+    "name": "jan21_variables.js",
+    "path": "./CSC309 Programming on the Web/javascript/lecDemo",
+    "type": "build"
+  },
+  {
+    "name": "MAT337 Week 1 TH.pdf",
+    "path": "./MAT337 Introduction to Real Analysis/TUTORIAL",
+    "type": "book"
+  },
+  {
+    "name": "w2",
+    "path": "./CSC209 Software Tools and Systems Programming",
+    "type": "folder"
+  },
+  {
+    "name": "test.html",
+    "path": "./CSC309 Programming on the Web/final",
+    "type": "note"
+  },
+  {
+    "name": "Correctness of Algorithm.pdf",
+    "path": "./CSC240 Enriched Introduction to the Theory of Computation",
+    "type": "book"
+  },
+  {
+    "name": "STA457 Time Series Analysis",
+    "path": ".",
+    "type": "folder"
+  },
+  {
+    "name": "7.Hashing_construction_and_rand_QS.pdf",
+    "path": "./CSC265 Enriched Data Structures and Analysis/NOTE",
+    "type": "book"
+  },
+  {
+    "name": "MAT337 Week 12 TH.pdf",
+    "path": "./MAT337 Introduction to Real Analysis/TUTORIAL",
+    "type": "book"
+  },
+  {
+    "name": "Makefile",
+    "path": "./CSC209 Software Tools and Systems Programming/w9/header_files_demo/version4",
+    "type": "build"
+  },
+  {
+    "name": "lie2.c",
+    "path": "./CSC209 Software Tools and Systems Programming/w2",
+    "type": "build"
+  },
+  {
+    "name": "4-Forecast_and_TFN",
+    "path": "./STA457 Time Series Analysis",
+    "type": "folder"
+  },
+  {
+    "name": "4.AVL_augmentation.pdf",
+    "path": "./CSC265 Enriched Data Structures and Analysis/NOTE",
+    "type": "book"
+  },
+  {
+    "name": "lecture",
+    "path": "./MAT337 Introduction to Real Analysis",
+    "type": "folder"
+  },
+  {
+    "name": "Factor independence.html",
+    "path": "./STA303 Methods of Data Analysis II/Contingency tables",
+    "type": "note"
+  },
+  {
+    "name": "Week 5 Lecture Summary.pdf",
+    "path": "./CSC373 Algorithm Design, Analysis and Complexity/LECTURE",
+    "type": "book"
+  },
+  {
+    "name": "11. Fixed Point and ODE.html",
+    "path": "./MAT337 Introduction to Real Analysis/NOTE",
+    "type": "note"
+  },
+  {
+    "name": "Functional dependency.html",
+    "path": "./CSC343 Introduction to Databases/NOTES",
+    "type": "note"
+  },
+  {
+    "name": "jsc270_tut1_answers_moon_99999999.html",
+    "path": "./JSC270 Data Science I/TUTORIAL/tut_answer",
+    "type": "note"
+  },
+  {
+    "name": "Makefile",
+    "path": "./CSC209 Software Tools and Systems Programming/w9/header_files_demo/version3",
+    "type": "build"
+  },
+  {
+    "name": "P_NP problem Tut.html",
+    "path": "./CSC373 Algorithm Design, Analysis and Complexity/NOTE",
+    "type": "note"
+  },
+  {
+    "name": "index2.html",
+    "path": "./",
+    "type": "note"
+  },
+  {
+    "name": "Test 2 Solutions.pdf",
+    "path": "./CSC373 Algorithm Design, Analysis and Complexity/LECTURE",
+    "type": "book"
+  },
+  {
+    "name": "Test Questions.html",
+    "path": "./MAT337 Introduction to Real Analysis",
+    "type": "note"
+  },
+  {
+    "name": "README",
+    "path": "./CSC209 Software Tools and Systems Programming/w9/header_files_demo",
+    "type": "build"
+  },
+  {
+    "name": "models",
+    "path": "./CSC309 Programming on the Web/nodejs/mar25-authentication",
+    "type": "folder"
+  },
+  {
+    "name": "A6Q.pdf",
+    "path": "./CSC265 Enriched Data Structures and Analysis/Assignment",
+    "type": "book"
+  },
+  {
+    "name": "Lecture Handout Week 2 T .pdf",
+    "path": "./MAT337 Introduction to Real Analysis/lecture",
+    "type": "book"
+  },
+  {
+    "name": "JSC270 Data Science I",
+    "path": ".",
+    "type": "folder"
+  },
+  {
+    "name": "main.c",
+    "path": "./CSC209 Software Tools and Systems Programming/w9/header_files_demo/version1",
+    "type": "build"
+  },
+  {
+    "name": "class3",
+    "path": "./JSC270 Data Science I",
+    "type": "folder"
+  },
+  {
+    "name": "data",
+    "path": "./JSC270 Data Science I/class3",
+    "type": "folder"
+  },
+  {
+    "name": "A4S.pdf",
+    "path": "./CSC265 Enriched Data Structures and Analysis/Assignment",
+    "type": "book"
+  },
+  {
+    "name": "Relational Algebra TUT.html",
+    "path": "./CSC343 Introduction to Databases/TUTORIAL",
+    "type": "note"
+  },
+  {
+    "name": "Computer Arithmetic Examples.html",
+    "path": "./CSC336 Numerical Methods",
+    "type": "note"
+  },
+  {
+    "name": "NOTE",
+    "path": "./CSC265 Enriched Data Structures and Analysis",
+    "type": "folder"
+  },
+  {
+    "name": "Lecture 1 Fundamental concepts (May2019).pdf",
+    "path": "./STA457 Time Series Analysis/1-Introduction",
+    "type": "book"
+  },
+  {
+    "name": "June3-Applications.pdf",
+    "path": "./STA457 Time Series Analysis/4-Forecast_and_TFN",
+    "type": "book"
+  },
+  {
+    "name": "DDL.pdf",
+    "path": "./CSC343 Introduction to Databases/TUTORIAL",
+    "type": "book"
+  },
+  {
+    "name": "apr3.test.js",
+    "path": "./CSC309 Programming on the Web/nodejs/apr3",
+    "type": "build"
+  },
+  {
+    "name": "Norms of vectors and matrices.html",
+    "path": "./CSC336 Numerical Methods",
+    "type": "note"
+  },
+  {
+    "name": "SQL Data Definition.html",
+    "path": "./CSC343 Introduction to Databases/NOTES",
+    "type": "note"
+  },
+  {
+    "name": "MAT337 Week 11 TH.pdf",
+    "path": "./MAT337 Introduction to Real Analysis/TUTORIAL",
+    "type": "book"
+  },
+  {
+    "name": "Linear Programming.html",
+    "path": "./CSC373 Algorithm Design, Analysis and Complexity/NOTE",
+    "type": "note"
+  },
+  {
+    "name": "Linear Programming Tut.html",
+    "path": "./CSC373 Algorithm Design, Analysis and Complexity/NOTE",
+    "type": "note"
+  },
+  {
+    "name": "class10",
+    "path": "./JSC270 Data Science I",
+    "type": "folder"
+  },
+  {
+    "name": "CSC309_files",
+    "path": "./CSC309 Programming on the Web/html&css/lecDemo",
+    "type": "folder"
+  },
+  {
+    "name": "class5",
+    "path": "./JSC270 Data Science I",
+    "type": "folder"
+  },
+  {
+    "name": "instructions.txt",
+    "path": "./CSC309 Programming on the Web/nodejs/mar25-authentication",
+    "type": "build"
+  },
+  {
+    "name": "stack.c",
+    "path": "./CSC209 Software Tools and Systems Programming/w9/header_files_demo/version3",
+    "type": "build"
+  },
+  {
+    "name": "slides-week12annotations.pdf",
+    "path": "./STA302 Methods of Data Analysis I/LECTURE",
+    "type": "book"
+  },
+  {
+    "name": "MAT337 Week 3 TH.pdf",
+    "path": "./MAT337 Introduction to Real Analysis/TUTORIAL",
+    "type": "book"
+  },
+  {
+    "name": "TUTORIAL",
+    "path": "./CSC320 Intro to Visual Computing",
+    "type": "folder"
+  },
+  {
+    "name": "NOTES",
+    "path": "./CSC343 Introduction to Databases",
+    "type": "folder"
+  },
+  {
+    "name": "CSC265 Enriched Data Structures and Analysis",
+    "path": ".",
+    "type": "folder"
+  },
+  {
+    "name": "A2",
+    "path": "./STA303 Methods of Data Analysis II/ASSIGNMENT",
+    "type": "folder"
+  },
+  {
+    "name": "Assignment2_w19.pdf",
+    "path": "./STA303 Methods of Data Analysis II/ASSIGNMENT/A2",
+    "type": "book"
+  },
+  {
+    "name": "High Dynamic Range.html",
+    "path": "./CSC320 Intro to Visual Computing/NOTE",
+    "type": "note"
+  },
+  {
+    "name": "LECTURE",
+    "path": "./CSC343 Introduction to Databases",
+    "type": "folder"
+  },
+  {
+    "name": "Lecture Handout Week 10.pdf",
+    "path": "./MAT337 Introduction to Real Analysis/lecture",
+    "type": "book"
+  },
+  {
+    "name": "style.css",
+    "path": "./CSC309 Programming on the Web/html&css",
+    "type": "build"
+  },
+  {
+    "name": "DFS_slides.pdf",
+    "path": "./CSC265 Enriched Data Structures and Analysis/LECTURE",
+    "type": "book"
+  },
+  {
+    "name": "jsc270randomizationtestworksheet.pdf",
+    "path": "./JSC270 Data Science I/class4",
+    "type": "book"
+  },
+  {
+    "name": "Notes Linear Transf.pdf",
+    "path": "./MAT223 Linear Algebra I",
+    "type": "book"
+  },
+  {
+    "name": "Final Review.html",
+    "path": "./MAT337 Introduction to Real Analysis",
+    "type": "note"
+  },
+  {
+    "name": "P_NP problem.html",
+    "path": "./CSC373 Algorithm Design, Analysis and Complexity/NOTE",
+    "type": "note"
+  },
+  {
+    "name": "One Way ANOVA.html",
+    "path": "./STA303 Methods of Data Analysis II/One Way ANOVA",
+    "type": "note"
+  },
+  {
+    "name": "package-lock.json",
+    "path": "./CSC309 Programming on the Web/nodejs/mar4_request",
+    "type": "build"
+  },
+  {
+    "name": "jan30_dom.html",
+    "path": "./CSC309 Programming on the Web/DOM/jan30_DOM_manipulation_1",
+    "type": "note"
+  },
+  {
+    "name": "Notes Determinants.pdf",
+    "path": "./MAT223 Linear Algebra I",
+    "type": "book"
+  },
+  {
+    "name": "2. Extremum.html",
+    "path": "./MAT337 Introduction to Real Analysis/NOTE",
+    "type": "note"
+  },
+  {
+    "name": "MAT224 Linear Algebra II",
+    "path": ".",
+    "type": "folder"
+  },
+  {
+    "name": "Three-way Contingency .html",
+    "path": "./STA303 Methods of Data Analysis II/Contingency tables",
+    "type": "note"
+  },
+  {
+    "name": "w6",
+    "path": "./CSC209 Software Tools and Systems Programming",
+    "type": "folder"
+  },
+  {
+    "name": "structs.c",
+    "path": "./CSC209 Software Tools and Systems Programming/w4",
+    "type": "build"
+  },
+  {
+    "name": "A4Q.pdf",
+    "path": "./CSC265 Enriched Data Structures and Analysis/Assignment",
+    "type": "book"
+  },
+  {
+    "name": "feb6_event",
+    "path": "./CSC309 Programming on the Web/DOM",
+    "type": "folder"
+  },
+  {
+    "name": "Notes Solving s.l.e.pdf",
+    "path": "./MAT223 Linear Algebra I",
+    "type": "book"
+  },
+  {
+    "name": "k-Nearest Neighbors.html",
+    "path": "./CSC311 Intro to Machine Learning/NOTE",
+    "type": "note"
+  },
+  {
+    "name": "mat337h1.pdf",
+    "path": "./MAT337 Introduction to Real Analysis/lecture",
+    "type": "book"
+  },
+  {
+    "name": "ll.h",
+    "path": "./CSC209 Software Tools and Systems Programming/w9/header_files_demo/version3",
+    "type": "build"
+  },
+  {
+    "name": "MAT337 Week 4 TH.pdf",
+    "path": "./MAT337 Introduction to Real Analysis/TUTORIAL",
+    "type": "book"
+  },
+  {
+    "name": "package examples",
+    "path": "./JSC270 Data Science I",
+    "type": "folder"
+  },
+  {
+    "name": "CSC343-Intro_DR.pdf",
+    "path": "./CSC343 Introduction to Databases/LECTURE",
+    "type": "book"
+  },
+  {
+    "name": "Practice Problems.html",
+    "path": "./STA303 Methods of Data Analysis II/Poisson Regression",
+    "type": "note"
+  },
+  {
+    "name": "Optimization Approxiamation.html",
+    "path": "./CSC373 Algorithm Design, Analysis and Complexity/NOTE",
+    "type": "note"
+  },
+  {
+    "name": "Course Outline.pdf",
+    "path": "./CSC336 Numerical Methods",
+    "type": "book"
+  },
+  {
+    "name": "hw1s.pdf",
+    "path": "./STA347 Probability",
+    "type": "book"
+  },
+  {
+    "name": "TUTORIAL",
+    "path": "./CSC343 Introduction to Databases",
+    "type": "folder"
+  },
+  {
+    "name": "Notes.txt",
+    "path": "./CSC209 Software Tools and Systems Programming/w9/header_files_demo/version1",
+    "type": "build"
+  },
+  {
+    "name": "A3.1handout.pdf",
+    "path": "./CSC373 Algorithm Design, Analysis and Complexity/ASSIGNMENT",
+    "type": "book"
+  },
+  {
+    "name": "package.json",
+    "path": "./CSC309 Programming on the Web/nodejs/mar11_mongo",
+    "type": "build"
+  },
+  {
+    "name": "A1solution.pdf",
+    "path": "./CSC373 Algorithm Design, Analysis and Complexity/ASSIGNMENT",
+    "type": "book"
+  },
+  {
+    "name": "mar4_node_api",
+    "path": "./CSC309 Programming on the Web/nodejs",
+    "type": "folder"
+  },
+  {
+    "name": "CSC258 Computer Organization",
+    "path": ".",
+    "type": "folder"
+  },
+  {
+    "name": "slides-weeks11annotated.pdf",
+    "path": "./STA302 Methods of Data Analysis I/LECTURE",
+    "type": "book"
+  },
+  {
+    "name": "TUT2.html",
+    "path": "./MAT337 Introduction to Real Analysis/TUTORIAL",
+    "type": "note"
+  },
+  {
+    "name": "tutorial_devices_slides.pdf",
+    "path": "./CSC258 Computer Organization",
+    "type": "book"
+  },
+  {
+    "name": "lecture6_v1.html",
+    "path": "./JSC270 Data Science I/class6",
+    "type": "note"
+  },
+  {
+    "name": "Box and Tiao Transformation (Nov 2017).pdf",
+    "path": "./STA457 Time Series Analysis/4-Forecast_and_TFN",
+    "type": "book"
+  },
+  {
+    "name": "lecture3_slides-students.html",
+    "path": "./JSC270 Data Science I/class3",
+    "type": "note"
+  },
+  {
+    "name": "Week 5 Tutorial Problems.pdf",
+    "path": "./CSC373 Algorithm Design, Analysis and Complexity/TUTORIAL",
+    "type": "book"
+  },
+  {
+    "name": "student_queue.html",
+    "path": "./CSC309 Programming on the Web/DOM/feb4_DOM_manipulation_2",
+    "type": "note"
+  },
+  {
+    "name": "stack.h",
+    "path": "./CSC209 Software Tools and Systems Programming/w9/header_files_demo/version3",
+    "type": "build"
+  },
+  {
+    "name": "slides-unit2_annotated.pdf",
+    "path": "./STA302 Methods of Data Analysis I/LECTURE",
+    "type": "book"
+  },
+  {
+    "name": "lab2_handout.pdf",
+    "path": "./CSC309 Programming on the Web/javascript/lab2",
+    "type": "book"
+  },
+  {
+    "name": "SQL data manipulation.html",
+    "path": "./CSC343 Introduction to Databases/NOTES",
+    "type": "note"
+  },
+  {
+    "name": "week3_s303_rm_annotated2.pdf",
+    "path": "./STA303 Methods of Data Analysis II/One Way ANOVA",
+    "type": "book"
+  },
+  {
+    "name": "ROSI-solutions.pdf",
+    "path": "./CSC343 Introduction to Databases/TUTORIAL",
+    "type": "book"
+  },
+  {
+    "name": "Class1-EDA_OkCupid.html",
+    "path": "./JSC270 Data Science I/class1",
+    "type": "note"
+  },
+  {
+    "name": "CSC209 Software Tools and Systems Programming",
+    "path": ".",
+    "type": "folder"
+  },
+  {
+    "name": "Week 1.html",
+    "path": "./JSC270 Data Science I/class1",
+    "type": "note"
+  },
+  {
+    "name": "A2solution.pdf",
+    "path": "./CSC373 Algorithm Design, Analysis and Complexity/ASSIGNMENT",
+    "type": "book"
+  },
+  {
+    "name": "dom_style.css",
+    "path": "./CSC309 Programming on the Web/DOM/jan30_DOM_manipulation_1",
+    "type": "build"
+  },
+  {
+    "name": "Two Way ANOVA.html",
+    "path": "./STA303 Methods of Data Analysis II/Two Way ANOVA",
+    "type": "note"
+  },
+  {
+    "name": "jsc270_tut1_questions.html",
     "path": "./JSC270 Data Science I/TUTORIAL",
     "type": "note"
+  },
+  {
+    "name": "Week 11 Lecture Summary.pdf",
+    "path": "./CSC373 Algorithm Design, Analysis and Complexity/LECTURE",
+    "type": "book"
+  },
+  {
+    "name": "Embedding SQL to another language.html",
+    "path": "./CSC343 Introduction to Databases/NOTES",
+    "type": "note"
+  },
+  {
+    "name": "shell_worksheet_solutions.pdf",
+    "path": "./CSC209 Software Tools and Systems Programming/w11",
+    "type": "book"
+  },
+  {
+    "name": "DSF-Amortized.pdf",
+    "path": "./CSC265 Enriched Data Structures and Analysis/LECTURE",
+    "type": "book"
+  },
+  {
+    "name": "Makefile",
+    "path": "./CSC209 Software Tools and Systems Programming/w9/header_files_demo/version2",
+    "type": "build"
+  },
+  {
+    "name": "slides-weeks8-9annotated.pdf",
+    "path": "./STA302 Methods of Data Analysis I/LECTURE",
+    "type": "book"
+  },
+  {
+    "name": "lecture8.pdf",
+    "path": "./JSC270 Data Science I/class8",
+    "type": "book"
+  },
+  {
+    "name": "CSC336 Numerical Methods",
+    "path": ".",
+    "type": "folder"
+  },
+  {
+    "name": "test.js",
+    "path": "./CSC309 Programming on the Web/final",
+    "type": "build"
+  },
+  {
+    "name": "Pandas_Cheat_Sheet.pdf",
+    "path": "./JSC270 Data Science I/package examples",
+    "type": "book"
+  },
+  {
+    "name": "student.js",
+    "path": "./CSC309 Programming on the Web/nodejs/mar25-authentication/models",
+    "type": "build"
+  },
+  {
+    "name": "running_programs_sol.pdf",
+    "path": "./CSC209 Software Tools and Systems Programming/w1",
+    "type": "book"
+  },
+  {
+    "name": "Recurrence.pdf",
+    "path": "./CSC240 Enriched Introduction to the Theory of Computation",
+    "type": "book"
+  },
+  {
+    "name": "feb11_event2",
+    "path": "./CSC309 Programming on the Web/DOM",
+    "type": "folder"
+  },
+  {
+    "name": "5. Normed Space.html",
+    "path": "./MAT337 Introduction to Real Analysis/NOTE",
+    "type": "note"
+  },
+  {
+    "name": "Notes.txt",
+    "path": "./CSC209 Software Tools and Systems Programming/w9/header_files_demo/version4",
+    "type": "build"
+  },
+  {
+    "name": "AVL.pdf",
+    "path": "./CSC265 Enriched Data Structures and Analysis/LECTURE",
+    "type": "book"
+  },
+  {
+    "name": "MAT337 Week 2 TH.pdf",
+    "path": "./MAT337 Introduction to Real Analysis/TUTORIAL",
+    "type": "book"
+  },
+  {
+    "name": "5.Lower_bound.pdf",
+    "path": "./CSC265 Enriched Data Structures and Analysis/NOTE",
+    "type": "book"
+  },
+  {
+    "name": "apr3.js",
+    "path": "./CSC309 Programming on the Web/nodejs/apr3",
+    "type": "build"
+  },
+  {
+    "name": "course.js",
+    "path": "./CSC309 Programming on the Web/nodejs/feb13_node",
+    "type": "build"
+  },
+  {
+    "name": "Analysis of Algorithm.pdf",
+    "path": "./CSC240 Enriched Introduction to the Theory of Computation",
+    "type": "book"
+  },
+  {
+    "name": "test_time_reads.sh",
+    "path": "./CSC209 Software Tools and Systems Programming/w11",
+    "type": "build"
+  },
+  {
+    "name": "A1",
+    "path": "./STA303 Methods of Data Analysis II/ASSIGNMENT",
+    "type": "folder"
+  },
+  {
+    "name": "Week3_303_annotated2.pdf",
+    "path": "./STA303 Methods of Data Analysis II/One Way ANOVA",
+    "type": "book"
+  },
+  {
+    "name": "A5s.pdf",
+    "path": "./CSC265 Enriched Data Structures and Analysis/Assignment",
+    "type": "book"
+  },
+  {
+    "name": "jan30_DOM_manipulation_1",
+    "path": "./CSC309 Programming on the Web/DOM",
+    "type": "folder"
+  },
+  {
+    "name": "Dynamic Programming Tut.html",
+    "path": "./CSC373 Algorithm Design, Analysis and Complexity/NOTE",
+    "type": "note"
+  },
+  {
+    "name": "test_fib.sh",
+    "path": "./CSC209 Software Tools and Systems Programming/w11",
+    "type": "build"
+  },
+  {
+    "name": "stack.h",
+    "path": "./CSC209 Software Tools and Systems Programming/w9/header_files_demo/version2",
+    "type": "build"
+  },
+  {
+    "name": ".DS_Store",
+    "path": "./CSC309 Programming on the Web/nodejs/mar25-authentication/db",
+    "type": "build"
+  },
+  {
+    "name": "BCNF TUT.html",
+    "path": "./CSC343 Introduction to Databases/TUTORIAL",
+    "type": "note"
+  },
+  {
+    "name": "A1handout.pdf",
+    "path": "./CSC373 Algorithm Design, Analysis and Complexity/ASSIGNMENT",
+    "type": "book"
+  },
+  {
+    "name": "A1.pdf",
+    "path": "./STA303 Methods of Data Analysis II/ASSIGNMENT/A1",
+    "type": "book"
+  },
+  {
+    "name": "SQL queries.html",
+    "path": "./CSC343 Introduction to Databases/NOTES",
+    "type": "note"
+  },
+  {
+    "name": "jan23_object_and_funciton.html",
+    "path": "./CSC309 Programming on the Web/javascript/lecDemo",
+    "type": "note"
+  },
+  {
+    "name": "Multivariate time series (29Oct2018).pdf",
+    "path": "./STA457 Time Series Analysis/5-VAR",
+    "type": "book"
+  },
+  {
+    "name": "Relational-Model.pdf",
+    "path": "./CSC343 Introduction to Databases/LECTURE",
+    "type": "book"
+  },
+  {
+    "name": "More closure properties.pdf",
+    "path": "./CSC240 Enriched Introduction to the Theory of Computation",
+    "type": "book"
+  },
+  {
+    "name": "MAT337 Week 6 TH.pdf",
+    "path": "./MAT337 Introduction to Real Analysis/TUTORIAL",
+    "type": "book"
+  },
+  {
+    "name": "malloc_basics_sol.pdf",
+    "path": "./CSC209 Software Tools and Systems Programming/w3",
+    "type": "book"
+  },
+  {
+    "name": "Image Matting.html",
+    "path": "./CSC320 Intro to Visual Computing/NOTE",
+    "type": "note"
+  },
+  {
+    "name": "W11_CookiesSessions.pdf",
+    "path": "./CSC309 Programming on the Web/nodejs/mar25-authentication",
+    "type": "book"
+  },
+  {
+    "name": "box.html",
+    "path": "./CSC309 Programming on the Web/html&css",
+    "type": "note"
+  },
+  {
+    "name": "NOTE",
+    "path": "./MAT337 Introduction to Real Analysis",
+    "type": "folder"
+  },
+  {
+    "name": "A2Q.pdf",
+    "path": "./CSC265 Enriched Data Structures and Analysis/Assignment",
+    "type": "book"
+  },
+  {
+    "name": "Week 8 Lecture Summary.pdf",
+    "path": "./CSC373 Algorithm Design, Analysis and Complexity/LECTURE",
+    "type": "book"
+  },
+  {
+    "name": "Self Reducibility.html",
+    "path": "./CSC373 Algorithm Design, Analysis and Complexity/NOTE",
+    "type": "note"
+  },
+  {
+    "name": "lego_game.c",
+    "path": "./CSC209 Software Tools and Systems Programming/w10",
+    "type": "build"
+  },
+  {
+    "name": "feb11.html",
+    "path": "./CSC309 Programming on the Web/DOM/feb11_event2",
+    "type": "note"
+  },
+  {
+    "name": "REVIEW QUESTIONS.html",
+    "path": "./MAT337 Introduction to Real Analysis/TUTORIAL",
+    "type": "note"
+  },
+  {
+    "name": "Schemas_PI.pdf",
+    "path": "./CSC343 Introduction to Databases/TUTORIAL",
+    "type": "book"
+  },
+  {
+    "name": "CSC343 Introduction to Databases",
+    "path": ".",
+    "type": "folder"
+  },
+  {
+    "name": "course.html",
+    "path": "./CSC309 Programming on the Web/nodejs/mar11_express/pub",
+    "type": "note"
+  },
+  {
+    "name": "mongoose.js",
+    "path": "./CSC309 Programming on the Web/nodejs/mar18-mongo/db",
+    "type": "build"
+  },
+  {
+    "name": "user.js",
+    "path": "./CSC309 Programming on the Web/nodejs/mar18-mongo/models",
+    "type": "build"
+  },
+  {
+    "name": "Week 12 Tutorial Problems.pdf",
+    "path": "./CSC373 Algorithm Design, Analysis and Complexity/TUTORIAL",
+    "type": "book"
+  },
+  {
+    "name": "loglinsol.pdf",
+    "path": "./STA303 Methods of Data Analysis II/Poisson Regression",
+    "type": "book"
+  },
+  {
+    "name": "Introduction.html",
+    "path": "./STA457 Time Series Analysis/0-NOTES",
+    "type": "note"
+  },
+  {
+    "name": "MAT337 Introduction to Real Analysis",
+    "path": ".",
+    "type": "folder"
+  },
+  {
+    "name": "errors_sol.pdf",
+    "path": "./CSC209 Software Tools and Systems Programming/w6",
+    "type": "book"
+  },
+  {
+    "name": "R basics.html",
+    "path": "./STA302 Methods of Data Analysis I",
+    "type": "note"
+  },
+  {
+    "name": "flipflops_slides.pdf",
+    "path": "./CSC258 Computer Organization",
+    "type": "book"
+  },
+  {
+    "name": "1. Real Number Construction.html",
+    "path": "./MAT337 Introduction to Real Analysis/NOTE",
+    "type": "note"
+  },
+  {
+    "name": "Granger Causality and Cointegration.html",
+    "path": "./STA457 Time Series Analysis/0-NOTES",
+    "type": "note"
+  },
+  {
+    "name": "Linear Filters.html",
+    "path": "./CSC420 Intro to Image Understanding/NOTE",
+    "type": "note"
+  },
+  {
+    "name": "main.c",
+    "path": "./CSC209 Software Tools and Systems Programming/w9/header_files_demo/version3",
+    "type": "build"
+  },
+  {
+    "name": "class4",
+    "path": "./JSC270 Data Science I",
+    "type": "folder"
+  },
+  {
+    "name": "June5-Applications.pdf",
+    "path": "./STA457 Time Series Analysis/4-Forecast_and_TFN",
+    "type": "book"
+  },
+  {
+    "name": "HTML&CSS.html",
+    "path": "./CSC309 Programming on the Web/html&css",
+    "type": "note"
+  },
+  {
+    "name": "students.json",
+    "path": "./CSC309 Programming on the Web/nodejs/feb25_node",
+    "type": "build"
+  },
+  {
+    "name": "FilesDirectoriesGlobbingSlides.pdf",
+    "path": "./CSC209 Software Tools and Systems Programming/w1",
+    "type": "book"
+  },
+  {
+    "name": "feb13_node",
+    "path": "./CSC309 Programming on the Web/nodejs",
+    "type": "folder"
+  },
+  {
+    "name": "4. Topology of real number space.html",
+    "path": "./MAT337 Introduction to Real Analysis/NOTE",
+    "type": "note"
+  },
+  {
+    "name": "login.html",
+    "path": "./CSC309 Programming on the Web/nodejs/mar25-authentication/public",
+    "type": "note"
+  },
+  {
+    "name": "Assignment3_w19_part1.pdf",
+    "path": "./STA303 Methods of Data Analysis II/ASSIGNMENT/A3",
+    "type": "book"
+  },
+  {
+    "name": "style.css",
+    "path": "./CSC309 Programming on the Web/html&css/lecDemo/CSC309_files",
+    "type": "build"
+  },
+  {
+    "name": "db",
+    "path": "./CSC309 Programming on the Web/nodejs/mar11_mongo",
+    "type": "folder"
+  },
+  {
+    "name": "student.js",
+    "path": "./CSC309 Programming on the Web/nodejs/mar11_mongo/models",
+    "type": "build"
+  },
+  {
+    "name": "Notes Ortho bases Complements .pdf",
+    "path": "./MAT223 Linear Algebra I",
+    "type": "book"
+  },
+  {
+    "name": "mar25-authentication",
+    "path": "./CSC309 Programming on the Web/nodejs",
+    "type": "folder"
+  },
+  {
+    "name": "gdb-overview.pdf",
+    "path": "./CSC209 Software Tools and Systems Programming/w3",
+    "type": "book"
+  },
+  {
+    "name": "MAT224_FinalExam_Review.pdf",
+    "path": "./MAT224 Linear Algebra II",
+    "type": "book"
+  },
+  {
+    "name": "Countability and diagonalization proof.pdf",
+    "path": "./CSC240 Enriched Introduction to the Theory of Computation",
+    "type": "book"
+  },
+  {
+    "name": "MT1_solutions.pdf",
+    "path": "./MAT337 Introduction to Real Analysis/TUTORIAL",
+    "type": "book"
+  },
+  {
+    "name": "sta347-syllabus.pdf",
+    "path": "./STA347 Probability",
+    "type": "book"
+  },
+  {
+    "name": "feb4_DOM_manipulation_2",
+    "path": "./CSC309 Programming on the Web/DOM",
+    "type": "folder"
+  },
+  {
+    "name": "lab2",
+    "path": "./CSC309 Programming on the Web/javascript",
+    "type": "folder"
+  },
+  {
+    "name": "app.js",
+    "path": "./CSC309 Programming on the Web/nodejs/feb25_node",
+    "type": "build"
+  },
+  {
+    "name": "ARIMA.html",
+    "path": "./STA457 Time Series Analysis/0-NOTES",
+    "type": "note"
+  },
+  {
+    "name": "Week6_rm_annotated.pdf",
+    "path": "./STA303 Methods of Data Analysis II/Binary Logistic Regression",
+    "type": "book"
+  },
+  {
+    "name": "tutorial_week10_slides.pdf",
+    "path": "./CSC258 Computer Organization",
+    "type": "book"
+  },
+  {
+    "name": "sockets.pdf",
+    "path": "./CSC209 Software Tools and Systems Programming/w10",
+    "type": "book"
+  },
+  {
+    "name": "L3-FileSystems.pdf",
+    "path": "./CSC369 Operating Systems",
+    "type": "book"
+  },
+  {
+    "name": "Image Features - Blob Detection.html",
+    "path": "./CSC420 Intro to Image Understanding/NOTE",
+    "type": "note"
+  },
+  {
+    "name": "w8",
+    "path": "./CSC209 Software Tools and Systems Programming",
+    "type": "folder"
+  },
+  {
+    "name": "mongo-update-student.js",
+    "path": "./CSC309 Programming on the Web/nodejs/mar11_mongo",
+    "type": "build"
+  },
+  {
+    "name": "L1-Intro.pdf",
+    "path": "./CSC369 Operating Systems",
+    "type": "book"
+  },
+  {
+    "name": "A2handout.pdf",
+    "path": "./CSC373 Algorithm Design, Analysis and Complexity/ASSIGNMENT",
+    "type": "book"
+  },
+  {
+    "name": "Notes dim and nullity .pdf",
+    "path": "./MAT223 Linear Algebra I",
+    "type": "book"
+  },
+  {
+    "name": "Tutorial2.pdf",
+    "path": "./CSC265 Enriched Data Structures and Analysis/LECTURE",
+    "type": "book"
+  },
+  {
+    "name": "Week 10 Lecture Summary.pdf",
+    "path": "./CSC373 Algorithm Design, Analysis and Complexity/LECTURE",
+    "type": "book"
+  },
+  {
+    "name": "Class1_annotated.pdf",
+    "path": "./STA303 Methods of Data Analysis II/One Way ANOVA",
+    "type": "book"
+  },
+  {
+    "name": "Notes Eigenvalue and Eigenvector.pdf",
+    "path": "./MAT223 Linear Algebra I",
+    "type": "book"
+  },
+  {
+    "name": "models",
+    "path": "./CSC309 Programming on the Web/nodejs/mar18-mongo",
+    "type": "folder"
+  },
+  {
+    "name": "jsc270_tut4_part2-answers-moon-99999999.html",
+    "path": "./JSC270 Data Science I/TUTORIAL/tut_answer",
+    "type": "note"
+  },
+  {
+    "name": "mydb.js",
+    "path": "./CSC309 Programming on the Web/final",
+    "type": "build"
+  },
+  {
+    "name": "Week10_annotated.pdf",
+    "path": "./STA303 Methods of Data Analysis II/Contingency tables",
+    "type": "book"
+  },
+  {
+    "name": ".DS_Store",
+    "path": "./CSC309 Programming on the Web/nodejs/mar11_request_promises",
+    "type": "build"
+  },
+  {
+    "name": "Lecture Handout Week 1 T .pdf",
+    "path": "./MAT337 Introduction to Real Analysis/lecture",
+    "type": "book"
+  },
+  {
+    "name": "Poisson Regression",
+    "path": "./STA303 Methods of Data Analysis II",
+    "type": "folder"
+  },
+  {
+    "name": "CSC369 Operating Systems",
+    "path": ".",
+    "type": "folder"
+  },
+  {
+    "name": "3.AVL_Trees.pdf",
+    "path": "./CSC265 Enriched Data Structures and Analysis/NOTE",
+    "type": "book"
+  },
+  {
+    "name": "Assignment1_w19.pdf",
+    "path": "./STA303 Methods of Data Analysis II/ASSIGNMENT/A1",
+    "type": "book"
+  },
+  {
+    "name": "part1.pdf",
+    "path": "./STA347 Probability",
+    "type": "book"
+  },
+  {
+    "name": "lecture2_slides-posted.html",
+    "path": "./JSC270 Data Science I/class2",
+    "type": "note"
+  },
+  {
+    "name": "DFA & NFA.pdf",
+    "path": "./CSC240 Enriched Introduction to the Theory of Computation",
+    "type": "book"
+  },
+  {
+    "name": "10. Function Approximations.html",
+    "path": "./MAT337 Introduction to Real Analysis/NOTE",
+    "type": "note"
+  },
+  {
+    "name": "mongo-add-student.js",
+    "path": "./CSC309 Programming on the Web/nodejs/mar11_mongo",
+    "type": "build"
+  },
+  {
+    "name": "lab1",
+    "path": "./CSC309 Programming on the Web/html&css",
+    "type": "folder"
+  },
+  {
+    "name": "Polynomial Fitting.html",
+    "path": "./CSC320 Intro to Visual Computing/NOTE",
+    "type": "note"
+  },
+  {
+    "name": "Week 3 Lecture Summary.pdf",
+    "path": "./CSC373 Algorithm Design, Analysis and Complexity/LECTURE",
+    "type": "book"
+  },
+  {
+    "name": "address.js",
+    "path": "./CSC309 Programming on the Web/nodejs/mar4_request",
+    "type": "build"
+  },
+  {
+    "name": "ARMA.html",
+    "path": "./STA457 Time Series Analysis/0-NOTES",
+    "type": "note"
+  },
+  {
+    "name": "Relational Algebra.html",
+    "path": "./CSC343 Introduction to Databases/NOTES",
+    "type": "note"
+  },
+  {
+    "name": "transistors_slides.pdf",
+    "path": "./CSC258 Computer Organization",
+    "type": "book"
+  },
+  {
+    "name": "DisjointSets-logstar.pdf",
+    "path": "./CSC265 Enriched Data Structures and Analysis/LECTURE",
+    "type": "book"
+  },
+  {
+    "name": "style.css",
+    "path": "./CSC309 Programming on the Web/DOM/feb4_DOM_manipulation_2",
+    "type": "build"
+  },
+  {
+    "name": "tutorial_week11_slides.pdf",
+    "path": "./CSC258 Computer Organization",
+    "type": "book"
+  },
+  {
+    "name": "Week 4 Tutorial Solutions.pdf",
+    "path": "./CSC373 Algorithm Design, Analysis and Complexity/TUTORIAL",
+    "type": "book"
+  },
+  {
+    "name": "w7",
+    "path": "./CSC209 Software Tools and Systems Programming",
+    "type": "folder"
+  },
+  {
+    "name": "visualization theory and principles.html",
+    "path": "./JSC270 Data Science I/class7",
+    "type": "note"
+  },
+  {
+    "name": "TUT9.html",
+    "path": "./MAT337 Introduction to Real Analysis/TUTORIAL",
+    "type": "note"
+  },
+  {
+    "name": "Week8_annotated.pdf",
+    "path": "./STA303 Methods of Data Analysis II/Binomial Logistic Regression",
+    "type": "book"
+  },
+  {
+    "name": "FA and Regex.pdf",
+    "path": "./CSC240 Enriched Introduction to the Theory of Computation",
+    "type": "book"
+  },
+  {
+    "name": "Assignment2-handout.pdf",
+    "path": "./CSC343 Introduction to Databases/ASSIGNMENT",
+    "type": "book"
+  },
+  {
+    "name": "lab3.js",
+    "path": "./CSC309 Programming on the Web/javascript/lab3",
+    "type": "build"
+  },
+  {
+    "name": "style.css",
+    "path": "./CSC309 Programming on the Web/javascript/lab4",
+    "type": "build"
+  },
+  {
+    "name": "Decision Trees.html",
+    "path": "./CSC311 Intro to Machine Learning/NOTE",
+    "type": "note"
+  },
+  {
+    "name": ".DS_Store",
+    "path": "./CSC309 Programming on the Web/nodejs/mar25-authentication/public",
+    "type": "build"
+  },
+  {
+    "name": "transistors_handout.pdf",
+    "path": "./CSC258 Computer Organization",
+    "type": "book"
+  },
+  {
+    "name": "L2-Files.pdf",
+    "path": "./CSC369 Operating Systems",
+    "type": "book"
+  },
+  {
+    "name": "models",
+    "path": "./CSC309 Programming on the Web/nodejs/mar11_mongo",
+    "type": "folder"
   }
 ]
