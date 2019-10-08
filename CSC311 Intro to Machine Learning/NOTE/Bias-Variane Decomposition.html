@@ -105,10 +105,25 @@ div#notebook {
   <div tabindex="-1" id="notebook" class="border-box-sizing">
     <div class="container" id="notebook-container">
 
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[2]:</div>
+<div class="inner_cell">
+    <div class="input_area border">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">sklearn</span> <span class="k">as</span> <span class="nn">sk</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Loss-function">Loss function<a class="anchor-link" href="#Loss-function">&#182;</a></h3><p>A loss function $L(y,t)$ defines how bad it is if, for some example $x$, the algorithm predicts $y$, but the target is actually $t$</p>
+<h2 id="Loss-function">Loss function<a class="anchor-link" href="#Loss-function">&#182;</a></h2><p>A loss function $L(y,t)$ defines how bad it is if, for some example $x$, the algorithm predicts $y$, but the target is actually $t$</p>
 
 </div>
 </div>
@@ -116,7 +131,7 @@ div#notebook {
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Bias-Variance-Decomposition">Bias-Variance Decomposition<a class="anchor-link" href="#Bias-Variance-Decomposition">&#182;</a></h3><p>Suppose the training set $\mathcal D$ consists of $N$ pairs sampled IID from a sample generating distribution, i.e. $(x^{(i)}, t^{(i)})\sim p_{sample}$<br>
+<h2 id="Bias-Variance-Decomposition">Bias-Variance Decomposition<a class="anchor-link" href="#Bias-Variance-Decomposition">&#182;</a></h2><p>Suppose the training set $\mathcal D$ consists of $N$ pairs sampled IID from a sample generating distribution, i.e. $(x^{(i)}, t^{(i)})\sim p_{sample}$<br>
 Let $p_{\mathcal D}$ denote the induced distribution over training set $i.e. \mathcal D\sim p_{\mathcal D}$</p>
 <p>Pick a fixed query point $\vec x$, then consider an experiment where we sample lots of (say $m$ times) training datasets IID from $p_{\mathcal D}$</p>
 <p>Then, we can produce $h_{k,\mathcal D}, k\in\{1,2,...,m\}$ and we compute each classifier's prediction $h_{k,\mathcal D}(\vec x) = y$ at the chosen query point $\vec x$</p>
@@ -128,10 +143,106 @@ Let $p_{\mathcal D}$ denote the induced distribution over training set $i.e. \ma
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h4 id="Basic-setup">Basic setup<a class="anchor-link" href="#Basic-setup">&#182;</a></h4><p>Assume $t$ is deterministic given $x$<br>
+<h3 id="Basic-setup">Basic setup<a class="anchor-link" href="#Basic-setup">&#182;</a></h3><p>Assume $t$ is deterministic given $x$<br>
 There is a distribution over the loss at $\vec x$, with $E_{\mathcal D\sim p_{\mathcal D}}(L(h_{\mathcal D}(x), t))$<br>
 For each query point, the expected loss is different. We are interested in quantifying how well our classifier does over $p_{sample}$ average over training set $E_{\vec x\sim p_{sample}, \mathcal D\sim p_{\mathcal D}}(L(h_{\mathcal D}(\vec x), t))$<br>
 Then, we can decompose the expected loss</p>
+$$\begin{align}
+E_{x,D}[(h_D(x) - t)^2] &amp;= E_{x,D}\bigg[\big(h_D(x) - E_D(h_D(x)\mid x) +E_D(h_D(x)\mid x)-t\big)^2\bigg]\\
+&amp;= \quad E_{x,D}\bigg[\big(h_D(x) - E_D(h_D(x)\mid x)\big)^2\bigg] \\
+&amp;\quad+2E_{x,D}\bigg[\big(h_D(x) - E_D(h_D(x)\mid x)\big)\big(E_D(h_D(x)\mid x)-t\big)\bigg]\\
+&amp;\quad + E_{x,D}\bigg[\big(E_D(h_D(x)\mid x)-t\big)^2\bigg]\\
+&amp;= E_x\bigg[E_D\big[\big(h_D(x) - E_D(h_D(x)\mid x)\big)^2 \\
+&amp;\qquad\quad +2E_D\bigg[\big(h_D(x) - E_D(h_D(x)\mid x)\big)\big(E_D(h_D(x)\mid x)-t\big)\mid x \bigg] &amp;(*)\\
+&amp;\qquad\quad + \big(E_D(h_D(x)\mid x)-t\big)^2\mid x\big]\bigg]\\
+&amp;= E_{x,D}\bigg[\big(h_D(x)-E_D[h_D(x)\mid x]\big)^2\bigg] + E_{x}\bigg[\big(E_D[h_D(x)\mid x] -t\big)^2\bigg]\\
+&amp;= variance + bias
+\end{align}$$
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+$$\begin{align}
+(*) \quad &amp;= (E_D(h_D(x)\mid x)-t\big)&amp;\text{indep. of }D\\
+&amp;\qquad \times 2E_D\bigg[\mid x \bigg] &amp; (**)\\
+(**) &amp;= E_{D,x}\big(h_D(x) - E_{D_x}[h_D(x)]\big) = 0\\
+(*) &amp;= 0
+\end{align}$$<p><strong>Bias</strong> defines on average, how close is the classifier to true target</p>
+<p><strong>Variance</strong> defines how widely dispersed are the prediction as we generate new datasets</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Bayes-Optimality">Bayes Optimality<a class="anchor-link" href="#Bayes-Optimality">&#182;</a></h3><p>What if $t$ is not deterministic given $\vec x$, i.e. $p(t\mid \vec x)$.</p>
+<p>Since there is a distribution over targets, we measure distance from $y_*(x) = E(t\mid \vec x)$<br>
+$$\begin{align}
+E[(y-t)^2 \mid \vec x] &amp;= E(y^2\mid x) - 2E(yt\mid x) + E(t^2\mid x)\\
+&amp;= y^2 - 2yE(t\mid x) + E(t\mid x)^2 + var(t\mid x)\\
+&amp;= y^2 - 2yy_*(x) + y_*(x)^2 + var(t\mid x)\\
+&amp;=(y - y_*(\vec x))^2 + var[t\mid \vec x]
+\end{align}$$<br>
+The first term show that s $y=y_*(\vec x)$ is the minimized value</p>
+<p><strong>Bayes error / irreducible error</strong> The second term is the inherent unpredicatability, or noise, of the target.</p>
+<p>If $Var[t|x] = 0$, the algorithm is <strong>Bayes optimal</strong>.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>We can then decompose the non-deterministic form</p>
+$$\begin{align}
+E_{x,D,t|x}\bigg[(h_D(x) - t)^2\bigg] &amp;= E_D\bigg[E_{x,t|x}\big[(h_D(x)-y)^2 \mid D\big]\bigg]\\
+&amp;= \quad E_{x,D}\big[(h_D(x) - E_t[t|x])^2\big] \\
+&amp;\quad\quad + E_{x,t|x}\big[(E_{t|x}[t|x] - t)^2\big]\\
+&amp;= \quad E_{x,D}\big[(h_D(x) - E_t[t|x])^2\big]  + E_x\big[var(t\mid x)\big]
+\end{align}$$<p>Hence we decompose out the <strong>Bayes error</strong>, where the first two terms are identical to the deterministic case, and will be decomposed into bias and variance</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Bagging">Bagging<a class="anchor-link" href="#Bagging">&#182;</a></h2><h3 id="Intuition">Intuition<a class="anchor-link" href="#Intuition">&#182;</a></h3><p>Suppose we sample $m$ indep. training set $D_i$ from $p_d$, we could then learn a predictor $h_i := h_{D_i}$ based on each one, then take the average $h = \sum^m h_i /m$</p>
+<p>Bias unchanged
+$$E_{D_1,...,D_m \sim p_d}h(x) = \frac{1}{m} \sum^m E_{D_i\sim p_{d}}h_i(x) = E_{D\sim p_d} h_D(x)$$</p>
+<p>Variance becomes $1/m$ of the original 
+$$var_{D_1,...,D_m}(h(x)) = \frac{1}{m^2}var_{D_i}(h_i(x)) = \frac{1}{m}var_D(h_D(x))$$</p>
+<p>However, we don't such iid datasets from $p_d$</p>
+<p>So we have to take a single dataset $D$ with $n$ examples<br>
+Generate $m$ new datasets by sampling $n$ training examples from $D$, with replacement<br>
+Average the predictions of models trained on each of these</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h4 id="Problem-with-independence">Problem with independence<a class="anchor-link" href="#Problem-with-independence">&#182;</a></h4><p>Let correlation be $\rho$, the variance with correlated datasets is 
+$$var(h(x)) = \frac{1}{m}(1-\rho)\sigma^2 + \rho\sigma^2$$</p>
+<p>Ironically, introduce additional variability reduces correlation between samples</p>
+<ul>
+<li>invest a diversified portfolio, not just one stock</li>
+<li>help to use average over multiple algorithms, or multiple configurations</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Random-Forests">Random Forests<a class="anchor-link" href="#Random-Forests">&#182;</a></h3><h4 id="General-Idea">General Idea<a class="anchor-link" href="#General-Idea">&#182;</a></h4><p>When choose each node of the decision tree, choose a random set of $d$ features, and only consider splits on those features</p>
+<p>The main idea is to improve the variance reduction of bagging by reducing the correlation between the trees</p>
+<p>One of the example for black-box ML algorithm</p>
 
 </div>
 </div>
