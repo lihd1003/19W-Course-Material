@@ -2,7 +2,7 @@
 <html>
 <head><meta charset="utf-8" />
 
-<title>Linear Classification & Optimization - Notes Portal</title>
+<title>Classification Optimization - Notes Portal</title>
 
 <link rel="icon" type="image/gif" href="https://lihd1003.github.io/assets/images/logo.png">
 <link rel="stylesheet" href="https://lihd1003.github.io/assets/css/vendor.css" />
@@ -96,7 +96,7 @@ div#notebook {
       <div class="row align-items-center">
         <div class="col text-shadow">
 
-          <h1 class="mb-0">Linear Classification & Optimization</h1>
+          <h1 class="mb-0">Classification Optimization</h1>
         </div>
       </div>
     </div>
@@ -293,6 +293,66 @@ $$\vec w\leftarrow \vec w - \alpha\partial_{\vec w}(\mathcal J+\lambda \mathcal 
 &amp;= (y-t)x_j\\
 w_j &amp;\rightarrow w_j - \frac{\alpha}{N} \sum^N(y^{(i)} - t^{(i)})x_j^{(i)}
 \end{align*}$$
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Multiclass-Classification">Multiclass Classification<a class="anchor-link" href="#Multiclass-Classification">&#182;</a></h2><h3 id="Softmax-Regression">Softmax Regression<a class="anchor-link" href="#Softmax-Regression">&#182;</a></h3>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h4 id="One-hot-vector/-one-of-K-encoding-Target">One-hot vector/ one-of-K encoding Target<a class="anchor-link" href="#One-hot-vector/-one-of-K-encoding-Target">&#182;</a></h4><p>Targets from a discrete set $\{1,...,K\}$<br>
+For convenience, let $t\in\mathbb R^K, t_i= \mathbb I(i=k)$ where $k$ is the classification.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h4 id="Linear-predictions">Linear predictions<a class="anchor-link" href="#Linear-predictions">&#182;</a></h4><p>$D$ input, $K$ output, hence we need a weight matrix $W$<br>
+$$\vec z_{K\times 1} = W_{K\times D}\vec x_{D\times 1} + \vec b_{K\times 1}$$
+Otherwise $Z= Wx^*$ where $x^*$ is $x$ padded a column of $1$'s.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h4 id="Softmax-Function-Activation">Softmax Function Activation<a class="anchor-link" href="#Softmax-Function-Activation">&#182;</a></h4><p>A generalization of the logistic function
+$$y_k = softmax(z_1,...,z_K)_k = \frac{e^{z_k}}{\sum_{k'} e^zk'}$$
+The input $z_k$ are the logits</p>
+<h5 id="Properties">Properties<a class="anchor-link" href="#Properties">&#182;</a></h5><ul>
+<li>Outputs are positive and sum to $1, (\sum_k y_k = 1)$ so that can be interpreted as probabilities</li>
+<li>If one of $z_k$ is much larger, than $softmax(z)_k \approx 1$</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h4 id="Cross-Entropy-Loss">Cross Entropy Loss<a class="anchor-link" href="#Cross-Entropy-Loss">&#182;</a></h4><p>Use cross-entropy as the loss function, as from logistic regression 
+$$\mathcal L_{CE}(\vec y, \vec t) = -\sum_{k=1}^K t_k \log y_k = -\vec t^T \log(\vec y)$$
+Log is applied element-wise</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h4 id="Gradient-descent">Gradient descent<a class="anchor-link" href="#Gradient-descent">&#182;</a></h4><p>Updates can be derived for each row of $W$
+$$\frac{\partial L}{\partial w_k} = \frac{\partial L}{\partial z_k}\frac{\partial z_k}{\partial w_k} = (y_k - t_k)\cdot \vec x$$
+$$w_k \leftarrow w_k - \alpha N^{-1} \sum^N (y^{(i)}_k - t^{(i)}_k)\vec x^{(i)}$$</p>
+
 </div>
 </div>
 </div>
