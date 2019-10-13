@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html>
+<head><meta charset="utf-8" />
+
+<title>Gradient Descent - Notes Portal</title>
+
+<link rel="icon" type="image/gif" href="https://lihd1003.github.io/assets/images/logo.png">
+<link rel="stylesheet" href="https://lihd1003.github.io/assets/css/vendor.css" />
+<link rel="stylesheet" href="https://lihd1003.github.io/assets/css/style.css" />
+<link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
+<script src="https://kit.fontawesome.com/98fa07784c.js"></script>
+
+
+
+<style type="text/css">
+/* Overrides of notebook CSS for static HTML export */
+
+div#notebook {
+  overflow: visible;
+  border-top: none;
+}@media print {
+  div.cell {
+    display: block;
+    page-break-inside: avoid;
+  } 
+  div.output_wrapper { 
+    display: block;
+    page-break-inside: avoid; 
+  }
+  div.output { 
+    display: block;
+    page-break-inside: avoid; 
+  }
+}
+</style>
+
+<!-- Custom stylesheet, it must be in the same directory as the html file -->
+<link rel="stylesheet" href="https://lihd1003.github.io/UofT-Course-Material-Repo/table_of_content/custom.css">
+
+<!-- Loading mathjax macro -->
+<!-- Load mathjax -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS_HTML"></script>
+    <!-- MathJax configuration -->
+    <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+            displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+            processEscapes: true,
+            processEnvironments: true
+        },
+        // Center justify equations in code and markdown cells. Elsewhere
+        // we use CSS to left justify single line equations in code cells.
+        displayAlign: 'center',
+        "HTML-CSS": {
+            styles: {'.MathJax_Display': {"margin": 0}},
+            linebreaks: { automatic: true }
+        }
+    });
+    </script>
+    <!-- End of mathjax configuration --></head>
+<body>
+	<!-- header -->
+   <header class="header-sticky header-dark">
+    <div class="container">
+      <nav class="navbar navbar-expand-lg navbar-dark">
+        <a class="navbar-brand" href="./index.html">
+          <img class="navbar-logo navbar-logo-light" src="https://lihd1003.github.io/assets/images/logo.png" alt="Logo">
+          <img class="navbar-logo navbar-logo-dark" src="https://lihd1003.github.io/assets/images/logo.png" alt="Logo">
+        </a>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav align-items-center mr-auto">
+          </ul>
+
+          <ul class="navbar-nav align-items-center mr-0">
+            <li class="nav-item">
+              <a href="https://github.com/lihd1003" class="nav-link waves-effect waves-light" target="_blank">
+                <i class="icon-github mr-2"></i>GitHub
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="https://github.com/lihd1003/UofT-Course-Material-Repo" class="nav-link waves-effect waves-light" target="_blank">
+                <i class="icon-star mr-2"></i>Star the Repo
+              </a>
+            </li>
+          </ul>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+<section class="hero hero-with-header text-white" data-top-top="transform: translateY(0px);" data-top-bottom="transform: translateY(250px);">
+    <div class="image image-overlay" style="background-image:url(https://lihd1003.github.io/assets/images/black.jpg)"></div>
+    <div class="container">
+      <div class="row align-items-center">
+        <div class="col text-shadow">
+
+          <h1 class="mb-0">Gradient Descent</h1>
+        </div>
+      </div>
+    </div>
+ </section>
+ <section class="bg-white sec" id="project">
+  <div tabindex="-1" id="notebook" class="border-box-sizing">
+    <div class="container" id="notebook-container">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Stochastic-gradient-descent">Stochastic gradient descent<a class="anchor-link" href="#Stochastic-gradient-descent">&#182;</a></h3><p>Update the parameters based on the gradient for a single training example
+$$1. \text{Choose i uniformly}, 2. \theta \leftarrow \theta - \alpha \frac{\partial \mathcal L^{(i)}}{\partial \theta}$$
+Therefore, for extremely large dataset, you can see some progress before seeing all the data.</p>
+<p>Such gradient is a biased estimate of the batch gradient
+$$E(\partial_\theta L^{(i)}) = N^{-1}\sum_{i=1}^n \partial_\theta L^{(i)} = \partial_\theta J$$
+Note that by this expectation, we should do sampling with replacement</p>
+<h4 id="Potential-Issues">Potential Issues<a class="anchor-link" href="#Potential-Issues">&#182;</a></h4><ul>
+<li>Dependent on the order </li>
+<li>Variance can be high, considering some points goes in one direction, while the others goes another</li>
+</ul>
+<h4 id="mini-batch">mini-batch<a class="anchor-link" href="#mini-batch">&#182;</a></h4><p>Compute the gradients on a randomly chosen medium-sized set of training example.</p>
+<p>Let $M$ be the size of the mini batch,</p>
+<ul>
+<li>$M\uparrow$: computation</li>
+<li>$M\downarrow$: can't exploit vectorization, high variance</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h4 id="Learning-Rate">Learning Rate<a class="anchor-link" href="#Learning-Rate">&#182;</a></h4><p>The learning rate also influences the <strong>fluctuations</strong> due to the stochasticity of the gradients.</p>
+<h5 id="Strategy">Strategy<a class="anchor-link" href="#Strategy">&#182;</a></h5><p>Start large, gradually decay the learning rate to reduce the fluctuations</p>
+<p>By reducing the learning rate, reducing the fluctuations can appear to make the loss drop suddenly, but can come at the expense of long-run performance.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h4 id="Non-convex-optimization">Non-convex optimization<a class="anchor-link" href="#Non-convex-optimization">&#182;</a></h4><p>Have a chance of escaping from local (but non global) minima. If the step-size is too small, it will likely to fall into the local minimum.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="GD-with-Momentum">GD with Momentum<a class="anchor-link" href="#GD-with-Momentum">&#182;</a></h3><p>compute an exponentially weighted average of the gradient, and the use the gradient to update the weights</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h4 id="Algorithm">Algorithm<a class="anchor-link" href="#Algorithm">&#182;</a></h4><p>initialize $V= 0$
+$$V\leftarrow \beta V + (1-\beta)\frac{\partial E}{\partial w}$$
+$$w \leftarrow w - \alpha V$$
+where $\alpha$ is the learning rate, $\beta$ is the momentum. Commonly, $\beta$ is around 0.9</p>
+
+</div>
+</div>
+</div>
+    </div>
+  </div>
+</section>
+  <script src="https://lihd1003.github.io/assets/js/vendor.js"></script>
+  <script src="https://lihd1003.github.io/assets/js/app.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script>
+    $("table").addClass("table table-lined")
+  </script>
+</body>
+
+ 
+
+
+</html>
