@@ -279,6 +279,55 @@ $$\begin{align}MM_1^{-1} &amp;= (I-m_1e_1^T)(I+m_1e_1^T) \\
 </div>
 </div>
 </div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="LU-Factorization">LU Factorization<a class="anchor-link" href="#LU-Factorization">&#182;</a></h3>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Want to find $L$ being lower triangular and $U$ upper triangular so that $A = LU$.</p>
+<p>By Gaussian elimination we already have $U$ so that we can have $A = M_1^{-1}...M_{n-1}^{-1}U$, so that $L = M_1^{-1}...M_{n-1}^{-1}$</p>
+<p>By theorem above, we know $M_k = I-m_ke_k^T$</p>
+<p>Note that $M_1^{-1}...M_{n-1}^{-1} = I + \sum_{i=1}^N m_ie_i^T$</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>If you have a LU factorization of $A$, then can easily solve $Ax=b\Rightarrow LUx = b \Rightarrow Ly = b$<br>
+So that we can solve $Ly=b$ then $Ux=y$</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h4 id="Runtime">Runtime<a class="anchor-link" href="#Runtime">&#182;</a></h4><p>Since $L$ is lower triangular. we'll solve top down, and takes a total of $\frac{n(n-1)}{2}$ addition and multiplication.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h4 id="Computing-Determinant">Computing Determinant<a class="anchor-link" href="#Computing-Determinant">&#182;</a></h4><p>Consider $A_{kk}$ be $A_{k:n \times k:n}$ so that the classical way of solving determinant will be expanding the determinant along a row/column
+$$\det(A) = \sum_{i=1}^n (-1)^{i-1}{a_{1i}} \det(A_{ii})$$
+Let $t(n)$ be the number of multiplications to compute $A_{n\times n}$ then 
+$f(n)=nf(n-1) +n \geq n!$</p>
+<p><strong>Theorem</strong> $\det(AB) =\det(A)\det(B)$</p>
+<p>So that $\det(A) = \det(L)\det(U) = 1 \times diag(U)$<br>
+Remember that computing $U$ takes $\frac{n^3}{3} + O(n^2)$ times</p>
+
+</div>
+</div>
+</div>
     </div>
   </div>
 </section>
