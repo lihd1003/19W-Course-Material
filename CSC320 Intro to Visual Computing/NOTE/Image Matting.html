@@ -177,6 +177,19 @@ We have 6 equations, 4 unknowns</p>
 </div>
 </div>
 </div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Then, to solve such system of equations, we can use a sparse matrix 
+$$\begin{bmatrix}C_{0,r}\\C_{0,g}\\C_{0,b}\\C_{1,r}\\C_{1,g}\\C_{1,b}\end{bmatrix}
+ = \begin{bmatrix}1&amp;0&amp;0&amp;B_{0,r}\\0&amp;1&amp;0&amp;B_{0,g}\\0&amp;0&amp;1&amp;B_{0,b}\\1&amp;0&amp;0&amp;B_{1,r}\\0&amp;1&amp;0&amp;B_{1,g}\\0&amp;0&amp;1&amp;B_{1,b}
+\end{bmatrix}\begin{bmatrix}F_r\\F_g\\R_b\\\alpha\end{bmatrix}$$
+$$b = Ax$$
+So that we can approximate using psurdo-inverse, $x = (A^TA)^{-1}A^Tb$</p>
+
+</div>
+</div>
+</div>
     </div>
   </div>
 </section>

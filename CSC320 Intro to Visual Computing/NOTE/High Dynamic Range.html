@@ -172,7 +172,8 @@ where for the $ij$th row, $A[Z_{ij}+1] = 1, A[256+i] = -1$</p>
 <div class="text_cell_render border-box-sizing rendered_html">
 <h4 id="Smoothness-Constraints">Smoothness Constraints<a class="anchor-link" href="#Smoothness-Constraints">&#182;</a></h4><p>Since we know that $g$ is a smoothly increasing function, i.e. 
 $$g_{z+1} - g_z \approx g_{z} - g_{z-i}\Rightarrow 2g_z - g_{z+1} - g_{z-1}\approx 0$$ 
-so we add the $254$ equations</p>
+so we add the $254$ equations, i.e. $254$ columns to $A, x$. Where
+$$A_{NP + k, k-1} = -1, A_{NP+k,k}=2, A_{NP+k, k+1}= -1, b_{NP+1 : NP+254} = 0$$</p>
 
 </div>
 </div>
@@ -180,7 +181,7 @@ so we add the $254$ equations</p>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h4 id="Final-Equation">Final Equation<a class="anchor-link" href="#Final-Equation">&#182;</a></h4>$$\Phi_i = \exp(\frac{\sum^P w(Z_{ij} \log \phi_{ij})}{\sum^P w(Z_{ij})})$$<p>$w$ is a weighting factor that depends on the pixel value, i.e. the integer approximation of $g$</p>
+<h4 id="Final-Equation">Final Equation<a class="anchor-link" href="#Final-Equation">&#182;</a></h4>$$\Phi_i = \exp(\frac{\sum^P w(Z_{ij} \log \phi_{ij})}{\sum^P w(Z_{ij})})$$<p>$w$ is a weighting factor that depends on the pixel value, i.e. the integer approximation of $g$. $w$ should be lower at $0/255$ for the compensation of black level and saturation.</p>
 
 </div>
 </div>
