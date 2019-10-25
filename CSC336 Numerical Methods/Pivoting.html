@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html>
+<head><meta charset="utf-8" />
+
+<title>Pivoting - Notes Portal</title>
+
+<link rel="icon" type="image/gif" href="https://lihd1003.github.io/assets/images/logo.png">
+<link rel="stylesheet" href="https://lihd1003.github.io/assets/css/vendor.css" />
+<link rel="stylesheet" href="https://lihd1003.github.io/assets/css/style.css" />
+<link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
+<script src="https://kit.fontawesome.com/98fa07784c.js"></script>
+
+
+
+<style type="text/css">
+/* Overrides of notebook CSS for static HTML export */
+
+div#notebook {
+  overflow: visible;
+  border-top: none;
+}@media print {
+  div.cell {
+    display: block;
+    page-break-inside: avoid;
+  } 
+  div.output_wrapper { 
+    display: block;
+    page-break-inside: avoid; 
+  }
+  div.output { 
+    display: block;
+    page-break-inside: avoid; 
+  }
+}
+</style>
+
+<!-- Custom stylesheet, it must be in the same directory as the html file -->
+<link rel="stylesheet" href="https://lihd1003.github.io/UofT-Course-Material-Repo/table_of_content/custom.css">
+
+<!-- Loading mathjax macro -->
+<!-- Load mathjax -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS_HTML"></script>
+    <!-- MathJax configuration -->
+    <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+            displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+            processEscapes: true,
+            processEnvironments: true
+        },
+        // Center justify equations in code and markdown cells. Elsewhere
+        // we use CSS to left justify single line equations in code cells.
+        displayAlign: 'center',
+        "HTML-CSS": {
+            styles: {'.MathJax_Display': {"margin": 0}},
+            linebreaks: { automatic: true }
+        }
+    });
+    </script>
+    <!-- End of mathjax configuration --></head>
+<body>
+	<!-- header -->
+   <header class="header-sticky header-dark">
+    <div class="container">
+      <nav class="navbar navbar-expand-lg navbar-dark">
+        <a class="navbar-brand" href="./index.html">
+          <img class="navbar-logo navbar-logo-light" src="https://lihd1003.github.io/assets/images/logo.png" alt="Logo">
+          <img class="navbar-logo navbar-logo-dark" src="https://lihd1003.github.io/assets/images/logo.png" alt="Logo">
+        </a>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav align-items-center mr-auto">
+          </ul>
+
+          <ul class="navbar-nav align-items-center mr-0">
+            <li class="nav-item">
+              <a href="https://github.com/lihd1003" class="nav-link waves-effect waves-light" target="_blank">
+                <i class="icon-github mr-2"></i>GitHub
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="https://github.com/lihd1003/UofT-Course-Material-Repo" class="nav-link waves-effect waves-light" target="_blank">
+                <i class="icon-star mr-2"></i>Star the Repo
+              </a>
+            </li>
+          </ul>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+<section class="hero hero-with-header text-white" data-top-top="transform: translateY(0px);" data-top-bottom="transform: translateY(250px);">
+    <div class="image image-overlay" style="background-image:url(https://lihd1003.github.io/assets/images/black.jpg)"></div>
+    <div class="container">
+      <div class="row align-items-center">
+        <div class="col text-shadow">
+
+          <h1 class="mb-0">Pivoting</h1>
+        </div>
+      </div>
+    </div>
+ </section>
+ <section class="bg-white sec" id="project">
+  <div tabindex="-1" id="notebook" class="border-box-sizing">
+    <div class="container" id="notebook-container">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h4 id="Permutation-Matrices">Permutation Matrices<a class="anchor-link" href="#Permutation-Matrices">&#182;</a></h4><p>Has exactly one $1$ in each row and all others are $0$ and the same for each column. i.e. a permutation of rows/columns of $I$.</p>
+<p>If we want to interchange column 1 and column J, then let $E_{ij}$ denote the zero matrix with the $ij$'s entry be $1$. 
+\begin{align*}
+P &amp;= I - (e_i - e_j)(e_i-e_j)^T\\
+&amp;= I - (e_ie_i^T - e_ie_j^T - e_je_i^T + e_je_j^T)\\
+&amp;= I - E_{11} + E_{1j} + E_{j1} - E_{jj}
+\end{align*}
+Is a identity matrix that interchange rows $i,j$.</p>
+<p>So that $PA$ interchanges row of $A$ and $AP$ interchanges column of $A$</p>
+<p>A permutation matrix is non-singular and $P^{-1} = P^T$</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Pivoting">Pivoting<a class="anchor-link" href="#Pivoting">&#182;</a></h3><h4 id="Intuition">Intuition<a class="anchor-link" href="#Intuition">&#182;</a></h4><p>Consider $A =\begin{bmatrix}\epsilon&amp;1\\1&amp;1\end{bmatrix}, \epsilon$ is small, $b = \begin{bmatrix}1\\2\end{bmatrix}$. Then the multiplier $m_{21} = \epsilon^{-1}$.<br>
+The decomposition $L = \begin{bmatrix}1&amp;0\\\epsilon^{-1}&amp;1\end{bmatrix}, U = \begin{bmatrix}\epsilon&amp;1\\0&amp;1-\epsilon^{-1}\end{bmatrix}$.<br>
+However, if $\epsilon$ is very small, $\epsilon^{-1}$ is extremely large and $U\rightarrow \tilde U =\begin{bmatrix}\epsilon&amp;1\\0&amp;-\epsilon^{-1}\end{bmatrix}$, and $L\tilde U = \begin{bmatrix}\epsilon&amp;1\\1&amp;0\end{bmatrix}$</p>
+<p>Note that $A^{-1} = (-1+\epsilon)^{-1} \begin{bmatrix}1&amp;-1\\-1&amp;\epsilon\end{bmatrix}, \tilde A = L\tilde U = -1\begin{bmatrix}0&amp;-1\\-1&amp;\epsilon\end{bmatrix}$. If we want to solve<br>
+$Ax = [1,2]^T, x = A^{-1}b\approx [1,1]^T, \tilde x = \tilde A^{-1}b \approx [2, 1]^T$</p>
+<p>However, if $A = 
+\begin{bmatrix}
+1&amp;1\\
+\epsilon&amp;1
+\end{bmatrix}, b = \begin{bmatrix}2\\1\end{bmatrix}\Rightarrow m_{21} =\epsilon, M_1 = \begin{bmatrix}
+1&amp;0\\
+-\epsilon&amp;1
+\end{bmatrix} \rightarrow U = \begin{bmatrix}
+1&amp;1\\
+0&amp;1
+\end{bmatrix}, M_1 b = \begin{bmatrix}
+2\\1
+\end{bmatrix}, x = [1,1]^{-1}$</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h4 id="Algorithm">Algorithm<a class="anchor-link" href="#Algorithm">&#182;</a></h4><p>Searching first column for element of largest magnitude
+$$A_{J\cdot}, J = arg\max_{1\leq j \leq n}\{|a_{j1}|\}$$
+Then use a permutation matrix $P_1$ to interchange $A_J\cdot$ with $A_1\cdot$ and calculate $M_1$ so that $|m_{i1}|\leq 1$<br>
+So that we can do such recursively on $A_{1:n\times 1:n}$ and so on</p>
+<p>Therefore, we have $M_{n-1}P_{n-1}...M_1P_1A$</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h4 id="Decompose-pivoted-matrix">Decompose pivoted matrix<a class="anchor-link" href="#Decompose-pivoted-matrix">&#182;</a></h4><p>Consider $MPA = U\Rightarrow PA = M^{-1}U$, since the pivot, all $m_{ij}\leq 1$ so that $L$ has all the lower triangular entries be $|L_{ij}|\leq 1$</p>
+<h4 id="Solving-linear-systems">Solving linear systems<a class="anchor-link" href="#Solving-linear-systems">&#182;</a></h4><p>Given $Ax =b$, since $P$ is non-singular $PAx = Pb$, Let $\hat b = Pb, LU x = \hat b$, and we solve it as before.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h4 id="Example">Example<a class="anchor-link" href="#Example">&#182;</a></h4>$$A = \begin{bmatrix}-2&amp;10&amp;1\\1&amp;-4&amp;2\\4&amp;-8&amp;4\end{bmatrix}, b = \begin{bmatrix}4\\3\\1\end{bmatrix}$$<p>Let $P_1 = \begin{bmatrix}0&amp;0&amp;1\\0&amp;1&amp;0\\1&amp;0&amp;0\end{bmatrix}, P_1A = \begin{bmatrix}4&amp;-8&amp;4\\1&amp;-4&amp;2\\-2&amp;10&amp;1\end{bmatrix}, M_1 = \begin{bmatrix}1&amp;0&amp;0\\-1/4&amp;1&amp;0\\1/2&amp;0&amp;1\end{bmatrix}, M_1P_1A = \begin{bmatrix}4&amp;-8&amp;4\\0&amp;-2&amp;1\\0&amp;6&amp;3\end{bmatrix}$<br>
+$P_2 = \begin{bmatrix}0&amp;1\\1&amp;0\end{bmatrix}, M_2=\begin{bmatrix}1&amp;0\\1/3&amp;1\end{bmatrix}, M_2P_2M_1P_1A = \begin{bmatrix}4&amp;-8&amp;4\\0&amp;6&amp;3\\0&amp;0&amp;2\end{bmatrix} = U$</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h4 id="Finding-PA-=-LU">Finding PA = LU<a class="anchor-link" href="#Finding-PA-=-LU">&#182;</a></h4><p>Noting that $P_{k+1}M_k \neq M_kP_{k+1}$, but suppose we have $P_{k+1}M_k = \hat M_k P_{k+1}$, then we can have 
+$$M_nP_n...M_1P_1A = b \Rightarrow P_n...P_1A = \hat M_1^{-1}...\hat M^{-1}_n b$$
+Since $P^T = P^{-1}, P_2M_1P_2^T = \hat M_1 P_2P_2^T = \hat M_1P_2P_2^T = \hat M_1$<br>
+$$\hat M_1 = P_2(I-m_1e_1^T)P_2^T = P_2P_2^T - P_2m_1e_1^TP_2^T = I - (P_2m_1)(P_2e_1)^T$$
+By the design of the algorithm, $P_2$ will not interchange the first columns, hence $P_2e_1 = e_1$, but $P_2m_1$ will interchange the multipliers, let $\hat m_1 = P_2m_1$.<br>
+Therefore, because $m_1e_1^Tm_2e_2^T = 0$ (see notes on LU decomposition)
+$$\hat M_1^{-1} = I + \hat m_1e_1^T, M_1^{-1}M_2^{-1} = (I + \hat m_1e_1^T)(I + \hat m_2e_2^T) = I + \hat m_1e_1^T + m_2e_2^T$$</p>
+
+</div>
+</div>
+</div>
+    </div>
+  </div>
+</section>
+  <script src="https://lihd1003.github.io/assets/js/vendor.js"></script>
+  <script src="https://lihd1003.github.io/assets/js/app.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script>
+    $("table").addClass("table table-lined")
+  </script>
+</body>
+
+ 
+
+
+</html>
