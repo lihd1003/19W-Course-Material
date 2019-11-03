@@ -1,0 +1,557 @@
+<!DOCTYPE html>
+<html>
+<head><meta charset="utf-8" />
+
+<title>Homography and Camera - Notes Portal</title>
+
+<link rel="icon" type="image/gif" href="https://lihd1003.github.io/assets/images/logo.png">
+<link rel="stylesheet" href="https://lihd1003.github.io/assets/css/vendor.css" />
+<link rel="stylesheet" href="https://lihd1003.github.io/assets/css/style.css" />
+<link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
+<script src="https://kit.fontawesome.com/98fa07784c.js"></script>
+
+
+
+<style type="text/css">
+/* Overrides of notebook CSS for static HTML export */
+
+div#notebook {
+  overflow: visible;
+  border-top: none;
+}@media print {
+  div.cell {
+    display: block;
+    page-break-inside: avoid;
+  } 
+  div.output_wrapper { 
+    display: block;
+    page-break-inside: avoid; 
+  }
+  div.output { 
+    display: block;
+    page-break-inside: avoid; 
+  }
+}
+</style>
+
+<!-- Custom stylesheet, it must be in the same directory as the html file -->
+<link rel="stylesheet" href="https://lihd1003.github.io/UofT-Course-Material-Repo/table_of_content/custom.css">
+
+<!-- Loading mathjax macro -->
+<!-- Load mathjax -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS_HTML"></script>
+    <!-- MathJax configuration -->
+    <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+            displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+            processEscapes: true,
+            processEnvironments: true
+        },
+        // Center justify equations in code and markdown cells. Elsewhere
+        // we use CSS to left justify single line equations in code cells.
+        displayAlign: 'center',
+        "HTML-CSS": {
+            styles: {'.MathJax_Display': {"margin": 0}},
+            linebreaks: { automatic: true }
+        }
+    });
+    </script>
+    <!-- End of mathjax configuration --></head>
+<body>
+	<!-- header -->
+   <header class="header-sticky header-dark">
+    <div class="container">
+      <nav class="navbar navbar-expand-lg navbar-dark">
+        <a class="navbar-brand" href="./index.html">
+          <img class="navbar-logo navbar-logo-light" src="https://lihd1003.github.io/assets/images/logo.png" alt="Logo">
+          <img class="navbar-logo navbar-logo-dark" src="https://lihd1003.github.io/assets/images/logo.png" alt="Logo">
+        </a>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav align-items-center mr-auto">
+          </ul>
+
+          <ul class="navbar-nav align-items-center mr-0">
+            <li class="nav-item">
+              <a href="https://github.com/lihd1003" class="nav-link waves-effect waves-light" target="_blank">
+                <i class="icon-github mr-2"></i>GitHub
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="https://github.com/lihd1003/UofT-Course-Material-Repo" class="nav-link waves-effect waves-light" target="_blank">
+                <i class="icon-star mr-2"></i>Star the Repo
+              </a>
+            </li>
+          </ul>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+<section class="hero hero-with-header text-white" data-top-top="transform: translateY(0px);" data-top-bottom="transform: translateY(250px);">
+    <div class="image image-overlay" style="background-image:url(https://lihd1003.github.io/assets/images/black.jpg)"></div>
+    <div class="container">
+      <div class="row align-items-center">
+        <div class="col text-shadow">
+
+          <h1 class="mb-0">Homography and Camera</h1>
+        </div>
+      </div>
+    </div>
+ </section>
+ <section class="bg-white sec" id="project">
+  <div tabindex="-1" id="notebook" class="border-box-sizing">
+    <div class="container" id="notebook-container">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[1]:</div>
+<div class="inner_cell">
+    <div class="input_area border">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">cv2</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">matplotlib</span> <span class="k">import</span> <span class="n">pyplot</span> <span class="k">as</span> <span class="n">plt</span>
+<span class="kn">import</span> <span class="nn">math</span>
+
+<span class="k">def</span> <span class="nf">imshow</span><span class="p">(</span><span class="n">img</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="n">bgr</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+    <span class="c1"># since plt and cv2 have different RGB sorting</span>
+    <span class="k">if</span> <span class="n">bgr</span><span class="p">:</span>
+        <span class="n">img</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">cvtColor</span><span class="p">(</span><span class="n">img</span><span class="p">,</span><span class="n">cv2</span><span class="o">.</span><span class="n">COLOR_BGR2RGB</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">ax</span> <span class="o">==</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">img</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">uint8</span><span class="p">))</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s2">&quot;off&quot;</span><span class="p">)</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="n">title</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">ax</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">img</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">uint8</span><span class="p">))</span>
+        <span class="n">ax</span><span class="o">.</span><span class="n">set_axis_off</span><span class="p">()</span>
+        <span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="n">title</span><span class="p">)</span>
+        
+<span class="n">plt</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s2">&quot;figure.figsize&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="mi">12</span><span class="p">,</span><span class="mi">6</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Affine-Transformations">Affine Transformations<a class="anchor-link" href="#Affine-Transformations">&#182;</a></h2>$$\begin{bmatrix}x'\\y'\end{bmatrix} = 
+\begin{bmatrix}a&amp;b&amp;e\\c&amp;d&amp;f\end{bmatrix} \begin{bmatrix}x\\y\\1\end{bmatrix} $$<p>is the combination of a linear transformation $\begin{bmatrix}a&amp;b\\c&amp;d\end{bmatrix}$ plus a translation $\begin{bmatrix}e\\f\end{bmatrix} $</p>
+<h4 id="Properties">Properties<a class="anchor-link" href="#Properties">&#182;</a></h4><ul>
+<li>Origin $\Rightarrow (e, f)$</li>
+<li>Lines map to lines </li>
+<li>Parallel lines remain parallel</li>
+<li>Preserves ratios</li>
+<li>Closed under composition</li>
+<li>Rectangles go to parallelograms</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[2]:</div>
+<div class="inner_cell">
+    <div class="input_area border">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">axs</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">8</span><span class="p">))</span>
+<span class="n">img</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="mi">100</span><span class="p">,</span> <span class="mi">100</span><span class="p">))</span>
+
+<span class="n">img</span><span class="p">[:</span><span class="mi">33</span><span class="p">,</span> <span class="p">:</span><span class="mi">33</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="n">imshow</span><span class="p">(</span><span class="n">img</span><span class="p">,</span> <span class="n">axs</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">],</span> <span class="n">title</span><span class="o">=</span><span class="s2">&quot;original&quot;</span><span class="p">,</span> <span class="n">bgr</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+
+<span class="n">M_trans</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">20</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mf">1.</span><span class="p">,</span> <span class="mi">20</span><span class="p">]])</span>
+<span class="n">img_trans</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">warpAffine</span><span class="p">(</span><span class="n">img</span><span class="p">,</span> <span class="n">M_trans</span><span class="p">,</span> <span class="p">(</span><span class="mi">100</span><span class="p">,</span> <span class="mi">100</span><span class="p">))</span>
+<span class="n">imshow</span><span class="p">(</span><span class="n">img_trans</span><span class="p">,</span> <span class="n">axs</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">1</span><span class="p">],</span> <span class="n">title</span><span class="o">=</span><span class="s2">&quot;translation&quot;</span><span class="p">,</span> <span class="n">bgr</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+
+<span class="n">M_rotation</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="mf">0.5</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="mf">0.5</span><span class="p">),</span> <span class="mi">0</span><span class="p">],</span> 
+                       <span class="p">[</span><span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="mf">0.5</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="mf">0.5</span><span class="p">),</span> <span class="mi">0</span><span class="p">]])</span>
+<span class="n">img_rotation</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">warpAffine</span><span class="p">(</span><span class="n">img</span><span class="p">,</span> <span class="n">M_rotation</span><span class="p">,</span> <span class="p">(</span><span class="mi">100</span><span class="p">,</span> <span class="mi">100</span><span class="p">))</span>
+<span class="n">imshow</span><span class="p">(</span><span class="n">img_rotation</span><span class="p">,</span> <span class="n">axs</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">2</span><span class="p">],</span> <span class="n">title</span><span class="o">=</span><span class="s2">&quot;rigid (Euclidean)&quot;</span><span class="p">,</span> <span class="n">bgr</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+
+<span class="n">M_sim</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="mf">0.5</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="mf">0.5</span><span class="p">),</span> <span class="mi">0</span><span class="p">],</span> 
+                       <span class="p">[</span><span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="mf">0.5</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="mf">0.5</span><span class="p">),</span> <span class="mi">0</span><span class="p">]])</span> <span class="o">*</span> <span class="mf">0.5</span>
+<span class="n">img_sim</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">warpAffine</span><span class="p">(</span><span class="n">img</span><span class="p">,</span> <span class="n">M_sim</span><span class="p">,</span> <span class="p">(</span><span class="mi">100</span><span class="p">,</span> <span class="mi">100</span><span class="p">))</span>
+<span class="n">imshow</span><span class="p">(</span><span class="n">img_sim</span><span class="p">,</span> <span class="n">axs</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="mi">0</span><span class="p">],</span> <span class="n">title</span><span class="o">=</span><span class="s2">&quot;similarity&quot;</span><span class="p">,</span> <span class="n">bgr</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+
+<span class="n">M_aff</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">,</span> <span class="mi">10</span><span class="p">],</span> 
+                  <span class="p">[</span><span class="mf">0.7</span><span class="p">,</span> <span class="mf">1.3</span><span class="p">,</span> <span class="mi">10</span><span class="p">]])</span>
+<span class="n">img_aff</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">warpAffine</span><span class="p">(</span><span class="n">img</span><span class="p">,</span> <span class="n">M_aff</span><span class="p">,</span> <span class="p">(</span><span class="mi">100</span><span class="p">,</span> <span class="mi">100</span><span class="p">))</span>
+<span class="n">imshow</span><span class="p">(</span><span class="n">img_aff</span><span class="p">,</span> <span class="n">axs</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="mi">1</span><span class="p">],</span> <span class="n">title</span><span class="o">=</span><span class="s2">&quot;affine&quot;</span><span class="p">,</span> <span class="n">bgr</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+
+<span class="n">axs</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">set_axis_off</span><span class="p">()</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+
+
+<div class="output_png output_subarea ">
+<img src="data:image/png;base64,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
+"
+>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Projective-Transformations">Projective Transformations<a class="anchor-link" href="#Projective-Transformations">&#182;</a></h2>$$w\begin{bmatrix}x'\\y'\\1\end{bmatrix} = 
+\begin{bmatrix}a&amp;b&amp;e\\c&amp;d&amp;f\\g&amp;h&amp;i\end{bmatrix} \begin{bmatrix}x\\y\\1\end{bmatrix} $$<p>Note that this is an expansion of affine transformation, when $g=h=0$ and $i=1$</p>
+<h4 id="Properties">Properties<a class="anchor-link" href="#Properties">&#182;</a></h4><ul>
+<li>origin does not necessarily map to origin</li>
+<li>Lines map to lines</li>
+<li><strong>parallel are not necessarily remain parallel</strong></li>
+<li><strong>Do not</strong> preserve ratios</li>
+<li>closed under composition</li>
+<li>rectangles goes to quadrilateral</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Solving-Homographies">Solving Homographies<a class="anchor-link" href="#Solving-Homographies">&#182;</a></h3><p>Let $(x_i,y_i)$ be a point on the reference (model) image, and $(x_i',y_i')$ be its matching in the test image, $H_{3\times 3}$ be the projective matrix. 
+So that 
+$$a\begin{bmatrix}x_i'\\y_i'\\1\end{bmatrix} = 
+\begin{bmatrix}h_{00}&amp;h_{01}&amp;h_{02}\\
+h_{10}&amp;h_{11}&amp;h_{12}\\h_{20}&amp;h_{21}&amp;h_{22}\end{bmatrix} \begin{bmatrix}x_i\\y_i\\1\end{bmatrix} $$
+We need to solve the 9 unknowns $h_{[0:2, 0:2]}$ 
+First, note that $$a = h_{20}x_i + h_{21}y_i + h_{22}$$
+so that $$ax_i' = h_{00}x_i + h_{01}y_1 + h_{02}\Rightarrow x_i' = \frac{h_{00}x_i + h_{01}y_1 + h_{02}}{h_{20}x_i + h_{21}y_i + h_{22}} $$
+$$y_i' = \frac{h_{10}x_i + h_{11}y_1 + h_{12}}{h_{20}x_i + h_{21}y_i + h_{22}}$$
+rewrite them as linear equations
+\begin{align*}
+-(h_{20}x_i + h_{21}y_i + h_{22})x_i' + h_{00}x_i + h_{01}y_1 + h_{02} = 0\\
+-(h_{20}x_i + h_{21}y_i + h_{22})y_i' + h_{10}x_i + h_{11}y_1 + h_{12} = 0
+\end{align*}
+i.e. 
+$$\begin{bmatrix}
+x_i &amp;y_i&amp;1&amp;0&amp;0&amp;0&amp;-x_i'x_i&amp;-x_i'y_i &amp;-x_i'\\
+0 &amp;0&amp;0&amp;x_i&amp;y_i&amp;1&amp;-y_i'x_i&amp;-y_i'y_i &amp;-y_i'
+\end{bmatrix}
+h_F = \vec 0$$
+where $h_F=[h_{00}, h_{01},...,h_{21},h_{22}]^T$ is the flatten vector of $H$</p>
+<p>Since we have $n$ sets of matching points, we can have 
+$$A_{2n\times 9} h_{F_9\times 1} = \vec 0_{2n}$$
+and we want to find 
+$$h = arg\min \|Ah\|_2^2$$</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Since $h$ is only defined up to scale, we can first solve for unit vector and then multiply back scale. so that we can add constraint 
+$\|h\|_2 = 1$ and 
+$$h = arg\min_{\|h\|_2=1}\|Ah\|_2^2$$
+For constrained optimization, we use method of Lagrange Multipliers
+where $\hat h = $eigenvector of $A^TA$ with smallest eigenvalue.</p>
+<p>Notice that although we seem to have $9$ unknowns, we actually only have $8$, since the last one is calculated from the constraint. So that we only need $4$ matching to form a deterministic or over-deterministic system.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Camera-Modeling-Projection">Camera Modeling Projection<a class="anchor-link" href="#Camera-Modeling-Projection">&#182;</a></h2><h3 id="Set-up">Set up<a class="anchor-link" href="#Set-up">&#182;</a></h3><p>To simplify the model, assume we have a pinhole camera, and we are working with the virtual image plane, since the real image plane is upside down.</p>
+<p>For the 3-D coordinate system, using the <strong>right handed</strong> coordinate system<br>
+call the <strong>optical center</strong> or <strong>cemera center</strong> $C:= (0,0)$<br>
+$Z$ axis be the <strong>optical</strong> or <strong>principal</strong> axis, which will be orthogonal to the image plane.<br>
+$X,Y$ axes are parallel to the image.<br>
+So that $Z$-axis points to the object, $X$-axis points away and $Y$-axis points top.</p>
+<p><strong>principal point</strong> $p$: the optical axis intersects the image plane.<br>
+<strong>focal length</strong> $f:=d(C,p)$ is the distance from the camera center to the principal point.<br>
+<strong>image coordinate system</strong> the $(x,y)$ coordinate used to represent the 2D image plane. Let the origin be the bottom left corner, so that $p=(p_x,p_y)$</p>
+<p>Taking some point $Q$ living in the 3D, connected to the origin, call the connection line <strong>projection line</strong>. Call its intersection with the image plane $q$. However, we can notice that every point on the <strong>projection line</strong> will be mapped to $q$ in the 2D image.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Equations">Equations<a class="anchor-link" href="#Equations">&#182;</a></h3><p>Consider the point $Q = (X,Y,Z)^T$, then its corresponding projection point $q=(X\frac{f}{Z}, Y\frac{f}{Z},f)$ using similar triangles. In the 2D projection space, $q = p + (X\frac{f}{Z}, Y\frac{f}{Z}) = (X\frac{f}{Z} + p_x, Y\frac{f}{Z}+p_y)$</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Homogeneous-Coordinates">Homogeneous Coordinates<a class="anchor-link" href="#Homogeneous-Coordinates">&#182;</a></h3><p>Add a $1$ for the vector, e.g. $(x,y)\Rightarrow [x,y,1]^T$. In homogeneous coordinates, scaling doesn't affect anything. i.e. $[x,y,1]^T \sim [wx,wy,w]^T$. Therefore, we can write $q$ as 
+$$\hat q = \begin{bmatrix}X\frac{f}{Z}+p_x\\Y\frac{f}{Z}+p_y\\1 \end{bmatrix}\sim \begin{bmatrix}fX+Zp_x\\fY+Zp_y\\Z \end{bmatrix}$$
+Then, the mapping from $Q$ to $q$ is</p>
+$$
+\begin{bmatrix}fX+Zp_x\\fY+Zp_y\\Z \end{bmatrix} 
+= \begin{bmatrix}f&amp;0&amp;p_x \\ 0&amp;f&amp;p_y \\ 0&amp;0&amp;1\end{bmatrix}
+\begin{bmatrix}X\\Y\\Z \end{bmatrix}
+$$$$\hat q = KQ, q = \hat q / Z$$<p>$K$ is the <strong>camera calibration matrix</strong> or <strong>intrinsic parameter matrix</strong>. The parameters in $K$ are called <strong>internal camera parameters</strong>.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Some-properties">Some properties<a class="anchor-link" href="#Some-properties">&#182;</a></h3><ul>
+<li>Many to one: any points along same ray map to same point</li>
+<li>Points, lines, and planes are preserved </li>
+<li>Any line through principal point projects to a point</li>
+<li>Any plane through principal point projects to line</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="vainishing-points">vainishing points<a class="anchor-link" href="#vainishing-points">&#182;</a></h3><p>All lines in the same direction in 3D will intersect at the same vanishing point in 2D.</p>
+<p>Consider a line that pass through $V$ with direction $D$, i.e. the line $X = V+tD$</p>
+$$KX = \begin{bmatrix}f&amp;0&amp;p_x \\ 0&amp;f&amp;p_y \\ 0&amp;0&amp;1\end{bmatrix}
+\begin{bmatrix}V_x+tD_x \\ V_y+tD_y \\ V_z+tD_z\end{bmatrix} = 
+\begin{bmatrix}fV_x+ftD_x + p_xV_z + tp_xD_z\\ fV_y+ftD_y + p_yV_z + tp_yD_z \\ V_z+tD_z\end{bmatrix}$$<p>so that the project point $(x, y)$ will be 
+$(x,y) = \lim_{t\rightarrow\infty} (\frac{fV_x+ftD_x + p_xV_z + tp_xD_z}{V_z + tD_z}, \frac{fV_y+ftD_y + p_yV_z + tp_yD_z}{V_z + tD_z}) = (\frac{fD_x + p_xD_z}{D_z}, \frac{fD_y+p_yD_z}{D_z})$
+is only about $D$ and independent of $V$.</p>
+<p>However, lines parallel to image plane are still parallel, we say that they intersect at infinity. 
+Consider $X_1,X_2$ be two line parallel to the image plane, i.e. $V_z = 0, D_{1z}=D_{2z}$ so that the distance (only demonstrate $x$-distance)</p>
+\begin{align*}d_x &amp;= \frac{fV_{1x}+ftD_x + p_xV_{1z} + tp_xD_z}{V_{1z} + tD_z} - \frac{fV_{2x}+ftD_x + p_xV_{2z} + tp_xD_z}{V_{2z} + tD_z}\\
+&amp;= \frac{fV_{1x}+ftD_x + p_xV_{1z}}{V_{1z}} - \frac{fV_{2x}+ftD_x + p_xV_{2z}}{V_{2z}}&amp;D_z = 0\\
+&amp;=C + \frac{tfD_x(V_{2z} - V_{1z})}{V_{1z}V_{2z}}\\
+&amp;= C + 0&amp;V_{1z}=V_{2z}\end{align*}
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h4 id="Example">Example<a class="anchor-link" href="#Example">&#182;</a></h4><p>Suppose we have a photo taken from a car with a camera on top, and we know the camera intrinsic matrix $K$, WTF the incline of the hill $\theta$.</p>
+<p>Since the vertical lines now is not parallel to the image plane (the image plane is perpendicular to the inclined ground), we can find the vanishing points in these 2D lines, which is $[w\cdot vp_x, w\cdot vp_y, w]^T$. Therefore, 
+$$\begin{bmatrix}w\cdot vp_x\\w\cdot vp_y\\w\end{bmatrix}=KD\Rightarrow D = wK^{-1}\begin{bmatrix} vp_x\\vp_y\\1\end{bmatrix}$$
+Then, we can find $D$ and normalizes it.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Vanishing-Line">Vanishing Line<a class="anchor-link" href="#Vanishing-Line">&#182;</a></h3><p>Parallel lines in 3D projects to intersected lines in 2D. However, the converse is not necessarily true.</p>
+<p>For lines on the same 3D plane, the vanishing points lie on a line, i.e. <strong>vanishing line</strong>. The ground plane is the horizon line.</p>
+<p>Parallel plnes in 3D the the same horizon line in the image.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Camera-Coordinate-System">Camera Coordinate System<a class="anchor-link" href="#Camera-Coordinate-System">&#182;</a></h3><p>Since we are measuring everything from 2D images taken by the camera, we need to project the 3D points onto our camera coordinate system, so that we can describe them and get them back.</p>
+<p>To do such projection, we need</p>
+<ul>
+<li>Camera <strong>position</strong> $c$ (in world coordinates)</li>
+<li>Camera <strong>orientation</strong> $(\vec u,\vec v,\vec w)$ (in world coordinates)</li>
+<li>$K$</li>
+</ul>
+<p>So that for point $Q$ in the world coordinates,<br>
+$Q-c$ is the projection in the camera coordinates,<br>
+$R\begin{bmatrix}u&amp;v&amp;w\end{bmatrix}=I$ looking for rotation to canonical orientation. Then, because orientation is orthogonal, $RR^T = I\Rightarrow R = \begin{bmatrix}u^T&amp;v^T&amp;w^T\end{bmatrix}$</p>
+<p>Therefore, the camera coordinate for $(x,y,z)$ in world coordinate is
+$$\begin{bmatrix}X'\\Y'\\Z'\end{bmatrix} = R(\begin{bmatrix}X\\Y\\Z\end{bmatrix} - c) = \begin{bmatrix}R&amp;-Rc\end{bmatrix}\begin{bmatrix}X\\Y\\Z\\1\end{bmatrix}$$</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Projection-Matrix">Projection Matrix<a class="anchor-link" href="#Projection-Matrix">&#182;</a></h3><p>We can describe all the cumulative effect of all intrinsic and extrinsic parameters using the projection matrix $P$. so that the 2D projection $(x,y)$ from $(x,y,z)$ can be described through homogeneous coordinates
+$$q = \begin{bmatrix}ax\\ay\\a\end{bmatrix} = P\begin{bmatrix}x\\y\\z\\1\end{bmatrix}$$
+Where to get a point $q$ in the image plane, we need to compute $P[x,y,z,1]^T$, and divide all coordinates with the third coordinate, and drop the last coordinate.</p>
+$$P_{3\times 4} = 
+\underset{K}{\begin{bmatrix}f&amp;0&amp;p_x\\0&amp;f&amp;p_y\\0&amp;0&amp;1\end{bmatrix}}\:
+\underset{\text{projection}}{\begin{bmatrix}1&amp;0&amp;0&amp;0\\0&amp;1&amp;0&amp;0\\0&amp;0&amp;1&amp;0\end{bmatrix}}\:
+\underset{\text{rotation}}{\begin{bmatrix}&amp;&amp;&amp;0\\&amp;R&amp;&amp;0\\&amp;&amp;&amp;0\\0&amp;0&amp;0&amp;1\end{bmatrix}}\:
+\underset{translation}{\begin{bmatrix}&amp;&amp;&amp;\\&amp;I&amp;&amp;t\\&amp;&amp;&amp;\\0&amp;0&amp;0&amp;1\end{bmatrix}}\:
+$$<p>Sometimes we use more compact form, 
+$$P = K[R\quad t] = K[R\mid t]$$</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Homography">Homography<a class="anchor-link" href="#Homography">&#182;</a></h2><p>Given the same object and two images taken from different worlds. WTF the transformation from one to another.</p>
+<h3 id="3D-relationship">3D relationship<a class="anchor-link" href="#3D-relationship">&#182;</a></h3><p>Let the object be a plane (say a book). Then we can characterize the plane by one point $d$ and two independent vectors $a,b$ on the plane, i.e. we create a coordinate system with an origin and two basis. Therefore, we can describe any point $X$ on the plane by 
+$X = d + \alpha a + \beta b$.<br>
+Let $X_1 = d_1 + \alpha a_1 + \beta b_1, X_2 = d_2 + \alpha a_2 + \beta b_2$ where $X_1, X_2$ represents the two planes in 3D of the two world, and represents the same location relative to the same object plane.</p>
+<p>Using homogeneous coordinates
+$$X_1 = 
+\underset{A_1}{\begin{bmatrix}
+a_{11}&amp;b_{11}&amp;d_{11}\\
+a_{12}&amp;b_{12}&amp;d_{12}\\
+a_{13}&amp;b_{13}&amp;d_{13}
+\end{bmatrix}}
+\begin{bmatrix}
+\alpha\\\beta\\1 
+\end{bmatrix}, X_2 = 
+\underset{A_2}{\begin{bmatrix}
+a_{21}&amp;b_{21}&amp;d_{21}\\
+a_{22}&amp;b_{22}&amp;d_{22}\\
+a_{23}&amp;b_{23}&amp;d_{23}
+\end{bmatrix}}
+\begin{bmatrix}
+\alpha\\\beta\\1 
+\end{bmatrix}$$
+And the transformation $T$ between them gives $X_2 = T X_1$, i.e. $A_2\begin{bmatrix}
+\alpha\\\beta\\1 
+\end{bmatrix} = TA_1\begin{bmatrix}
+\alpha\\\beta\\1 
+\end{bmatrix}, \forall \alpha, \beta$. Therefore, $T = A_2A_1^{-1}$</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="2D-relationship">2D relationship<a class="anchor-link" href="#2D-relationship">&#182;</a></h3><p>Consider the projective (image) plane. Let $K_1,K_2$ denotes the different intrinsic parameters. Then $w_1\begin{bmatrix}x_1\\y_1\\1 \end{bmatrix} = K_1X_1, w_2\begin{bmatrix}x_2\\y_2\\1 \end{bmatrix} = K_2X_2$, known that $X_2 = TX_1$, so that 
+$$w_2\begin{bmatrix}x_2\\y_2\\1 \end{bmatrix} = K_2TX_1 = K_2T(K^{-1}_x K_1)X_1= K_2TK_1^{-1}w_1\begin{bmatrix}x_1\\y_1\\1 \end{bmatrix}$$</p>
+<p>Note that $K_2TK_1^{-1}$ is a $3\times 3$ matrix. Therefore, without knowing all the 3D location and even the camera parameters, we can still do the transformation by finding $K_2TK_1^{-1}$ as only one matrix</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h4 id="Rotating-the-camera">Rotating the camera<a class="anchor-link" href="#Rotating-the-camera">&#182;</a></h4><p>Consider the panorama mode of the camera. Assuming of the rotation of the camera happens.</p>
+<p>Let $R$ be the rotation of the camera, then $R^T$ is the rotation of the 3D points. Let $X_1,X_2$ be the same point of the object in the two camera coordinates. Then, let $T:= R^T$, i.e. the transformation is a rotation, then 
+$$w_2\begin{bmatrix}x_2\\y_2\\1 \end{bmatrix} =w_1 K_2TK_1^{-1}\begin{bmatrix}x_1\\y_1\\1 \end{bmatrix}$$</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h4 id="Moving-the-camera">Moving the camera<a class="anchor-link" href="#Moving-the-camera">&#182;</a></h4><p>Let the movement be $t$, then $X_2 = X_1 -t$, so that in the homogeneous coordinate of the 2D image
+$$w_2\begin{bmatrix}x_2\\y_2\\1\end{bmatrix} = KX_2 = K(X_1-t) = w_1\begin{bmatrix}x_1\\y_1\\1\end{bmatrix} - Kt$$
+However, changing $w_1$ will give different points in the second image.</p>
+<p>On the opposite, if we have $(x_1,y_1), (x_2,y_2), K, t$, we can calculate $w_1, w_2$, hence compute the point in 3D.</p>
+<p>This fact is called <strong>stereo</strong>.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Stereo">Stereo<a class="anchor-link" href="#Stereo">&#182;</a></h2><p>A 2D image cannot represent the depth in 3D world, i.e. $Z$-axis is dropped. However, using stereo cameras we can reconstruct depth.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Parallel-Calibrated-Cameras">Parallel Calibrated Cameras<a class="anchor-link" href="#Parallel-Calibrated-Cameras">&#182;</a></h3><p>Let $O_t,O_r$ be two camera centers, $O_r = O_t + [T, 0, 0]^T$, i.e. We apply a movement $t$ to the left camera along the $x$-axis to get our right camera.</p>
+<p>Consider $p_l = (x_l, y_l), p_r = (x_r,y_r)$ be the projected points of $Q$ on left, right image plane, respectively.</p>
+<p>Since we only move the camera along the x-axis, $(p_l\sim p_r) \parallel (O_l\sim O_r)$, hence $y:= y_l = y_r$.</p>
+<p>Also, noticing that we are only interested in $Z$, i.e. the depth. Consider the connection between $p_l, p_r, Z$, ignoring $y$ since it is unchanged. Therefore, we can project the image from the y-axis, and see the relationship in 2D $(x,z)$ coordinate.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[7]:</div>
+<div class="inner_cell">
+    <div class="input_area border">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">imshow</span><span class="p">(</span><span class="n">cv2</span><span class="o">.</span><span class="n">imread</span><span class="p">(</span><span class="s2">&quot;../assets/lec13.png&quot;</span><span class="p">))</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+
+
+<div class="output_png output_subarea ">
+<img src="data:image/png;base64,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
+"
+>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Noticing that $\Delta PX_lX_r \sim \Delta PP_lO_r$. so that $$\frac{T}{x_r-x_l} = \frac{Z}{f}\Rightarrow Z = \frac{fT}{x_r - x_l}$$</p>
+<p>Then, to get $x_r$, we need to match the point in two images. Since we know $y$ of the point is constant, we can do a sliding window scan along the same $y$, then patch around $x_r$ to get the highest similarity.</p>
+
+</div>
+</div>
+</div>
+    </div>
+  </div>
+</section>
+  <script src="https://lihd1003.github.io/assets/js/vendor.js"></script>
+  <script src="https://lihd1003.github.io/assets/js/app.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script>
+    $("table").addClass("table table-lined")
+  </script>
+</body>
+
+ 
+
+
+</html>
