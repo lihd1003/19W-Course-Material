@@ -14,7 +14,7 @@ ENTRY_HTML = """
                 <div class="media align-items-center">
                   <h4><i class="icon-{icon} mr-2"></i></h4>
                   <div class="media-body">
-                    <h6 class="mb-0">{name}</h6>
+                    <h6 class="mb-0 dentry-name">{name}</h6>
                     <span class="text-muted">{mtime}</span>
                   </div>
                 </div>
