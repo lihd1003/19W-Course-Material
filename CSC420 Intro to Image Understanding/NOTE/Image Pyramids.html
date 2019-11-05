@@ -35,7 +35,7 @@ div#notebook {
 </style>
 
 <!-- Custom stylesheet, it must be in the same directory as the html file -->
-<link rel="stylesheet" href="https://lihd1003.github.io/UofT-Course-Material-Repo/table_of_content/custom.css">
+<link rel="stylesheet" href="https://lihd1003.github.io/UofT-Course-Material-Repo/index/custom.css">
 
 <!-- Loading mathjax macro -->
 <!-- Load mathjax -->
@@ -494,6 +494,24 @@ insert $n*0$s between $p_i, p_{i+1}$, make into $G = p_i. 0, 0, ..., 0, p_{i+1}$
 Take convolution filter $h = [0, 1/d, 2/d, ..., d/d, (d-1)/d, ... 0]$<br>
 $h*G$ is desired</p>
 <p>Similar idea goes to 2D</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h4 id="Bilinear-interpolation">Bilinear interpolation<a class="anchor-link" href="#Bilinear-interpolation">&#182;</a></h4><p>Given $Q_{00}=(x_0,y_0), Q_{01}=(x_0, y_1), Q_{10}=(x_1,y_0), Q_{11}=(x_1,y_1)$.<br>
+Interpolate along $x$-axis</p>
+$$F(x,y_0)\approx \frac{x_1 - x}{x_1 - x_0}F(Q_{00}) +\frac{x - x_0}{x_1 - x_0}F(Q_{10})$$$$F(x,y_1)\approx \frac{x_1 - x}{x_1 - x_0}F(Q_{01}) +\frac{x - x_0}{x_1 - x_0}F(Q_{11})$$<p>Then, interpolate along $y$-axis
+$$F(x,y) \approx \frac{y_1 - x}{y_1 - y_0}F(x,y_0) +\frac{y - y_0}{y_1 - y_0}F(x,y_1)$$
+$$F(x,y) = \frac{(x_1-x)(y_1-y)}{(x_1-x_0)(y_1-y_0)}F(Q_{00}) + 
+\frac{(x-x_0)(y_1-y)}{(x_1-x_0)(y_1-y_0)}F(Q_{10})+
+\frac{(x_1-x)(y-y_0)}{(x_1-x_0)(y_1-y_0)}F(Q_{01})
++\frac{(x-x_0)(y-y_0)}{(x_1-x_0)(y_1-y_0)}F(Q_{11})$$
+Therefore, suppose $\|x_1-x_0\| = \|y_1-y_0\| = 1$, i.e. the 4 points form a unit square, and let $x-x_0 = d_x, y-y_0 = d_y$. 
+$$F(x,y)=(1-d_x)(1-d_y)F(Q_{00})+d_x(1-d_y)F(Q_{10}) + (1-d_x)d_yF(Q_{01}) + d_xd_yF(Q_{11})$$
+Which can be represented by the dot product of $\vec v^T \cdot \vec v$ where $v$ is the vector filter in 1-D case.</p>
 
 </div>
 </div>

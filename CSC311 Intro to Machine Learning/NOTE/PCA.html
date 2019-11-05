@@ -2,7 +2,7 @@
 <html>
 <head><meta charset="utf-8" />
 
-<title>SQL Schema - Notes Portal</title>
+<title>PCA - Notes Portal</title>
 
 <link rel="icon" type="image/gif" href="https://lihd1003.github.io/assets/images/logo.png">
 <link rel="stylesheet" href="https://lihd1003.github.io/assets/css/vendor.css" />
@@ -96,7 +96,7 @@ div#notebook {
       <div class="row align-items-center">
         <div class="col text-shadow">
 
-          <h1 class="mb-0">SQL Schema</h1>
+          <h1 class="mb-0">PCA</h1>
         </div>
       </div>
     </div>
@@ -108,8 +108,10 @@ div#notebook {
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Schemas let you create different name spaces. For logical organization and for avoiding name clashes</p>
-<p>A default schema <code>public</code> is available</p>
+<p>Let $\mathcal D = \{x^{(1)},...,x^{(N)}\}\subset \mathbb R^D$, so that $N$ instances will form matrix 
+$$X = \begin{bmatrix}[\vec x^{(1)}]^T\\...\\ [\vec x^{(N)}]^T\end{bmatrix}$$
+each row will be one observation of $D$ faetures,<br>
+Let $x^{(i)}\sim N(\mu, \Sigma)$</p>
 
 </div>
 </div>
@@ -117,13 +119,39 @@ div#notebook {
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>To create additional schema:</p>
-<div class="highlight"><pre><span></span><span class="k">CREATE</span> <span class="k">SCHEMA</span> <span class="n">University</span><span class="p">;</span>
-</pre></div>
-<p>To refer to things inside a schema</p>
-<div class="highlight"><pre><span></span><span class="k">CREATE</span> <span class="k">SCHEMA</span> <span class="n">University</span><span class="p">.</span><span class="n">Student</span> <span class="p">(...);</span>
-<span class="k">SELECT</span> <span class="o">*</span> <span class="k">FROM</span> <span class="n">University</span><span class="p">.</span><span class="n">student</span>
-</pre></div>
+<h2 id="Dimension-Reduction">Dimension Reduction<a class="anchor-link" href="#Dimension-Reduction">&#182;</a></h2><p>Loss some information (e.g. spread / $\sigma$) by projecting higher dimensions onto lower ones. IN practice, the important features can be accurately captured in a low dimensional subspace.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Projection-onto-a-subspace">Projection onto a subspace<a class="anchor-link" href="#Projection-onto-a-subspace">&#182;</a></h3><p>Given $\mathcal D, \hat\mu=N^{-1}\sum^N x^{(i)}$ be the sample mean.</p>
+<p>Want to find a $K &lt;D $ dimensional subspace $S\subset \mathcal R^D$ s.t. $x^{(n)}-\hat\mu$ is "well represented" by a projection onto $K$-dimensional $S$.</p>
+<p>Where <strong>projection</strong> is to find the closest point $\tilde x$ on $S$ s.t. $\|x-\tilde x\|$ is minimized.</p>
+<p>In a 2-dimensional problem, we are looking dor direction $u_1$ along with the data is well-represented, such as direction of higher variance or the direction of min difference after projection, which turns to be the same.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h4 id="Euclidean-Projection">Euclidean Projection<a class="anchor-link" href="#Euclidean-Projection">&#182;</a></h4><p>$Proj_S(x):=$ projection of $x$ on $S$.</p>
+<p>In 2D case, $S$ is the line along the unit vector $u$ (1-D subspace). $u$ is a basis for $S$.</p>
+<p>Since $x^Tu = \|x\|\|u\|\cos\theta =\|x\|\cos\theta$
+$$Proj_S(x) = x^Tu\cdot u = \|\tilde x\|u$$</p>
+<p>In K-D case, we have $K$ basis $u_1,...,u_K \in \mathcal R^D$. and the projection will be 
+$$Proj_S(x) = \sum^K (x^Tu_i) u_i = \sum^K z_i u_i$$</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Algorithm">Algorithm<a class="anchor-link" href="#Algorithm">&#182;</a></h3><h4 id="Center-data">Center data<a class="anchor-link" href="#Center-data">&#182;</a></h4><p>Centering by subtract the mean. i.e. the mean (center) be the origin. We need to center the data since we don't want location of data to influence the calculations.</p>
 
 </div>
 </div>

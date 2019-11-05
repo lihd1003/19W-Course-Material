@@ -35,7 +35,7 @@ div#notebook {
 </style>
 
 <!-- Custom stylesheet, it must be in the same directory as the html file -->
-<link rel="stylesheet" href="https://lihd1003.github.io/UofT-Course-Material-Repo/table_of_content/custom.css">
+<link rel="stylesheet" href="https://lihd1003.github.io/UofT-Course-Material-Repo/index/custom.css">
 
 <!-- Loading mathjax macro -->
 <!-- Load mathjax -->
@@ -189,7 +189,7 @@ $$1.54\times 10^1 + 2.56\times 10^{-1} = 15.4 + 0.256 = 15.656 \rightarrow 1.57 
 <div class="text_cell_render border-box-sizing rendered_html">
 <h4 id="Distance-between-two-adjacent-floating-number-=&gt;-Machine-epsilon-$\epsilon_{mach}$">Distance between two adjacent floating number =&gt; Machine epsilon $\epsilon_{mach}$<a class="anchor-link" href="#Distance-between-two-adjacent-floating-number-=&gt;-Machine-epsilon-$\epsilon_{mach}$">&#182;</a></h4><p>The distance from 1 to the next bigger floating-point number will be $1.00...0 \times \beta^0$, the next number will be $1.00...01\times \beta^0$, $d=\beta^{1-p}=:\epsilon_{mach}$, which is the machine epsilon.</p>
 <p>For each adjacent pair of numbers $a, b$ in $[\beta^i, \beta_{i+1}), d(a, b) = \beta^i \epsilon_{mach}$, a.k.a. numbers are evenly spread with tte distance apart $=\beta^i \epsilon_{mach}$</p>
-<p>For some real number $a$, considering the rounding to the nearest floating point number, the absolute error $fp(a)$, $|fl(a) - a| \leq \frac{\beta^i\epsilon_{mach}}{2}$ and the relative error $\frac{|fp(a)-a|}{|a|}\leq \frac{\beta^i\epsilon_{mach}}{2\beta^i} = \epsilon_{mach}/2$</p>
+<p>For some real number $a$, considering the rounding to the nearest floating point number, the absolute error $FP(a)$, $|fl(a) - a| \leq \frac{\beta^i\epsilon_{mach}}{2}$ and the relative error $\frac{|fp(a)-a|}{|a|}\leq \frac{\beta^i\epsilon_{mach}}{2\beta^i} = \epsilon_{mach}/2$</p>
 
 </div>
 </div>
