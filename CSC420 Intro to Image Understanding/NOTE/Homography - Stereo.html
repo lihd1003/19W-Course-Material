@@ -302,7 +302,7 @@ However, changing $w_1$ will give different points in the second image.</p>
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h4 id="Cross-Product">Cross Product<a class="anchor-link" href="#Cross-Product">&#182;</a></h4><p>For two $3\times 1$ vectors $u,v$, the cross product is defined as 
-$$u\times v = [u]_x v, [u]_x = \begin{bmatrix}0&amp;-u_3&amp;u_2\\u_3&amp;0&amp;-u_1\\-u_2&amp;u_1&amp;0\end{bmatrix}, u\times v=\begin{bmatrix}u2v3-u3v2\\u_3v_1-u_1v_3\\u_1v_2-u_2v_1\end{bmatrix}$$</p>
+$$u\times v = [u]_x v, [u]_x = \begin{bmatrix}0&amp;-u_3&amp;u_2\\u_3&amp;0&amp;-u_1\\-u_2&amp;u_1&amp;0\end{bmatrix}, u\times v=\begin{bmatrix}u_2v_3-u_3v_2\\u_3v_1-u_1v_3\\u_1v_2-u_2v_1\end{bmatrix}$$</p>
 <p>Note that $u\times u =0$ and $u\parallel v \Leftrightarrow u\times v = 0$</p>
 <p>Geometrically, the cross product defines the line perpendicular to both $u,v$, i.e. $u\cdot(u\times v) = v\cdot(u\times v) = 0$.</p>
 
@@ -317,7 +317,7 @@ $$u\times v = [u]_x v, [u]_x = \begin{bmatrix}0&amp;-u_3&amp;u_2\\u_3&amp;0&amp;
 \begin{align*}
 X_l &amp;= RX_r + T\\
 T\times X_l &amp;= T\times RX_r + T\times T\\
-X_l\cdot (T\times X_l) &amp;= X_l\cdot (T\times X_r) + 0\\
+X_l\cdot (T\times X_l) &amp;= X_l\cdot (T\times RX_r) + 0\\
 0 &amp;= X_l\cdot T\times RX_r&amp;(T\times X_l)\perp X_l\\
 X_l\cdot([T]_xRX_r) &amp;= 0\\
 X_l^TEX_r &amp;= 0&amp;E:=[T]_xR
@@ -329,7 +329,7 @@ X_l^TEX_r &amp;= 0&amp;E:=[T]_xR
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h4 id="Fundamental-Matrix-$F$">Fundamental Matrix $F$<a class="anchor-link" href="#Fundamental-Matrix-$F$">&#182;</a></h4><p>Let $I_r$ ne the epipolar line corresponding to $p_l$, the fundamental matrix $I_r= Fp_l$. Note that for any $p_l$, $F$ is unchanged.</p>
+<h4 id="Fundamental-Matrix-$F$">Fundamental Matrix $F$<a class="anchor-link" href="#Fundamental-Matrix-$F$">&#182;</a></h4><p>Let $I_r$ be the epipolar line corresponding to $p_l$, the fundamental matrix $I_r= Fp_l$. Note that for any $p_l$, $F$ is unchanged.</p>
 <p>Note that for any point $P$, its projection on the 2D image frame is $p = K[R\mid t]P$ (projection matrix)</p>
 <p>Since both 3D points on the image frame are the identical 3D point in the world. Let $X_l = [R_l\mid t_l]P, X_r = [R_r\mid t_r]P$, assuming using the same camera, i.e. the same $K$. Therefore, $p_l = KX_l, p_r = KX_r\Rightarrow X_l = K^{-1}p_l, X_r = K^{-1}p_r$</p>
 <p>Therefore, $(K^{-1}p_l)^T E K^{-1}p_r = 0$, then $p_l^T(K^{-1})^TEK^{-1}p_r = 0\Rightarrow p_l^TFp_r = 0$, where $F:= (K^{-1})^TEK^{-1}$</p>
