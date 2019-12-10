@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html>
+<head><meta charset="utf-8" />
+
+<title>File System - Notes Portal</title>
+
+<link rel="icon" type="image/gif" href="https://lihd1003.github.io/assets/images/logo.png">
+<link rel="stylesheet" href="https://lihd1003.github.io/assets/css/vendor.css" />
+<link rel="stylesheet" href="https://lihd1003.github.io/assets/css/style.css" />
+<link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
+<script src="https://kit.fontawesome.com/98fa07784c.js"></script>
+
+
+
+<style type="text/css">
+/* Overrides of notebook CSS for static HTML export */
+
+div#notebook {
+  overflow: visible;
+  border-top: none;
+}@media print {
+  div.cell {
+    display: block;
+    page-break-inside: avoid;
+  } 
+  div.output_wrapper { 
+    display: block;
+    page-break-inside: avoid; 
+  }
+  div.output { 
+    display: block;
+    page-break-inside: avoid; 
+  }
+}
+</style>
+
+<!-- Custom stylesheet, it must be in the same directory as the html file -->
+<link rel="stylesheet" href="https://lihd1003.github.io/UofT-Course-Material-Repo/index/custom.css">
+
+<!-- Loading mathjax macro -->
+<!-- Load mathjax -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS_HTML"></script>
+    <!-- MathJax configuration -->
+    <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+            displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+            processEscapes: true,
+            processEnvironments: true
+        },
+        // Center justify equations in code and markdown cells. Elsewhere
+        // we use CSS to left justify single line equations in code cells.
+        displayAlign: 'center',
+        "HTML-CSS": {
+            styles: {'.MathJax_Display': {"margin": 0}},
+            linebreaks: { automatic: true }
+        }
+    });
+    </script>
+    <!-- End of mathjax configuration --></head>
+<body>
+	<!-- header -->
+   <header class="header-sticky header-dark">
+    <div class="container">
+      <nav class="navbar navbar-expand-lg navbar-dark">
+        <a class="navbar-brand" href="./index.html">
+          <img class="navbar-logo navbar-logo-light" src="https://lihd1003.github.io/assets/images/logo.png" alt="Logo">
+          <img class="navbar-logo navbar-logo-dark" src="https://lihd1003.github.io/assets/images/logo.png" alt="Logo">
+        </a>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav align-items-center mr-auto">
+          </ul>
+
+          <ul class="navbar-nav align-items-center mr-0">
+            <li class="nav-item">
+              <a href="https://github.com/lihd1003" class="nav-link waves-effect waves-light" target="_blank">
+                <i class="icon-github mr-2"></i>GitHub
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="https://github.com/lihd1003/UofT-Course-Material-Repo" class="nav-link waves-effect waves-light" target="_blank">
+                <i class="icon-star mr-2"></i>Star the Repo
+              </a>
+            </li>
+          </ul>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+<section class="hero hero-with-header text-white" data-top-top="transform: translateY(0px);" data-top-bottom="transform: translateY(250px);">
+    <div class="image image-overlay" style="background-image:url(https://lihd1003.github.io/assets/images/black.jpg)"></div>
+    <div class="container">
+      <div class="row align-items-center">
+        <div class="col text-shadow">
+
+          <h1 class="mb-0">File System</h1>
+        </div>
+      </div>
+    </div>
+ </section>
+ <section class="bg-white sec" id="project">
+  <div tabindex="-1" id="notebook" class="border-box-sizing">
+    <div class="container" id="notebook-container">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Data-Block-Allocation">Data Block Allocation<a class="anchor-link" href="#Data-Block-Allocation">&#182;</a></h2><p><strong>Contiguous Allocation</strong> allocate a file as a continuous sequence of data blocks</p>
+<ul>
+<li>Advantages: sequential access are fast; fast allocation and deallocation; small amount of meta</li>
+<li>Disadvantages: external fragmentation (free space are separated in small blocks and cannot be used); need compaction and move whole files around; inflexible</li>
+</ul>
+<p><strong>Linked</strong> treat a file as a linked list of data blocks</p>
+<ul>
+<li>Advantages: easy sequential access; dish blocks can be anywhere; no external fragmentation</li>
+<li>Disadvantages: expensive direct access; if a data block is corrupted could lose rest of life. </li>
+</ul>
+<p><strong>Indexed</strong> inode structure</p>
+<ul>
+<li>Advantages: handles random access well; small files: quick sequential and random access; no external fragmentation</li>
+<li>Disadvantages: limit file size; cost of access bytes near the end of large files grows</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h4 id="Unix-Inodes">Unix Inodes<a class="anchor-link" href="#Unix-Inodes">&#182;</a></h4><p>Ext2 Linux file system inodes are 128 bytes, includes 15 block pointers</p>
+<ul>
+<li>block[0:11] direct block pointers</li>
+<li>block[12] a single indirect block pointer</li>
+<li>block[13] a double indirect block pointer</li>
+<li>block[14] a triple indirect block pointers</li>
+</ul>
+<p><img src="assets/fs.png"></p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Suppose each block is 4KB and the pointer is 4Byte, then each data block supports $1024$ pointers, the largest supported file size is 
+$$4kB(\underset{\text{direct}}{12} + \underset{\text{single indirect}}{1024} + \underset{\text{double indirect}}{1024^2} + \underset{\text{triple indirect}}{1024^3}) \approx 4TB$$</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h4 id="Extents">Extents<a class="anchor-link" href="#Extents">&#182;</a></h4><p>a disk pointer plus a length (number of blocks), instead of requiring a pointer to every block of a file, just need a pointer to every several blocks. More trade-off are then made.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Disk-Scheduling">Disk Scheduling<a class="anchor-link" href="#Disk-Scheduling">&#182;</a></h2><ul>
+<li>FCFS: first come first serve<ul>
+<li>long waiting time for long request queues, but fine with low load</li>
+</ul>
+</li>
+<li>SSTF (shortest seek time first) <ul>
+<li>minimize arm movement, maximize request rate; but favors middle blocks</li>
+</ul>
+</li>
+<li>SCAN (elevator) service requests in one direction until done, then reverse</li>
+<li>C-SCAN, like SCAN, but only go in one direction</li>
+<li>LOOK/C-LOOK go as far as last request in each direction, instead the full width of the disk</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="FS-Reliability">FS Reliability<a class="anchor-link" href="#FS-Reliability">&#182;</a></h2><p>Only the <strong>data block</strong> is written to disk &gt; No inconsistency<br>
+Only the <strong>inode</strong> is written to disk &gt; something points to garbage<br>
+Only the <strong>data block bitmap</strong> is written to disk &gt; data leak<br>
+Only the <strong>inode</strong> and <strong>data block bitmap</strong> are written to disk &gt; something point to garbage<br>
+Only the <strong>data block bitmap</strong> and the <strong>data block</strong> are written &gt; data leak<br>
+Only the <strong>inode</strong> and the <strong>data block</strong> are written &gt; multiple inodes may point to same data block</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h4 id="Journaling">Journaling<a class="anchor-link" href="#Journaling">&#182;</a></h4><p>Each journal starts with <code>TxBegin (TID=x)</code> block containing a transaction ID.<br>
+Followed by blocks with the content to be written (e.g. <code>Updated inode</code>)
+Ends with a "transaction end" <code>TxEnd(TID=x)</code> block.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="RAID-(redundant-array-of-independent-disks)">RAID (redundant array of independent disks)<a class="anchor-link" href="#RAID-(redundant-array-of-independent-disks)">&#182;</a></h2><p>by duplicating mirror images, data are spread out across multiple disks</p>
+<h4 id="RAID-0">RAID 0<a class="anchor-link" href="#RAID-0">&#182;</a></h4><p>Files are divided across disks, improves throughput. However, if one drive fails, the whole volume is lost.</p>
+<h4 id="RAID-1">RAID 1<a class="anchor-link" href="#RAID-1">&#182;</a></h4><p>Copying everything and stores in the second drive. capacity is half, improved read throughput, but takes longer to write. No data loss if one drive fails</p>
+<h4 id="RAID-5">RAID 5<a class="anchor-link" href="#RAID-5">&#182;</a></h4><p>block level stripping, distributed parity, a failed disk can be reconstructed from the rest.</p>
+<p><img src="https://upload.wikimedia.org/wikipedia/commons/6/64/RAID_5.svg"/></p>
+
+</div>
+</div>
+</div>
+    </div>
+  </div>
+</section>
+  <script src="https://lihd1003.github.io/assets/js/vendor.js"></script>
+  <script src="https://lihd1003.github.io/assets/js/app.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script>
+    $("table").addClass("table table-lined")
+  </script>
+</body>
+
+ 
+
+
+</html>

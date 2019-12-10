@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html>
+<head><meta charset="utf-8" />
+
+<title>Process and System Calls - Notes Portal</title>
+
+<link rel="icon" type="image/gif" href="https://lihd1003.github.io/assets/images/logo.png">
+<link rel="stylesheet" href="https://lihd1003.github.io/assets/css/vendor.css" />
+<link rel="stylesheet" href="https://lihd1003.github.io/assets/css/style.css" />
+<link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
+<script src="https://kit.fontawesome.com/98fa07784c.js"></script>
+
+
+
+<style type="text/css">
+/* Overrides of notebook CSS for static HTML export */
+
+div#notebook {
+  overflow: visible;
+  border-top: none;
+}@media print {
+  div.cell {
+    display: block;
+    page-break-inside: avoid;
+  } 
+  div.output_wrapper { 
+    display: block;
+    page-break-inside: avoid; 
+  }
+  div.output { 
+    display: block;
+    page-break-inside: avoid; 
+  }
+}
+</style>
+
+<!-- Custom stylesheet, it must be in the same directory as the html file -->
+<link rel="stylesheet" href="https://lihd1003.github.io/UofT-Course-Material-Repo/index/custom.css">
+
+<!-- Loading mathjax macro -->
+<!-- Load mathjax -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS_HTML"></script>
+    <!-- MathJax configuration -->
+    <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+            displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+            processEscapes: true,
+            processEnvironments: true
+        },
+        // Center justify equations in code and markdown cells. Elsewhere
+        // we use CSS to left justify single line equations in code cells.
+        displayAlign: 'center',
+        "HTML-CSS": {
+            styles: {'.MathJax_Display': {"margin": 0}},
+            linebreaks: { automatic: true }
+        }
+    });
+    </script>
+    <!-- End of mathjax configuration --></head>
+<body>
+	<!-- header -->
+   <header class="header-sticky header-dark">
+    <div class="container">
+      <nav class="navbar navbar-expand-lg navbar-dark">
+        <a class="navbar-brand" href="./index.html">
+          <img class="navbar-logo navbar-logo-light" src="https://lihd1003.github.io/assets/images/logo.png" alt="Logo">
+          <img class="navbar-logo navbar-logo-dark" src="https://lihd1003.github.io/assets/images/logo.png" alt="Logo">
+        </a>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav align-items-center mr-auto">
+          </ul>
+
+          <ul class="navbar-nav align-items-center mr-0">
+            <li class="nav-item">
+              <a href="https://github.com/lihd1003" class="nav-link waves-effect waves-light" target="_blank">
+                <i class="icon-github mr-2"></i>GitHub
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="https://github.com/lihd1003/UofT-Course-Material-Repo" class="nav-link waves-effect waves-light" target="_blank">
+                <i class="icon-star mr-2"></i>Star the Repo
+              </a>
+            </li>
+          </ul>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+<section class="hero hero-with-header text-white" data-top-top="transform: translateY(0px);" data-top-bottom="transform: translateY(250px);">
+    <div class="image image-overlay" style="background-image:url(https://lihd1003.github.io/assets/images/black.jpg)"></div>
+    <div class="container">
+      <div class="row align-items-center">
+        <div class="col text-shadow">
+
+          <h1 class="mb-0">Process and System Calls</h1>
+        </div>
+      </div>
+    </div>
+ </section>
+ <section class="bg-white sec" id="project">
+  <div tabindex="-1" id="notebook" class="border-box-sizing">
+    <div class="container" id="notebook-container">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Process">Process<a class="anchor-link" href="#Process">&#182;</a></h2><p>A process contains all of the state for a program in execution</p>
+<ul>
+<li><strong>Address space</strong></li>
+<li><strong>Data + data</strong> for the executing program</li>
+<li>An execution <strong>stack</strong> encapsulating the state of procedure calls</li>
+<li>Program counter (<strong>PC</strong>)</li>
+<li>A set of general-purpose <strong>registers</strong> with current values</li>
+<li><strong>PID</strong></li>
+<li>A set of operating system resources: <strong>open files, network connections, signals</strong>. </li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Process-Control-Block-(PCB)">Process Control Block (PCB)<a class="anchor-link" href="#Process-Control-Block-(PCB)">&#182;</a></h3><p>A process can be in 3 states <strong>ready, blocked, running</strong>.</p>
+<p>OS maintains a collection of state queues that represent the state of all processes in the system, typically one queue for each state. As a process changes state, its PCB is unlinked from one queue to another.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h4 id="Program-to-Process">Program to Process<a class="anchor-link" href="#Program-to-Process">&#182;</a></h4><ol>
+<li><strong>Create new process</strong> create new PCB, user address space structure, allocate memory</li>
+<li><strong>Load executable</strong> initialize start state for process, change state to "ready"  </li>
+<li><strong>Dispatch process</strong> change state to "running"</li>
+</ol>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h4 id="Ready-to-Running">Ready to Running<a class="anchor-link" href="#Ready-to-Running">&#182;</a></h4><p><strong>Context switch</strong> switch the CPU to another process by: saving the state of the old process, loading the saved state for the new process.</p>
+<p><img src="./assets/context.png"></p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="System-Call">System Call<a class="anchor-link" href="#System-Call">&#182;</a></h2><p>A function call that invokes the OS, whenever an application wants to use a resource that the OS manages, it asks permission.</p>
+<p>Hardware runs in <strong>user mode</strong> or <strong>system mode</strong>; some instructions are privileged instructions and only runs in system mode.<br>
+On a <strong>system call interrupt</strong>, the mode bit is switched to allow privileged instructions to occur.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h4 id="Privileged-Instructions">Privileged Instructions<a class="anchor-link" href="#Privileged-Instructions">&#182;</a></h4><ul>
+<li>Access IO device</li>
+<li>Manipulate memory management</li>
+<li>Configure "mode bits" (given priority, software trap vectors)</li>
+<li>Call halt instruction</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h4 id="System-Call-Interface">System Call Interface<a class="anchor-link" href="#System-Call-Interface">&#182;</a></h4><p>C program provides user mode functions that requires system calls. C library functions then passes arguments to OS and execute special instructions to trap to system mode. Then syscall handler figures out which system call is needed and calls a routine for that operation.</p>
+<p>Kernel must verify passed arguments, otherwise unwanted instructions can be executed in kernel mode.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="System-Call-Dispatch">System Call Dispatch<a class="anchor-link" href="#System-Call-Dispatch">&#182;</a></h3><p>A system call is identified by a unique number (passed to register <code>%eax</code>).</p>
+<ol>
+<li>Kernel assigns each system call type a system call number </li>
+<li>Kernel initialize <strong>syscall table</strong>, mapping each system call number to a function implementing the system call</li>
+<li>User process sets up system call number and argument</li>
+<li>User process runs <code>int N</code> to ask context switch to kernel mode and invokes kernel's interrupt handler for X (__interrupt dispatch)</li>
+<li>Kernel looks up syscall table using syscall number and invokes the corresponding function</li>
+<li>return by running <code>iret</code> (interrupt return)</li>
+</ol>
+
+</div>
+</div>
+</div>
+    </div>
+  </div>
+</section>
+  <script src="https://lihd1003.github.io/assets/js/vendor.js"></script>
+  <script src="https://lihd1003.github.io/assets/js/app.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script>
+    $("table").addClass("table table-lined")
+  </script>
+</body>
+
+ 
+
+
+</html>
