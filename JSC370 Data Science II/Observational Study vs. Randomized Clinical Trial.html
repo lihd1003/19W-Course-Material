@@ -1,0 +1,1096 @@
+<!DOCTYPE html>
+<html>
+<head><meta charset="utf-8" />
+
+<title>Observational Study vs. Randomized Clinical Trial - Notes Portal</title>
+
+<link rel="icon" type="image/gif" href="https://lihd1003.github.io/assets/images/logo.png">
+<link rel="stylesheet" href="https://lihd1003.github.io/assets/css/vendor.css" />
+<link rel="stylesheet" href="https://lihd1003.github.io/assets/css/style.css" />
+<link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
+<script src="https://kit.fontawesome.com/98fa07784c.js"></script>
+
+
+
+<style type="text/css">
+/* Overrides of notebook CSS for static HTML export */
+
+div#notebook {
+  overflow: visible;
+  border-top: none;
+}@media print {
+  div.cell {
+    display: block;
+    page-break-inside: avoid;
+  } 
+  div.output_wrapper { 
+    display: block;
+    page-break-inside: avoid; 
+  }
+  div.output { 
+    display: block;
+    page-break-inside: avoid; 
+  }
+}
+</style>
+
+<!-- Custom stylesheet, it must be in the same directory as the html file -->
+<link rel="stylesheet" href="https://lihd1003.github.io/UofT-Course-Material-Repo/index/custom.css">
+
+<!-- Loading mathjax macro -->
+<!-- Load mathjax -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS_HTML"></script>
+    <!-- MathJax configuration -->
+    <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+            displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+            processEscapes: true,
+            processEnvironments: true
+        },
+        // Center justify equations in code and markdown cells. Elsewhere
+        // we use CSS to left justify single line equations in code cells.
+        displayAlign: 'center',
+        "HTML-CSS": {
+            styles: {'.MathJax_Display': {"margin": 0}},
+            linebreaks: { automatic: true }
+        }
+    });
+    </script>
+    <!-- End of mathjax configuration --></head>
+<body>
+	<!-- header -->
+   <header class="header-sticky header-dark">
+    <div class="container">
+      <nav class="navbar navbar-expand-lg navbar-dark">
+        <a class="navbar-brand" href="./index.html">
+          <img class="navbar-logo navbar-logo-light" src="https://lihd1003.github.io/assets/images/logo.png" alt="Logo">
+          <img class="navbar-logo navbar-logo-dark" src="https://lihd1003.github.io/assets/images/logo.png" alt="Logo">
+        </a>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav align-items-center mr-auto">
+          </ul>
+
+          <ul class="navbar-nav align-items-center mr-0">
+            <li class="nav-item">
+              <a href="https://github.com/lihd1003" class="nav-link waves-effect waves-light" target="_blank">
+                <i class="icon-github mr-2"></i>GitHub
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="https://github.com/lihd1003/UofT-Course-Material-Repo" class="nav-link waves-effect waves-light" target="_blank">
+                <i class="icon-star mr-2"></i>Star the Repo
+              </a>
+            </li>
+          </ul>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+<section class="hero hero-with-header text-white" data-top-top="transform: translateY(0px);" data-top-bottom="transform: translateY(250px);">
+    <div class="image image-overlay" style="background-image:url(https://lihd1003.github.io/assets/images/black.jpg)"></div>
+    <div class="container">
+      <div class="row align-items-center">
+        <div class="col text-shadow">
+
+          <h1 class="mb-0">Observational Study vs. Randomized Clinical Trial</h1>
+        </div>
+      </div>
+    </div>
+ </section>
+ <section class="bg-white sec" id="project">
+  <div tabindex="-1" id="notebook" class="border-box-sizing">
+    <div class="container" id="notebook-container">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Selection-Bias">Selection Bias<a class="anchor-link" href="#Selection-Bias">&#182;</a></h2><p>Let $y = 50 - 10 x + \epsilon$ be the true model, assume the clinical trails is tested on factor <code>rx</code>.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[1]:</div>
+<div class="inner_cell">
+    <div class="input_area border">
+<div class=" highlight hl-r"><pre><span></span><span class="c1"># x is the one factor </span>
+<span class="n">x</span> <span class="o">=</span> <span class="nf">rbinom</span><span class="p">(</span><span class="m">500</span><span class="p">,</span> <span class="m">1</span><span class="p">,</span> <span class="m">0.5</span><span class="p">)</span>
+
+<span class="c1"># apply selection bias</span>
+<span class="n">rx</span> <span class="o">=</span> <span class="nf">sapply</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="nf">function</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="nf">if </span><span class="p">(</span><span class="n">x</span><span class="o">==</span><span class="m">0</span><span class="p">)</span> <span class="nf">rbinom</span><span class="p">(</span><span class="m">1</span><span class="p">,</span> <span class="m">1</span><span class="p">,</span> <span class="m">0.8</span><span class="p">)</span> <span class="n">else</span> <span class="nf">rbinom</span><span class="p">(</span><span class="m">1</span><span class="p">,</span><span class="m">1</span><span class="p">,</span><span class="m">0.2</span><span class="p">))</span>
+
+<span class="n">eps</span> <span class="o">=</span> <span class="nf">rnorm</span><span class="p">(</span><span class="m">500</span><span class="p">,</span> <span class="m">0</span><span class="p">,</span> <span class="m">15</span><span class="p">)</span> <span class="c1"># error term</span>
+<span class="n">y</span> <span class="o">=</span> <span class="m">50</span> <span class="o">-</span> <span class="m">10</span> <span class="o">*</span> <span class="n">x</span> <span class="o">+</span> <span class="n">eps</span> <span class="c1"># assign the underlying true model</span>
+
+<span class="c1"># without selection bias</span>
+<span class="n">rx1</span> <span class="o">=</span> <span class="nf">rbinom</span><span class="p">(</span><span class="m">500</span><span class="p">,</span> <span class="m">1</span><span class="p">,</span> <span class="m">0.5</span><span class="p">)</span>
+
+<span class="nf">table</span><span class="p">(</span><span class="n">rx</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+
+
+<div class="output_text output_subarea ">
+<pre>rx
+  0   1 
+243 257 </pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[2]:</div>
+<div class="inner_cell">
+    <div class="input_area border">
+<div class=" highlight hl-r"><pre><span></span><span class="c1"># observational analysis</span>
+<span class="n">model</span> <span class="o">=</span> <span class="nf">lm</span><span class="p">(</span><span class="n">y</span><span class="o">~</span><span class="n">rx</span><span class="p">)</span>
+<span class="nf">summary</span><span class="p">(</span><span class="n">model</span><span class="p">)</span>
+<span class="nf">confint</span><span class="p">(</span><span class="n">model</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+
+
+<div class="output_text output_subarea ">
+<pre>
+Call:
+lm(formula = y ~ rx)
+
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-37.934  -9.408  -0.839   9.869  46.083 
+
+Coefficients:
+            Estimate Std. Error t value Pr(&gt;|t|)    
+(Intercept)   40.819      0.971   42.04  &lt; 2e-16 ***
+rx             9.412      1.354    6.95 1.15e-11 ***
+---
+Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+
+Residual standard error: 15.14 on 498 degrees of freedom
+Multiple R-squared:  0.08841,	Adjusted R-squared:  0.08658 
+F-statistic:  48.3 on 1 and 498 DF,  p-value: 1.153e-11
+</pre>
+</div>
+
+</div>
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+
+<div class="output_html rendered_html output_subarea ">
+<table>
+<caption>A matrix: 2 × 2 of type dbl</caption>
+<thead>
+	<tr><th></th><th scope=col>2.5 %</th><th scope=col>97.5 %</th></tr>
+</thead>
+<tbody>
+	<tr><th scope=row>(Intercept)</th><td>38.910954</td><td>42.72649</td></tr>
+	<tr><th scope=row>rx</th><td> 6.751287</td><td>12.07328</td></tr>
+</tbody>
+</table>
+
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[3]:</div>
+<div class="inner_cell">
+    <div class="input_area border">
+<div class=" highlight hl-r"><pre><span></span><span class="c1"># adjusted </span>
+<span class="n">model_2</span> <span class="o">=</span> <span class="nf">lm</span><span class="p">(</span><span class="n">y</span><span class="o">~</span><span class="n">rx</span> <span class="o">+</span> <span class="n">x</span><span class="p">)</span>
+<span class="nf">summary</span><span class="p">(</span><span class="n">model_2</span><span class="p">)</span>
+<span class="nf">confint</span><span class="p">(</span><span class="n">model_2</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+
+
+<div class="output_text output_subarea ">
+<pre>
+Call:
+lm(formula = y ~ rx + x)
+
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-36.153  -9.235  -0.414   9.069  44.736 
+
+Coefficients:
+            Estimate Std. Error t value Pr(&gt;|t|)    
+(Intercept)   46.906      1.603  29.267  &lt; 2e-16 ***
+rx             4.672      1.664   2.808  0.00518 ** 
+x             -7.868      1.668  -4.719 3.09e-06 ***
+---
+Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+
+Residual standard error: 14.82 on 497 degrees of freedom
+Multiple R-squared:  0.1275,	Adjusted R-squared:  0.124 
+F-statistic: 36.31 on 2 and 497 DF,  p-value: 1.91e-15
+</pre>
+</div>
+
+</div>
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+
+<div class="output_html rendered_html output_subarea ">
+<table>
+<caption>A matrix: 3 × 2 of type dbl</caption>
+<thead>
+	<tr><th></th><th scope=col>2.5 %</th><th scope=col>97.5 %</th></tr>
+</thead>
+<tbody>
+	<tr><th scope=row>(Intercept)</th><td> 43.757302</td><td>50.055124</td></tr>
+	<tr><th scope=row>rx</th><td>  1.402806</td><td> 7.941018</td></tr>
+	<tr><th scope=row>x</th><td>-11.144733</td><td>-4.592078</td></tr>
+</tbody>
+</table>
+
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[4]:</div>
+<div class="inner_cell">
+    <div class="input_area border">
+<div class=" highlight hl-r"><pre><span></span><span class="nf">xtabs</span><span class="p">(</span><span class="o">~</span><span class="n">x</span><span class="o">+</span><span class="n">rx</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+
+
+<div class="output_text output_subarea ">
+<pre>   rx
+x     0   1
+  0  55 213
+  1 188  44</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[5]:</div>
+<div class="inner_cell">
+    <div class="input_area border">
+<div class=" highlight hl-r"><pre><span></span><span class="c1"># RCT analysis</span>
+<span class="n">model_rct</span> <span class="o">=</span> <span class="nf">lm</span><span class="p">(</span><span class="n">y</span> <span class="o">~</span> <span class="n">rx1</span><span class="p">)</span>
+<span class="nf">summary</span><span class="p">(</span><span class="n">model_rct</span><span class="p">)</span>
+<span class="nf">confint</span><span class="p">(</span><span class="n">model_rct</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+
+
+<div class="output_text output_subarea ">
+<pre>
+Call:
+lm(formula = y ~ rx1)
+
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-43.154 -10.117  -0.166   9.937  50.276 
+
+Coefficients:
+            Estimate Std. Error t value Pr(&gt;|t|)    
+(Intercept)  45.2360     1.0273  44.034   &lt;2e-16 ***
+rx1           0.8028     1.4192   0.566    0.572    
+---
+Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+
+Residual standard error: 15.85 on 498 degrees of freedom
+Multiple R-squared:  0.0006421,	Adjusted R-squared:  -0.001365 
+F-statistic:  0.32 on 1 and 498 DF,  p-value: 0.5719
+</pre>
+</div>
+
+</div>
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+
+<div class="output_html rendered_html output_subarea ">
+<table>
+<caption>A matrix: 2 × 2 of type dbl</caption>
+<thead>
+	<tr><th></th><th scope=col>2.5 %</th><th scope=col>97.5 %</th></tr>
+</thead>
+<tbody>
+	<tr><th scope=row>(Intercept)</th><td>43.217626</td><td>47.254362</td></tr>
+	<tr><th scope=row>rx1</th><td>-1.985517</td><td> 3.591021</td></tr>
+</tbody>
+</table>
+
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[6]:</div>
+<div class="inner_cell">
+    <div class="input_area border">
+<div class=" highlight hl-r"><pre><span></span><span class="c1"># Adjusted</span>
+<span class="n">model_rct_2</span> <span class="o">=</span> <span class="nf">lm</span><span class="p">(</span><span class="n">y</span> <span class="o">~</span> <span class="n">rx1</span> <span class="o">+</span> <span class="n">x</span><span class="p">)</span>
+<span class="nf">summary</span><span class="p">(</span><span class="n">model_rct_2</span><span class="p">)</span>
+<span class="nf">confint</span><span class="p">(</span><span class="n">model_rct_2</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+
+
+<div class="output_text output_subarea ">
+<pre>
+Call:
+lm(formula = y ~ rx1 + x)
+
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-37.474  -9.440  -0.575   9.243  45.250 
+
+Coefficients:
+            Estimate Std. Error t value Pr(&gt;|t|)    
+(Intercept)  50.1392     1.1459  43.754  &lt; 2e-16 ***
+rx1           0.9257     1.3373   0.692    0.489    
+x           -10.7061     1.3392  -7.994  9.2e-15 ***
+---
+Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+
+Residual standard error: 14.93 on 497 degrees of freedom
+Multiple R-squared:  0.1145,	Adjusted R-squared:  0.1109 
+F-statistic: 32.13 on 2 and 497 DF,  p-value: 7.51e-14
+</pre>
+</div>
+
+</div>
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+
+<div class="output_html rendered_html output_subarea ">
+<table>
+<caption>A matrix: 3 × 2 of type dbl</caption>
+<thead>
+	<tr><th></th><th scope=col>2.5 %</th><th scope=col>97.5 %</th></tr>
+</thead>
+<tbody>
+	<tr><th scope=row>(Intercept)</th><td> 47.887750</td><td>52.390700</td></tr>
+	<tr><th scope=row>rx1</th><td> -1.701764</td><td> 3.553134</td></tr>
+	<tr><th scope=row>x</th><td>-13.337387</td><td>-8.074888</td></tr>
+</tbody>
+</table>
+
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[7]:</div>
+<div class="inner_cell">
+    <div class="input_area border">
+<div class=" highlight hl-r"><pre><span></span><span class="c1"># Simulation 2,  True model</span>
+<span class="n">y1</span> <span class="o">=</span> <span class="m">50</span> <span class="o">+</span> <span class="m">5</span> <span class="o">*</span> <span class="n">rx</span> <span class="o">-</span> <span class="m">10</span> <span class="o">*</span> <span class="n">x</span> <span class="o">+</span> <span class="n">eps</span> <span class="c1"># Obserational</span>
+<span class="n">y2</span> <span class="o">=</span> <span class="m">50</span> <span class="o">+</span> <span class="m">5</span> <span class="o">*</span> <span class="n">rx1</span> <span class="o">-</span> <span class="m">10</span> <span class="o">*</span> <span class="n">x</span> <span class="o">+</span> <span class="n">eps</span> <span class="c1"># RCT</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[8]:</div>
+<div class="inner_cell">
+    <div class="input_area border">
+<div class=" highlight hl-r"><pre><span></span><span class="c1">## Observational </span>
+<span class="nf">summary</span><span class="p">(</span><span class="nf">lm</span><span class="p">(</span><span class="n">y1</span><span class="o">~</span><span class="n">rx</span><span class="p">))</span>
+<span class="nf">confint</span><span class="p">(</span><span class="nf">lm</span><span class="p">(</span><span class="n">y1</span><span class="o">~</span><span class="n">rx</span><span class="p">))</span>
+
+<span class="c1"># adjusted </span>
+<span class="nf">summary</span><span class="p">(</span><span class="nf">lm</span><span class="p">(</span><span class="n">y1</span><span class="o">~</span><span class="n">rx</span> <span class="o">+</span> <span class="n">x</span><span class="p">))</span>
+<span class="nf">confint</span><span class="p">(</span><span class="nf">lm</span><span class="p">(</span><span class="n">y1</span><span class="o">~</span><span class="n">rx</span> <span class="o">+</span> <span class="n">x</span><span class="p">))</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+
+
+<div class="output_text output_subarea ">
+<pre>
+Call:
+lm(formula = y1 ~ rx)
+
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-37.934  -9.408  -0.839   9.869  46.083 
+
+Coefficients:
+            Estimate Std. Error t value Pr(&gt;|t|)    
+(Intercept)   40.819      0.971   42.04   &lt;2e-16 ***
+rx            14.412      1.354   10.64   &lt;2e-16 ***
+---
+Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+
+Residual standard error: 15.14 on 498 degrees of freedom
+Multiple R-squared:  0.1853,	Adjusted R-squared:  0.1836 
+F-statistic: 113.2 on 1 and 498 DF,  p-value: &lt; 2.2e-16
+</pre>
+</div>
+
+</div>
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+
+<div class="output_html rendered_html output_subarea ">
+<table>
+<caption>A matrix: 2 × 2 of type dbl</caption>
+<thead>
+	<tr><th></th><th scope=col>2.5 %</th><th scope=col>97.5 %</th></tr>
+</thead>
+<tbody>
+	<tr><th scope=row>(Intercept)</th><td>38.91095</td><td>42.72649</td></tr>
+	<tr><th scope=row>rx</th><td>11.75129</td><td>17.07328</td></tr>
+</tbody>
+</table>
+
+</div>
+
+</div>
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+
+
+<div class="output_text output_subarea ">
+<pre>
+Call:
+lm(formula = y1 ~ rx + x)
+
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-36.153  -9.235  -0.414   9.069  44.736 
+
+Coefficients:
+            Estimate Std. Error t value Pr(&gt;|t|)    
+(Intercept)   46.906      1.603  29.267  &lt; 2e-16 ***
+rx             9.672      1.664   5.813 1.10e-08 ***
+x             -7.868      1.668  -4.719 3.09e-06 ***
+---
+Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+
+Residual standard error: 14.82 on 497 degrees of freedom
+Multiple R-squared:  0.2202,	Adjusted R-squared:  0.2171 
+F-statistic: 70.17 on 2 and 497 DF,  p-value: &lt; 2.2e-16
+</pre>
+</div>
+
+</div>
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+
+<div class="output_html rendered_html output_subarea ">
+<table>
+<caption>A matrix: 3 × 2 of type dbl</caption>
+<thead>
+	<tr><th></th><th scope=col>2.5 %</th><th scope=col>97.5 %</th></tr>
+</thead>
+<tbody>
+	<tr><th scope=row>(Intercept)</th><td> 43.757302</td><td>50.055124</td></tr>
+	<tr><th scope=row>rx</th><td>  6.402806</td><td>12.941018</td></tr>
+	<tr><th scope=row>x</th><td>-11.144733</td><td>-4.592078</td></tr>
+</tbody>
+</table>
+
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[9]:</div>
+<div class="inner_cell">
+    <div class="input_area border">
+<div class=" highlight hl-r"><pre><span></span><span class="c1">## Observational </span>
+<span class="nf">summary</span><span class="p">(</span><span class="nf">lm</span><span class="p">(</span><span class="n">y2</span><span class="o">~</span><span class="n">rx1</span><span class="p">))</span>
+<span class="nf">confint</span><span class="p">(</span><span class="nf">lm</span><span class="p">(</span><span class="n">y2</span><span class="o">~</span><span class="n">rx1</span><span class="p">))</span>
+
+<span class="c1"># adjusted </span>
+<span class="nf">summary</span><span class="p">(</span><span class="nf">lm</span><span class="p">(</span><span class="n">y2</span><span class="o">~</span><span class="n">rx1</span> <span class="o">+</span> <span class="n">x</span><span class="p">))</span>
+<span class="nf">confint</span><span class="p">(</span><span class="nf">lm</span><span class="p">(</span><span class="n">y2</span><span class="o">~</span><span class="n">rx1</span> <span class="o">+</span> <span class="n">x</span><span class="p">))</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+
+
+<div class="output_text output_subarea ">
+<pre>
+Call:
+lm(formula = y2 ~ rx1)
+
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-43.154 -10.117  -0.166   9.937  50.276 
+
+Coefficients:
+            Estimate Std. Error t value Pr(&gt;|t|)    
+(Intercept)   45.236      1.027  44.034  &lt; 2e-16 ***
+rx1            5.803      1.419   4.089 5.05e-05 ***
+---
+Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+
+Residual standard error: 15.85 on 498 degrees of freedom
+Multiple R-squared:  0.03248,	Adjusted R-squared:  0.03054 
+F-statistic: 16.72 on 1 and 498 DF,  p-value: 5.053e-05
+</pre>
+</div>
+
+</div>
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+
+<div class="output_html rendered_html output_subarea ">
+<table>
+<caption>A matrix: 2 × 2 of type dbl</caption>
+<thead>
+	<tr><th></th><th scope=col>2.5 %</th><th scope=col>97.5 %</th></tr>
+</thead>
+<tbody>
+	<tr><th scope=row>(Intercept)</th><td>43.217626</td><td>47.254362</td></tr>
+	<tr><th scope=row>rx1</th><td> 3.014483</td><td> 8.591021</td></tr>
+</tbody>
+</table>
+
+</div>
+
+</div>
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+
+
+<div class="output_text output_subarea ">
+<pre>
+Call:
+lm(formula = y2 ~ rx1 + x)
+
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-37.474  -9.440  -0.575   9.243  45.250 
+
+Coefficients:
+            Estimate Std. Error t value Pr(&gt;|t|)    
+(Intercept)   50.139      1.146  43.754  &lt; 2e-16 ***
+rx1            5.926      1.337   4.431 1.15e-05 ***
+x            -10.706      1.339  -7.994 9.20e-15 ***
+---
+Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+
+Residual standard error: 14.93 on 497 degrees of freedom
+Multiple R-squared:  0.1427,	Adjusted R-squared:  0.1393 
+F-statistic: 41.37 on 2 and 497 DF,  p-value: &lt; 2.2e-16
+</pre>
+</div>
+
+</div>
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+
+<div class="output_html rendered_html output_subarea ">
+<table>
+<caption>A matrix: 3 × 2 of type dbl</caption>
+<thead>
+	<tr><th></th><th scope=col>2.5 %</th><th scope=col>97.5 %</th></tr>
+</thead>
+<tbody>
+	<tr><th scope=row>(Intercept)</th><td> 47.887750</td><td>52.390700</td></tr>
+	<tr><th scope=row>rx1</th><td>  3.298236</td><td> 8.553134</td></tr>
+	<tr><th scope=row>x</th><td>-13.337387</td><td>-8.074888</td></tr>
+</tbody>
+</table>
+
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[16]:</div>
+<div class="inner_cell">
+    <div class="input_area border">
+<div class=" highlight hl-r"><pre><span></span><span class="c1"># Simulation 3, True model</span>
+<span class="n">y3</span> <span class="o">=</span> <span class="m">50</span> <span class="o">-</span> <span class="m">5</span> <span class="o">*</span> <span class="n">rx</span> <span class="o">-</span> <span class="m">10</span> <span class="o">*</span> <span class="n">x</span> <span class="o">+</span> <span class="n">eps</span> <span class="c1"># Obserational</span>
+<span class="n">y4</span> <span class="o">=</span> <span class="m">50</span> <span class="o">-</span> <span class="m">5</span> <span class="o">*</span> <span class="n">rx1</span> <span class="o">-</span> <span class="m">10</span> <span class="o">*</span> <span class="n">x</span> <span class="o">+</span> <span class="n">eps</span> <span class="c1"># RCT</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[15]:</div>
+<div class="inner_cell">
+    <div class="input_area border">
+<div class=" highlight hl-r"><pre><span></span><span class="c1">## Observational </span>
+<span class="nf">summary</span><span class="p">(</span><span class="nf">lm</span><span class="p">(</span><span class="n">y3</span><span class="o">~</span><span class="n">rx</span><span class="p">))</span>
+<span class="nf">confint</span><span class="p">(</span><span class="nf">lm</span><span class="p">(</span><span class="n">y3</span><span class="o">~</span><span class="n">rx</span><span class="p">))</span>
+
+<span class="c1"># adjusted </span>
+<span class="nf">summary</span><span class="p">(</span><span class="nf">lm</span><span class="p">(</span><span class="n">y3</span><span class="o">~</span><span class="n">rx</span> <span class="o">+</span> <span class="n">x</span><span class="p">))</span>
+<span class="nf">confint</span><span class="p">(</span><span class="nf">lm</span><span class="p">(</span><span class="n">y3</span><span class="o">~</span><span class="n">rx</span> <span class="o">+</span> <span class="n">x</span><span class="p">))</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+
+
+<div class="output_text output_subarea ">
+<pre>
+Call:
+lm(formula = y3 ~ rx)
+
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-38.605 -10.392  -0.481  10.341  48.126 
+
+Coefficients:
+            Estimate Std. Error t value Pr(&gt;|t|)    
+(Intercept)  56.2920     0.9993  56.334  &lt; 2e-16 ***
+rx           -7.6368     1.3938  -5.479 6.79e-08 ***
+---
+Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+
+Residual standard error: 15.58 on 498 degrees of freedom
+Multiple R-squared:  0.05686,	Adjusted R-squared:  0.05496 
+F-statistic: 30.02 on 1 and 498 DF,  p-value: 6.795e-08
+</pre>
+</div>
+
+</div>
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+
+<div class="output_html rendered_html output_subarea ">
+<table>
+<caption>A matrix: 2 × 2 of type dbl</caption>
+<thead>
+	<tr><th></th><th scope=col>2.5 %</th><th scope=col>97.5 %</th></tr>
+</thead>
+<tbody>
+	<tr><th scope=row>(Intercept)</th><td> 54.32869</td><td>58.25526</td></tr>
+	<tr><th scope=row>rx</th><td>-10.37528</td><td>-4.89841</td></tr>
+</tbody>
+</table>
+
+</div>
+
+</div>
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+
+
+<div class="output_text output_subarea ">
+<pre>
+Call:
+lm(formula = y3 ~ rx + x)
+
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-36.153  -9.235  -0.414   9.069  44.736 
+
+Coefficients:
+            Estimate Std. Error t value Pr(&gt;|t|)    
+(Intercept)  46.9062     1.6027  29.267  &lt; 2e-16 ***
+rx           -0.3281     1.6639  -0.197    0.844    
+x            12.1316     1.6676   7.275 1.36e-12 ***
+---
+Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+
+Residual standard error: 14.82 on 497 degrees of freedom
+Multiple R-squared:  0.1476,	Adjusted R-squared:  0.1442 
+F-statistic: 43.04 on 2 and 497 DF,  p-value: &lt; 2.2e-16
+</pre>
+</div>
+
+</div>
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+
+<div class="output_html rendered_html output_subarea ">
+<table>
+<caption>A matrix: 3 × 2 of type dbl</caption>
+<thead>
+	<tr><th></th><th scope=col>2.5 %</th><th scope=col>97.5 %</th></tr>
+</thead>
+<tbody>
+	<tr><th scope=row>(Intercept)</th><td>43.757302</td><td>50.055124</td></tr>
+	<tr><th scope=row>rx</th><td>-3.597194</td><td> 2.941018</td></tr>
+	<tr><th scope=row>x</th><td> 8.855267</td><td>15.407922</td></tr>
+</tbody>
+</table>
+
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[17]:</div>
+<div class="inner_cell">
+    <div class="input_area border">
+<div class=" highlight hl-r"><pre><span></span><span class="c1">## Observational </span>
+<span class="nf">summary</span><span class="p">(</span><span class="nf">lm</span><span class="p">(</span><span class="n">y4</span><span class="o">~</span><span class="n">rx1</span><span class="p">))</span>
+<span class="nf">confint</span><span class="p">(</span><span class="nf">lm</span><span class="p">(</span><span class="n">y4</span><span class="o">~</span><span class="n">rx1</span><span class="p">))</span>
+
+<span class="c1"># adjusted </span>
+<span class="nf">summary</span><span class="p">(</span><span class="nf">lm</span><span class="p">(</span><span class="n">y4</span><span class="o">~</span><span class="n">rx1</span> <span class="o">+</span> <span class="n">x</span><span class="p">))</span>
+<span class="nf">confint</span><span class="p">(</span><span class="nf">lm</span><span class="p">(</span><span class="n">y4</span><span class="o">~</span><span class="n">rx1</span> <span class="o">+</span> <span class="n">x</span><span class="p">))</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+
+
+<div class="output_text output_subarea ">
+<pre>
+Call:
+lm(formula = y4 ~ rx1)
+
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-43.154 -10.117  -0.166   9.937  50.276 
+
+Coefficients:
+            Estimate Std. Error t value Pr(&gt;|t|)    
+(Intercept)   45.236      1.027  44.034  &lt; 2e-16 ***
+rx1           -4.197      1.419  -2.958  0.00325 ** 
+---
+Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+
+Residual standard error: 15.85 on 498 degrees of freedom
+Multiple R-squared:  0.01726,	Adjusted R-squared:  0.01529 
+F-statistic: 8.747 on 1 and 498 DF,  p-value: 0.003248
+</pre>
+</div>
+
+</div>
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+
+<div class="output_html rendered_html output_subarea ">
+<table>
+<caption>A matrix: 2 × 2 of type dbl</caption>
+<thead>
+	<tr><th></th><th scope=col>2.5 %</th><th scope=col>97.5 %</th></tr>
+</thead>
+<tbody>
+	<tr><th scope=row>(Intercept)</th><td>43.217626</td><td>47.254362</td></tr>
+	<tr><th scope=row>rx1</th><td>-6.985517</td><td>-1.408979</td></tr>
+</tbody>
+</table>
+
+</div>
+
+</div>
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+
+
+<div class="output_text output_subarea ">
+<pre>
+Call:
+lm(formula = y4 ~ rx1 + x)
+
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-37.474  -9.440  -0.575   9.243  45.250 
+
+Coefficients:
+            Estimate Std. Error t value Pr(&gt;|t|)    
+(Intercept)   50.139      1.146  43.754  &lt; 2e-16 ***
+rx1           -4.074      1.337  -3.047  0.00244 ** 
+x            -10.706      1.339  -7.994  9.2e-15 ***
+---
+Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+
+Residual standard error: 14.93 on 497 degrees of freedom
+Multiple R-squared:  0.1292,	Adjusted R-squared:  0.1257 
+F-statistic: 36.88 on 2 and 497 DF,  p-value: 1.164e-15
+</pre>
+</div>
+
+</div>
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+
+<div class="output_html rendered_html output_subarea ">
+<table>
+<caption>A matrix: 3 × 2 of type dbl</caption>
+<thead>
+	<tr><th></th><th scope=col>2.5 %</th><th scope=col>97.5 %</th></tr>
+</thead>
+<tbody>
+	<tr><th scope=row>(Intercept)</th><td> 47.887750</td><td>52.390700</td></tr>
+	<tr><th scope=row>rx1</th><td> -6.701764</td><td>-1.446866</td></tr>
+	<tr><th scope=row>x</th><td>-13.337387</td><td>-8.074888</td></tr>
+</tbody>
+</table>
+
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h4 id="Problem-with-selection-bias">Problem with selection bias<a class="anchor-link" href="#Problem-with-selection-bias">&#182;</a></h4><p>We don't know the true model, the confounding variable may not be discovered, or cannot be measured.</p>
+<p><a href="https://www.ahajournals.org/doi/full/10.1161/01.str.30.9.1751">https://www.ahajournals.org/doi/full/10.1161/01.str.30.9.1751</a></p>
+
+</div>
+</div>
+</div>
+    </div>
+  </div>
+</section>
+  <script src="https://lihd1003.github.io/assets/js/vendor.js"></script>
+  <script src="https://lihd1003.github.io/assets/js/app.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script>
+    $("table").addClass("table table-lined")
+  </script>
+</body>
+
+ 
+
+
+</html>
