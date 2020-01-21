@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+<html>
+<head><meta charset="utf-8" />
+
+<title>calc_intro_corrections - Notes Portal</title>
+
+<link rel="icon" type="image/gif" href="https://lihd1003.github.io/assets/images/logo.png">
+<link rel="stylesheet" href="https://lihd1003.github.io/assets/css/vendor.css" />
+<link rel="stylesheet" href="https://lihd1003.github.io/assets/css/style.css" />
+<link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
+<script src="https://kit.fontawesome.com/98fa07784c.js"></script>
+
+
+
+<style type="text/css">
+/* Overrides of notebook CSS for static HTML export */
+
+div#notebook {
+  overflow: visible;
+  border-top: none;
+}@media print {
+  div.cell {
+    display: block;
+    page-break-inside: avoid;
+  } 
+  div.output_wrapper { 
+    display: block;
+    page-break-inside: avoid; 
+  }
+  div.output { 
+    display: block;
+    page-break-inside: avoid; 
+  }
+}
+</style>
+
+<!-- Custom stylesheet, it must be in the same directory as the html file -->
+<link rel="stylesheet" href="https://lihd1003.github.io/UofT-Course-Material-Repo/index/custom.css">
+
+<!-- Loading mathjax macro -->
+<!-- Load mathjax -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS_HTML"></script>
+    <!-- MathJax configuration -->
+    <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+            displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+            processEscapes: true,
+            processEnvironments: true
+        },
+        // Center justify equations in code and markdown cells. Elsewhere
+        // we use CSS to left justify single line equations in code cells.
+        displayAlign: 'center',
+        "HTML-CSS": {
+            styles: {'.MathJax_Display': {"margin": 0}},
+            linebreaks: { automatic: true }
+        }
+    });
+    </script>
+    <!-- End of mathjax configuration --></head>
+<body>
+	<!-- header -->
+   <header class="header-sticky header-dark">
+    <div class="container">
+      <nav class="navbar navbar-expand-lg navbar-dark">
+        <a class="navbar-brand" href="./index.html">
+          <img class="navbar-logo navbar-logo-light" src="https://lihd1003.github.io/assets/images/logo.png" alt="Logo">
+          <img class="navbar-logo navbar-logo-dark" src="https://lihd1003.github.io/assets/images/logo.png" alt="Logo">
+        </a>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav align-items-center mr-auto">
+          </ul>
+
+          <ul class="navbar-nav align-items-center mr-0">
+            <li class="nav-item">
+              <a href="https://github.com/lihd1003" class="nav-link waves-effect waves-light" target="_blank">
+                <i class="icon-github mr-2"></i>GitHub
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="https://github.com/lihd1003/UofT-Course-Material-Repo" class="nav-link waves-effect waves-light" target="_blank">
+                <i class="icon-star mr-2"></i>Star the Repo
+              </a>
+            </li>
+          </ul>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+<section class="hero hero-with-header text-white" data-top-top="transform: translateY(0px);" data-top-bottom="transform: translateY(250px);">
+    <div class="image image-overlay" style="background-image:url(https://lihd1003.github.io/assets/images/black.jpg)"></div>
+    <div class="container">
+      <div class="row align-items-center">
+        <div class="col text-shadow">
+
+          <h1 class="mb-0">calc_intro_corrections</h1>
+        </div>
+      </div>
+    </div>
+ </section>
+ <section class="bg-white sec" id="project">
+  <div tabindex="-1" id="notebook" class="border-box-sizing">
+    <div class="container" id="notebook-container">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Multivariable-Calculus-Review">Multivariable Calculus Review<a class="anchor-link" href="#Multivariable-Calculus-Review">&#182;</a></h2><p>We will be covering some of the most relevant concepts from multivariable calculus for this course, and show how they can be extended to deal with matrices of training data.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Partial-Derivatives">Partial Derivatives<a class="anchor-link" href="#Partial-Derivatives">&#182;</a></h3><p>The derivative of a function of 2 variables $f(x, y)$ w.r.t. either one of its variables is defined as</p>
+$$
+\begin{aligned}
+\frac{\partial}{\partial x} f(x, y) &amp;:= \lim_{h \to 0} \frac{f(x + h, y) - f(x, y)}{h}\\
+\frac{\partial}{\partial y} f(x, y) &amp;:= \lim_{h \to 0} \frac{f(x, y + h) - f(x, y)}{h}
+\end{aligned}
+$$
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>This is a very obvious extension going from the derivative definition for functions of single variables.
+As an example, what is $\frac{\partial}{\partial x} f(x,y)$ where $f(x, y) = x^2 cos(xy)$?</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+$$\frac{\partial}{\partial x} f(x,y) = 2x cos(xy) - x^2 sin(xy)y$$
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<hr>
+<h3 id="Directional-Derivatives">Directional Derivatives<a class="anchor-link" href="#Directional-Derivatives">&#182;</a></h3><p>Before we define the gradient, we discuss the closely related concept of a directional derivative.</p>
+<p>The directional derivative of a function $f(x, y)$ at $(x_0, y_0)$ moving in the direction of a unit vector $u = [a, b]$ is</p>
+$$
+\begin{aligned}
+D_{u} f(x_0, y_0) := \lim_{h \to 0} \frac{f(x_0 + ha, y_0 + hb) - f(x_0, y_0)}{h}
+\end{aligned}
+$$<p>This simply tells us how the scalar output of $f$ will change when we move in an arbitrary direction that is not necesarily axis-aligned. It can be written as</p>
+$$
+\begin{aligned}
+D_{u} f(x, y) = \left[\frac{\partial}{\partial x} f(x, y), \frac{\partial}{\partial y} f(x, y)\right] \cdot u
+\end{aligned}
+$$
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<hr>
+<h3 id="Gradient">Gradient<a class="anchor-link" href="#Gradient">&#182;</a></h3><p>This is perhaps the term you will hear most often in the context of neural networks. The gradient is informally defined as the vector pointing in the direction of steepest increase for a given function. Thus, if we would like to minimize a loss function such as mean squared error (MSE), we move in the opposite direction of the gradient, i.e. in the direction of the negative gradient.</p>
+<p>Now the gradient is simply defined as</p>
+$$
+\begin{aligned}
+\nabla f(x, y) := \left[\frac{\partial}{\partial x} f(x, y), \frac{\partial}{\partial y} f(x, y)\right]
+\end{aligned}
+$$<p>Note that this is a vector-field (vector-valued function), and not a scalar-valued function!</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>What does $\nabla f(x, y)$ have to do with neural networks and minimizing loss functions? Let's see in which direction the directional derivative achieves the highest possible value. Using the gradient notation, we can rewrite the directional derivative as</p>
+$$
+\begin{aligned}
+D_{u} f(x, y) &amp;= \nabla f(x, y) \cdot u\\
+&amp;=|| \nabla f(x, y) ||_{2} \cdot || u ||_{2} \cdot cos (\theta)\\
+&amp;= ||\nabla f(x, y)||_{2} \cdot cos(\theta)
+\end{aligned}
+$$<p>This quantity is maximized when $cos(\theta) = 1$, i.e. $\nabla f(x, y)$ and $u$ are parallel. Therefore, the gradient points in the direction of steepest increase for $f$.</p>
+<p>So if $f$ is a neural network parameterized by some weights $w$, and $x \in R^D$ is some input to it, then taking steps in $\nabla_{w} f_{w}(x)$ will move us in the direction that maximizes the output of $f$. Thus, if $f$ is a binary classification network, say the probability of an image being of a car, then moving in this direction would maximimally increase the probability of $x$ being classified as a car.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><img src="https://csc413-2020.github.io/assets/misc/gradient.png" width="500" height="300" align="center"/></p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<hr>
+<h2 id="Basic-ML-Setup">Basic ML Setup<a class="anchor-link" href="#Basic-ML-Setup">&#182;</a></h2><p>If you recall from CSC411, the basic supervised learning scenarios are regression and classification. Most buzz in computer vision has driven by success on classifcation problems, so we start with that first.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Classification">Classification<a class="anchor-link" href="#Classification">&#182;</a></h3><p>In $K$-class classification, we are given a dataset $\{\mathbf{x}^{(i)}, t^{(i)}\}_{i=1}^{N}$ of $N$ samples where $\mathbf{x}^{(i)} \in R^D$ and $t^{(i)} \in [1, ..., K]$.</p>
+<p>We would like to fit a probabilistic model, in our case a neural network, that maximizes the probability</p>
+$$
+\begin{aligned}
+\prod_{i=1}^{N} p(t^{(i)} | \mathbf{x}^{(i)}, \mathbf{w})
+\end{aligned}
+$$
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>we can vectorize these objects/terms by defining</p>
+$$
+\mathbf{X} = \begin{bmatrix}
+(\mathbf{x}^{(1)})^{\top} \\
+\vdots \\
+(\mathbf{x}^{(N)})^{\top}\end{bmatrix}
+$$$$
+\mathbf{T} = \begin{bmatrix}
+(t^{(1)})^{\top} \\
+\vdots \\
+(t^{(N)})^{\top}
+\end{bmatrix}
+$$<p>where $\mathbf{X}$ is called the design matrix, and has dimensions $(N, D)$, where entry $\mathbf{X}_{ij}$ corresponds to the j-th feature for the i-th training sample. $\mathbf{T}$ is our matrix of labels. The i-th row of $\mathbf{T}$ is the one-hot encoded vector of the label for the i-th sample which is simply a $K$-dimensional vector of all $0$s except for the a single $1$ in the position of the label. If $K=4$, and $t^{(i)} = 2$, the one-hot encoded version is</p>
+$$
+\begin{bmatrix}
+0 \\
+1 \\
+0 \\ 
+0
+\end{bmatrix}
+$$<p>We assume that all vectors are column vectors.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Our goal becomes to maximize the probability</p>
+$$
+\begin{aligned}
+p(\mathbf{t} | \mathbf{X}, \mathbf{w}) &amp;= \prod_{i=1}^{N} p(t^{(i)} | \mathbf{x}^{(i)}, \mathbf{w})\\
+&amp;= \prod_{i=1}^{N} \prod_{k=1}^{K} p(k | \mathbf{x}^{(i)}, \mathbf{w})^{\mathbf{T}_{ik}}
+\end{aligned}
+$$<p>Note that just the term in the innermost product corresponding to the true label of the i-th can be less than 1. Since this expression would lead to numerical underflow given a large enough dataset, we can equivalently maximize a monotonically increasing function of this expression, i.e. take the log</p>
+$$
+\begin{aligned}
+\mathrm{log}\left(\prod_{i=1}^{N} \prod_{k=1}^{K} p(k | \mathbf{x}^{(i)}, \mathbf{w})^{\mathbf{T}_{ik}}\right) &amp;= \sum_{i=1}^{N} \sum_{k=1}^{K} \mathbf{T}_{ik} \mathrm{log} ( p(k | \mathbf{x}^{(i)}, \mathbf{w}) )
+\end{aligned}
+$$<p>If we negate this term, we end up with the most popular loss function for classification known as cross-entropy</p>
+$$
+\begin{aligned}
+L_{CE} = - \sum_{i=1}^{N} \sum_{k=1}^{K} \mathbf{T}_{ik} \mathrm{log} ( p(k | \mathbf{x}^{(i)}, \mathbf{w}) )
+\end{aligned}
+$$<p>Our goal is to <strong>minimize</strong> $L_{CE}$ by moving in the direction $- \nabla_{\mathbf{w}} L_{CE}$.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<hr>
+<h3 id="Linear-Regression">Linear Regression<a class="anchor-link" href="#Linear-Regression">&#182;</a></h3>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h4 id="Multivariate-input.-Univariate-output.-$R^M-\rightarrow-R$">Multivariate input. Univariate output. $R^M \rightarrow R$<a class="anchor-link" href="#Multivariate-input.-Univariate-output.-$R^M-\rightarrow-R$">&#182;</a></h4><h5 id="Forward-pass">Forward pass<a class="anchor-link" href="#Forward-pass">&#182;</a></h5><p>Suppose we have some features $x_1, x_2, \dots, x_M$, and we predict a single scalar $y = w_1x_1 + w_2x_2 + \dotsm + w_Mx_M$. We can write this in matrix notation as a dot product
+$$
+y = \sum_{i=1}^M w_ix_i = \mathbf{w}^T\mathbf{x} \quad\text{ where }\quad\mathbf{w} = \begin{bmatrix}
+w_1 \\ w_2 \\ \vdots \\ w_M
+\end{bmatrix}, \mathbf{x} = \begin{bmatrix}
+x_1 \\ x_2 \\ \vdots \\ x_M
+\end{bmatrix}
+$$
+We say $\mathbf{x} \in R^M$ to indicate that $\mathbf{x}$ is a $M$-dimensional vector.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h5 id="Backward-pass">Backward pass<a class="anchor-link" href="#Backward-pass">&#182;</a></h5><p>Suppose we have a target $t$ and a loss function $L = (y-t)^2$, what is the gradient $\nabla_\mathbf{w} L$?</p>
+<p>Remember the definition of the gradient,
+$$
+\nabla_w L = \begin{bmatrix}
+\frac{\partial L}{\partial w_1} \\
+\frac{\partial L}{\partial w_2} \\
+\vdots \\
+\frac{\partial L}{\partial w_M} \\
+\end{bmatrix}
+$$</p>
+<p>Each element is a partial derivative that can be written out using <em>chain rule</em>.</p>
+$$
+\frac{\partial L}{\partial w_i} = \frac{\partial L}{\partial y} \; \frac{\partial y}{\partial w_i}
+= 2(y-t) \; x_i 
+$$<p>So the gradient is 
+$$
+\nabla_w L = \begin{bmatrix}
+2(y-t) \; x_1 \\
+\vdots \\
+2(y-t) \; x_M \\
+\end{bmatrix} = 2(y-t) \mathbf{x}
+$$</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><strong>Remark.</strong> There are some matrix calculus formulas that are worth remembering. One that we could have used here is</p>
+$$
+\mathbf{w}^T\mathbf{x} \implies \nabla_\mathbf{w} \mathbf{w}^T\mathbf{x} = \mathbf{x}
+$$<p>So the math becomes much easier.
+$$\nabla_\mathbf{w} L = \underbrace{(\nabla_y L )(\nabla_\mathbf{w} y)}_{\text{Chain rule holds for matrix calculus.}} = 2(y - t)\mathbf{x}$$</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<hr>
+<h4 id="Multivariate-input.-Multivariate-output.-$R^D-\rightarrow-R^M$">Multivariate input. <strong>Multivariate output</strong>. $R^D \rightarrow R^M$<a class="anchor-link" href="#Multivariate-input.-Multivariate-output.-$R^D-\rightarrow-R^M$">&#182;</a></h4><h5 id="Forward-pass">Forward pass<a class="anchor-link" href="#Forward-pass">&#182;</a></h5><p>Suppose we have some features $x_1, x_2, \dots, x_D$, and we predict a <strong>vector</strong> $\mathbf{y \in R^M}$ where $y_j = w_{j1}x_1 + w_{j2}x_2 + \dotsm + w_{jD}x_D$. We can write this in matrix notation as a <strong>matrix-vector product</strong>.
+$$
+\mathbf{y} = \begin{bmatrix}
+w_{11}x_1, w_{12}x_2, \dotsm w_{1D}x_D \\
+w_{21}x_1, w_{22}x_2, \dotsm w_{2D}x_D \\
+\vdots \\
+w_{M1}x_1, w_{M2}x_2, \dotsm w_{MD}x_D \\
+\end{bmatrix} =
+\begin{bmatrix}
+w_1^Tx \\
+w_2^Tx \\
+\vdots \\
+w_M^Tx \\
+\end{bmatrix} = \mathbf{W}\mathbf{x} \quad\text{ where }\quad W = 
+\begin{bmatrix}
+w_1^T \\
+w_2^T \\
+\vdots \\
+w_M^T
+\end{bmatrix} = \begin{bmatrix}
+w_{11} &amp; w_{12} &amp; \dots &amp; w_{1D} \\
+w_{21} &amp; w_{22} &amp; \dots &amp; w_{2D} \\
+\vdots \\
+w_{M1} &amp; w_{M2} &amp; \dots &amp; w_{MD}
+\end{bmatrix}
+$$</p>
+<p>We say $\mathbf{W} \in R^{M \times D}$ to indicate that $\mathbf{W}$ is a matrix of dimension $M$ by $D$.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h5 id="Backward-pass">Backward pass<a class="anchor-link" href="#Backward-pass">&#182;</a></h5><p>Suppose we have a target $t$ and a loss function $L = ||y-t||_2^2$, what is the gradient $\nabla_\mathbf{W} L$?</p>
+<p>Remember the definition of the gradient,
+$$
+\nabla_w L = \begin{bmatrix}
+\frac{\partial L}{\partial w_{11}} &amp; \frac{\partial L}{\partial w_{12}} &amp; \dots &amp; \frac{\partial L}{\partial w_{1D}} \\
+\frac{\partial L}{\partial w_{21}} &amp; \frac{\partial L}{\partial w_{22}} &amp; \dots &amp; \frac{\partial L}{\partial w_{2D}} \\
+\vdots \\
+\frac{\partial L}{\partial w_{M1}} &amp; \frac{\partial L}{\partial w_{M2}} &amp; \dots &amp; \frac{\partial L}{\partial w_{MD}} \\
+\end{bmatrix} = \begin{bmatrix}
+\frac{\partial L}{\partial \mathbf{w_1}}^T \\
+\frac{\partial L}{\partial \mathbf{w_2}}^T \\
+\vdots \\
+\frac{\partial L}{\partial \mathbf{w_M}}^T \\
+\end{bmatrix}
+$$</p>
+<p>In this particular case, <em>because $L$ depends on $\mathbf{w_1}$ only through $y_1$</em>, we have</p>
+$$
+\frac{\partial L}{\partial \mathbf{w_k}} = \sum_{j=1}^M \frac{\partial L}{\partial y_j} \; \frac{\partial y_j}{\partial \mathbf{w_k}} = \frac{\partial L}{\partial y_k} \; \frac{\partial y_k}{\partial \mathbf{w_k}} 
+$$<p>(ie. Can show that $\frac{\partial y_j}{\partial \mathbf{w_k}} = 0$ if $j\ne k$.)</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>The two parts:
+$$\frac{\partial L}{\partial y_k} = \frac{\partial}{\partial y_k} \sum_{j=1}^D (y_j-t_j)^2 = 2(y_k - t_k)$$
+$$\frac{\partial y_k}{\partial \mathbf{w_k}} = \frac{\partial}{\partial \mathbf{w_k}} \mathbf{w_k}^T\mathbf{x} = \mathbf{x}$$</p>
+<p>And we finally have</p>
+$$\nabla_w L = \begin{bmatrix}
+\frac{\partial L}{\partial \mathbf{w_1}}^T \\
+\frac{\partial L}{\partial \mathbf{w_2}}^T \\
+\vdots \\
+\frac{\partial L}{\partial \mathbf{w_M}}^T \\
+\end{bmatrix} = \begin{bmatrix}
+2(y_1 - t_1)\mathbf{x}^T \\
+2(y_2 - t_2)\mathbf{x}^T \\
+\vdots \\
+2(y_M - t_M)\mathbf{x}^T \\
+\end{bmatrix} = 2(\mathbf{y} - \mathbf{t})\mathbf{x}^T
+$$
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><strong>Remark.</strong> There are some matrix calculus formulas that are worth remembering. One that we could have used here is</p>
+<p>For any vectors $\mathbf{v} \in R^M, \mathbf{A} \in R^{M \times D}, \mathbf{u} \in R^D$,</p>
+<p>For any vector $\mathbf{v}$,
+$$
+\nabla_\mathbf{A} \mathbf{v}^T\mathbf{A}\mathbf{u} = \mathbf{v}\mathbf{u}^T
+$$</p>
+<p>So the math becomes much easier.
+$$\nabla_\mathbf{W} L = \underbrace{(\nabla_\mathbf{y} L)^T(\nabla_\mathbf{W} \mathbf{y})}_{\text{Chain rule holds for matrix calculus.}} = \nabla_\mathbf{W} (\underbrace{2(\mathbf{y} - \mathbf{t})}_{\text{Evaluate } \nabla_\mathbf{y} L\text{ first.}})^TW\mathbf{x} = 2(\mathbf{y} - \mathbf{t})\mathbf{x}^T$$</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<hr>
+<h3 id="1-Hidden-Layer-Neural-Network">1-Hidden Layer Neural Network<a class="anchor-link" href="#1-Hidden-Layer-Neural-Network">&#182;</a></h3>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Putting it all together, suppose we now have a neural network with a single hidden layer.</p>
+<p><img src="https://csc413-2020.github.io/assets/misc/neural_net.png" width="300" height="100" align="center"/></p>
+<p>No more summation notation. Let's put what we've learned about matrix notation in use.</p>
+$$
+\begin{aligned}
+&amp;(1) \;\; \nabla_\mathbf{w} \mathbf{w}^T\mathbf{x} = \mathbf{x} \\
+&amp;(2) \;\; \nabla_\mathbf{A} \mathbf{v}^T\mathbf{A}\mathbf{u} = \mathbf{v}\mathbf{u}^T
+\end{aligned}
+$$
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><strong>Forward pass.</strong></p>
+$$
+\begin{aligned}
+&amp; \mathbf{z} = \mathbf{W^{(1)}}\mathbf{x} \quad\quad\quad &amp;\text{(Linear transformation)}\\
+&amp; \mathbf{h} = \sigma(\mathbf{z})                         &amp;\text{(Element-wise nonlinear function)}\\
+&amp; \mathbf{y} = \mathbf{W^{(2)}}\mathbf{h}                 &amp;\text{(Linear transformation)}\\
+&amp; L = ||\mathbf{y}-\mathbf{t}||^2                         &amp;\text{(Loss function)}\\
+\end{aligned}
+$$<p><strong>Backward pass.</strong></p>
+$$
+\begin{aligned}
+&amp; \nabla_\mathbf{y} L = 2(\mathbf{y} - \mathbf{t})                 &amp;\text{(Pass gradient through loss function)}\\
+&amp; \nabla_\mathbf{h} L = ((\nabla_\mathbf{y} L)^T\mathbf{W^{(2)}})^T                 &amp;\text{(Pass gradient through linear function; uses (1))}\\
+&amp; \nabla_\mathbf{W^{(2)}} L = (\nabla_\mathbf{y} L)\mathbf{h}^T                 &amp;\text{(Pass gradient to } \mathbf{W^{(2)}} \text{ ; uses (3))}\\
+&amp; \nabla_\mathbf{z} L = (\nabla_\mathbf{h} L) \circ \sigma'(\mathbf{z})                         &amp;\text{(Pass gradient through nonlinearity)} \\
+&amp; \nabla_\mathbf{W^{(1)}} L = (\nabla_\mathbf{z} L)\mathbf{x}^T                 &amp;\text{(Pass gradient to }\mathbf{W^{(1)}} \text{ ; uses (3))}\\
+\end{aligned}
+$$
+</div>
+</div>
+</div>
+    </div>
+  </div>
+</section>
+  <script src="https://lihd1003.github.io/assets/js/vendor.js"></script>
+  <script src="https://lihd1003.github.io/assets/js/app.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script>
+    $("table").addClass("table table-lined")
+  </script>
+</body>
+
+ 
+
+
+</html>
