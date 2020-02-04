@@ -1,0 +1,500 @@
+<!DOCTYPE html>
+<html>
+<head><meta charset="utf-8" />
+
+<title>Spacings - Notes Portal</title>
+
+<link rel="icon" type="image/gif" href="https://lihd1003.github.io/assets/images/logo.png">
+<link rel="stylesheet" href="https://lihd1003.github.io/assets/css/vendor.css" />
+<link rel="stylesheet" href="https://lihd1003.github.io/assets/css/style.css" />
+<link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
+<script src="https://kit.fontawesome.com/98fa07784c.js"></script>
+
+
+
+<style type="text/css">
+/* Overrides of notebook CSS for static HTML export */
+
+div#notebook {
+  overflow: visible;
+  border-top: none;
+}@media print {
+  div.cell {
+    display: block;
+    page-break-inside: avoid;
+  } 
+  div.output_wrapper { 
+    display: block;
+    page-break-inside: avoid; 
+  }
+  div.output { 
+    display: block;
+    page-break-inside: avoid; 
+  }
+}
+</style>
+
+<!-- Custom stylesheet, it must be in the same directory as the html file -->
+<link rel="stylesheet" href="https://lihd1003.github.io/UofT-Course-Material-Repo/index/custom.css">
+
+<!-- Loading mathjax macro -->
+<!-- Load mathjax -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS_HTML"></script>
+    <!-- MathJax configuration -->
+    <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+            displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+            processEscapes: true,
+            processEnvironments: true
+        },
+        // Center justify equations in code and markdown cells. Elsewhere
+        // we use CSS to left justify single line equations in code cells.
+        displayAlign: 'center',
+        "HTML-CSS": {
+            styles: {'.MathJax_Display': {"margin": 0}},
+            linebreaks: { automatic: true }
+        }
+    });
+    </script>
+    <!-- End of mathjax configuration --></head>
+<body>
+	<!-- header -->
+   <header class="header-sticky header-dark">
+    <div class="container">
+      <nav class="navbar navbar-expand-lg navbar-dark">
+        <a class="navbar-brand" href="./index.html">
+          <img class="navbar-logo navbar-logo-light" src="https://lihd1003.github.io/assets/images/logo.png" alt="Logo">
+          <img class="navbar-logo navbar-logo-dark" src="https://lihd1003.github.io/assets/images/logo.png" alt="Logo">
+        </a>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav align-items-center mr-auto">
+          </ul>
+
+          <ul class="navbar-nav align-items-center mr-0">
+            <li class="nav-item">
+              <a href="https://github.com/lihd1003" class="nav-link waves-effect waves-light" target="_blank">
+                <i class="icon-github mr-2"></i>GitHub
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="https://github.com/lihd1003/UofT-Course-Material-Repo" class="nav-link waves-effect waves-light" target="_blank">
+                <i class="icon-star mr-2"></i>Star the Repo
+              </a>
+            </li>
+          </ul>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+<section class="hero hero-with-header text-white" data-top-top="transform: translateY(0px);" data-top-bottom="transform: translateY(250px);">
+    <div class="image image-overlay" style="background-image:url(https://lihd1003.github.io/assets/images/black.jpg)"></div>
+    <div class="container">
+      <div class="row align-items-center">
+        <div class="col text-shadow">
+
+          <h1 class="mb-0">Spacings</h1>
+        </div>
+      </div>
+    </div>
+ </section>
+ <section class="bg-white sec" id="project">
+  <div tabindex="-1" id="notebook" class="border-box-sizing">
+    <div class="container" id="notebook-container">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Spacings">Spacings<a class="anchor-link" href="#Spacings">&#182;</a></h2><p>Given the order statistics $X_{(1)}\leq ... \leq X_{(n)}$, define $(n-1)$ spacings (first order spacings) by 
+$$D_k = X_{(k+1)}-X_{(k)}, k=1,...,n-1$$
+Intuitively, the spacings should carry some information about the pdf $f$.</p>
+<p>Note that if $\tau \approx \frac{k+1}{n}\approx \frac{k}{n}$ then $X_{(k+1)}$ and $X_{(k)}$ estimate $F^{-1}(\tau)$.<br>
+If $f(F^{-1}(\tau))$ is large then $D_k$ is small, conversely, $f(F^{-1}(\tau))$ is small then $D_k$ is large.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h4 id="Exponential-Spacings">Exponential Spacings<a class="anchor-link" href="#Exponential-Spacings">&#182;</a></h4><p>$X_1,...,X_n\sim Exp(\lambda)$ iid. 
+$$f(x;\lambda) = \lambda \exp(-\lambda x)\mathbb I(x\geq 0)$$
+Given the order statistics $X_{(1)}\leq ...\leq X_{(n)}$ define 
+\begin{align*}
+Y_1 &amp;= nX_{(1)}\\
+Y_2 &amp;= (n-1)(X_{(2)}-X_{(1)}) = (n-1)D_1\\
+Y_2 &amp;= (n-2)(X_{(3)}-X_{(2)}) = (n-2)D_2\\
+\vdots\\
+Y_n &amp;= X_{(n)} - X_{(n-1)} = D_{n-1}
+\end{align*}</p>
+<p><strong>Proposition</strong> $Y_1,...,Y_n$ are iid $\sim Exp(\lambda)$</p>
+<p><em>proof</em>. Note that the join pdf of $(X_{(1)}, ..., X_{(n)})$ if 
+$$f(x_1,...,x_n) = n!\lambda^n\exp(-\lambda \sum^n x_i)\mathbb I(0\leq x_1&lt;x_2&lt;...&lt;x_n)$$
+Also, note that 
+\begin{align*}
+X_{(1)} &amp;= Y_1/n \\
+X_{(k)} &amp;= \frac{Y_1}{n} + ... + \frac{Y_k}{n-k+1}, k = 2,...,n
+\end{align*}
+Therefore, 
+$$g(y_1,...,y_n) = f\big(\frac{y_1}n, ..., \frac{y_1}{n} + \frac{y_2}{n-1} + ... + y_n\big)|J(y_1,...,y_n)|$$
+Note that $|J|$ is the absolute determinant of the matrix 
+$$\begin{bmatrix}
+1/n&amp;0&amp;0&amp;...&amp;0\\
+1/n&amp;\frac 1{n-1}&amp;0&amp;...&amp;0\\
+\vdots &amp;\vdots &amp;\ddots &amp;...&amp;\vdots\\
+1/n&amp;\frac{1}{n-1}&amp;\frac 1{n-2}&amp;...&amp;1
+\end{bmatrix}$$
+which is $\frac{1}{n!}$
+$$g(y_1,...,y_n)=n!\lambda^n\exp(-\lambda \sum^n x_i) \frac 1{n!} = \lambda^n\exp(-\lambda \sum^n x_i)\mathbb I(y_1,...,y_n\geq 0)$$</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><strong>Proposition</strong> If $\frac{k_n}n\rightarrow\tau\in (0,1)$ and $f(F^{-1}(\tau)) &gt; 0$, then 
+$$nD_{k_n}\rightarrow^d Exp(f(F^{-1}(\tau)))$$
+i.e. 
+$$P(D_{k_n}\leq x )\approx 1 - \exp(-nf(F^{-1}(\tau))x), x\geq 0$$</p>
+<p><em>proof</em>. Note that 
+$$X_{(k_n+1)}=^d F^{-1}\big(\frac{E_1+...+E_{k_n+1}}{E_1+...+E_{n+1}}\big), X_{(k_n)}=^d F^{-1}\big(\frac{E_1+...+E_{k_n}}{E_1+...+E_{n+1}}\big)$$
+where $E_i \sim Exp(1)$<br>
+so that 
+\begin{align*}
+nD_{k_n} &amp;= ^d n\bigg(F^{-1}\big(\frac{E_1+...+E_{k_n+1}}{E_1+...+E_{n+1}} - F^{-1}\big(\frac{E_1+...+E_{k_n}}{E_1+...+E_{n+1}}\big)\big)\bigg)\\
+&amp;\approx \frac{1}{f(F^{-1}(\tau))}\bigg(\frac{nE_{k_n+1}}{E_1+...+E_{n+1}}\bigg)\\
+&amp;= \frac{1}{f(F^{-1}(\tau))}\bigg(\frac{E_{k_n+1}}{(E_1+...+E_{n+1})/n}\bigg)\\
+&amp;\rightarrow^p \frac{E_{k_n+1}}{f(F^{-1}(\tau))} &amp;\text{WLLN, }\frac{E_1+...+E_{n+1}}n\rightarrow^p 1\\
+&amp;\sim Exp(f(F^{-1}(\tau)))
+\end{align*}</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Example:-density-estimation-using-spacings">Example: density estimation using spacings<a class="anchor-link" href="#Example:-density-estimation-using-spacings">&#182;</a></h3><p>Consider $D_1,...,D_{n-1}$ are iid. exponential with $E(nD_k) = \exp(g(V_k))$ where $V_k = \frac{X_{(k+1)} + X_{(k)}}{2}$, then $V_k\approx F^{-1}(\tau), \tau\approx \frac kn\approx \frac{k+1}n$ and the density is $f(x)=\exp(-g(x))$</p>
+<p>Using $B-spline$ functions, we can estimate the function $g(x)$
+$$g(x)=\beta_0 + \sum_{i=1}^p \beta_j \psi_j(x)$$
+where $\beta_i$'s are unknown parameters and $\psi_j$'s are B-spline functions.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[2]:</div>
+<div class="inner_cell">
+    <div class="input_area border">
+<div class=" highlight hl-r"><pre><span></span><span class="c1"># create the splines functions</span>
+<span class="n">den.splines</span> <span class="o">&lt;-</span> <span class="nf">function</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">p</span><span class="o">=</span><span class="m">5</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nf">library</span><span class="p">(</span><span class="n">splines</span><span class="p">)</span>
+    <span class="n">n</span> <span class="o">&lt;-</span> <span class="nf">length</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+    <span class="n">x</span> <span class="o">&lt;-</span> <span class="nf">sort</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+    <span class="n">x1</span> <span class="o">&lt;-</span> <span class="nf">c</span><span class="p">(</span><span class="kc">NA</span><span class="p">,</span><span class="n">x</span><span class="p">)</span>
+    <span class="n">x2</span> <span class="o">&lt;-</span> <span class="nf">c</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="kc">NA</span><span class="p">)</span>
+    <span class="n">sp</span> <span class="o">&lt;-</span> <span class="p">(</span><span class="n">x2</span><span class="o">-</span><span class="n">x1</span><span class="p">)</span><span class="n">[2</span><span class="o">:</span><span class="n">n]</span>
+    <span class="n">mid</span> <span class="o">&lt;-</span> <span class="m">0.5</span><span class="o">*</span><span class="p">(</span><span class="n">x1</span><span class="o">+</span><span class="n">x2</span><span class="p">)</span><span class="n">[2</span><span class="o">:</span><span class="n">n]</span>
+    <span class="n">y</span> <span class="o">&lt;-</span> <span class="n">n</span><span class="o">*</span><span class="n">sp</span>
+    <span class="n">xx</span> <span class="o">&lt;-</span> <span class="nf">bs</span><span class="p">(</span><span class="n">mid</span><span class="p">,</span><span class="n">df</span><span class="o">=</span><span class="n">p</span><span class="p">)</span>
+    <span class="n">r</span> <span class="o">&lt;-</span> <span class="nf">glm</span><span class="p">(</span><span class="n">y</span><span class="o">~</span><span class="n">xx</span><span class="p">,</span><span class="n">family</span><span class="o">=</span><span class="nf">quasi</span><span class="p">(</span><span class="n">link</span><span class="o">=</span><span class="s">&quot;log&quot;</span><span class="p">,</span><span class="n">variance</span><span class="o">=</span><span class="s">&quot;mu^2&quot;</span><span class="p">))</span>
+    <span class="n">density</span> <span class="o">&lt;-</span> <span class="nf">exp</span><span class="p">(</span><span class="o">-</span><span class="n">r</span><span class="o">$</span><span class="n">linear.predictors</span><span class="p">)</span>
+    <span class="n">r</span> <span class="o">&lt;-</span> <span class="nf">list</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">mid</span><span class="p">,</span><span class="n">density</span><span class="o">=</span><span class="n">density</span><span class="p">)</span>
+    <span class="n">r</span>
+<span class="p">}</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Consider sampling from GMM model
+$$0.7N(2,1) + 0.3N(-2, 1)$$</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[12]:</div>
+<div class="inner_cell">
+    <div class="input_area border">
+<div class=" highlight hl-r"><pre><span></span><span class="c1"># randomly sample 500 points from given GMM</span>
+<span class="n">x</span> <span class="o">&lt;-</span> <span class="nf">ifelse</span><span class="p">(</span><span class="nf">runif</span><span class="p">(</span><span class="m">500</span><span class="p">)</span> <span class="o">&lt;</span> <span class="m">.7</span><span class="p">,</span> <span class="nf">rnorm</span><span class="p">(</span><span class="m">500</span><span class="p">,</span> <span class="m">2</span><span class="p">,</span> <span class="m">1</span><span class="p">),</span> <span class="nf">rnorm</span><span class="p">(</span><span class="m">500</span><span class="p">,</span> <span class="m">-2</span><span class="p">,</span> <span class="m">1</span><span class="p">))</span>
+<span class="c1"># estimate density using p = 8</span>
+<span class="n">r</span> <span class="o">&lt;-</span> <span class="nf">den.splines</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">p</span><span class="o">=</span><span class="m">8</span><span class="p">)</span>
+<span class="c1"># estimation</span>
+<span class="nf">plot</span><span class="p">(</span><span class="n">r</span><span class="o">$</span><span class="n">x</span><span class="p">,</span><span class="n">r</span><span class="o">$</span><span class="n">density</span><span class="p">,</span><span class="n">type</span><span class="o">=</span><span class="s">&quot;l&quot;</span><span class="p">,</span><span class="n">xlab</span><span class="o">=</span><span class="s">&quot;x&quot;</span><span class="p">,</span><span class="n">ylab</span><span class="o">=</span><span class="s">&quot;density&quot;</span><span class="p">,</span><span class="n">lwd</span><span class="o">=</span><span class="m">4</span><span class="p">,</span><span class="n">col</span><span class="o">=</span><span class="s">&quot;red&quot;</span><span class="p">)</span>
+<span class="c1"># actual</span>
+<span class="nf">lines</span><span class="p">(</span><span class="n">r</span><span class="o">$</span><span class="n">x</span><span class="p">,</span><span class="m">0.3</span><span class="o">*</span><span class="nf">dnorm</span><span class="p">(</span><span class="n">r</span><span class="o">$</span><span class="n">x</span><span class="p">,</span><span class="m">-2</span><span class="p">,</span><span class="m">1</span><span class="p">)</span><span class="m">+0.7</span><span class="o">*</span><span class="nf">dnorm</span><span class="p">(</span><span class="n">r</span><span class="o">$</span><span class="n">x</span><span class="p">,</span><span class="m">2</span><span class="p">,</span><span class="m">1</span><span class="p">),</span><span class="n">lwd</span><span class="o">=</span><span class="m">2</span><span class="p">,</span><span class="n">lty</span><span class="o">=</span><span class="m">2</span><span class="p">)</span>
+<span class="nf">legend</span><span class="p">(</span><span class="s">&quot;topleft&quot;</span><span class="p">,</span> <span class="nf">c</span><span class="p">(</span><span class="s">&quot;estimation&quot;</span><span class="p">,</span> <span class="s">&quot;actual GMM&quot;</span><span class="p">),</span> <span class="n">fill</span><span class="o">=</span><span class="nf">c</span><span class="p">(</span><span class="s">&quot;red&quot;</span><span class="p">,</span> <span class="s">&quot;black&quot;</span><span class="p">))</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+
+
+<div class="output_png output_subarea ">
+<img src="data:image/png;base64,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"
+width=420
+height=420
+>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Hazard-Functions">Hazard Functions<a class="anchor-link" href="#Hazard-Functions">&#182;</a></h2><p>For $X$ is a positive continuous rv, its hazard function is 
+$$h(x) = \frac{f(x)}{1-F(x)}$$</p>
+<p>The motivation behind is to consider $X$ as the survival time, consider 
+\begin{align*}
+\delta^{-1}P(x&lt;X&lt;x+\delta\mid X&gt;x) &amp;= \delta^{-1}\frac{P(x&lt;X\leq x+\delta)}{P(X&gt;x)}\\
+&amp;= \delta^{-1}\frac{F(x+\delta) - F(x)}{1-F(x)}\\
+&amp;\rightarrow_{\delta\rightarrow 0} \frac{f(x)}{1-F(x)} =:h(x)
+\end{align*}
+Therefore, this represents instantaneous death rate given survival to time $x$.</p>
+<p>Also, note that 
+$$h(x) = \frac{f(x)}{1-F(x)} = -\frac{d}{dx}\ln(1-F(x))$$
+Therefore, 
+$$F(x) = 1 - \exp(-\int_0^x h(t)dt), f(x) = h(x)\exp(-\int_0^x h(t)dt)$$</p>
+<p>In this case, we require $\int_0^\infty h(x)dx = \infty$ so that to have a "proper" probability distribution.</p>
+<p>The shape of the hazard function gives info not immediately apparent in $f$ or $F$. 
+$h(x)$ increasing indicates new better than used, decreasing indicates used better than new</p>
+
+</div>
+</div>
+</div>
+    </div>
+  </div>
+</section>
+  <script src="https://lihd1003.github.io/assets/js/vendor.js"></script>
+  <script src="https://lihd1003.github.io/assets/js/app.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script>
+    $("table").addClass("table table-lined")
+  </script>
+</body>
+
+ 
+
+
+</html>
