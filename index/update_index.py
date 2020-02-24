@@ -12,10 +12,10 @@ ENTRY_HTML = """
             <div class="row align-items-center justify-content-between">
               <div class="col-10">
                 <div class="media align-items-center">
-                  <h4><i class="icon-{icon} mr-2"></i></h4>
+                  <h4><i class="icon-{icon} mr-2 type"></i></h4>
                   <div class="media-body">
-                    <h6 class="mb-0 dentry-name">{name}</h6>
-                    <span class="text-muted">{mtime}</span>
+                    <h6 class="mb-0 dentry-name name">{name}</h6>
+                    <span class="text-muted mtime">{mtime}</span>
                   </div>
                 </div>
               </div>

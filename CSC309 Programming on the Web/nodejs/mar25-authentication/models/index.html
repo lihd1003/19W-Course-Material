@@ -56,9 +56,18 @@
 </div>
 </div>
 </section>
-<section class="component">
+<section class="component my-0" style="padding-top: 2em">
 <div class="container">
-<div class="row" id="dentry">
+<div class="row" id="doclist">
+<div class="col-md-4">
+<input class="form-control form-control-sm search" placeholder="Search Name" type="text"/>
+</div>
+<div class="col-md-8">
+<button class="btn btn-secondary btn-sm sort" data-sort="name">Sort by name</button>
+<button class="btn btn-secondary btn-sm sort" data-sort="type">Sort by type</button>
+<button class="btn btn-secondary btn-sm sort" data-sort="mtime">Sort by Modification Time</button>
+</div>
+<div class="list row my-2" id="dentry">
 
 <div class="col-lg-4 ol-md-6 mb-2">
 <a class="text-dark" href="./student.js">
@@ -66,10 +75,10 @@
 <div class="row align-items-center justify-content-between">
 <div class="col-10">
 <div class="media align-items-center">
-<h4><i class="icon-code mr-2"></i></h4>
+<h4><i class="icon-code mr-2 type"></i></h4>
 <div class="media-body">
-<h6 class="mb-0 dentry-name">student.js</h6>
-<span class="text-muted">09:05:07 01/06/20</span>
+<h6 class="mb-0 dentry-name name">student.js</h6>
+<span class="text-muted mtime">09:05:07 01/06/20</span>
 </div>
 </div>
 </div>
@@ -84,10 +93,10 @@
 <div class="row align-items-center justify-content-between">
 <div class="col-10">
 <div class="media align-items-center">
-<h4><i class="icon-code mr-2"></i></h4>
+<h4><i class="icon-code mr-2 type"></i></h4>
 <div class="media-body">
-<h6 class="mb-0 dentry-name">user.js</h6>
-<span class="text-muted">09:05:07 01/06/20</span>
+<h6 class="mb-0 dentry-name name">user.js</h6>
+<span class="text-muted mtime">09:05:07 01/06/20</span>
 </div>
 </div>
 </div>
@@ -97,15 +106,18 @@
 </div>
 </div>
 </div>
+</div>
 </section>
 <script src="https://lihd1003.github.io/assets/js/vendor.js"></script>
 <script src="https://lihd1003.github.io/assets/js/app.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script crossorigin="anonymous" integrity="sha256-YqOIp4MygNx9/lcWr5lpcR88Ki/MNMWvJJkH0eK+fHM=" src="https://cdnjs.cloudflare.com/ajax/libs/list.js/1.5.0/list.min.js"></script>
 <script>
     const switch_sec = (id) => {
       $(".sec").hide()
       $("#" + id).fadeIn("slow")
     }
+    const doclist = new List("doclist", {valueNames: ['name', 'mtime', 'type']})
   </script>
 </body>
 </html>

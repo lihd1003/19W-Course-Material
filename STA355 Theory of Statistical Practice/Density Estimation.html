@@ -1,0 +1,715 @@
+<!DOCTYPE html>
+<html>
+<head><meta charset="utf-8" />
+
+<title>Density Estimation - Notes Portal</title>
+
+<link rel="icon" type="image/gif" href="https://lihd1003.github.io/assets/images/logo.png">
+<link rel="stylesheet" href="https://lihd1003.github.io/assets/css/vendor.css" />
+<link rel="stylesheet" href="https://lihd1003.github.io/assets/css/style.css" />
+<link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
+<script src="https://kit.fontawesome.com/98fa07784c.js"></script>
+
+
+
+<style type="text/css">
+/* Overrides of notebook CSS for static HTML export */
+
+div#notebook {
+  overflow: visible;
+  border-top: none;
+}@media print {
+  div.cell {
+    display: block;
+    page-break-inside: avoid;
+  } 
+  div.output_wrapper { 
+    display: block;
+    page-break-inside: avoid; 
+  }
+  div.output { 
+    display: block;
+    page-break-inside: avoid; 
+  }
+}
+</style>
+
+<!-- Custom stylesheet, it must be in the same directory as the html file -->
+<link rel="stylesheet" href="https://lihd1003.github.io/UofT-Course-Material-Repo/index/custom.css">
+
+<!-- Loading mathjax macro -->
+<!-- Load mathjax -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS_HTML"></script>
+    <!-- MathJax configuration -->
+    <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+            displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+            processEscapes: true,
+            processEnvironments: true
+        },
+        // Center justify equations in code and markdown cells. Elsewhere
+        // we use CSS to left justify single line equations in code cells.
+        displayAlign: 'center',
+        "HTML-CSS": {
+            styles: {'.MathJax_Display': {"margin": 0}},
+            linebreaks: { automatic: true }
+        }
+    });
+    </script>
+    <!-- End of mathjax configuration --></head>
+<body>
+	<!-- header -->
+   <header class="header-sticky header-dark">
+    <div class="container">
+      <nav class="navbar navbar-expand-lg navbar-dark">
+        <a class="navbar-brand" href="./index.html">
+          <img class="navbar-logo navbar-logo-light" src="https://lihd1003.github.io/assets/images/logo.png" alt="Logo">
+          <img class="navbar-logo navbar-logo-dark" src="https://lihd1003.github.io/assets/images/logo.png" alt="Logo">
+        </a>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav align-items-center mr-auto">
+          </ul>
+
+          <ul class="navbar-nav align-items-center mr-0">
+            <li class="nav-item">
+              <a href="https://github.com/lihd1003" class="nav-link waves-effect waves-light" target="_blank">
+                <i class="icon-github mr-2"></i>GitHub
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="https://github.com/lihd1003/UofT-Course-Material-Repo" class="nav-link waves-effect waves-light" target="_blank">
+                <i class="icon-star mr-2"></i>Star the Repo
+              </a>
+            </li>
+          </ul>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+<section class="hero hero-with-header text-white" data-top-top="transform: translateY(0px);" data-top-bottom="transform: translateY(250px);">
+    <div class="image image-overlay" style="background-image:url(https://lihd1003.github.io/assets/images/black.jpg)"></div>
+    <div class="container">
+      <div class="row align-items-center">
+        <div class="col text-shadow">
+
+          <h1 class="mb-0">Density Estimation</h1>
+        </div>
+      </div>
+    </div>
+ </section>
+ <section class="bg-white sec" id="project">
+  <div tabindex="-1" id="notebook" class="border-box-sizing">
+    <div class="container" id="notebook-container">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Histograms">Histograms<a class="anchor-link" href="#Histograms">&#182;</a></h2><p>Given data $x_1,...,x_n$ and "bins" $B_k = [u_{k-1}, u_k), k=1,...,m$, then 
+$$hist(x)=\frac{1}{n(u_k-u_{k-1})}\sum^n \mathbb I(x_i \in B_k)$$
+Note that $hist$ is a pdf since $hist(x)\geq 0$ and 
+\begin{align*}
+\int_{-\infty}^\infty hist(x)dx &amp;= \sum^m \int_{B_k} hist(x)dx\\
+&amp;= n^{-1}\sum^n_{i=1}\sum_{k=1}^m \mathbb I(x_i \in B_k) \int_{B_k} \frac{1}{u_k - u_{k-1}}dx \\
+&amp;= 1
+\end{align*}
+Histogram depends on number of bins and boundaries of the bins.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Substitution-principle-estimation">Substitution principle estimation<a class="anchor-link" href="#Substitution-principle-estimation">&#182;</a></h2><p>Consider the empirical distribution function 
+$$\hat F(x) = \frac{1}{n}\sum_{i=1}^n \mathbb I(X_i \leq x)$$
+However, we cannot derive any $f$ since this is not differentiable.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Kernel-Density-estimation">Kernel Density estimation<a class="anchor-link" href="#Kernel-Density-estimation">&#182;</a></h3><p>Start with a density function $w(x)$, i.e. a <strong>kernel</strong></p>
+<p>Given $w$ and a <strong>bandwidth</strong> $h$, define the kernel density estimator 
+$$\hat f_h (x) = \frac{1}{nh}\sum^n w(\frac{x-xX_i}{h})$$
+bandwidth controls the amount of smoothing, as $h$ increases, the estimator $\hat f_h(x)$ becomes smoother.</p>
+<p>Some examples of kernels are</p>
+<ul>
+<li>Gaussian kernel $w(x) = \sqrt{2\pi}^{-1}\exp(\frac{-x^2}{2})$</li>
+<li>Epanechinkov kernel $w(x) = \frac{3}{4\sqrt 5}(1-\frac{x^2}{5}), |x|\leq \sqrt 5$</li>
+<li>Rectangular $w(x) = \frac{1}{2\sqrt{3}}, |x| \leq \sqrt 3$</li>
+<li>Triangular $w(x) = \frac{1}{\sqrt 6}(1-\frac{|x|}{\sqrt 6}), |x|\leq \sqrt 6$</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Example">Example<a class="anchor-link" href="#Example">&#182;</a></h2><p>Draw 500 observations from 
+$$f(x) = \begin{cases}
+\sqrt{2\pi}^{-1}\exp(\frac{-(x-2)^2}{2})&amp;k\leq 0.7 \\
+\sqrt{2\pi}^{-1}\exp(\frac{-(x+2)^2}{2})&amp;k &gt; 0.7
+\end{cases}$$</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[22]:</div>
+<div class="inner_cell">
+    <div class="input_area border">
+<div class=" highlight hl-r"><pre><span></span><span class="n">N</span> <span class="o">&lt;-</span> <span class="m">500</span>
+<span class="n">components</span> <span class="o">&lt;-</span> <span class="nf">sample</span><span class="p">(</span><span class="m">1</span><span class="o">:</span><span class="m">2</span><span class="p">,</span><span class="n">prob</span><span class="o">=</span><span class="nf">c</span><span class="p">(</span><span class="m">.7</span><span class="p">,</span> <span class="m">.3</span><span class="p">),</span><span class="n">size</span><span class="o">=</span><span class="n">N</span><span class="p">,</span><span class="n">replace</span><span class="o">=</span><span class="kc">TRUE</span><span class="p">)</span>
+<span class="n">mus</span> <span class="o">&lt;-</span> <span class="nf">c</span><span class="p">(</span><span class="m">2</span><span class="p">,</span> <span class="m">-2</span><span class="p">)</span>
+
+<span class="n">x</span> <span class="o">&lt;-</span> <span class="nf">rnorm</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="n">N</span><span class="p">,</span><span class="n">mean</span><span class="o">=</span><span class="n">mus[components]</span><span class="p">,</span><span class="n">sd</span><span class="o">=</span><span class="m">1</span><span class="p">)</span>
+<span class="nf">par</span><span class="p">(</span><span class="n">mfrow</span><span class="o">=</span><span class="nf">c</span><span class="p">(</span><span class="m">2</span><span class="p">,</span> <span class="m">2</span><span class="p">))</span>
+<span class="m">.5387</span> <span class="o">-</span> <span class="nf">plot</span><span class="p">(</span><span class="nf">density</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>
+<span class="m">.8</span> <span class="o">-</span> <span class="nf">plot</span><span class="p">(</span><span class="nf">density</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">bw</span><span class="o">=</span><span class="m">.8</span><span class="p">))</span>
+<span class="m">.4</span> <span class="o">-</span> <span class="nf">plot</span><span class="p">(</span><span class="nf">density</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">bw</span><span class="o">=</span><span class="m">.4</span><span class="p">))</span>
+<span class="m">.2</span> <span class="o">-</span> <span class="nf">plot</span><span class="p">(</span><span class="nf">density</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">bw</span><span class="o">=</span><span class="m">.2</span><span class="p">))</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+
+<div class="output_html rendered_html output_subarea ">
+
+</div>
+
+</div>
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+
+<div class="output_html rendered_html output_subarea ">
+
+</div>
+
+</div>
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+
+<div class="output_html rendered_html output_subarea ">
+
+</div>
+
+</div>
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+
+<div class="output_html rendered_html output_subarea ">
+
+</div>
+
+</div>
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+
+
+<div class="output_png output_subarea ">
+<img src="data:image/png;base64,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"
+width=420
+height=420
+>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h4 id="Redistribution">Redistribution<a class="anchor-link" href="#Redistribution">&#182;</a></h4><p>The empirical distribution function $\hat F$ puts probability mass $1/n$ at each of the points $X_1,...,X_n$, use the kernel with bandwidth $h$ to redistribute this mass around each $X_i$, probability density around $X_i = \frac{1}{nh}w(\frac{x-X_i}{h})$ where 
+$$\int_{-\infty}^\infty \frac{1}{nh}w(\frac{x-X_i}{h})dx = \frac{1}{n}\int_{-\infty}^\infty w(t)dt = \frac{1}{n}$$
+The density estimate is now simply the sum of these densities over all observations 
+$$\hat f_h(x) = \frac{1}{nh}\sum_{i=1}^n w(\frac{x-X_i}{h})$$</p>
+<h4 id="Convolution">Convolution<a class="anchor-link" href="#Convolution">&#182;</a></h4><p>Look at the distribution of $Y_h = U+hV$ where $U\sim \hat F$ and $V$ has density $w$ with $V,U$ independent. If $h$ is small then $Y_h \approx U \sim \hat F$.</p>
+<p>Unlike $U, Y_h$ is a continuous r.v. for each $h&gt;0$: 
+\begin{align*}
+P(Y_h\leq x) &amp;= \sum_{i=1}^n P(U+hV\leq x \mid U = X_i)\underset{=1/n}{P(U=X_i)}\\
+&amp;= \frac{1}{n}\sum_{i=1}^n P(hV\leq x-X_i) &amp;U,V\text{ indep.}\\
+&amp;= \frac{1}{n}\sum_{i=1}^n P(V\leq \frac{x-X_i}{h})
+\end{align*}</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Choice-of-bandwidth">Choice of bandwidth<a class="anchor-link" href="#Choice-of-bandwidth">&#182;</a></h2><p>The choice of $h$ depends on what we believe the underlying density looks like, if $f$ is believed to be smooth, then take larger $h$. If $f$ is believed to have a number of modes (i.e. local maxima) then we should take smaller $h$.</p>
+<p>Consider the bias-variance decomposition<br>
+$$MSE(\hat{f_h}(x)) = E[(\hat{f_h}(x) - f(x))^2] = var(\hat{f_h}(x)) + \bigg[E[\hat{f_h}(x)] - f(x)\bigg]$$
+As $h$ decreases, the squared bias term also decrease but the variance increases.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Example:-The-rectangular-kernel">Example: The rectangular kernel<a class="anchor-link" href="#Example:-The-rectangular-kernel">&#182;</a></h3><p>Take $w(x) = 1/2$ for $|x|\leq 1$. Then, 
+$$\hat{f_h}(x) = \frac{1}{2nh}\sum_{i=1}^n \mathbb I(x-h\leq X_i \leq x+h)$$
+The mean of $\hat{f_h}(x)$ is 
+$$E[\hat{f_h}(x)] = \frac{F(x+h) - F(x-h)}{2h}\approx f(x) + \frac{h^2}6 f''(x)$$
+the squared bias is 
+$$\big[E[\hat{f_h}(x)]-f(x)\big]^2 \approx \frac{h^4}{36}[f''(x)]^2$$
+For the variance, 
+$$var[\hat{f_h}(x)] = \frac{1}{4h^2n}var[\mathbb I(x-h\leq X_i \leq x+h)]$$
+Thus, we can approximate the variance by 
+$$var[\hat{f_h}(x)]\approx \frac{f(x)}{2hn}$$
+The MSE is approximately
+$$MSE[\hat{f_h}(x)]\approx \frac{f(x)}{2hn} + \frac{h^4}{36}[f''(x)]^2$$</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Uncertainty-Estimating">Uncertainty Estimating<a class="anchor-link" href="#Uncertainty-Estimating">&#182;</a></h2><p>Let $(X_1,..., X_n)\sim F_\theta$ for some $\theta \in \Theta \subset R$, want to estimate $\theta$ using $X_1,...,X_n$.</p>
+<p>Let $\hat\theta$ be the estimator of the true $\theta$, but we don't know what $\theta$ is, so how can we say about the estimation error?</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Example">Example<a class="anchor-link" href="#Example">&#182;</a></h3><p>Let $X_1,...,X_n$ indep. $N(\mu, \sigma^2)$ random variables. Estimate $\mu = E(X_i)$ by $\hat\mu = \bar X$ (substitution principle estimator).</p>
+<p>We know that $\hat\mu \sim N(\mu, \sigma^2/n)$. Then 
+$$P(|\hat\mu - \mu|\leq 1.96\frac{\sigma}{\sqrt n}) = 0.95$$
+In this example, knowing the distribution of $\hat\mu$ tells us a lot about the uncertainty of $\hat\mu$ of an estimator of $\mu$.<br>
+If $\sigma^2$ is unknown then we can estimate 
+$$S^2 = \frac 1{n-1} \sum^n (X_i - \bar X)^2$$
+and replace 1.96 by some $t$.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><strong>Sampling distribution</strong> of $\hat\theta$ is its probability distribution; this will depend on $\theta$.</p>
+<p><strong>Mean square error</strong> of $\hat\theta$ is defined as 
+$$MES_\theta(\hat\theta) = E_\theta[(\hat\theta - \theta)^2] = var_\theta(\hat\theta) + [E_\theta(\hat\theta ) - \theta]^2$$</p>
+<p><strong>Unbiased</strong> if $bias_\theta(\hat \theta) := E_\theta(\hat\theta) - \theta = 0$</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h4 id="Problem-with-unbiasedness">Problem with unbiasedness<a class="anchor-link" href="#Problem-with-unbiasedness">&#182;</a></h4><ul>
+<li>In many problems, unbiased estimators do not exist</li>
+<li>In some problems, the estimator lies outside the parameter space with positive probability</li>
+<li>If $\hat\theta$ is an unbiased estimator of $\theta$ and $g$ is a non-linear function then $E_\theta[g(\hat\theta)] \neq g(\theta)$ unless $P_\theta(\hat\theta = \theta) = 1$. </li>
+</ul>
+<h4 id="When-to-worry-about-bias?">When to worry about bias?<a class="anchor-link" href="#When-to-worry-about-bias?">&#182;</a></h4><ul>
+<li>If $\hat\theta$ is systematically larger or smaller than $\theta$</li>
+<li>If the squared bias is approximately equal to or greater than the variance</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Example:-Sample-variance">Example: Sample variance<a class="anchor-link" href="#Example:-Sample-variance">&#182;</a></h3><p>$X_1,...,X_n$ indep. with $\mu, \sigma^2$, using unbiased estimator of sample variance 
+$$S^2 = \frac1{n-1}\sum_{i=1}^n (X_i - \bar X)^2$$
+However, $S = \sqrt{S^2}$ is biased, if we assume that $X_1,...,X_n$ are Normal then we can evaluate the bias explicitly
+\begin{align*}
+E(S) &amp;= \sigma (\frac 2{n-1})^{1/2}\frac{\Gamma(n/2)}{\Gamma(\frac{n-1}2)}\\
+&amp;= \sigma \bigg[1-\frac1{4n} - \frac 7{32n^2}\bigg]\\
+E(S) - \sigma &amp;\approx -\frac\sigma{4n} - \frac{7\sigma}{32n^2}
+\end{align*}</p>
+<p>Then
+\begin{align*}
+MSE(S) &amp;= var(S) + [E(S)-\sigma]^2 \\
+&amp;= E(S^2) - [E(S)]^2 + [E(S)-\sigma]^2 \\
+&amp;\approx \frac{\sigma^2}{2n}  + (-\frac\sigma{4n})^2\\
+&amp;= \frac{\sigma^2}{2n} + \frac{\sigma^2}{16n^2}
+\end{align*}</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Consistency">Consistency<a class="anchor-link" href="#Consistency">&#182;</a></h2><p>The sequence of estimators $\hat\theta_n$ is <strong>consistent</strong> for $\theta$ if for each $\epsilon &gt; 0$ and $\theta\in\Theta$, 
+$$\lim_{n\rightarrow\infty}P_\theta(|\hat\theta_n - \theta| &gt; \epsilon) = 0$$
+a.k.a. $\hat\theta_n \rightarrow^p \theta$</p>
+<p>Note that consistency is an aspirational property:</p>
+<ul>
+<li>if we have enough info. then we can estimate $\theta$ arbitrarily precisely. </li>
+<li>For a finite $n$, consistency isn't meaningful</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Sample-means-and-functions-thereof">Sample means and functions thereof<a class="anchor-link" href="#Sample-means-and-functions-thereof">&#182;</a></h3><p>$X_1,...,X_n$ indep. with mean $\mu$ and $\sigma^2$, then estimate $\mu$ by $\hat\mu_n = n^{-1}\sum_{i=1}^n X_i$<br>
+By WLLN, $\hat\mu_n$ is a consistent estimator of $\mu$ (i.e. $\{\hat\mu_u\}$ is consistent).</p>
+<p>Likewise, if we want to estimate $\theta = g(\mu)$ where $g$ is a continuous function then $\hat\theta_n = g(\hat\mu_n)$ is a consistent estimator of $\theta$.</p>
+<p>We can also approximate the sampling distributions of $\hat\mu_n$ and $\hat\theta_n$ by normal distributions 
+$$\hat\mu_n \sim N(\mu, \sigma^2/n), \hat\theta_n \sim N(\theta, [g'(\mu)]^2 \frac{\sigma^2}{n})$$</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Example:-Regression-design">Example: Regression design<a class="anchor-link" href="#Example:-Regression-design">&#182;</a></h3>$$Y_i = \beta_0 + \beta_1x_i + \epsilon_i, i = 1,..,n$$<p>Assume for simplicity that $\epsilon_1,...,\epsilon_n$ are indep. $N(0,\sigma^2)$<br>
+Least squares estimator of $\beta_1$:
+$$\hat\beta_1 = \bigg[\sum_{i=1}^n (x_i - \bar x)Y_i\bigg]/\bigg[\sum_{i=1}^n (x_i - \bar x)^2\bigg]\sim N(\beta_1, \frac{\sigma^2}{\sum^n (x_i - \bar x)^2})$$
+Thus $\hat\beta_1 = \hat\beta_1^{(n)}$ will be consistent provided that 
+$$\sum^n (x_i - \bar x)^2 \rightarrow \infty$$</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Sampling-distributions-and-standard-errors">Sampling distributions and standard errors<a class="anchor-link" href="#Sampling-distributions-and-standard-errors">&#182;</a></h3><p>Assume $\hat\theta$ is an estimator of some parameter $\theta$, then $se(\hat\theta)$ is defined to be the standard deviation of the sampling deviation of the sampling distribution of $\hat\theta$.<br>
+This is rarely known exactly but can usually be approximated somehow.</p>
+<p>If $\hat\mu = \bar X$ where $\bar X$ is based on $n$ indep. observations with variance $\sigma^2$ then $se(\hat\mu) = \sigma/\sqrt n$.</p>
+<p>If the sampling distribution is approximately normal then we can approximate the standard error by the standard deviation of the approximating normal distribution.</p>
+<h4 id="Example">Example<a class="anchor-link" href="#Example">&#182;</a></h4><p>$\hat\mu = \bar X, se(\hat\mu) = \sigma/\sqrt n$. estimated standard error is 
+$$\hat{se}(\hat\mu) = \frac{S}{\sqrt n}, S^2 = (n-1)^2\sum^n (X_i -\hat X)^2$$</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Example:-the-Delta-Method-estimator">Example: the Delta Method estimator<a class="anchor-link" href="#Example:-the-Delta-Method-estimator">&#182;</a></h3><p>$X_1,...,X_n$ indep. with some unknown cdf $F$, suppose $\hat\theta = g(\bar X)$.<br>
+If $g$ is differentiable then we can approximate the sampling distribution of $\hat\theta$ by a normal distribution using Delta Method: 
+$$\hat\theta = g(\bar X)\sim N(g(\mu)=\theta, [g'(\mu)]^2 \frac{\sigma^2}{n})$$
+where $\sigma^2 = var(X_i)$
+This suggests that we can estimate $se(\hat\theta)$ using the Delta Method estimator 
+$$\hat{se}(\hat\theta) = \frac{|g'(\bar X)|S}{\sqrt n}$$
+where $S^2$ is the sample variance of $X_1,...,X_n$.<br>
+We are using the substitution principle here to estimate the unknown $\mu$ and $\sigma^2$</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Example:-Trimmed-mean">Example: Trimmed mean<a class="anchor-link" href="#Example:-Trimmed-mean">&#182;</a></h3><p>$X_1,...,X_n$ indep. continuous r.v. with density $f(x-\theta)$ where $f(x) = f(-x)$ and $\theta$ is unknown. if suspecting that $f$ is heavy-tailed, then we want to eliminate the effects of extreme observations.</p>
+<p>To minimize the effect of extreme observations, we estimate $\theta$ by a <strong>trimmed mean</strong>: 
+$$\hat\theta = \frac1{n-2r}\sum_{r+1}^{n-r}X_{(k)}$$
+In general, the trimmed mean is a substitution principle estimator of 
+$$\theta(F) = \frac1{1-2a}\int^{1-a}_a F^{-1}(\tau)d\tau$$
+where $a = r/n$.</p>
+<p>Then, the sampling distribution of trimmed mean is approximately normal 
+$$\hat\theta\sim N(\theta, \frac{v^2(F)}{n})$$
+where 
+$$v^2(F) = \frac1{(1-2a)^2}\int_a^{1-a}\int_a^{1-a}\frac{\min(s,t)-st}{f(F^{-1}(t))f(F^{-1}(s))}dsdt$$</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Approximating-estimators-by-sample-means">Approximating estimators by sample means<a class="anchor-link" href="#Approximating-estimators-by-sample-means">&#182;</a></h3><p>Suppose that $\hat\theta$ is some complicated estimator like a trimmed mean.</p>
+<p>How to compute $\hat{se}(\hat\theta)$, suppose that we can approximate $\hat\theta$ by an average $\hat\theta \approx n^{-1}\sum^n \phi(X_i)$</p>
+<p>This suggests using 
+$$\hat{se}(\hat\theta) = \big\{\frac1{n(n-1)}\sum^n [\phi(X_i) - \bar\phi]^2\big\}^{1/2}$$
+where $\bar\phi = \frac1n \sum^n \phi(X_i)\approx \hat\theta$</p>
+
+</div>
+</div>
+</div>
+    </div>
+  </div>
+</section>
+  <script src="https://lihd1003.github.io/assets/js/vendor.js"></script>
+  <script src="https://lihd1003.github.io/assets/js/app.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script>
+    $("table").addClass("table table-lined")
+  </script>
+</body>
+
+ 
+
+
+</html>
