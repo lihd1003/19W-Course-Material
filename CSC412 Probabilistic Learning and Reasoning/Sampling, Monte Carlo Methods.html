@@ -143,6 +143,60 @@ var(\hat E) &amp;= var\bigg[R^{-1}\sum^R f(x^{(r)})\bigg]\\
 </div>
 </div>
 </div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Importance-Sampling">Importance Sampling<a class="anchor-link" href="#Importance-Sampling">&#182;</a></h2><p>Assume we are to estimate some $p$ from some $\tilde p$ s.t. $p(x) = \tilde p(x)/ Z$ and we further assume some simpler density $q$ form which it is easy to sample from and easy to evaluate $\tilde q$ s.t. $q(x) = \tilde q(x) / Z_q$</p>
+<p>Then, generate $R$ samples from $q$, i.e. 
+$$\{x^{(r)}\}^R$ \sim q(x)$$
+If these points are samples from $p(x)$ then we could estimate $\Phi$ by 
+$$\Phi = E_{x\sim p}(\phi(x)) \approx R^{-1}\sum^R \phi(x^{(r)}) = \hat\Phi$$</p>
+<h4 id="Weights">Weights<a class="anchor-link" href="#Weights">&#182;</a></h4><p>Note that the samples are generated from $q$, instead of $p$ so that we need some weights $w$ to trade off this difference, i.e. 
+$$\tilde w_r = \frac{\tilde p(x^{(r)})}{\tilde q(x^{(r)})}$$
+so that 
+\begin{align*}
+\Phi &amp;= \int \phi(x)p(x)dx\\
+&amp;= \int \phi(x)\frac{p(x)}{q(x)}q(x)dx \\
+&amp;\approx R^{-1}\sum^R \phi(x^{(r)})\frac{p(x^{(r)})}{q(x^{(r)})}\\
+&amp;= \frac{Z_q}{Z_p} \frac{1}{R}\sum_{r=1}^R \phi(x^{(r)}) \cdot \frac{\tilde p(x^{(r)})}{\tilde q(x^{(r)})} \\ &amp;= \frac{Z_q}{Z_p} \frac{1}{R}\sum_{r=1}^R \phi(x^{(r)}) \cdot \tilde w_r \\ &amp;= \frac{\frac{1}{R}\sum_{r=1}^R \phi(x^{(r)}) \cdot \tilde w_r}{\frac{1}{R}\sum_{r=1}^R \tilde w_r} \\ &amp;= \frac{1}{R}\sum_{r=1}^R \phi(x^{(r)}) \cdot w_r \\ &amp;= \hat \Phi_{iw}
+\end{align*}</p>
+<p>However, take note that $\hat\Phi_{iw}$ is a biased estimator, although consistent.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Rejection-Sampling">Rejection Sampling<a class="anchor-link" href="#Rejection-Sampling">&#182;</a></h2><p>Similar to importance sampling, but in this case we find some easier $q$ s.t. $$\forall x. c\tilde q(x) &gt; \tilde p(x)$$
+Then, the algorithm goes like</p>
+<p>for each iteration</p>
+<ol>
+<li>generate $x \sim q(x)$</li>
+<li>generate $u \sim Unif[0, c\tilde q(x)]$</li>
+<li>evaluate $\tilde p(x)$<ul>
+<li>if $u &gt; \tilde p(x)$, reject</li>
+<li>else accept $x$ by append it to $\{x^{(r)}\}$</li>
+</ul>
+</li>
+</ol>
+<h4 id="Problem">Problem<a class="anchor-link" href="#Problem">&#182;</a></h4><p>In high dimensions, such $c\tilde q$ will be harder to find, hence $c$ must be huge and the acceptance rate will then be exponentially small in proportional to number of dimensions</p>
+<h3 id="Metropolis-Hastings-Method">Metropolis-Hastings Method<a class="anchor-link" href="#Metropolis-Hastings-Method">&#182;</a></h3><p>Instead of using one $q$, let $q$ be some function depends on the current state of $x^{(t)}$, for example, $N(x^{(t)}, \Sigma)$</p>
+<p>Then, for each iteration,</p>
+<ul>
+<li>generate $x' \sim q(x'|x^{(t)})$</li>
+<li>compute $a = \frac{\tilde p(x')q(x^{(t)}|x')}{\tilde p(x^{(t)})q(x'|x^{(t)})}$</li>
+<li>if $a\geq 1$ then accepted, otherwise accept with probability $a$. </li>
+<li><p>Update $x^{(t+1)} =\begin{cases} x' &amp;\text{if accept}\\x^{(t)} &amp; \text{if refuse}\end{cases}$</p>
+<p>### Problem with MH method</p>
+</li>
+<li>we are generating from a dependent sequences, and we cannot really estimate the variance. </li>
+<li>Unable to know when it "converge", i.e. obtain enough samples that are effectively independent samples from $p$. </li>
+</ul>
+
+</div>
+</div>
+</div>
     </div>
   </div>
 </section>
