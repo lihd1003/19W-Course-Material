@@ -152,10 +152,10 @@ $$\sum_x f(x)p(x)\approx \sum_x f(x)q(x;\phi), E_{x\sim p(x)}[f(x)]\approx E_{x\
 
 <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;$\frac</span><span class="si">{d}{dx}</span><span class="s2">$KL divergence function&quot;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">q</span><span class="o">/</span><span class="n">p</span><span class="p">)</span> <span class="o">*</span> <span class="n">q</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="sa">rf</span><span class="s2">&quot;$KL(p \parallel q) = {kl_divergence(p, q)}$&quot;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">p</span><span class="o">/</span><span class="n">q</span><span class="p">)</span> <span class="o">*</span> <span class="n">p</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="sa">rf</span><span class="s2">&quot;$KL(p \parallel q) = {kl_divergence(q, p)}$&quot;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">q2</span><span class="o">/</span><span class="n">p</span><span class="p">)</span> <span class="o">*</span> <span class="n">q2</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="sa">rf</span><span class="s2">&quot;$KL(p \parallel q) = {kl_divergence(p, q2)}$&quot;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">p</span><span class="o">/</span><span class="n">q2</span><span class="p">)</span> <span class="o">*</span> <span class="n">q2</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="sa">rf</span><span class="s2">&quot;$KL(p \parallel q) = {kl_divergence(q2, p)}$&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">q</span><span class="o">/</span><span class="n">p</span><span class="p">)</span> <span class="o">*</span> <span class="n">q</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="sa">rf</span><span class="s2">&quot;$KL(p \parallel q) = </span><span class="si">{</span><span class="n">kl_divergence</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="n">q</span><span class="p">)</span><span class="si">}</span><span class="s2">$&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">p</span><span class="o">/</span><span class="n">q</span><span class="p">)</span> <span class="o">*</span> <span class="n">p</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="sa">rf</span><span class="s2">&quot;$KL(p \parallel q) = </span><span class="si">{</span><span class="n">kl_divergence</span><span class="p">(</span><span class="n">q</span><span class="p">,</span> <span class="n">p</span><span class="p">)</span><span class="si">}</span><span class="s2">$&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">q2</span><span class="o">/</span><span class="n">p</span><span class="p">)</span> <span class="o">*</span> <span class="n">q2</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="sa">rf</span><span class="s2">&quot;$KL(p \parallel q) = </span><span class="si">{</span><span class="n">kl_divergence</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="n">q2</span><span class="p">)</span><span class="si">}</span><span class="s2">$&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">p</span><span class="o">/</span><span class="n">q2</span><span class="p">)</span> <span class="o">*</span> <span class="n">q2</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="sa">rf</span><span class="s2">&quot;$KL(p \parallel q) = </span><span class="si">{</span><span class="n">kl_divergence</span><span class="p">(</span><span class="n">q2</span><span class="p">,</span> <span class="n">p</span><span class="p">)</span><span class="si">}</span><span class="s2">$&quot;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">();</span>
 </pre></div>
 
@@ -340,6 +340,64 @@ $(***)$</p>
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>One simple example is that if $q_\phi(z) \sim N(z; \mu, \phi)$ then we can have $\epsilon \sim N(0, 1)\Rightarrow z = \sigma\epsilon + \mu$</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="Amortized-Inference-/-Variational-Autoencoder">Amortized Inference / Variational Autoencoder<a class="anchor-link" href="#Amortized-Inference-/-Variational-Autoencoder">&#182;</a></h1><h3 id="Problem-with-SVI-on-per-example-LVM">Problem with SVI on per-example LVM<a class="anchor-link" href="#Problem-with-SVI-on-per-example-LVM">&#182;</a></h3><ul>
+<li>Cannot scale up: we can use one global $\theta$ to represent all samples, but using $\phi_i$ for each sample. We have to update $\theta$ based on all the examples, or stop and optimize each $q_{\phi_i}$ for a while then update $\theta$ once. However, in these cases, the gradient descent will be too slow</li>
+</ul>
+<p>For amortized inference, we have a simple global $phi$ that specifies the parameters of the recognition model. We use a neural network to handle the relationship between data and posteriors due to its complexity. For example, it we use the family of Normal distribution, we can have 
+$$q_\phi(z_i | x_i ) = N(z_i \mid \mu_\phi(x_i), \Sigma_\phi(x_i))$$
+where $\mu_\phi, \Sigma_\phi$ are functions (neural nets)</p>
+<p>The algorithm looks like:</p>
+<ul>
+<li>for each step<ul>
+<li>sample a data point </li>
+<li>compute parameters of approximate posterior</li>
+<li>compute gradient of MC estimates of ELBO w.r.t $\phi$</li>
+<li>update $\phi$</li>
+</ul>
+</li>
+</ul>
+<p>At the same time, if $p_\theta(x)$ depends on $\theta$, then ELBO is a function of both $\phi, \theta$ so that we can optimize them together, i.e. 
+\begin{align*}
+\nabla_{\theta, \phi}\mathcal L(\phi) &amp;= \nabla_{\theta,\phi}E_{z\sim q_\phi}(\log p_\theta(x, z) - \log q_\phi(z|x))\\
+&amp;= E_{\epsilon\sim p(\epsilon)}\big[\nabla_{\theta,\phi} [\log p_theta(x, T(\phi, \epsilon)) - \log q_\phi(T(\phi, \epsilon) | x)]\big]
+\end{align*}</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Example:-MNIST">Example: MNIST<a class="anchor-link" href="#Example:-MNIST">&#182;</a></h2><p>Given the pixel values $x_i \in \{0, 1\}^D$ and $z_i \in \{0, 1,.., 9\}$. We want to predict $z$ by observing $x$.</p>
+<p>Choose prior to be $$z\sim N(0,1)$$,<br>
+likelihood function be $$p_\theta(x_i | z_i) = \prod^D Bernoulli(x_{id}|\mu_\theta(z_i))$$<br>
+approximate posterior be $$q_\phi(z|x) = N(\mu(x), \sigma(x)I)$$
+We use neural networks as our encoder and decoder 
+$$g_\phi(x_i) = \phi_i = [\mu_i, \log\sigma_i], f_\theta(z_i) = \theta_i$$</p>
+<p>Given $x_i$, then it is encoded into $\mu, \log\sigma_i$. We then draw a sample $z \sim q_\phi(z|x) = N(\mu(x), \sigma(x)I)$ and evaluate its likelihood under the model with $p_\theta(x|z)$. WE compute the loss and backprop through the network.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Problem-with-Deterministic-Autoencoders">Problem with Deterministic Autoencoders<a class="anchor-link" href="#Problem-with-Deterministic-Autoencoders">&#182;</a></h2>$$z_1\approx z_2 \not\Rightarrow x_1 \approx x_2$$<p>If the space has regions where no data get encoded to, and you sample/generation a variation from there, the decoder will simply generate an unrealistic output, because the decoder has no idea how to deal with that region of the latent space.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Variational-Autoencoders">Variational Autoencoders<a class="anchor-link" href="#Variational-Autoencoders">&#182;</a></h2><p>Note that because the encoder follows a distribution, it is non-deterministic, i.e. have different output even with the same input. Therefore, it can somewhat deal with the problem above by inserting the added noise, or sample from an "area" instead of a "point".</p>
 
 </div>
 </div>
