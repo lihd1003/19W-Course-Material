@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html>
+<head><meta charset="utf-8" />
+
+<title>Distributed Representation - Notes Portal</title>
+
+<link rel="icon" type="image/gif" href="https://lihd1003.github.io/assets/images/logo.png">
+<link rel="stylesheet" href="https://lihd1003.github.io/assets/css/vendor.css" />
+<link rel="stylesheet" href="https://lihd1003.github.io/assets/css/style.css" />
+<link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
+<script src="https://kit.fontawesome.com/98fa07784c.js"></script>
+
+
+
+<style type="text/css">
+/* Overrides of notebook CSS for static HTML export */
+
+div#notebook {
+  overflow: visible;
+  border-top: none;
+}@media print {
+  div.cell {
+    display: block;
+    page-break-inside: avoid;
+  } 
+  div.output_wrapper { 
+    display: block;
+    page-break-inside: avoid; 
+  }
+  div.output { 
+    display: block;
+    page-break-inside: avoid; 
+  }
+}
+</style>
+
+<!-- Custom stylesheet, it must be in the same directory as the html file -->
+<link rel="stylesheet" href="https://lihd1003.github.io/UofT-Course-Material-Repo/index/custom.css">
+
+<!-- Loading mathjax macro -->
+<!-- Load mathjax -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS_HTML"></script>
+    <!-- MathJax configuration -->
+    <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+            displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+            processEscapes: true,
+            processEnvironments: true
+        },
+        // Center justify equations in code and markdown cells. Elsewhere
+        // we use CSS to left justify single line equations in code cells.
+        displayAlign: 'center',
+        "HTML-CSS": {
+            styles: {'.MathJax_Display': {"margin": 0}},
+            linebreaks: { automatic: true }
+        }
+    });
+    </script>
+    <!-- End of mathjax configuration --></head>
+<body>
+	<!-- header -->
+   <header class="header-sticky header-dark">
+    <div class="container">
+      <nav class="navbar navbar-expand-lg navbar-dark">
+        <a class="navbar-brand" href="./index.html">
+          <img class="navbar-logo navbar-logo-light" src="https://lihd1003.github.io/assets/images/logo.png" alt="Logo">
+          <img class="navbar-logo navbar-logo-dark" src="https://lihd1003.github.io/assets/images/logo.png" alt="Logo">
+        </a>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav align-items-center mr-auto">
+          </ul>
+
+          <ul class="navbar-nav align-items-center mr-0">
+            <li class="nav-item">
+              <a href="https://github.com/lihd1003" class="nav-link waves-effect waves-light" target="_blank">
+                <i class="icon-github mr-2"></i>GitHub
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="https://github.com/lihd1003/UofT-Course-Material-Repo" class="nav-link waves-effect waves-light" target="_blank">
+                <i class="icon-star mr-2"></i>Star the Repo
+              </a>
+            </li>
+          </ul>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+<section class="hero hero-with-header text-white" data-top-top="transform: translateY(0px);" data-top-bottom="transform: translateY(250px);">
+    <div class="image image-overlay" style="background-image:url(https://lihd1003.github.io/assets/images/black.jpg)"></div>
+    <div class="container">
+      <div class="row align-items-center">
+        <div class="col text-shadow">
+
+          <h1 class="mb-0">Distributed Representation</h1>
+        </div>
+      </div>
+    </div>
+ </section>
+ <section class="bg-white sec" id="project">
+  <div tabindex="-1" id="notebook" class="border-box-sizing">
+    <div class="container" id="notebook-container">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="NLP">NLP<a class="anchor-link" href="#NLP">&#182;</a></h1><h2 id="Objectives">Objectives<a class="anchor-link" href="#Objectives">&#182;</a></h2><p>Be able to infer a likely sentance $s$ given the observed speech signal $a$.</p>
+<h2 id="Generative-Approach">Generative Approach<a class="anchor-link" href="#Generative-Approach">&#182;</a></h2><p>The generative approach is to build two components:<br>
+<strong>Observation model</strong>, represented as $p(a|s)$, which tells us how likely the sentence $s$ is to lead to the acoustic signal $a$.<br>
+<strong>Prior</strong>, represented as $p(s)$, which tells us how likely a given sentence $s$ is. E.g., it should know that "recognize speech" is more likely that "wreck a nice beach".</p>
+<p>Given these components, we can use Bayes' Rule to infer a posterior distribution over sentences given the speech signal: 
+$$p(s|a) = \frac{p(s)p(a|s)}{\sum_{s'}p(s')p(a|s')}$$</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Language-Modeling">Language Modeling<a class="anchor-link" href="#Language-Modeling">&#182;</a></h2><p>Assume having a corpus of sentences $s^{(1)}, ..., s^{(N)}$. The ML criterion says we want our model to maximize the probability our model assigns to the observed sentences. Make the assumption that sentences are independent, so that the objective is $\max \prod^N p(s^{(i)})$.</p>
+<p>Then, the <strong>log probability</strong> is something we can work with more easily. It also conveniently decomposes as a sum, which is equivalent to cross-entropy loss.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>By chain rule of conditional probability (without any assumptions), 
+$$p(s) = p(w_1,...,w_T) = \prod^Tp(w_i|w_1,...,w_{i-1})$$
+With <strong>Markov assumption</strong> (memoryless model), 
+$$p(w_t|w_1,...,w_{t-1}) = p(w_t\mid w_{t-3}, w_{t-2}, w_{t-1})$$</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="N-Gram">N-Gram<a class="anchor-link" href="#N-Gram">&#182;</a></h3><p>Using a conditional probability table, consider the empirical distribution
+$$p(w_3 | w_1, w_2) = \frac{p(w_3, w_2, w_1)}{p(w_1, w_2)}\approx \frac{\text{count of phrase w1 w2 w3}}{\text{count of phrase w1 w2}}$$
+The above example is $3$-gram</p>
+<h4 id="Problems">Problems<a class="anchor-link" href="#Problems">&#182;</a></h4><p>The number of entries in the conditional probability table is exponential in the context length.<br>
+<strong>Data sparsity</strong>: most n-grams never appear in the corpus, even if they are possible (we can use a short context, or smooth the probabilities by adding imaginary counts to solve the problem).<br>
+Also, using an ensemble of n-gram models with different $n$ can deal with some data sparsity problem.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Distributed-Representations">Distributed Representations<a class="anchor-link" href="#Distributed-Representations">&#182;</a></h3><p>n-gram only have local information of the representations, but words can be related far away, e.g., similar part of sentences, similar meaning.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Neural-Language-Model">Neural Language Model<a class="anchor-link" href="#Neural-Language-Model">&#182;</a></h2><p><strong>Input</strong> previous $K$ words<br>
+<strong>Target</strong> next word<br>
+<strong>Loss</strong> cross-entropy</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Bengio's-Neural-Language-Model">Bengio's Neural Language Model<a class="anchor-link" href="#Bengio's-Neural-Language-Model">&#182;</a></h3><p><a href="http://www.jmlr.org/papers/volume3/bengio03a/bengio03a.pdf">http://www.jmlr.org/papers/volume3/bengio03a/bengio03a.pdf</a></p>
+<p><img src="./assets/bongio.png" alt=""></p>
+<p>Each word it trained to a distributed representation, which the representation is shared-weights across all models, then we have hidden layers that is to predict the words.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Global-Vector-Embeddings-(GloVe)">Global Vector Embeddings (GloVe)<a class="anchor-link" href="#Global-Vector-Embeddings-(GloVe)">&#182;</a></h2><p>a simpler and faster approach based on a matrix factorization similar to PCA.</p>
+<p><strong>Hypothesis</strong> words with similar distributions have similar meanings</p>
+<p>Consider a co-occurrence matrix $X$, which counts the number of times two words appear nearby (eg. distance = 5). This gives $V\times V$ matrix, $|V|=$vocabulary size</p>
+<p><strong>Intuition pump</strong> we want a rank-K approximation $X\approx R\tilde R^T$ where $R$ and $\tilde R$ are $V\times K$ matrices.</p>
+<ul>
+<li>Each row $r_i$ of $R$ is the $K$-dimensional representation of a word </li>
+<li>Each entry is approximated as $x_{ij}\approx r_i^T \tilde r_j$</li>
+<li>Hence, more similar words are more likely to co-occur</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h4 id="Problems">Problems<a class="anchor-link" href="#Problems">&#182;</a></h4><ul>
+<li>$X$ is extremely large, so fitting the above factorization using LS is infeasible.  we can reweight the entries so that only nonzero counts matter</li>
+<li>Words counts are heavy-trailed, so we approximate $log x_{ij}$ instead of $x_{ij}$</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>The final cost function is 
+$$J(R) = \sum_{i,j}f(x_{ij})(r_i^T\tilde r_j + b_i + \tilde b_j - \log x_{ij})^2$$
+$$f(x_{ij}) = \begin{cases}(\frac{x_{ij}}{100})^{3/4} &amp;x_{ij} &lt; 100 \\
+1 &amp;x_{ij}\geq 100\end{cases}$$</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="Gradient-for-GLoVE-Training">Gradient for GLoVE Training<a class="anchor-link" href="#Gradient-for-GLoVE-Training">&#182;</a></h1><p>Given loss 
+$$\mathcal L(W,\beta) = \sum_{i=1}^V\sum_{j=1}^V (w_i^Tw_j + b_i + b_j - \log X_{ij})$$
+where $W$ is $V\times d$ matrix, where each row is $w_i^T$ and $\beta$ is $V\times 1$ vector of $b_1,...,b_V$, $X$ is the $V\times V$ co-occurrence matrix.</p>
+\begin{align*}
+\frac{\partial \mathcal L}{\partial w_{vd}} &amp;= \frac{\partial}{\partial w_{vd}}\sum_{i=1}^V\sum_{j=1}^V (\sum_{k=1}^d w_{ik}w_{jk} + b_i + b_j - \log X_{ij})^2\\
+&amp;= \sum_{j=1}^V 2(w_v^Tw_j + b_v + b_j - \log X_{ij})w_{jd} + \sum_{i=1}^V 2(w_i^Tw_v + b_i + b_v - \log X_{ij})w_{id}\\
+&amp;= 4\sum_{i=1}^V (w_v^Tw_i + b_v + b_j - \log X_{ij})w_{id}\\
+\frac{\partial \mathcal L}{\partial w_v} &amp;= 4\sum_{i=1}^V (w_v^Tw_i + b_v + b_j - \log X_{ij})w_{i}
+\end{align*}
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Gradient-of-Cross-Entropy-Softmax-Loss">Gradient of Cross Entropy Softmax Loss<a class="anchor-link" href="#Gradient-of-Cross-Entropy-Softmax-Loss">&#182;</a></h2><p>Given cross entropy loss $\mathcal L(t^{(i)},y^{(i)}) = -\sum_{j=1}^V t_j^{(i)}\log y_j^{(i)}$ where $t^{(i)}$ is a one hot vector and $y^{(i)}$ is one vector that sum to 1.<br>
+Then, each entry of $y^{(i)}, y_j = softmax(z_j) = \frac{\exp(z_j)}{\sum_{k=1}^V \exp(z_k)}$.</p>
+\begin{align*}
+\frac{\partial y_i}{\partial z_j} &amp;= \frac{\partial}{\partial_{z_j}}e^{z_i}(\sum^V e^{z_k})^{-1} = -e^{z_i}(\sum^V e^{z_k})^{-2}e^{z_j}=-y_iy_j\\
+\frac{\partial y_j}{\partial z_j} &amp;= \frac{\partial}{\partial_{z_j}}e^{z_j}(\sum^V e^{z_k})^{-1}\\
+&amp;= \frac{e^{z_j}(\sum_k e^{z_k})^{-1} - (e^{z_i})^2}{(\sum_k e^{z_k})^2}\\
+&amp;= y_j - y_j^2\\
+\frac{\partial \mathcal L}{\partial z_j} &amp;=  -\bigg[\sum_{i\neq j}\frac{t_i}{y_i}(-y_iy_j) + \frac{t_j}{y_j}(y_j - y_j^2)\bigg]\\
+&amp;= \sum_{i\neq j}t_i y_j - t_j + t_jy_j\\
+&amp;= y_j\sum_{i=1}^V t_j - t_j\\
+&amp;= y_j - t_j
+\end{align*}
+</div>
+</div>
+</div>
+    </div>
+  </div>
+</section>
+  <script src="https://lihd1003.github.io/assets/js/vendor.js"></script>
+  <script src="https://lihd1003.github.io/assets/js/app.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script>
+    $("table").addClass("table table-lined")
+  </script>
+</body>
+
+ 
+
+
+</html>

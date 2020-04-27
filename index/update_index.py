@@ -101,7 +101,9 @@ if __name__ == "__main__":
     
     if args.dir and os.path.isdir(args.dir):
         index = create_index(args.dir + "/", "./template.html")
-        with open(os.path.join(args.dir, "/index.html"), "w") as f:
+        path_curr = os.path.join(args.dir, "index.html")
+        print(f"updating {path_curr}")
+        with open(path_curr, "w") as f:
             f.write(str(index))
     
     if args.all:
@@ -119,5 +121,7 @@ if __name__ == "__main__":
 
         for i in all_folder:
             index = create_index(i, "./template.html")
-            with open(i + "/index.html", "w") as f:
+            path_curr = os.path.join(i, "index.html")
+            print(f"updating {path_curr}")
+            with open(path_curr, "w") as f:
                 f.write(str(index))
