@@ -89,6 +89,9 @@ class Object:
 
 class Triangle(Object):
     def __init__(self, corners):
+        """ corners is a 3 * 3 list of list 
+        each row is a corner
+        """
         self.corners = np.array(corners)
     
     def intersect(self, ray_d, ray_e, min_t):

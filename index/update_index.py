@@ -99,8 +99,8 @@ if __name__ == "__main__":
     parser.add_argument("-d", "--dir", help="Update index for the specified directory")
     args = parser.parse_args()
     
-    if args.dir and os.path.isdir(args.dir):
-        index = create_index(args.dir + "/", "./template.html")
+    if args.dir and os.path.isdir(os.path.abspath(args.dir)):    
+        index = create_index(os.path.join(args.dir, "./template.html"))
         path_curr = os.path.join(args.dir, "index.html")
         print(f"updating {path_curr}")
         with open(path_curr, "w") as f:
