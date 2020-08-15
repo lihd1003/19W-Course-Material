@@ -57,8 +57,6 @@ def format_entry(i):
                              name=os.path.basename(i), mtime=mtime)
 
 def create_index(dir_path, template):
-    
-    
     html = open(template).read()
     soup = BeautifulSoup(html, "lxml")
     path = soup.find(id="path")
@@ -85,7 +83,7 @@ def create_index(dir_path, template):
     files = os.listdir(dir_path)
     files.sort()
     for i in files:
-        insert_string = format_entry(dir_path + i)
+        insert_string = format_entry(os.path.join(dir_path, i))
         if insert_string:
             insert_soup = BeautifulSoup(insert_string, 'html.parser')
             dentry.append(insert_soup)
@@ -100,7 +98,7 @@ if __name__ == "__main__":
     args = parser.parse_args()
     
     if args.dir and os.path.isdir(os.path.abspath(args.dir)):    
-        index = create_index(os.path.join(args.dir, "./template.html"))
+        index = create_index(args.dir, "./template.html")
         path_curr = os.path.join(args.dir, "index.html")
         print(f"updating {path_curr}")
         with open(path_curr, "w") as f:
