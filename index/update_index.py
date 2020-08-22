@@ -96,7 +96,6 @@ if __name__ == "__main__":
     parser.add_argument("-a", "--all", help="Update index for all directory in the repo", action="store_true")
     parser.add_argument("-d", "--dir", help="Update index for the specified directory")
     args = parser.parse_args()
-    
     if args.dir and os.path.isdir(os.path.abspath(args.dir)):    
         index = create_index(args.dir, "./template.html")
         path_curr = os.path.join(args.dir, "index.html")
