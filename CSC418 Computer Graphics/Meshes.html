@@ -395,7 +395,7 @@ Records starting with the letter "l" specify the order of the vertices which bui
 <div class="inner_cell">
     <div class="input_area border">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">write_obj</span><span class="p">(</span><span class="n">V</span><span class="p">,</span> <span class="n">F</span><span class="p">,</span> <span class="n">UV</span><span class="p">,</span> <span class="n">UF</span><span class="p">,</span> <span class="n">NV</span><span class="p">,</span> <span class="n">NF</span><span class="p">,</span> <span class="n">filename</span><span class="o">=</span><span class="s2">&quot;./assets/meshes/cube.obj&quot;</span><span class="p">)</span>
-<span class="n">OBJViewer</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;bob&quot;</span><span class="p">,</span> <span class="n">texture</span><span class="o">=</span><span class="s2">&quot;./assets/meshes/rubiks-cube.png&quot;</span><span class="p">,</span> <span class="n">obj</span> <span class="o">=</span> <span class="s2">&quot;./assets/meshes/cube.obj&quot;</span><span class="p">)</span>
+<span class="n">OBJViewer</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;cube&quot;</span><span class="p">,</span> <span class="n">texture</span><span class="o">=</span><span class="s2">&quot;./assets/meshes/rubiks-cube.png&quot;</span><span class="p">,</span> <span class="n">obj</span> <span class="o">=</span> <span class="s2">&quot;./assets/meshes/cube.obj&quot;</span><span class="p">)</span>
 </pre></div>
 
     </div>
@@ -414,7 +414,7 @@ Records starting with the letter "l" specify the order of the vertices which bui
 
 <div class="output_html rendered_html output_subarea ">
 
-        <canvas id="bob" style="height:100%; width:60%; display:block"></canvas>
+        <canvas id="cube" style="height:100%; width:60%; display:block"></canvas>
         
 </div>
 
@@ -428,22 +428,59 @@ Records starting with the letter "l" specify the order of the vertices which bui
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h3 id="Sphere-Mapping">Sphere Mapping<a class="anchor-link" href="#Sphere-Mapping">&#182;</a></h3><p>Note that a sphere centered at $c = (c_x, c_y, c_z)$ and radius $r$ can be represented as the image of 
-$$S:\mathbb [0,\pi]\times [0, 2\pi)\rightarrow \mathbb R^3:= (\theta,\phi) = c + r(\sin\theta\cos\phi, \sin\theta\sin\phi, \cos\theta)$$
-Therefore, we can sample 
-$$u\times v$$</p>
+$$S:\mathbb  [0, 2\pi) \times [0, \pi]\rightarrow \mathbb R^3:= (\theta, \phi) = c + r(\sin\phi\cos\theta, \sin\phi\sin\theta, \cos\phi)$$
+Therefore, we can sample evenly take $u\times v$ values from the domain</p>
 
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="prompt input_prompt">In&nbsp;[13]:</div>
 <div class="inner_cell">
     <div class="input_area border">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">sphere</span><span class="p">(</span><span class="n">num_faces_u</span><span class="p">,</span> <span class="n">num_face_v</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    </span>
-<span class="sd">    &quot;&quot;&quot;</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">num_faces_u</span> <span class="o">=</span> <span class="mi">15</span>
+<span class="n">num_faces_v</span> <span class="o">=</span> <span class="mi">15</span>
+
+<span class="k">def</span> <span class="nf">sphere</span><span class="p">(</span><span class="n">num_faces_u</span><span class="p">,</span> <span class="n">num_faces_v</span><span class="p">):</span>
+    <span class="n">thetas</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">tile</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">,</span> <span class="n">num_faces_u</span><span class="o">+</span><span class="mi">1</span><span class="p">),</span> <span class="n">num_faces_v</span><span class="p">)[:,</span> <span class="kc">None</span><span class="p">]</span>
+    <span class="n">phis</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">repeat</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">,</span> <span class="n">num_faces_v</span><span class="p">),</span> <span class="n">num_faces_u</span><span class="o">+</span><span class="mi">1</span><span class="p">)[:,</span> <span class="kc">None</span><span class="p">]</span>
+
+    <span class="n">V</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">hstack</span><span class="p">([</span>
+        <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">phis</span><span class="p">)</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">thetas</span><span class="p">),</span>
+        <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">thetas</span><span class="p">)</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">phis</span><span class="p">),</span>
+        <span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">phis</span><span class="p">)</span>
+    <span class="p">])</span>
+    
+    <span class="n">f_base</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">tile</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">num_faces_u</span><span class="o">+</span><span class="mi">1</span><span class="p">),</span> <span class="n">num_faces_v</span><span class="p">)</span>
+    <span class="n">f_base</span> <span class="o">=</span> <span class="n">f_base</span> <span class="o">+</span> <span class="p">(</span><span class="n">num_faces_v</span><span class="p">)</span><span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">repeat</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">num_faces_v</span><span class="p">),</span> <span class="n">num_faces_u</span><span class="p">)</span>
+    
+    <span class="n">F</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">hstack</span><span class="p">([</span>
+        <span class="n">f_base</span><span class="p">[:,</span> <span class="kc">None</span><span class="p">],</span> 
+        <span class="n">f_base</span><span class="p">[:,</span> <span class="kc">None</span><span class="p">]</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> 
+        <span class="n">f_base</span><span class="p">[:,</span> <span class="kc">None</span><span class="p">]</span> <span class="o">+</span> <span class="n">num_faces_u</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> 
+        <span class="n">f_base</span><span class="p">[:,</span> <span class="kc">None</span><span class="p">]</span> <span class="o">+</span> <span class="n">num_faces_u</span>
+    <span class="p">])</span>
+
+    <span class="n">UV</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">hstack</span><span class="p">([</span>
+        <span class="n">np</span><span class="o">.</span><span class="n">tile</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">num_faces_u</span><span class="o">+</span><span class="mi">1</span><span class="p">),</span> <span class="n">num_faces_v</span><span class="p">)[:,</span> <span class="kc">None</span><span class="p">],</span>
+        <span class="n">np</span><span class="o">.</span><span class="n">repeat</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">num_faces_u</span><span class="o">+</span><span class="mi">1</span><span class="p">),</span> <span class="n">num_faces_v</span><span class="p">)[:,</span> <span class="kc">None</span><span class="p">]</span>
+    <span class="p">])</span>
+
+    <span class="n">UF</span> <span class="o">=</span> <span class="n">F</span>
+
+    <span class="n">NF</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">tile</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">num_faces_u</span> <span class="o">*</span> <span class="p">(</span><span class="n">num_faces_v</span><span class="p">))[:,</span> <span class="kc">None</span><span class="p">],</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
+
+    <span class="n">thetas_N</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">tile</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">,</span> <span class="n">num_faces_u</span><span class="o">+</span><span class="mi">1</span><span class="p">)[:</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="n">num_faces_v</span><span class="p">)[:,</span> <span class="kc">None</span><span class="p">]</span>
+    <span class="n">phis_N</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">repeat</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">,</span> <span class="n">num_faces_v</span><span class="p">),</span> <span class="n">num_faces_u</span><span class="p">)[:,</span> <span class="kc">None</span><span class="p">]</span>
+
+    <span class="c1"># We approx the normal by the top left vertex</span>
+    <span class="n">NV</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">hstack</span><span class="p">([</span>
+        <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">phis_N</span><span class="p">)</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">thetas_N</span><span class="p">),</span>
+        <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">thetas_N</span><span class="p">)</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">phis_N</span><span class="p">),</span>
+        <span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">phis_N</span><span class="p">)</span>
+    <span class="p">])</span>
+    <span class="k">return</span> <span class="n">V</span><span class="p">,</span> <span class="n">F</span><span class="p">,</span> <span class="n">UV</span><span class="p">,</span> <span class="n">UF</span><span class="p">,</span> <span class="n">NV</span><span class="p">,</span> <span class="n">NF</span>
 </pre></div>
 
     </div>
@@ -453,7 +490,43 @@ $$u\times v$$</p>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[6]:</div>
+<div class="prompt input_prompt">In&nbsp;[14]:</div>
+<div class="inner_cell">
+    <div class="input_area border">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">V</span><span class="p">,</span> <span class="n">F</span><span class="p">,</span> <span class="n">UV</span><span class="p">,</span> <span class="n">UF</span><span class="p">,</span> <span class="n">NV</span><span class="p">,</span> <span class="n">NF</span> <span class="o">=</span> <span class="n">sphere</span><span class="p">(</span><span class="mi">100</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span>
+<span class="n">write_obj</span><span class="p">(</span><span class="n">V</span><span class="p">,</span> <span class="n">F</span><span class="p">,</span> <span class="n">UV</span><span class="p">,</span> <span class="n">UF</span><span class="p">,</span> <span class="n">NV</span><span class="p">,</span> <span class="n">NF</span><span class="p">,</span> <span class="n">filename</span><span class="o">=</span><span class="s2">&quot;./assets/meshes/sphere.obj&quot;</span><span class="p">)</span>
+<span class="n">OBJViewer</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;sphere&quot;</span><span class="p">,</span> <span class="n">texture</span><span class="o">=</span><span class="s2">&quot;./assets/meshes/earth-square.png&quot;</span><span class="p">,</span> <span class="n">obj</span> <span class="o">=</span> <span class="s2">&quot;./assets/meshes/sphere.obj&quot;</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+
+<div class="output_html rendered_html output_subarea ">
+
+        <canvas id="sphere" style="height:100%; width:60%; display:block"></canvas>
+        
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[15]:</div>
 <div class="inner_cell">
     <div class="input_area border">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">render</span><span class="p">()</span>
@@ -548,7 +621,13 @@ $$u\times v$$</p>
     requestAnimationFrame(render);
   }
 
-  OBJViewer(document.querySelector("#bob"), "./assets/meshes/cube.obj", "./assets/meshes/rubiks-cube.png");
+  OBJViewer(document.querySelector("#cube"), "./assets/meshes/cube.obj", "./assets/meshes/rubiks-cube.png");
+
+  OBJViewer(document.querySelector("#sphere"), "./assets/meshes/sphere.obj", "./assets/meshes/earth-square.png");
+
+  OBJViewer(document.querySelector("#sphere"), "./assets/meshes/sphere.obj", "./assets/meshes/earth-square.png");
+
+  OBJViewer(document.querySelector("#sphere"), "./assets/meshes/sphere.obj", "./assets/meshes/earth-square.png");
  
 </script>
 </div>
