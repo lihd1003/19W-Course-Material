@@ -2,7 +2,7 @@
 <html>
 <head><meta charset="utf-8" />
 
-<title>Unconstrained Finite Dimensional Optimization - Notes Portal</title>
+<title>1-Unconstrained Finite Dimensional Optimization - Notes Portal</title>
 
 <link rel="icon" type="image/gif" href="https://lihd1003.github.io/assets/images/logo.png">
 <link rel="stylesheet" href="https://lihd1003.github.io/assets/css/vendor.css" />
@@ -96,7 +96,7 @@ div#notebook {
       <div class="row align-items-center">
         <div class="col text-shadow">
 
-          <h1 class="mb-0">Unconstrained Finite Dimensional Optimization</h1>
+          <h1 class="mb-0">1-Unconstrained Finite Dimensional Optimization</h1>
         </div>
       </div>
     </div>
@@ -105,13 +105,6 @@ div#notebook {
   <div tabindex="-1" id="notebook" class="border-box-sizing">
     <div class="container" id="notebook-container">
 
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="First-Order-Necessary-Condition">First Order Necessary Condition<a class="anchor-link" href="#First-Order-Necessary-Condition">&#182;</a></h1>
-</div>
-</div>
-</div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
@@ -136,7 +129,7 @@ $$</p>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Defn.-Feasible-Direction"><em>Defn</em>. Feasible Direction<a class="anchor-link" href="#Defn.-Feasible-Direction">&#182;</a></h2><p>Given $\Omega \subseteq \mathbb R^n$ and a point $x_0 \in \Omega$, we say that the vector $v \in \mathbb R^n$ is a <strong>feasible direction</strong> at $x_0$ if there is an $\overline{s} &gt; 0$ such that $x_0 + sv \in \Omega$ for all $s \in [0, \overline{s}]$.</p>
+<h3 id="Defn.-Feasible-Direction"><em>Defn</em>. Feasible Direction<a class="anchor-link" href="#Defn.-Feasible-Direction">&#182;</a></h3><p>Given $\Omega \subseteq \mathbb R^n$ and a point $x_0 \in \Omega$, we say that the vector $v \in \mathbb R^n$ is a <strong>feasible direction</strong> at $x_0$ if there is an $\overline{s} &gt; 0$ such that $x_0 + sv \in \Omega$ for all $s \in [0, \overline{s}]$.</p>
 <h2 id="Thrm.-First-order-necessary-condition-for-a-local-minimum-(FONC)"><em>Thrm</em>. First order necessary condition for a local minimum (FONC)<a class="anchor-link" href="#Thrm.-First-order-necessary-condition-for-a-local-minimum-(FONC)">&#182;</a></h2><p><strong>Claim</strong>. If $f : \mathbb R^n \supseteq \Omega \to \mathbb R$ is $C^1$ and $x_0$ is a local minimizer of $f$ in the interior of $\Omega$, then $\nabla f(x_0) = 0$.</p>
 <p><em>proof</em>. If $x_0$ is an interior point of $\Omega$, then all directions at $x_0$ are feasible. In particular, for any such $v$, we have $\nabla f(x_0) \cdot (v) \geq 0$ and $\nabla f(x_0) \cdot (-v) \geq 0$, which implies $\nabla f(x_0) = 0$ as all directions are feasible at $x_0$.</p>
 <p><strong>Claim</strong>. Let $f : \mathbb R^n \supseteq \Omega \to \mathbb R$ be $C^1$. If $x_0 \in \Omega$ is a local minimizer of $f$, then $\nabla f(x_0) \cdot v \geq 0$ for all feasible directions $v$ at $x_0$.</p>
@@ -216,13 +209,6 @@ We conclude that the only candidate for a local minimizer of $f$ is $(1/2, 0)$. 
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="Second-Order-Necessary-Condition">Second Order Necessary Condition<a class="anchor-link" href="#Second-Order-Necessary-Condition">&#182;</a></h1>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="Thrm.-Second-order-necessary-condition-for-a-local-minimum-(SONC)"><em>Thrm</em>. Second order necessary condition for a local minimum (SONC)<a class="anchor-link" href="#Thrm.-Second-order-necessary-condition-for-a-local-minimum-(SONC)">&#182;</a></h2><p><strong>Claim</strong>. Let $f : \mathbb R^n \supseteq \Omega \to \mathbb R$ be $C^2$. If $x_0 \in \Omega$ is a local minimizer of $f$, then for any feasible direction $v$ at $x_0$ the following conditions hold:</p>
 <ul>
 <li>$\nabla f(x_0) \cdot v \geq 0$.</li>
@@ -241,8 +227,8 @@ If $v^T \nabla^2 f(x_0) v &lt; 0$, then for sufficiently small $s$ the right sid
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Sylvester's-Criterion">Sylvester's Criterion<a class="anchor-link" href="#Sylvester's-Criterion">&#182;</a></h2><h3 id="Defn.-Principal-Minor"><em>Defn</em>. Principal Minor<a class="anchor-link" href="#Defn.-Principal-Minor">&#182;</a></h3><p>A <strong>principal minor</strong> of a square matrix $A$ is the determinant of a submatrix of $A$ obtained by removing any $k$ rows and the corresponding $k$ columns, $k \geq 0$. A leading principal minor of $A$ is the determinant of a submatrix obtained by removing the last $k$ rows and $k$ columns of $A$, $k \geq 0$.</p>
-<h3 id="Thrm.-Sylvester's-criterion"><em>Thrm</em>. Sylvester's criterion<a class="anchor-link" href="#Thrm.-Sylvester's-criterion">&#182;</a></h3><ul>
+<h3 id="Defn.-Principal-Minor"><em>Defn</em>. Principal Minor<a class="anchor-link" href="#Defn.-Principal-Minor">&#182;</a></h3><p>A <strong>principal minor</strong> of a square matrix $A$ is the determinant of a submatrix of $A$ obtained by removing any $k$ rows and the corresponding $k$ columns, $k \geq 0$. A leading principal minor of $A$ is the determinant of a submatrix obtained by removing the last $k$ rows and $k$ columns of $A$, $k \geq 0$.</p>
+<h2 id="Thrm.-Sylvester's-criterion"><em>Thrm</em>. Sylvester's criterion<a class="anchor-link" href="#Thrm.-Sylvester's-criterion">&#182;</a></h2><ul>
 <li><strong>For positive definite self-adjoint matrices</strong> If $A$ is a self-adjoint matrix, then $A \succ 0$ if and only if all of the leading principal minors of $A$ are positive.</li>
 <li><strong>For positive semidefinite self-adjoint matrices</strong>
 If $A$ is a self-adjoint matrix, then $A \succeq 0$ if and only if all of the principal minors of $A$ are non-negative.</li>
@@ -270,7 +256,7 @@ All of the leading principal minors of $\nabla^2 f(1,2)$ are positive, so $(1,2)
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Example">Example<a class="anchor-link" href="#Example">&#182;</a></h2><p>Consider the problem
+<h3 id="Example">Example<a class="anchor-link" href="#Example">&#182;</a></h3><p>Consider the problem
 \begin{align*}
 \min_{x \in \Omega} f(x,y) = x^2 - x + y + xy \qquad \text{over } \Omega = \{(x,y) \in \mathbb R^2 : x,y \geq 0\}.
 \end{align*}
@@ -318,7 +304,7 @@ this relies on symmetry. (Long rearranging of terms.) In this form it is obvious
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="Sufficient-Condition-for-an-Interior-Local-Minimizer">Sufficient Condition for an Interior Local Minimizer<a class="anchor-link" href="#Sufficient-Condition-for-an-Interior-Local-Minimizer">&#182;</a></h1><p><strong>Lemma</strong> If $A$ is symmetric and positive-definite, then  there is an $a &gt; 0$ such that $v^T A v \geq a \|v\|^2$ for all $v$.</p>
+<h2 id="Thrm.-Second-order-sufficient-conditions-for-interior-local-minimizers"><em>Thrm</em>. Second order sufficient conditions for interior local minimizers<a class="anchor-link" href="#Thrm.-Second-order-sufficient-conditions-for-interior-local-minimizers">&#182;</a></h2><p><strong>Lemma</strong> If $A$ is symmetric and positive-definite, then  there is an $a &gt; 0$ such that $v^T A v \geq a \|v\|^2$ for all $v$.</p>
 <p><em>proof</em>. There is an orthogonal matrix $Q$ with $Q^T A Q = \mathrm{diag}(\lambda_1, \dots, \lambda_n)$. If $v = Qw$,
 \begin{align*}
 v^T A v &amp;= (Qw)^T A Qw \\
@@ -335,7 +321,7 @@ Since $A$ is positive-definite, every eigenvalue is positive and we are done.</p
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Thrm.-Second-order-sufficient-conditions-for-interior-local-minimizers"><em>Thrm</em>. Second order sufficient conditions for interior local minimizers<a class="anchor-link" href="#Thrm.-Second-order-sufficient-conditions-for-interior-local-minimizers">&#182;</a></h2><p><strong>Claim</strong>. Let $f$ be $C^2$ on $\Omega \subseteq \mathbb R^n$, and let $x_0$ be an interior point of $\Omega$ such that $\nabla f(x_0) = 0$ and $\nabla^2 f(x_0) \succ 0$. Then $x_0$ is a strict local minimizer of $f$.</p>
+<p><strong>Claim</strong>. Let $f$ be $C^2$ on $\Omega \subseteq \mathbb R^n$, and let $x_0$ be an interior point of $\Omega$ such that $\nabla f(x_0) = 0$ and $\nabla^2 f(x_0) \succ 0$. Then $x_0$ is a strict local minimizer of $f$.</p>
 <p><em>proof</em>. The condition $\nabla^2 f(x_0) \succ 0$ implies there is an $a &gt; 0$ such that $v^T \nabla^2 f(x_0) v \geq a \cdot \|v\|^2$ for all $v$. By Taylor's theorem we have
 $$f(x_0 + v) - f(x_0) = \frac{1}{2} v^T \nabla^2 f(x_0) v + o(\|v\|^2) \geq \frac{1}{2} a\|v\|^2 + o(\|v\|^2) = \|v\|^2 \left( \frac{a}{2} + \frac{o(\|v\|^2)}{\|v\|^2} \right)$$
 For sufficiently small $v$ the right hand side is positive, so $f(x_0 + v) &gt; f(x_0)$ for all such $v$. Therefore $x_0$ is a strict local minimizer of $f$ on $\Omega$.</p>
