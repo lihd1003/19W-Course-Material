@@ -1,0 +1,519 @@
+<!DOCTYPE html>
+<html>
+<head><meta charset="utf-8" />
+
+<title>5-Conjugate Directions and Conjugate Gradients - Notes Portal</title>
+
+<link rel="icon" type="image/gif" href="https://lihd1003.github.io/assets/images/logo.png">
+<link rel="stylesheet" href="https://lihd1003.github.io/assets/css/vendor.css" />
+<link rel="stylesheet" href="https://lihd1003.github.io/assets/css/style.css" />
+<link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
+<script src="https://kit.fontawesome.com/98fa07784c.js"></script>
+
+
+
+<style type="text/css">
+/* Overrides of notebook CSS for static HTML export */
+
+div#notebook {
+  overflow: visible;
+  border-top: none;
+}@media print {
+  div.cell {
+    display: block;
+    page-break-inside: avoid;
+  } 
+  div.output_wrapper { 
+    display: block;
+    page-break-inside: avoid; 
+  }
+  div.output { 
+    display: block;
+    page-break-inside: avoid; 
+  }
+}
+</style>
+
+<!-- Custom stylesheet, it must be in the same directory as the html file -->
+<link rel="stylesheet" href="https://lihd1003.github.io/UofT-Course-Material-Repo/index/custom.css">
+
+<!-- Loading mathjax macro -->
+<!-- Load mathjax -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS_HTML"></script>
+    <!-- MathJax configuration -->
+    <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+            displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+            processEscapes: true,
+            processEnvironments: true
+        },
+        // Center justify equations in code and markdown cells. Elsewhere
+        // we use CSS to left justify single line equations in code cells.
+        displayAlign: 'center',
+        "HTML-CSS": {
+            styles: {'.MathJax_Display': {"margin": 0}},
+            linebreaks: { automatic: true }
+        }
+    });
+    </script>
+    <!-- End of mathjax configuration --></head>
+<body>
+	<!-- header -->
+   <header class="header-sticky header-dark">
+    <div class="container">
+      <nav class="navbar navbar-expand-lg navbar-dark">
+        <a class="navbar-brand" href="./index.html">
+          <img class="navbar-logo navbar-logo-light" src="https://lihd1003.github.io/assets/images/logo.png" alt="Logo">
+          <img class="navbar-logo navbar-logo-dark" src="https://lihd1003.github.io/assets/images/logo.png" alt="Logo">
+        </a>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav align-items-center mr-auto">
+          </ul>
+
+          <ul class="navbar-nav align-items-center mr-0">
+            <li class="nav-item">
+              <a href="https://github.com/lihd1003" class="nav-link waves-effect waves-light" target="_blank">
+                <i class="icon-github mr-2"></i>GitHub
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="https://github.com/lihd1003/UofT-Course-Material-Repo" class="nav-link waves-effect waves-light" target="_blank">
+                <i class="icon-star mr-2"></i>Star the Repo
+              </a>
+            </li>
+          </ul>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+<section class="hero hero-with-header text-white" data-top-top="transform: translateY(0px);" data-top-bottom="transform: translateY(250px);">
+    <div class="image image-overlay" style="background-image:url(https://lihd1003.github.io/assets/images/black.jpg)"></div>
+    <div class="container">
+      <div class="row align-items-center">
+        <div class="col text-shadow">
+
+          <h1 class="mb-0">5-Conjugate Directions and Conjugate Gradients</h1>
+        </div>
+      </div>
+    </div>
+ </section>
+ <section class="bg-white sec" id="project">
+  <div tabindex="-1" id="notebook" class="border-box-sizing">
+    <div class="container" id="notebook-container">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="Method-of-Conjugate-Directions">Method of Conjugate Directions<a class="anchor-link" href="#Method-of-Conjugate-Directions">&#182;</a></h1>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Defn.-Q-Conjugate"><em>Defn</em>. Q-Conjugate<a class="anchor-link" href="#Defn.-Q-Conjugate">&#182;</a></h3><p>Let $Q$ be symmetric. We say that $d,d'$ are $Q$-conjugate or $Q$-orthogonal if $d^TQd' = 0$. A finite set $d_0, \dots, d_k$ of vectors is called $Q$-orthogonal if $d_i^TQd_j = 0$ for all $i \geq j$.</p>
+<p>For example, if $Q = I$, then $Q$-orthogonality is equivalent to regular orthogonality. For another example, if $Q$ has more than one distinct eigenvalue, let $d$ and $d'$ be eigenvectors corresponding to distinct eigenvalues. Then $d^TQd' = \lambda' d^Td' = 0$, since the distinct eigenspaces of a symmetric matrix are orthogonal subspaces.</p>
+<p>Recall that any symmetric matrix $Q$ may the orthogonally diagonalized; there exists an orthonormal basis $d_0, \dots, d_{n-1}$ of eigenvectors of $Q$. These eigenvectors are also $Q$-orthogonal. Hence to any symmetric matrix is a basis of orthonormal vectors that are also orthogonal with respect to the matrix, as just defined.</p>
+<h3 id="Examples-of-Q-conjugate-set">Examples of Q-conjugate set<a class="anchor-link" href="#Examples-of-Q-conjugate-set">&#182;</a></h3><p><strong>Claim</strong>. If $Q$ is symmetric and positive definite, then any set of non-zero $Q$-orthogonal vectors $\{d_i\}$ is linearly independent.</p>
+<p><em>proof</em>. If $\sum \alpha_i d_i = 0$, then left-multiplying by $d_j^TQ$ gives $\alpha_j d_j^T Q d_j = 0$. Positive definiteness implies $\alpha_j = 0$.</p>
+<p>Let $Q$ be an $n \times n$ symmetric positive definite matrix. Recall that $f(x) = \frac{1}{2}x^TQx - b^Tx$ has the unique global minimizer $x_* = Q^{-1}b$. Let $d_0, \dots, d_{n-1}$ be non-zero $Q$-orthogonal vectors. Then $d_0, \dots, d_{n-1}$ form a basis of $\mathbb R^n$. Thus there are scalars $\alpha_0, \dots, \alpha_{n-1}$ such that $x_* = \sum \alpha_i d_i$. We would like a formula for the $\alpha_i$'s.</p>
+<p>Multiplying both sides of the sum $x_* = \sum \alpha_i d_i$ by $d_j^TQ$ implies that $d_j^TQx_* = \alpha_j d_j^TQd_j$, implying that
+$$\alpha_j = \frac{d_j^T b}{d_j^TQd_j}$$
+Therefore
+$$x_* = \sum_{i=1}^{n-1} \frac{d_i^Tb}{d_i^TQd_i}  d_i$$
+This implies that we can actually solve for $x_*$ by computing the $d_0, \dots, d_{n-1}$ and the coefficients above. Computationally, computing inner products is very easy. The disadvantage is that we do not know how to find the vectors $d_0, \dots, d_{n-1}$.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Thrm.-Conjugate-Directions"><em>Thrm</em>. Conjugate Directions<a class="anchor-link" href="#Thrm.-Conjugate-Directions">&#182;</a></h2><p><strong>Claim</strong>. Let $d_0, \dots, d_{n-1}$ be a set of non-zero $Q$-orthogonal vectors.<br>
+For a starting point $x_0 \in \mathbb R^n$, consider the sequence $\{x_l\}$ defined by 
+$$x_{k+1} = x_k + \alpha_k d_k$$
+where $$\alpha_k = -\frac{g_k^Td_k}{d_k^TQd_k}, g_k = Qx_k - b$$
+The sequence $\{x_k\}$ converges to the minimizer $x_*$ it at most $n$ steps; $x_n = x_*$.</p>
+<p><em>proof</em>. Write $x_* - x_0 = \alpha_0' d_0 + \cdots + \alpha_{n-1}'d_{n-1}$. Multiply both sides by $d_i^TQ$ to get
+$$
+d_i^TQ(x_* - x_0) = \alpha_i d_i^TQd_i,
+$$
+giving us the expression
+$$
+\tag{*}
+\alpha_i' = \frac{d_i^TQ(x_*-x_0)}{d_i^TQd_i}.
+$$
+Note that
+\begin{align*}
+x_1 &amp;= x_0 + \alpha_0 d_0 \\
+x_2 &amp;= x_0 + \alpha_0 d_0 + \alpha_1 d_1 \\
+&amp;\vdots \\
+x_k &amp;= x_0 + \alpha_0 d_0 + \cdots + \alpha_{k-1}d_{k-1},
+\end{align*}
+implying that
+$$
+x_k - x_0 = \alpha_0 d_0 + \cdots + \alpha_{k-1}d_{k-1}.
+$$
+Multiplying both sides by $d_k^TQ$ gives $d_k^TQ(x_k-x_0) = 0$. By (<em>) we have
+$$
+\alpha_k' = \frac{d<em>k^T Q(x</em></em> - x_0) - d_k^TQ(x_k - x_0)}{d_k^TQd_k} = \frac{d<em>k^TQ(x</em><em> - x_k)}{d_k^TQd_k} = -\frac{(Qx<em>k - Qx</em></em>)^T d_k}{d_k^TQd_k}
+$$
+simplifying to
+$$
+\alpha_k' = -\frac{g_k^T d_k}{d_k^TQd_k} = \alpha<em>k.
+$$
+So
+$$
+x</em>* = x_0 + \alpha_0 d<em>0 + \cdots + \alpha</em>{n-1}d_{n-1} = x_n.
+$$
+So after $n$ steps, we reach the minimizer.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Thrm.-Geometric-Interpretation"><em>Thrm</em>. Geometric Interpretation<a class="anchor-link" href="#Thrm.-Geometric-Interpretation">&#182;</a></h2><p>Let $d_0, \dots, d_{n-1}$ be a set of non-zero $Q$-orthogonal vectors in $\mathbb R^n$, where $Q$ is symmetric and positive definite. Note that these vectors are linearly independent by a result from last lecture. Let $B_k$ denote the subspace spanned by the first $k$ vectors. We have an increasing sequence
+$$B_0 \subsetneq B_1 \subsetneq \cdots \subsetneq B_n$$
+and $\dim(B_k) = k$.</p>
+<p><strong>Lemma</strong>. Let $f$ be a $C^1$ convex function defined on a convex domain $\Omega \subseteq \mathbb R^n$. Suppose there is an $x_* \in \Omega$ such that $\nabla f(x_*) \cdot (y - x_*) \geq 0$ for all $y \in \Omega$. Then $x_*$ is a global minimizer of $f$ on $\Omega$. The converse is obviously true.</p>
+<p><em>Geometrically, this means that if we move in any feasible direction from the point $x</em><em>$, the function is increasing. Hence $x_</em>$ is a local minimizer; convexity implies it is global. With this result in mind, we prove the theorem._</p>
+<p><em>proof</em>. The affine subspace $\Omega = x_0 + B_k$ is convex. \textbf{(This proof could not be finished as attention had to be diverted from the lecture.)}</p>
+<p><strong>Corollary</strong>. $x_n$ minimizes $f(x)$ on $\mathbb R^n$. That is, $x_n = x_*$; the method of conjugate directions for this function $f$ terminates in at most $n$ steps.</p>
+<p><strong>Claim</strong>. The sequence $\{x_k\}_{k=0}^\infty$ generated from $x_0$ by the method of conjugate directions has the property that $x_k$ minimizes $f(x) = \frac{1}{2}x^TQx - b^Tx$ on the affine subspace $x_0 + B_k$.</p>
+<p>When $Q = I$, then $q(x)$ is half the distance squared from $x$ to $x_*$. What if $Q \neq I$. $q$ is still a metric on $\mathbb R^n$. Thus $x_k$ is the point "closest" to $x_*$ on the affine subspace $x_0 + B_k$.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="Conjugate-Gradients">Conjugate Gradients<a class="anchor-link" href="#Conjugate-Gradients">&#182;</a></h1><p>Start at $x_0 \in \mathbb R^n$. Choose $d_0 = -g_0 = -\nabla f(x_0) = b - Qx_0$. Recursively define $d_{k+1} = -g_{k+1} + \beta_k d_k$, where $g_{k+1} = Qx_{k+1} - b$ and
+$$
+\beta_k = \frac{g_{k+1}^T Q d_k}{d_k^TQd_k}
+$$
+and
+$$
+x_{k+1} = x_k + \alpha_k d_k,
+$$
+where
+$$
+\alpha_k = -\frac{g_k^T d_k}{d_k^T Q d_k}.
+$$</p>
+<p>Given an initial point $x_0$, take $d_0 = -g_0 = b - Qx_0$. By definition, $x_1 = x_0 + \alpha_0 d_0$; we need to find $\alpha_0$. This is
+$$
+\alpha_0 = -\frac{g_0^Td_0}{g_0^TQg_0}.
+$$
+Then $x_2 = x_1 + \alpha_1 d_1$. By definition, $\alpha_1 = -\frac{g_1^T d_1}{d_1^TQd_1}$, where $d_1 = -g_1 + \beta_0 d_0$, where $\beta_0 = \frac{g_1^TQd_0}{d_0^TQd_0}$.</p>
+<p>Some remarks:</p>
+<ul>
+<li>Like the other conjugate direction methods, this method converges to the minimizer $x_*$ in $n$ steps.</li>
+<li>We have a procedure to find the direction vectors $d_k$.</li>
+<li>This method makes good uniform progress towards the solution at every step.</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Thrm.-Bound-on-Convergence"><em>Thrm</em>. Bound on Convergence<a class="anchor-link" href="#Thrm.-Bound-on-Convergence">&#182;</a></h2><p><strong>Claim</strong>. consider $q(x) = \frac{1}{2}(x-x_*)^TQ(x-x_*) = f(x) + \text{const}$. It's better to look at $q$ rather than $f$, since $q$ behaves like a distance function relative to $x_*$.
+$$q(x_{k+1}) \leq \left( \max_{\substack{\lambda \\ \text{eigval of Q}}} (1 + \lambda P_k(\lambda))^2 \right) q(x_k)$$
+where $P_k$ is any polynomial of degree $k$.</p>
+<p>For example, suppose $Q$ has $m \leq n$ distinct eigenvalues. Choose a polynomial $P_{m-1}$ such that $1 + \lambda P_{m-1}(\lambda)$ has its $m$ zeroes at the $m$ eigenvalues of $Q$. With such a polynomial, we would get $q(x_m) \leq 0$, implying that $q(x_m) = 0$; the conjugate gradient method terminates at the $m$th step, i.e. $x_m=x_*$.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="Additional-Examples">Additional Examples<a class="anchor-link" href="#Additional-Examples">&#182;</a></h1>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Example-1">Example 1<a class="anchor-link" href="#Example-1">&#182;</a></h2><p>_Let $c\in\mathbb R^n - \{0\}, f(x) = \frac12x^TQx-b^Tx, Q = I +cc^T$. Using conjugate gradient method, what's the smallest $k$ that guarantees $x_k$ is the minimizer of $f$_</p>
+<p><strong>Claim</strong>. $k=2$</p>
+<p><em>proof</em>. First, consider some eigenvalues $\lambda$ and corresponding eigenvector $x$, by definition, we have 
+\begin{align*}
+\lambda x &amp;= Qx\\
+\lambda x &amp;= (I + cc^T)x\\
+\lambda x &amp;= x + cc^Tx\\
+(\lambda - 1)x &amp;= (c^Tx)c &amp;\text{Note that }c^Tx\in\mathbb R
+\end{align*}
+If $\lambda - 1 = 0$, we must have $c^Tx = 0$, so that $\lambda = 1$ is a eigenvalue,<br>
+If $\lambda - 1 \neq 0$, then $x$ and $c$ are linearly dependent, hence the eigenvector is $c$ and we have 
+\begin{align*}
+\lambda c &amp;= (I + cc^T)c\\
+\lambda c &amp;= c + cc^Tc\\
+\lambda &amp;= 1 + c^Tc
+\end{align*}
+Therefore, there are only 2 distinct eigenvalues for $Q = I + cc^T$.</p>
+<p>Then, we can take $P_1(\lambda) = a + b\lambda$ be a polynomial of degree 1 s.t. 
+$$\begin{bmatrix}
+1&amp;1\\
+1&amp;1+c^Tc
+\end{bmatrix}\begin{bmatrix}
+a\\b
+\end{bmatrix}=\begin{bmatrix}
+-1\\-\frac{1}{1+c^Tc}
+\end{bmatrix}$$
+so that $1+P(1) = 0$ and $1+(1+cc^T)P(1+cc^T) =0$. 
+Therefore, we have 
+$$q(x_2) \leq \max_{\lambda \in \{1, 1+c^Tc\}}(1+\lambda P_1(\lambda))q(x_0) = 0$$
+Therefore, $k = 2$ guarantees $x_2$ is the minimizer of $f$.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Example-2">Example 2<a class="anchor-link" href="#Example-2">&#182;</a></h2><p><em>Let $Q = \begin{bmatrix}2&amp;-5\\-5&amp;2\end{bmatrix}, b = \begin{bmatrix}25&amp;8\end{bmatrix}, f = \frac{1}{2}x^TQx - b^Tx$</em></p>
+<p>_(a) Find eigenvalues $\lambda_0\leq \lambda_1$ of $Q$ and corresponding eigenvectors_.</p>
+<p>First, find its characteristic polynomial as 
+$$(2-\lambda)^2 - 25 = \lambda^2 - 4\lambda + 4 -25 = \lambda^2 - 4\lambda+21=(\lambda-7)(\lambda+3)$$
+set the equation to $0$ and solve to get
+$$\lambda_0 = -3, \lambda_1 = 7$$
+Then, 
+\begin{align*}
+(Q - \lambda_0I)d_0 &amp;= 0\\
+\begin{bmatrix}5&amp;-5\\-5&amp;5\end{bmatrix}d_0 &amp;= 0\\
+d_0&amp;= \begin{bmatrix}1\\1\end{bmatrix}\\
+(Q - \lambda_1I)d_1 &amp;= 0\\
+\begin{bmatrix}-5&amp;-5\\-5&amp;-5\end{bmatrix}d_1 &amp;= 0\\
+d_1&amp;= \begin{bmatrix}1\\-1\end{bmatrix}
+\end{align*}</p>
+<p>_(b) Compute the steps of conjugate directions method given directions $d_0, d_1$_</p>
+\begin{align*}
+g_0 &amp;= \begin{bmatrix}2&amp;-5\\-5&amp;2\end{bmatrix}\begin{bmatrix}25\\5\end{bmatrix} - \begin{bmatrix}25\\8\end{bmatrix}= \begin{bmatrix}0\\-123\end{bmatrix}\\
+a_0 &amp;= -(\begin{bmatrix}0\\-123\end{bmatrix}^T\begin{bmatrix}1\\1\end{bmatrix}) / (\begin{bmatrix}1\\1\end{bmatrix}^T
+\begin{bmatrix}2&amp;-5\\-5&amp;2\end{bmatrix}\begin{bmatrix}1\\1\end{bmatrix})= -\frac{41}2\\
+x_1 &amp;= \begin{bmatrix}25\\5\end{bmatrix}-\frac{41}2\begin{bmatrix}1\\1\end{bmatrix}= \begin{bmatrix}4.5\\-15.5\end{bmatrix}\\
+g_1 &amp;= 
+\begin{bmatrix}2&amp;-5\\-5&amp;2\end{bmatrix}
+\begin{bmatrix}4.5\\-15.5\end{bmatrix} - 
+\begin{bmatrix}25\\8\end{bmatrix}= \begin{bmatrix}61.5\\-61.5\end{bmatrix}\\
+a_1 &amp;= -(\begin{bmatrix}61.5\\-61.5\end{bmatrix}^T\begin{bmatrix}1\\-1\end{bmatrix}) / (\begin{bmatrix}1\\-1\end{bmatrix}^T
+\begin{bmatrix}2&amp;-5\\-5&amp;2\end{bmatrix}\begin{bmatrix}1\\-1\end{bmatrix})= -\frac{123}{14}\\
+x_2 &amp;= \begin{bmatrix}-4.5\\15.5\end{bmatrix}-\frac{123}{14}\begin{bmatrix}1\\-1\end{bmatrix}= \begin{bmatrix}-\frac{30}7\\-\frac{47}7\end{bmatrix}
+\end{align*}<p>_(c) Compute the steps of conjugate directions method given directions $d_1, d_0$_</p>
+\begin{align*}
+g_0 &amp;= \begin{bmatrix}2&amp;-5\\-5&amp;2\end{bmatrix}\begin{bmatrix}25\\5\end{bmatrix} - \begin{bmatrix}25\\8\end{bmatrix}= \begin{bmatrix}0\\-123\end{bmatrix}\\
+a_0 &amp;= -(\begin{bmatrix}0\\-123\end{bmatrix}^T\begin{bmatrix}1\\-1\end{bmatrix}) / (\begin{bmatrix}1\\-1\end{bmatrix}^T
+\begin{bmatrix}2&amp;-5\\-5&amp;2\end{bmatrix}\begin{bmatrix}1\\-1\end{bmatrix})= -\frac{123}{14}\\
+x_1 &amp;= \begin{bmatrix}25\\5\end{bmatrix}-\frac{123}{14}\begin{bmatrix}1\\-1\end{bmatrix}= \begin{bmatrix}\frac{227}{14}\\\frac{193}{14}\end{bmatrix}\\
+g_1 &amp;= 
+\begin{bmatrix}2&amp;-5\\-5&amp;2\end{bmatrix}
+\begin{bmatrix}\frac{227}{14}\\\frac{193}{14}\end{bmatrix} - 
+\begin{bmatrix}25\\8\end{bmatrix}= \begin{bmatrix}61.5\\-61.5\end{bmatrix}\\
+a_1 &amp;= -(\begin{bmatrix}61.5\\-61.5\end{bmatrix}^T\begin{bmatrix}1\\1\end{bmatrix}) / (\begin{bmatrix}1\\1\end{bmatrix}^T
+\begin{bmatrix}2&amp;-5\\-5&amp;2\end{bmatrix}\begin{bmatrix}1\\1\end{bmatrix})= -\frac{41}{2}\\
+x_2 &amp;= \begin{bmatrix}\frac{227}{14}\\\frac{193}{14}\end{bmatrix}-\frac{41}{2}\begin{bmatrix}1\\1\end{bmatrix}= \begin{bmatrix}-\frac{30}7\\-\frac{47}7\end{bmatrix}
+\end{align*}<p><em>(d) Compute the steps of conjugate gradients</em></p>
+\begin{align*}
+g_0 &amp;= \begin{bmatrix}2&amp;-5\\-5&amp;2\end{bmatrix}\begin{bmatrix}25\\5\end{bmatrix} - \begin{bmatrix}25\\8\end{bmatrix}= \begin{bmatrix}0\\-123\end{bmatrix}\\
+d_0 &amp;= \begin{bmatrix}0\\123\end{bmatrix}\\
+a_0 &amp;= (\begin{bmatrix}0\\123\end{bmatrix}\cdot\begin{bmatrix}0\\123\end{bmatrix}) / 
+\begin{bmatrix}0\\123\end{bmatrix}\begin{bmatrix}2&amp;-5\\-5&amp;2\end{bmatrix}\begin{bmatrix}0\\123\end{bmatrix} = 0.5\\
+x_1 &amp;= \begin{bmatrix}25\\5\end{bmatrix} + 0.5\begin{bmatrix}0\\123\end{bmatrix}= \begin{bmatrix}25\\66.5\end{bmatrix}\\
+g_1 &amp;=\begin{bmatrix}2&amp;-5\\-5&amp;2\end{bmatrix}\begin{bmatrix}25\\66.5\end{bmatrix} - \begin{bmatrix}25\\8\end{bmatrix}= \begin{bmatrix}-307.5\\0\end{bmatrix}\\
+\beta_0 &amp;= (\begin{bmatrix}-307.5\\0\end{bmatrix}^T\begin{bmatrix}2&amp;-5\\-5&amp;2\end{bmatrix}\begin{bmatrix}0\\123\end{bmatrix}) / (\begin{bmatrix}0\\123\end{bmatrix}^T\begin{bmatrix}2&amp;-5\\-5&amp;2\end{bmatrix}\begin{bmatrix}0\\123\end{bmatrix})=6.25\\
+d_1 &amp;= \begin{bmatrix}307.5\\0\end{bmatrix} + 6.25\begin{bmatrix}0\\123\end{bmatrix} = \begin{bmatrix}307.5\\768.75\end{bmatrix}\\
+a_1 &amp;= (\begin{bmatrix}-307.5\\0\end{bmatrix}\cdot\begin{bmatrix}307.5\\768.75\end{bmatrix}) / 
+\begin{bmatrix}307.5\\768.75\end{bmatrix}\begin{bmatrix}2&amp;-5\\-5&amp;2\end{bmatrix}\begin{bmatrix}307.5\\768.75\end{bmatrix} = -\frac{2}{21}\\
+x_2 &amp;= \begin{bmatrix}25\\66.5\end{bmatrix} + \frac{2}{21}\begin{bmatrix}307.5\\768.75\end{bmatrix} = \begin{bmatrix}-\frac{30}7\\-\frac{47}7\end{bmatrix}\\
+g_2 &amp;= \begin{bmatrix}2&amp;-5\\-5&amp;2\end{bmatrix}\begin{bmatrix}-\frac{30}7\\-\frac{47}7\end{bmatrix} - \begin{bmatrix}25\\8\end{bmatrix} = \begin{bmatrix}0\\0\end{bmatrix}\\
+\beta_1 &amp;= \frac{0}{d_1^TQd_1} = 0\\
+d_2 &amp;= -g_2 + 0 = \begin{bmatrix}0\\0\end{bmatrix}\\
+x_3 &amp;= x_2 + a_2\begin{bmatrix}0\\0\end{bmatrix} = x_2 = \begin{bmatrix}-\frac{30}7\\-\frac{47}7\end{bmatrix}
+\end{align*}
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Example-3">Example 3<a class="anchor-link" href="#Example-3">&#182;</a></h2><p>_Prove that the Gram-Schmidt procedure generate a sequence of Q-conjugate directions given a linear independent set of vector $p_0,...,p_{n-1}\in\mathbb R^n$_</p>
+<p><em>proof</em>. Note that this statement is equal to say that $\forall k\in\{0,...,n-1\}. \forall j &lt; k. d_k^TQd_j = 0$, and I'll prove this statement by strong induction.</p>
+<p>First, since $Q$ is symmetric $d_k^TQd_j = d_j^TQd_k$ for any $d_j,d_k$.  Also note that since $d_k$'s are linear combinations of $p_0, ..., p_{n-1}$, $d_k\neq 0, \forall k\in\{0,...,n-1\}$, and since $Q$ is positive definite $d_K^TQd_k &gt; 0$.</p>
+<p>Then, note that for $k = 0$, the statement is vacuously true.<br>
+Fir $k \in \{1, ..., n-1\}$, assume that $\forall m &lt; k. \forall j &lt; m. d_m^TQd_j = d_j^TQd_m = 0$, i.e. $\forall j,m &lt; k, j\neq m. d^T_mQd_j = 0$ Then, for some $i &lt; k$, we have
+\begin{align*}
+d_{k}^TQd_{j} &amp;= (p_k - \sum_{i=0}^{k-1}\frac{p_k^TQ d_i}{d_i^TQd_i}d_i)^TQd_j\\
+&amp;= p_k^TQd_j- \sum_{i=0}^{k-1}\frac{p_k^TQ d_i}{d_i^TQd_i}d_i^TQd_j\\
+&amp;= p_k^TQd_j - \frac{p_k^TQ d_i}{d_j^TQd_j}d_j^TQd_j\\
+&amp;= p_k^TQd_j - p_k^TQd_j\\
+&amp;= 0
+\end{align*}</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Example-4">Example 4<a class="anchor-link" href="#Example-4">&#182;</a></h2><p>_Let $Q$ be positive definite, $f(x) = \frac12 x^TQx - b^Tx$. Let $x_1=\arg\min_{x\in S_1}f(x), x_2=\arg\min_{x\in S_2}f(x)$, where $S_1,S_2\subset E^n$ and $d\in S_1\cap S_2$, assume $f(x_1) &lt; f(x_2)$. Show that $(x_1-x_2)^TQd = 0$._</p>
+<p><em>proof</em>. Since $x_1$ is a minimizer of $S_1$, we must have $\nabla f(x_1)^T = 0$, otherwise we can have some $\epsilon &gt; 0, f(x_1 - \epsilon d) &lt; f(x_1)$ and $x_1-\epsilon d \in S_1$ since $x_1\in S_1, d\in S_1$. Note that the equation is expanded as
+\begin{align*}
+\nabla f(x_1)^T d &amp;= (Qx_1 - b)^Td \\
+&amp;= x_1^TQ^Td - b^Td \\
+&amp;= x_1^TQd - b^Td &amp;Q\text{ is symmetric}\\
+&amp;= 0
+\end{align*}</p>
+<p>and similarly we have $\nabla f(x_2)^T d = x_2^TQd - b^Td= 0$.</p>
+<p>Therefore, we have 
+\begin{align*}
+(x_1-x_2)^TQd &amp;= x_1^TQd - x_2^TQd \\
+&amp;= b^Td - b^Td \\
+&amp;= 0
+\end{align*}</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Example-5">Example 5<a class="anchor-link" href="#Example-5">&#182;</a></h2><p>_Let $f = \frac12x^TQx - b^Tx$ where $Q = diag(\lambda_1,...,\lambda_n)$ being a diagonal, positive definite and symmetric matrix._</p>
+<p><em>(a) Show that standard basis vectors form a Q-orthogonal set</em></p>
+<p><em>proof.</em> Let $i, j \in\{1, ...,n\}, i\neq j$.<br>
+Denote $e_{mk}$ be the $k$th entry of $e_m$, $Q_{ij}$ be the entry on $i$th row and $j$th column of $Q$
+$$e_i^TQe_j = \sum_{p=1}^n\sum_{q=1}^nQ_{pq}e_{ip}e_{jq}$$
+Note that<br>
+$Q_{pp} = \lambda_i, Q_{pq}=0$, for any $p,q\in\{1,...,n\}, p\neq q$.<br>
+$e_{ii}=1, e_{ip}=0$ for $p\in\{1,...,n\}-\{i\}$<br>
+$e_{jj}=1, e_{jq}=0$ for $q\in\{1,...,n\}-\{j\}$<br>
+Therefore, consider each term of the summation, when $p\neq q, Q_{pq}=0$, when $p=q$, at least one of $e_{ip},e_{jq}$ equals 0. Therefore, all terms in the summation are 0, $e_i^TQe_j = 0$, hence $\{d_0,...,d_{n-1}\} = \{e_1,...,e_n\}$ forms a Q-orthogonal set.</p>
+<p>_(b) Prove $x_k = (\frac{b_1}{\lambda_1},...,\frac{b_k}{\lambda_k}, a_{k+1},...,a_n)$ is the $k$th step of Conjugate direction method, starting from $x_0 = (a_1,...,a_n)$_</p>
+<p><em>proof</em>. I'll prove by induction.<br>
+Let $k\in \{1,...,n-2\}$, assume $x_{k} = (\frac{b_1}{\lambda_1},...,\frac{b_k}{\lambda_k}, a_{k+1},...,a_n)$. Consider the $(k+1)$th step of conjugate direction method.<br>
+$$g_k = Qx_k - b = 
+\begin{bmatrix}
+\lambda_1\frac{b_1}{\lambda_1} - b_1\\
+\cdots\\
+\lambda_k\frac{b_k}{\lambda_k} - b_k\\
+\lambda_{k+1}a_{k+1} - b_{k+1}\\
+\cdots\\
+\lambda_{n}a_n - b_{n}
+\end{bmatrix} = 
+\begin{bmatrix}
+0\\
+\cdots\\
+0\\
+\lambda_{k+1}a_{k+1} - b_{k+1}\\
+\cdots\\
+\lambda_{n}a_n - b_{n}
+\end{bmatrix}$$
+$$a_k = -\frac{g_k^Td_k}{d_k^TQd_k}=-\frac{g_k^Te_{k+1}}{e_{k+1}^TQe_{k+1}}-\frac{\lambda_{k+1}a_{k+1} - b_{k+1}}{\lambda_{k+1}} = -a_{k+1}+\frac{b_{k+1}}{\lambda_{k+1}}$$
+$$x_{k+1} = x_k + a_kd_k = x_k + a_ke_{k+1} 
+\begin{bmatrix}
+\frac{b_1}{\lambda_1}\\
+\cdots\\
+\frac{b_k}{\lambda_k}\\
+a_{k+1} -a_{k+1}+\frac{b_{k+1}}{\lambda_{k+1}}\\
+a_{k+2}\\
+\cdots\\
+a_n
+\end{bmatrix} = 
+\begin{bmatrix}
+\frac{b_1}{\lambda_1}\\
+\cdots\\
+\frac{b_{k+1}}{\lambda_{k+1}}\\a_{k+2}\\
+\cdots\\
+a_n
+\end{bmatrix}
+$$</p>
+<p>_(c) Prove that $\forall k \geq 1, x_k$ is the minimizer of $f$ in the set $x_0 + \mathcal B_k, \mathcal B_k = span\{d_0,...,d_{k-1}\} = span\{e_1,...,e_k\}$_</p>
+<p><em>proof</em>. Let 
+\begin{align*}
+\phi(y_1,...,y_k)&amp;=f(x_0 + \sum_{i=1}^k{y_ie_i})\\
+&amp;=(x_0 + \sum_{i=1}^k{y_ie_i})^TQ(x_0 + \sum_{i=1}^k{y_ie_i})-b^T(x_0 + \sum_{i=1}^k{y_ie_i})
+\end{align*}
+Therefore, the problem is equivalent to minimize $\phi$ on $\in\mathbb R^k$.<br>
+Note that 
+$$\frac{\partial\phi}{\partial y_i} = Q_{i\cdot}(x_{0i}+y_i) - b_i = \lambda_i(a_i+y_i) - b_i$$
+for $i=1,2,..,k$,<br>
+Therefore, set the derivative to $0$ to satisfy the FONC, we have $k$ equations 
+$$\lambda_i(a_i+y_i)-b_i=0\Rightarrow y_i =\frac{b_i}{\lambda_i}-a_i$$
+Then, note that $\frac{\partial^{2}\phi}{\partial y_i^2} = \lambda_i, \frac{\partial^{2}\phi}{\partial y_i y_j} = 0$ for $i,j\in\{1,...,k\}, i\neq j$, we have $\nabla^2\phi = diag(\lambda_1,...,\lambda_k)$, i.e. the top-left $k\times k$ submatrix of $Q$, since $Q$ is positive definite, $\nabla^2\phi$ is also positive definite, SOC also holds and 
+$$x_0 + \sum_{i-1}^k(\lambda_i(a_i+y_i)-b_i)e_i = (\frac{b_1}{\lambda_1},...,\frac{b_k}{\lambda_k}, a_{k+1}, ..., a_n) = x_k$$
+is the minimizer of $\phi$.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Example-6">Example 6<a class="anchor-link" href="#Example-6">&#182;</a></h2><p><em>Let $Q$ be a positive definite symmetric matrix.</em></p>
+<p><em>(a) Prove $d(x, y) = [(x-y)^TQ(x-y)]^{1/2}$ is a metric.</em></p>
+<p><em>proof</em>. Let $x,y\in\mathbb R^n$.</p>
+<p><strong>positive definite</strong><br>
+Since $Q$ is positive definite, 
+$$\forall a\in\mathbb R^n. a^TQa \geq 0\land a^TQa = 0\Leftrightarrow a = 0$$ Hence
+$$(x-y)^TQ(x-y) \geq 0\land (x-y)^TQ(x-y) = 0\Leftrightarrow x-y = 0\Leftrightarrow x=y$$
+Therefore, 
+$$d(x,y)=[(x-y)^TQ(x-y)]^{1/2} \geq 0\land [(x-y)^TQ(x-y)]^{1/2} = 0\Leftrightarrow x=y$$</p>
+<p><strong>symmetric</strong><br>
+\begin{align*}
+d(x,y) &amp;= [(x-y)^TQ(x-y)]^{1/2} \\
+&amp;= [(-(y-x))^TQ(-(y-x))]^{1/2}\\
+&amp;= [-1(-1)(y-x)^TQ(y-x)]^{1/2}\\
+&amp;= [(y-x)^TQ(y-x)]^{1/2}\\
+&amp;= d(y,x)
+\end{align*}</p>
+<p><strong>triangular inequality</strong><br>
+\begin{align*}
+d(x,z)&amp;= [(x-z)^TQ(x-z)]^{1/2}\\
+&amp;= [((x-y)+(y-z))^TQ((x-y)+(y-z))]^{1/2}\\
+&amp;= [(x-y)^TQ(x-y) + (y-z)^TQ(y-z)]^{1/2}\\
+&amp;= (d(x,y)^{2} + d(y,z)^2)^{1/2}\\
+&amp;\text{by triangular inequality on Euclidean norm of real numbers}\\
+&amp;\leq (d(x,y)^{2})^{1/2} + (d(x,y)^{2})^{1/2} \\
+&amp;= d(x,y) + d(y,z)
+\end{align*}</p>
+<p><em>(b) For $x^*\in\mathbb R^2, a\in\mathbb R$, for $x$ on the line $L = \{x\in\mathbb R^2\mid x=(t,at), t\in\mathbb R\}$, find $x$ that minimizes $d(x,x^*)$.</em></p>
+<p>Define 
+$$f(x, y) = d((x, y), (x^*, y^*)) = \frac12 \begin{bmatrix}x-x^*\\y-y^*\end{bmatrix}^TQ\begin{bmatrix}x-x^*\\y-y^*\end{bmatrix}$$
+therefore minimizing $d((x,y), (x^*, y^*))$ on $L$ is equivalent to 
+\begin{align*}&amp;\text{minimize } &amp;f(x,y)\\
+&amp;\text{subject to} &amp;l(x,y) = ax-y = 0
+\end{align*}
+Note that $\nabla f = Q\begin{bmatrix}x-x^*\\y-y^*\end{bmatrix}, \nabla l = \begin{bmatrix}a\\-1\end{bmatrix}$
+using Lagrange multiplier, we have equations 
+\begin{align*}
+Q\begin{bmatrix}t-x^*\\at-y^*\end{bmatrix} + \lambda\begin{bmatrix}a\\-1\end{bmatrix}= 0 
+\end{align*}
+Therefore, since $Q$ is symmetric, write $Q = \begin{bmatrix}p&amp;m\\m&amp;q\end{bmatrix}$we can solve for 
+$$t = \frac{(p+m)x^* + (q+m)x^*}{a^2q + 2am + p}$$
+Since $Q$ is positive definite, this solution is the minimum.</p>
+
+</div>
+</div>
+</div>
+    </div>
+  </div>
+</section>
+  <script src="https://lihd1003.github.io/assets/js/vendor.js"></script>
+  <script src="https://lihd1003.github.io/assets/js/app.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script>
+    $("table").addClass("table table-lined")
+  </script>
+</body>
+
+ 
+
+
+</html>
