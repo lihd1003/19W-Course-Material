@@ -1,0 +1,41 @@
+---
+title: Notes
+layout: directory
+---
+<div id="doclist">
+  <div class="row">
+    <div class="col-md-4">
+      <input class="form-control form-control-sm search" placeholder="Search Name" type="text" />
+    </div>
+    <div class="col-md-8">
+      <button class="btn btn-secondary btn-sm sort" data-sort="name">Sort by name</button>
+      <button class="btn btn-secondary btn-sm sort" data-sort="type">Sort by type</button>
+      <button class="btn btn-secondary btn-sm sort" data-sort="mtime">Sort by Modification Time</button>
+    </div>
+  </div>
+  <div class="row list my-2" id="dentry">
+    {% for collection in site.collections %}
+    {% assign csize = collection.docs | size %}
+    {% if collection.label != "posts" and csize > 0 %}
+    <div class="col-md-6 col-lg-4 aos-init aos-animate" data-aos="fade-up" data-aos-delay="100">
+      <div class="card">
+        <div class="card-body">
+          <p class="eyebrow mb-1 type">{{ collection.code }}</p>
+          <h4 class="card-title mb-0 name"><a href="{{ collection.docs[0].url  | relative_url }}">{{ collection.name }}</a></h4>
+          <hr class="ml-0 w-20">
+          <h4 class="progress-title">Note Size: <span class="text-facebook">{{ csize }}</span></h4>
+        </div>
+
+        <div class="card-footer">
+          <div class="row align-items-center">
+            <div class="col-8">
+              <a href="{{ collection.docs[0].url  | relative_url  }}" class="btn btn-ico btn-rounded btn-outline-primary"><i class="icon-arrow-right2 fs-20"></i></a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    {% endif %}
+    {% endfor %}
+  </div>
+</div>

@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <title>{{ page.title }} | Yurina!</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <link rel="icon" type="image/gif" href="https://lihd1003.github.io/assets/images/logo.png">
+  <link rel="stylesheet" href="https://lihd1003.github.io/assets/css/vendor.css" />
+  <link rel="stylesheet" href="https://lihd1003.github.io/assets/css/style.css" />
+  <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
+  <script src="https://kit.fontawesome.com/98fa07784c.js"></script>
+</head>
+
+<body>
+  {% include header.html %}
+
+  <section class="hero hero-with-header text-white" data-top-top="transform: translateY(0px);"
+    data-top-bottom="transform: translateY(250px);">
+    <div class="image image-overlay" style="background-image:url(https://lihd1003.github.io/assets/images/black.jpg)">
+    </div>
+    <div class="container">
+      <div class="row align-items-center">
+        <div class="col text-shadow">
+          <h1 class="mb-0">Haoda Li</h1>
+          <p class="lead">Notes @University of Toronto</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="container">
+      {{ content }}
+    </div>
+  </section>
+
+  <script src="https://lihd1003.github.io/assets/js/vendor.js"></script>
+  <script src="https://lihd1003.github.io/assets/js/app.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script crossorigin="anonymous" integrity="sha256-YqOIp4MygNx9/lcWr5lpcR88Ki/MNMWvJJkH0eK+fHM="
+    src="https://cdnjs.cloudflare.com/ajax/libs/list.js/1.5.0/list.min.js"></script>
+  <script>
+    const doclist = new List("doclist", { valueNames: ['name', 'mtime', 'type'] })
+  </script>
+</body>
+
+</html>
