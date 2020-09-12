@@ -31,6 +31,20 @@ collections:
     instructor: Richard Zemel
     output: true
 
+  csc320:
+    code: CSC320
+    name: Introduction to Visual Computing
+    term: 2019 Fall
+    instructor: Yawen Ma
+    output: true
+  
+  csc336:
+    code: CSC336 
+    name: Numerical Methods
+    term: 2019 Fall
+    instructor: Kenneth R. Jackson
+    output: true
+
 
 defaults:
   -

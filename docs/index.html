@@ -30,7 +30,8 @@ layout: directory
         <div class="card-footer">
           <div class="row align-items-center">
             <div class="col-8">
-              <a href="{{ collection.docs[0].url  | relative_url  }}" class="btn btn-ico btn-rounded btn-outline-primary"><i class="icon-arrow-right2 fs-20"></i></a>
+              {% assign docsort = collection.docs | sort: "order" %}
+              <a href="{{ docsort[0].url  | relative_url  }}" class="btn btn-ico btn-rounded btn-outline-primary"><i class="icon-arrow-right2 fs-20"></i></a>
             </div>
           </div>
         </div>
