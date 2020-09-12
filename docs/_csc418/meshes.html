@@ -107,7 +107,8 @@ Optionally, texture coordinate indices can be used to specify texture coordinate
 <p><strong>Vertex normal indices</strong>
 Optionally, normal indices can be used to specify normal vectors for vertices when defining a face. To add a normal index to a vertex index when defining a face, one must put a second slash after the texture coordinate index and then put the normal index. A valid normal index starts from 1 and matches the corresponding element in the previously defined list of normals. Each face can contain three or more elements.</p>
 
-<pre><code># List of texture coordinates, in (u, [,v ,w]) coordinates, these will vary between 0 and 1. v, w are optional and default to 0.
+<pre><code># List of texture coordinates, in (u, [,v ,w]) coordinates, 
+# these will vary between 0 and 1. v, w are optional and default to 0.
 vt 0.500 1 [0]
 vt ...
 ...

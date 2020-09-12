@@ -16,11 +16,12 @@ layout: directory
     {% for collection in site.collections %}
     {% assign csize = collection.docs | size %}
     {% if collection.label != "posts" and csize > 0 %}
+    {% assign docsort = collection.docs | sort: 'order' | first %}
     <div class="col-md-6 col-lg-4 aos-init aos-animate equal" data-aos="fade-up" data-aos-delay="100">
       <div class="card">
         <div class="card-body">
           <p class="eyebrow mb-1 type"><span class="badge badge-pill badge-success">{{ collection.code }}</span> @{{ collection.term }}</p>
-          <h4 class="card-title mb-0 name"><a href="{{ collection.docs[0].url  | relative_url }}">{{ collection.name }}</a></h4>
+          <h4 class="card-title mb-0 name"><a href="{{ docsort.url | relative_url }}">{{ collection.name }}</a></h4>
           <hr class="ml-0 w-20">
           <h4 class="progress-title">Note Size: <span class="text-purple">{{ csize }}</span></h4>
           <h4 class="progress-title">Instructed by <span class="text-purple text-capitalize">{{ collection.instructor }}</span></h4>
@@ -29,8 +30,8 @@ layout: directory
         <div class="card-footer">
           <div class="row align-items-center">
             <div class="col-8">
-              {% assign docsort = collection.docs | sort: "order" %}
-              <a href="{{ docsort[0].url  | relative_url  }}" class="btn btn-ico btn-rounded btn-outline-primary"><i class="icon-arrow-right2 fs-20"></i></a>
+              
+              <a href="{{ docsort.url | relative_url }}" class="btn btn-ico btn-rounded btn-outline-primary"><i class="icon-arrow-right2 fs-20"></i></a>
             </div>
           </div>
         </div>
