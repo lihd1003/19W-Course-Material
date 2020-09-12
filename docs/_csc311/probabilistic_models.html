@@ -1,0 +1,117 @@
+---
+title: Probabilistic Models
+order: 70
+---
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1>Likelihood Function</h1>
+<p>The density of the observed data, as a function of parameters $\theta$.</p>
+<h2>Approaches to classification</h2>
+<p><strong>Discriminative approach</strong> estimate parameters of decision boundary / class separator directly from labeled examples</p>
+<ul>
+<li>How do I separate the classes</li>
+<li>learn $p(t|x)$ directly (logistic regression models)</li>
+<li>learn mapping from inputs to classes</li>
+</ul>
+<p><strong>Generative approach</strong> model the distribution of inputs characteristic of the class (Bayes classifier)</p>
+<ul>
+<li>What does each class "look" like?</li>
+<li>Build a model of $p(x|t)$</li>
+<li>Apply Bayes rule</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1>Bayes Classifier</h1>
+<p>Given features $x = [x_1,...,x_D]^T$, we want to compute class probabilities using Bayes Rule:
+$$p(c|x) = \frac{p(x,c)}{p(x)} = \frac{p(x|c)p(c)}{p(x)}$$
+or by text $$\text{posterior} = \frac{\text{class likelihood} \times {\text{prior}}}{\text{Evidence}}$$</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2>Bayes Nets</h2>
+<p>We can represent this model using an <strong>directed graphical model</strong>, or <strong>Bayesian network</strong>.</p>
+<p>This graph structure means the joint distribution factorizes as a product of conditional distribution for each variable given its parent(s).</p>
+<p>Intuitively, you can think of the edges as reflecting a causal structure. But mathematically, this doesn't hold without additional assumptions.</p>
+<p>The parameters can be learned efficiently because the log-likelihood decomposes into independent terms for each feature.</p>
+\begin{align*}
+\mathcal l(\theta) &amp;= \sum_{i=1}^N \log p(c^{(i)}, x^{(i)})\\
+&amp;= \sum_{i=1}^N \log\{p(x^{(i)}| c^{(i)})p(c^{(i)})\}\\
+&amp;= \sum_{i=1}^N \log\{p(c^{(i)}) \prod_{j=1}^D p(x_j^{(i)}| c^{(i)})\}\\
+&amp;= \sum_{i=1}^N \bigg[\log p(c^{(i)}) + \sum_{j=1}^D \log p(x_j^{(i)}|c^{(i)})\bigg]\\
+&amp;= \underset{\text{Bernoulli log-likelihood of labels}}{\sum_{i=1}^N \log p(c^{(i)})} + \underset{\text{Bernoulli log-likelihood for feature }x_j}{\sum_j^D\sum_i^N \log p(x_j^{(i)}|c^{(i)})}
+\end{align*}<p>Each of these log-likelihood terms depends on different set of parameters, so they can be optimized independently.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2>Bayes Inference</h2>
+$$p(c|x)\propto p(c)\prod_j^D p(x_j|c)$$<p>For input $x$, predict by comparing the values of $p(c)\prod_j^D p(x_j|c)$ for different $c$.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1>Bayesian Parameter Estimation</h1>
+<p>Bayesian approach treats the parameters as random variables. $\beta$ is the set of parameters in the prior distribution of $\theta$</p>
+<p>To define a Bayesian model, we need to specify two distributions:<br>
+<strong>prior distribution</strong>$p(\theta)$, which encodes our beliefs about the parameters <strong>before</strong> we observe the data.<br>
+<strong>likelihood</strong>, same as in MLE</p>
+<p>When we update our beliefs based on the observations, we compute the <strong>posterior distribution</strong> using Bayes' rule. 
+$$p(\theta|\mathcal D) = \frac{p(\theta)p(\mathcal D|\theta)}{\int p(\theta')p(\mathcal D|\theta')d\theta'}$$</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2>Maximum A-Posteriori Estimation</h2>
+<p>Find the most likely parameter settings under the posterior</p>
+\begin{align*}
+\hat{\boldsymbol{\theta}}_{\mathrm{MAP}}&amp;=\arg \max _{\boldsymbol{\theta}} p(\boldsymbol{\theta} | \mathcal{D}) \\
+&amp;=\arg \max _{\boldsymbol{\theta}} p(\boldsymbol{\theta}) p(\mathcal{D} | \boldsymbol{\theta})  \\
+&amp;=\arg \max _{\boldsymbol{\theta}} \log p(\boldsymbol{\theta})+\log p(\mathcal{D} | \boldsymbol{\theta})$
+\end{align*}
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1>Gaussian Discriminant Analysis (Gaussian Bayes Classifier)</h1>
+<p>Make decisions by comparing class posteriors. 
+$$\log p\left(t_{k} | \mathbf{x}\right)=\log p\left(\mathbf{x} | t_{k}\right)+\log p\left(t_{k}\right)-\log p(\mathbf{x})$$
+Expanded as 
+\begin{align*}\log p\left(t_{k} | \mathbf{x}\right) =  &amp;-\frac{d}{2} \log (2 \pi) -\frac{1}{2} \log \left|\boldsymbol{\Sigma}_{k}^{-1}\right| \\
+&amp;-\frac{1}{2}\left(\mathbf{x}-\boldsymbol{\mu}_{k}\right)^{T} \boldsymbol{\Sigma}_{k}^{-1}\left(\mathbf{x}-\boldsymbol{\mu}_{k}\right) \\
+&amp;+\log p\left(t_{k}\right)-\log p(\mathbf{x})
+\end{align*}
+Decision Boundary 
+\begin{align*}&amp;\log p\left(t_{k} | \mathbf{x}\right)=\log p\left(t_{l} | \mathbf{x}\right) \\\Rightarrow &amp;\left(\mathbf{x}-\boldsymbol{\mu}_{k}\right)^{T} \boldsymbol{\Sigma}_{k}^{-1}\left(\mathbf{x}-\boldsymbol{\mu}_{k}\right)=\left(\mathbf{x}-\boldsymbol{\mu}_{\ell}\right)^{T} \boldsymbol{\Sigma}_{\ell}^{-1}\left(\mathbf{x}-\boldsymbol{\mu}_{\ell}\right)+C_{k, l} \\\Rightarrow&amp;\mathbf{x}^{T} \boldsymbol{\Sigma}_{k}^{-1} \mathbf{x}-2 \boldsymbol{\mu}_{k}^{T} \mathbf{\Sigma}_{k}^{-1} \mathbf{x}=\mathbf{x}^{T} \mathbf{\Sigma}_{\ell}^{-1} \mathbf{x}-2 \boldsymbol{\mu}_{\ell}^{T} \mathbf{\Sigma}_{\ell}^{-1} \mathbf{x}+C_{k, l}
+\end{align*}
+Decision Boundary is quadratic since gaussian is quadratic. When we have to humps that share the same covariance, the decision boundary is linear.</p>
+<h2>Properties of Gaussian Distribution</h2>
+<p>$\mathbf{x} \sim \mathcal{N}(\boldsymbol{\mu}, \mathbf{\Sigma})$ is defined as 
+$$p(\mathbf{x})=\frac{1}{(2 \pi)^{d / 2}|\mathbf{\Sigma}|^{1 / 2}} \exp \left[-\frac{1}{2}(\mathbf{x}-\boldsymbol{\mu})^{T} \mathbf{\Sigma}^{-1}(\mathbf{x}-\boldsymbol{\mu})\right]$$
+<strong>Empirical Mean</strong> $\hat{\boldsymbol{\mu}}=\frac{1}{N} \sum_{i=1}^{N} \mathbf{x}^{(i)}$<br>
+<strong>Empirical Covariance</strong> $\hat{\mathbf{\Sigma}}=\frac{1}{N} \sum_{i=1}^{N}\left(\mathbf{x}^{(i)}-\hat{\boldsymbol{\mu}}\right)\left(\mathbf{x}^{(i)}-\hat{\boldsymbol{\mu}}\right)^{\top}$</p>
+<h2>GDA vs.  Logistic Regression</h2>
+<ul>
+<li>GDA is generative while LR is discriminative model. </li>
+<li>GDA makes stringer modelling assumptions: assumes gaussian distributon. When assumption true, GDA asymptotically efficient. - - LR more robust, less sensitive to incorrect modelling assumptions (LR uses CE, no assumption.) </li>
+<li>Class-conditional distributions usually lead to logistic classifier. </li>
+</ul>
+
+</div>
+</div>
+</div>
+ 
+

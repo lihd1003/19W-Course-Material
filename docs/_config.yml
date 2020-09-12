@@ -11,11 +11,25 @@ markdown: kramdown
 
 collections:
   csc418:
-    code: CSC418
+    code: CSC418/CSC2504
     name: Computer Graphics
-    sort_by: order
+    term: 2020 Summer
+    instructor: Sarah Kushner
     output: true
-    dept: csc
+
+  apm462:
+    code: APM462
+    name: Nonlinear Optimization
+    term: 2020 Summer
+    instructor: Jonathan Korman
+    output: true
+
+  csc311:
+    code: CSC311
+    name: Introduction to Machine Learning
+    term: 2019 Fall
+    instructor: Richard Zemel
+    output: true
 
 
 defaults:
