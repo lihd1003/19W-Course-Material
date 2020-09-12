@@ -1,9 +1,0 @@
-Get the global variable out of the header file.
-
-Now it compiles and works fine. The thing left to discuss is the design.
-How is the code constrained by the use of a single global variable for the
-head of the list and/or stack? 
-
-Is this constraint a feature or a bug? Depends on the situation in which
-you want to use the linked list. Likely for a generic API like this, it is
-a bug.

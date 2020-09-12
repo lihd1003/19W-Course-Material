@@ -1,0 +1,400 @@
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<hr>
+<p>title: Dynamic Programming</p>
+<h2>order: 20</h2>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1>Activity Scheduling with Profits</h1>
+<ul>
+<li>Input: $A =\{A_1,...,A_n\}$ where $A_i=(s_i,f_i,w_i)$ where $w_i\in\mathbb{N}$ is the profit</li>
+<li>Output: $S\subseteq A, S$ has no conflct and $w(S)=\sum_{A_i\in S} w_i$ is maximized</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2>Discussion</h2>
+<ul>
+<li>Note that Greedy won't work (finish time, profit, unit-profit)</li>
+<li>Assume the activity are sorted by finish time. Consider $S^*$ optimal, consider $A_n$ which is the activity with the largest finishing time. <ul>
+<li>If $A_n\in S^*$, then $S^*-A_n$ must be optimal for $A'=\{A_1,...,A_k\}$ where $k$ is the last activity that does not overlap with $A_n$, a.k.a. $\{A_{k+1},...,A_{n-1}\}$ each overlap with $A_n$</li>
+<li>If $A_n\not\in S^*$, then $S^*$ is optimal for $A-\{A_n\}$</li>
+</ul>
+</li>
+<li><strong>Recursive substructure</strong> when an optimal solution of a problem is made up of optimal solutions of the sub-problems.</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2>Recursive Implementation</h2>
+<p><code>initialization(A)</code>compute $P = p[1],...,p[n]$ where $p[i]=$index of the last activity that does not overlap with $A_i$, note $p[i]\leq i-1$</p>
+<div class="highlight"><pre><span></span><span class="n">solution</span><span class="p">(</span><span class="n">A</span><span class="p">):</span>
+    <span class="n">P</span> <span class="o">=</span> <span class="n">initialization</span><span class="p">(</span><span class="n">A</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">RecOpt</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">P</span><span class="p">)</span>
+
+<span class="n">RecOpt</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">P</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">n</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+        <span class="k">return</span> <span class="mi">0</span>
+    <span class="k">return</span> <span class="nb">max</span><span class="p">(</span><span class="n">RecOpt</span><span class="p">(</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">),</span> <span class="n">w_n</span> <span class="o">+</span> <span class="n">RecOpt</span><span class="p">(</span><span class="n">p</span><span class="p">[</span><span class="n">n</span><span class="p">]))</span>
+</pre></div>
+<p>Note that the runtime has combinatorial explosion due to the repeated calls of <code>RecOpt(i)</code> for small <code>i</code> for exponentially many times. THe runtime is exponential only because it is recursive, To solve it</p>
+<ul>
+<li>memorization: memorize the output of RecOpt(i) and record for later usage</li>
+<li>Instead, compute values bottom-up</li>
+</ul>
+<div class="highlight"><pre><span></span><span class="n">IterOpt</span><span class="p">(</span><span class="n">A</span><span class="p">):</span>
+    <span class="n">initialization</span><span class="p">(</span><span class="n">A</span><span class="p">)</span>
+    <span class="n">OPT</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">OPT</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">n</span><span class="p">):</span>
+        <span class="n">OPT</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">OPT</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="n">w_i</span> <span class="o">+</span> <span class="n">OPT</span><span class="p">[</span><span class="n">p</span><span class="p">[</span><span class="n">i</span><span class="p">]])</span>
+    <span class="k">return</span> <span class="n">OPT</span> <span class="c1"># note that OPT is useful to get S</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1>Dynamic Programming</h1>
+<ul>
+<li>For optimization problems where global optimum is obtained from optimum to subproblems</li>
+<li>The subproblems need to be simple Each subproblem can be characterized using a fixed number of indexes or other information</li>
+<li>Subproblem overlap: smaller subproblems repeated in solutions to larger problems</li>
+</ul>
+<h2>"Process"</h2>
+<ol>
+<li>Understand the recursive structure of the optimum solutions</li>
+<li>Define a table (iterative data structure) to store the optimum value for all subproblems</li>
+<li>Give a recurrence for the table values, with justification</li>
+<li>Write iterative algorithm to compute the value bottom-up (solve the recurrence)</li>
+<li>Use the table values to compute an actual solution</li>
+</ol>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1>Matrix Chain Multiplication</h1>
+<p>Input: $(d_0,...,d_n), d_i\in\mathbb{Z}^+$ representing matrix dimensions, since the inner dimension are same, we don't store it twice, a.k.a. $A_0=[d_0\times d_1], A_1 = [d_1\times d_2],..., A_{n-1}=[d_{n-1}\times d_n]$ <br>
+Output: fully parenthesized expression for $\prod_1^{n-1} A_i$ that minimize total #flips to computer the product</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2>Example</h2>
+<p>$A_{1\times 10}, B_{10\times 10}, C_{10\times 100}$ are matrices. We can compute it by $A(BC)$ or $(AB)C$, note that multiplication are associative.</p>
+<ul>
+<li>$A(BC)$: Consider $BC$, #flips = $10^2 \times 100$, then $A(BC)$ #flips = $1\times 10\times 100$. sum: $11,000$</li>
+<li>$(AB)C$: $AB$: $1\times 10\times 10 = 100$, $(AB)C=1\times 10\times 100 = 1000$, sum: $1100$</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2>Discussion</h2>
+<ul>
+<li>Brutal force # ways to parenthesize is called a Catalan number $\in\Omega(4^n)$</li>
+<li>Greedy ? consider input $(10, 1, 10, 100), (1, 10, 100, 1000)$, try greedy strategies and consider the counter example above. </li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2>"Process"</h2>
+<ol>
+<li>Recursive Structure: <ul>
+<li>imagine OPT, the last product will be like $(A_1\times A_{k-1})\times (A_k\times A_{n-1})$, note the inner product won't influence the number of operations of this product, hence to minimize, the inner product need to be optimal. </li>
+<li>Subproblems will all have the form "find the best parenthesizing of $A_i\times ...\times A_j, i\leq j$". Then let $N[i,j]=$ min #flips required to multiple $A_i\times ...\times A_j, 0\leq i\leq j\leq n-1$</li>
+<li>For $i&lt;j$, for any one pair of parenthesis, the number of operations is $N[i,k-1] + N[k,j] + d_id_kd_{j+1}$ where $N(p,q)$ is the min number of operations taken for $A_p\times...\times A_q$. $N[i,j]=\min\{N[i,k-1] + N[k,j] + d_id_kd_{j+1}\mid i+1\leq k\leq j\}$</li>
+</ul>
+</li>
+<li>Table:
+Consider the table with entry $N[i,j]$, the matrix is strictly upper triangular (since we can interchange i,j, the lower triangle is not needed), and the diagonal $N[i,i]$ is filled with $0$. </li>
+</ol>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<ol>
+<li>Table Implementation</li>
+</ol>
+<div class="highlight"><pre><span></span><span class="n">N</span> <span class="o">=</span> <span class="n">empty</span> <span class="p">(</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="n">matrix</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">m</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">):</span>
+        <span class="n">N</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="p">(</span><span class="n">B</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">):</span>
+            <span class="n">N</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">Infinity</span>
+            <span class="p">(</span><span class="n">B</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+            <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="n">j</span><span class="p">):</span>
+                <span class="k">if</span> <span class="n">N</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="n">k</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="n">N</span><span class="p">[</span><span class="n">k</span><span class="p">,</span><span class="n">j</span><span class="p">]</span> <span class="o">+</span> <span class="n">d_i</span><span class="o">*</span><span class="n">d_k</span><span class="o">*</span><span class="n">d_j</span> <span class="o">&lt;</span> <span class="n">N</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">]:</span>
+                    <span class="n">N</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">N</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="n">k</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="n">N</span><span class="p">[</span><span class="n">k</span><span class="p">,</span><span class="n">j</span><span class="p">]</span> <span class="o">+</span> <span class="n">d_i</span><span class="o">*</span><span class="n">d_k</span><span class="o">*</span><span class="n">d_j</span>
+                    <span class="p">(</span><span class="n">B</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">k</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">N</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+</pre></div>
+<ul>
+<li>Reconstruct solution:<ul>
+<li>Use $B[i,j] = $value of $k$ that makes $N[i,j] = N[i,k+1] + N[k,j] + d_i d_k d_{j+1}$ and add into the table</li>
+<li>For parenthesis</li>
+</ul>
+</li>
+</ul>
+<div class="highlight"><pre><span></span><span class="n">paren</span><span class="p">(</span><span class="n">B</span><span class="p">,</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">i</span> <span class="o">==</span> <span class="n">j</span><span class="p">:</span>
+        <span class="nb">print</span> <span class="s1">&#39;A_i&#39;</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="nb">print</span> <span class="s1">&#39;(&#39;</span> <span class="o">+</span> <span class="n">paren</span><span class="p">(</span><span class="n">B</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="n">B</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">]</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39;*&#39;</span> <span class="o">+</span> <span class="n">paren</span><span class="p">(</span><span class="n">B</span><span class="p">,</span><span class="n">B</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">],</span> <span class="n">j</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39;)&#39;</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1>Shortest Paths - All-Pairs</h1>
+<ul>
+<li>Input: directed $G=(V,E), w(v)\in \mathbb{Z}$, no cycle with negative weight.  </li>
+<li>Output: $\forall u,v \in V, \min\{w(u\sim v)\mid u\sim v\text{ is a path}\}$</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2>"Process"</h2>
+<h3>0. Recursive Structure</h3>
+<p>Consider a shortest $u\sim v$ path,let $k=$ max index of vertices on $u\sim v$ excluding $u,v$. <br>
+Claim: both $u\sim k, k\sim v$ are shortest paths with all intermediate vertices $&lt;k$ <br>
+Proof: by contradiction, if $P_1$ is a shorter path from $u$ to $k$, then $P_1 + k\sim v$ would be shorter than $u \sim v$, even if $P_1$ had vertices in common with $k\sim v$, say vertex $j$, then $P_1+ k \sim v$ contains a cycle, by assumption, the cycle must have weight $\geq 0$, then we have a better path by removing the cycle.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3>1. Table</h3>
+<p>$A[k,u,v]=$ min weight of all $u\sim v$ using only vertices from $1,...,k$ as intermediate for $u,v\in \{1,...,n\}. k\in\{0,...,n\}$</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3>2. Recurrence</h3>
+<div class="highlight"><pre><span></span><span class="n">A</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="n">u</span><span class="p">,</span><span class="n">v</span><span class="p">]</span><span class="o">=</span> <span class="p">{</span> <span class="mi">0</span>         <span class="k">if</span> <span class="n">u</span> <span class="o">=</span> <span class="n">v</span><span class="p">,</span> 
+            <span class="n">w</span><span class="p">(</span><span class="n">u</span><span class="p">,</span><span class="n">v</span><span class="p">)</span>    <span class="k">if</span> <span class="n">u</span> <span class="o">!=</span> <span class="n">v</span> <span class="p">(</span><span class="n">u</span><span class="p">,</span><span class="n">v</span><span class="p">)</span> <span class="ow">in</span> <span class="n">E</span><span class="p">,</span>
+            <span class="n">Infinity</span>  <span class="k">if</span> <span class="n">u</span> <span class="o">!=</span> <span class="n">v</span><span class="p">,</span> <span class="p">(</span><span class="n">u</span><span class="p">,</span><span class="n">v</span><span class="p">)</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">E</span>
+           <span class="p">}</span>
+<span class="k">for</span> <span class="n">k</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="err">：</span>
+    <span class="n">A</span><span class="p">[</span><span class="n">k</span><span class="p">,</span><span class="n">u</span><span class="p">,</span><span class="n">v</span><span class="p">]</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="n">A</span><span class="p">[</span><span class="n">k</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="n">u</span><span class="p">,</span><span class="n">v</span><span class="p">],</span> <span class="c1"># don&#39;t use k</span>
+                   <span class="n">A</span><span class="p">[</span><span class="n">k</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="n">u</span><span class="p">,</span><span class="n">k</span><span class="p">]</span><span class="o">+</span><span class="n">A</span><span class="p">[</span><span class="n">k</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="n">k</span><span class="p">,</span><span class="n">v</span><span class="p">]</span> <span class="c1"># use k</span>
+                  <span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3>3. Iterative (Floyd-Warshall)**</h3>
+<div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">u</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">u</span> <span class="o">==</span> <span class="n">v</span><span class="p">:</span> 
+            <span class="n">A</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="n">u</span><span class="p">,</span><span class="n">v</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
+            <span class="n">B</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="n">u</span><span class="p">,</span><span class="n">v</span><span class="p">]</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span> <span class="c1"># not exist</span>
+        <span class="k">elif</span> <span class="p">(</span><span class="n">u</span><span class="p">,</span><span class="n">v</span><span class="p">)</span> <span class="ow">in</span> <span class="n">E</span><span class="p">:</span>
+            <span class="n">A</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="n">u</span><span class="p">,</span><span class="n">v</span><span class="p">]</span> <span class="o">=</span> <span class="n">w</span><span class="p">(</span><span class="n">u</span><span class="p">,</span><span class="n">v</span><span class="p">)</span>
+            <span class="n">B</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="n">u</span><span class="p">,</span><span class="n">v</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span> <span class="c1"># directly</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">A</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="n">u</span><span class="p">,</span><span class="n">v</span><span class="p">]</span> <span class="o">=</span> <span class="n">Infinity</span>
+            <span class="n">B</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="n">u</span><span class="p">,</span><span class="n">v</span><span class="p">]</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span>
+
+<span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">u</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+            <span class="k">if</span> <span class="n">A</span><span class="p">[</span><span class="n">k</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">u</span><span class="p">,</span> <span class="n">k</span><span class="p">]</span> <span class="o">+</span> <span class="n">A</span><span class="p">[</span><span class="n">k</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">A</span><span class="p">[</span><span class="n">k</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">u</span><span class="p">,</span> <span class="n">v</span><span class="p">]</span> 
+                <span class="n">A</span><span class="p">[</span><span class="n">k</span><span class="p">,</span> <span class="n">u</span><span class="p">,</span> <span class="n">v</span><span class="p">]</span> <span class="o">=</span> <span class="n">A</span><span class="p">[</span><span class="n">k</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">u</span><span class="p">,</span> <span class="n">k</span><span class="p">]</span> <span class="o">+</span> <span class="n">A</span><span class="p">[</span><span class="n">k</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span><span class="p">]</span> 
+                <span class="n">B</span><span class="p">[</span><span class="n">k</span><span class="p">,</span> <span class="n">u</span><span class="p">,</span> <span class="n">v</span><span class="p">]</span> <span class="o">=</span> <span class="n">k</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">A</span><span class="p">[</span><span class="n">k</span><span class="p">,</span> <span class="n">u</span><span class="p">,</span> <span class="n">v</span><span class="p">]</span> <span class="o">=</span> <span class="n">A</span><span class="p">[</span><span class="n">k</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">u</span><span class="p">,</span> <span class="n">v</span><span class="p">]</span>
+                <span class="n">B</span><span class="p">[</span><span class="n">k</span><span class="p">,</span> <span class="n">u</span><span class="p">,</span> <span class="n">v</span><span class="p">]</span> <span class="o">=</span> <span class="n">B</span><span class="p">[</span><span class="n">k</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">u</span><span class="p">,</span> <span class="n">v</span><span class="p">]</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3>4. Reconstruct the actual solution</h3>
+<p>Use $B[k, u, v]$ to track max vertex on any $u\sim v$ path that has total weight $A[k, u, b]$</p>
+<div class="highlight"><pre><span></span><span class="n">Path</span><span class="p">(</span><span class="n">u</span><span class="p">,</span><span class="n">v</span><span class="p">,</span> <span class="n">B</span><span class="p">,</span> <span class="n">n</span><span class="p">):</span>
+    <span class="c1"># find the intermediate index</span>
+
+    <span class="c1"># recursively find the weights</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2>Observation</h2>
+<p>In practice, runtime $\in \Theta(n^3)$, space $\in\Theta(n^3)$. <br>
+To improve the space, notice that $\forall k, u, v. A[k, u, k] = A[k-1, u, k], A[k ,k, v] = A[k-1, k, v]$. Therefore, we don't need a 3-D array, we can keep updating on a 2-D array. We can simply get rid of all index $k$, then the body of the triple for loop becomes:</p>
+<div class="highlight"><pre><span></span><span class="k">if</span> <span class="n">A</span><span class="p">[</span><span class="n">u</span><span class="p">,</span> <span class="n">k</span><span class="p">]</span> <span class="o">+</span> <span class="n">A</span><span class="p">[</span><span class="n">k</span><span class="p">,</span> <span class="n">v</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">A</span><span class="p">[</span><span class="n">u</span><span class="p">,</span> <span class="n">v</span><span class="p">]:</span>
+    <span class="n">A</span><span class="p">[</span><span class="n">u</span><span class="p">,</span> <span class="n">v</span><span class="p">]</span> <span class="o">=</span> <span class="n">A</span><span class="p">[</span><span class="n">u</span><span class="p">,</span> <span class="n">k</span><span class="p">]</span> <span class="o">+</span> <span class="n">A</span><span class="p">[</span><span class="n">k</span><span class="p">,</span> <span class="n">v</span><span class="p">]</span> 
+    <span class="n">B</span><span class="p">[</span><span class="n">u</span><span class="p">,</span> <span class="n">v</span><span class="p">]</span> <span class="o">=</span> <span class="n">k</span>
+<span class="c1"># omit the else since nothing changed</span>
+</pre></div>
+<p>The space then is $O(n^2)$</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1>Transite Closure</h1>
+<p>$G$ directed, $\forall u,v\in V$ is there a path $u\sim v$?</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2>Discussion</h2>
+<p>Use adjacency matrix<br>
+Example let $A = $</p>
+<p><table>
+        <tr>
+                <th></th><th>1</th><th>2</th><th>3</th><th>4</th>
+        </tr>
+        <tr>
+                <td>1</td><td>1</td><td>0</td><td>0</td><td>1</td>
+        </tr>
+        <tr>
+                <td>2</td><td>1</td><td>1</td><td>0</td><td>0</td>
+        </tr>
+        <tr>
+                <td>3</td><td>1</td><td>1</td><td>1</td><td>0</td>
+        </tr>
+        <tr>
+                <td>4</td><td>0</td><td>0</td><td>0</td><td>1</td>
+        </tr>
+</table>
+Note: $\pi(u,v) = 1$, u is the row index, v is the column index, if $u\rightarrow v$</p>
+<p>Notice that $A^2 = $</p>
+<p><table>
+        <tr>
+                <th></th><th>1</th><th>2</th><th>3</th><th>4</th>
+        </tr>
+        <tr>
+                <td>1</td><td>1</td><td>0</td><td>0</td><td>2</td>
+        </tr>
+        <tr>
+                <td>2</td><td>2</td><td>1</td><td>0</td><td>1</td>
+        </tr>
+        <tr>
+                <td>3</td><td>3</td><td>2</td><td>1</td><td>1</td>
+        </tr>
+        <tr>
+                <td>4</td><td>0</td><td>0</td><td>0</td><td>1</td>
+        </tr>
+</table>
+Notice that 
+$$A^2[2,4]=\sum_{i=1}^4 A[2,i]\times A[i,4]$$
+Each term of the summation above represents one possible path of length $\leq 2$ between 2 and 4</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3>Trick 1</h3>
+<p>switch $\times\rightarrow\land, +\rightarrow\lor$. <br>
+Generally, $A^k[u,v] = \mathbb{I}$ there is some path of length $\leq k$ from $u$ to $v$, wanted $A^n$ using boolean ops.</p>
+<h2>Trick 2</h2>
+<p>square the resulted matrix for each matrix multiplication. $A^1, A^2, A^4, ..., A^{\lfloor \lg(n) \rfloor^2}$</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3>Recursive</h3>
+<div class="highlight"><pre><span></span><span class="nb">pow</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">n</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">n</span> <span class="o">=</span> <span class="mi">1</span><span class="p">:</span> 
+        <span class="k">return</span> <span class="n">A</span>
+    <span class="k">elif</span> <span class="n">n</span> <span class="ow">is</span> <span class="n">odd</span><span class="p">:</span>
+        <span class="k">return</span> <span class="nb">pow</span><span class="p">(</span><span class="n">A</span><span class="p">,</span><span class="n">floor</span><span class="p">(</span><span class="n">n</span><span class="p">,</span><span class="mi">2</span><span class="p">))</span><span class="o">*</span><span class="nb">pow</span><span class="p">(</span><span class="n">A</span><span class="p">,</span><span class="n">floor</span><span class="p">(</span><span class="n">n</span><span class="p">,</span><span class="mi">2</span><span class="p">))</span><span class="o">*</span> <span class="n">A</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">return</span> <span class="nb">pow</span><span class="p">(</span><span class="n">A</span><span class="p">,</span><span class="n">floor</span><span class="p">(</span><span class="n">n</span><span class="p">,</span><span class="mi">2</span><span class="p">))</span><span class="o">*</span><span class="nb">pow</span><span class="p">(</span><span class="n">A</span><span class="p">,</span><span class="n">floor</span><span class="p">(</span><span class="n">n</span><span class="p">,</span><span class="mi">2</span><span class="p">))</span>
+</pre></div>
+<p>Runtime $O(n^3\log n)$</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2>Trick 3</h2>
+<p>divide and conquer algorithm for matrix product in $O(n^{\lg 7})$, then the runtime is $O(n^{\lg 7}\log n)\in O(n^3)$</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1>Example Question 1: KnapSack</h1>
+<p>Given $W\in\mathbb{Z}^+, I = \{(w_1, v_1),...,(w_n,v_n)\}$, $w_i,v_i\in\mathbb{Z}^+$. Maximize for set $S$ s.t. $\sum_{i\in S} w_i \leq W \land \sum_{i\in S} v_i$ maximized.</p>
+<h2>Recurrence</h2>
+<p>Let $v_k\in S$ having the maximum value, then $S-\{k\}$ must be the optimal set for $W-w_k$, otherwise will cause contradiction.</p>
+<h2>Table</h2>
+<p>$T(k, i) = $ maximum value of items with weight $i$ and item $1,...,k$.</p>
+<div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">W</span><span class="p">):</span>
+    <span class="n">T</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">W</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+        <span class="n">T</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="n">k</span><span class="p">]</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">T</span><span class="p">[</span><span class="n">i</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="n">k</span><span class="p">],</span> 
+                      <span class="n">T</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="n">k</span> <span class="o">-</span> <span class="mi">1</span><span class="p">])</span>
+</pre></div>
+<h1>Example Question 2</h1>
+<p>Input a list of strictly increasing positive integers $D=\{d_1,...,d_m\}$, a positive integer $A$. Output a count set $C$ of $D$ s.t. $\sum_C = A$, or Null if cannot solve</p>
+<h2>Recurrence</h2>
+<p>The optimal set either</p>
+<ul>
+<li>includes $d_m$, then $T(A, m) = T(A-d_m, m) \cup\{d_m\}$</li>
+<li>not includes $d_m$, then $T(A, m) = T(A, m-1)$</li>
+</ul>
+<p>The relation</p>
+<ul>
+<li>$T(a, 0) = None$ since there's no coin</li>
+<li>$T(0, m) = 0$ since there's no value</li>
+<li>$T(a, m) = T(a, m-1)$ if $d[m]&gt;a$</li>
+<li>$T(a, m) = \min\{T(a, m -1), 1 + T(a-d[m], m)\})$</li>
+</ul>
+
+</div>
+</div>
+</div>
+ 
+

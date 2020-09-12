@@ -1,0 +1,170 @@
+---
+title: Linear Programming
+order: 40
+---
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1>Intuitive Example</h1>
+<p>determine type of ridings difference<br>
+<strong>Input</strong> platforms issues to emphasize. Market research gives following table of voters (lost/grand for each $1 spending)</p>
+<table>
+        <tr>
+                <th></th><th>urban</th><th>sub</th><th>rural</th>
+        </tr>
+        <tr>
+                <td>roads</td><td>-2</td><td>5</td><td>3</td>
+        </tr>
+        <tr>
+                <td>gun control</td><td>8</td><td>2</td><td>-5</td>
+        </tr>
+        <tr>
+                <td>farms</td><td>0</td><td>0</td><td>10</td>
+        </tr>
+        <tr>
+                <td>government</td><td>10</td><td>0</td><td>-2</td>
+        </tr>
+</table><p><strong>Goal</strong> Achieve gains of at least 50k urban, 100 sub-urban, 25k rural while spending as little as possible, identify unknowns $x_1,x_2,x_3,x_4\in\mathbb{R^{\geq 0}}$ is the spend on roads, gun control, farms, and government in advertising (unit is 1k), respectively, where $x_1+x_2+x_3+x_4$ minimized. 
+Formalized:</p>
+$$\begin{bmatrix}
+        -2 &amp; 8 &amp; 0 &amp; 10 \\
+        5 &amp; 2 &amp; 0 &amp; 0 \\
+        3 &amp; -5 &amp; 10 &amp; -2 \\
+        1 &amp; 0 &amp; 0 &amp; 0 \\
+        0 &amp; 1 &amp; 0 &amp; 0 \\
+        0 &amp; 0 &amp; 1 &amp; 0 \\
+        0 &amp; 0 &amp; 0 &amp; 1
+\end{bmatrix} \begin{bmatrix}
+        x_1 \\
+        x_2 \\
+        x_3 \\
+        x_4
+\end{bmatrix} \geq 
+\begin{bmatrix}
+        50 \\
+        100 \\
+        25 \\
+        0 \\ 0 \\ 0 \\ 0
+\end{bmatrix}
+$$<p>
+minimize $\sum_1^4 x_i$</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1>Problem Definition</h1>
+<p>a linear program consists of</p>
+<ul>
+<li>variables $\vec{X}\in\mathbb{R}^n$</li>
+<li>objective function: min/maximization $\vec{c}\vec{X},\vec{c}\in\mathbb{R^n}$</li>
+<li>constraint $\vec{a_j}\vec{X} \le | = |\ge b_j, \vec{a_j}\in\mathbb{R}^n, 1\leq j\leq m$. Note that the constraint are not strict (otherwise it cannot be solved as real number for open set). Matrix notation is used when all the constraints comparison relations are the same</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Any inequality can be translated as cutting on an infinite plane. Each constraint eliminates one-half plane.</p>
+<p><strong>Feasible region</strong> is the collection of values that satisfy every constraint.</p>
+<ul>
+<li>$\emptyset$ - No solution </li>
+<li>unbounded - No extremum, no solution</li>
+<li>bounded - either exactly one solution or infinitely many solutions</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2>Algorithm</h2>
+<ul>
+<li>Simplex algorithm worst-case exponential time (However, the edge case is very rare, commonly, it runs in polynomial with small constant)</li>
+<li>Interior point methods (worst-case polynomial but has large constant)</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1>Applications</h1>
+<h2>Network Flow Problem</h2>
+<ul>
+<li>variables: $x(u,v) = f(u,v).\forall (u,v)\in E$</li>
+<li>objective function: maximize $\sum_{(s,v)\in E} x(s,v)$</li>
+<li><p>constraint: $0\leq x(u,v)\leq c(u,v)\land \sum_{(u,v)\in E}x(u,v)=\sum_{(v,u)\in E} x(v,u). \forall u\in V-\{s,t\}$</p>
+<p>clearly, solutions to network flow problem corresponds to solutions to the linear program.<br>
+Note that the method does not guarantee integer-valued solution, even the actual solution is integer</p>
+</li>
+</ul>
+<h2>Shortest Path (with $w(e)\in\mathbb{Z}^+$)</h2>
+<ul>
+<li>variables: $\forall v\in V. d_v=\min\{w(s\sim v)\}$</li>
+<li>objective function: $\max d_t$</li>
+<li>constraints:<br>
+$d_v\geq 0. \forall v\in V. $<br>
+$d_s=0$<br>
+$d_v\leq d_u+w(u,v) \land d_u\leq d_v+w(u,v) \forall (u,v)\in E$</li>
+</ul>
+<h2>Vertex Cover</h2>
+<p>given $G=(V,E)$ undirected, want $S\subseteq V$ that $S$ covers all edges a.k.a. $\forall (u,v)\in E. u\in S\lor v\in S$, $|S|$ minimized</p>
+<ul>
+<li>variables: $\mathbb{I}_v:=\mathbb{I}(v\in S). \forall v\in V.$</li>
+<li>objective function: $\min\sum_{v\in V}\mathbb{I}_v$</li>
+<li>constraint: $\mathbb{I}_u + \mathbb{I}_v \geq 1 \forall (u,v)\in E$<br>
+hidden constraint: since $\mathbb{I}_v$ is an indicator $\mathbb{I}_v\in\{0,1\}$, while in this case, this is not a linear program constraint. The program becomes an integer program.<br>
+<strong>However, integer program is not in polynomial time!</strong></li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1>Example Problem 1</h1>
+<p>"Duckwheat" is produced in Kansas and Mexico and consumed in New York    and California. Each month, Kansas produces 15 "shnupells" of duckwheat    and Mexico, 8, while New York consumes 10 shnupells and California, 13.    The monthly transportation costs per shnupell are \$4 from Mexico to New York, \\$1 from Mexico to California, \$2 from Kansas to New York, and \\$3 from Kansas to California.</p>
+<h2>Variables</h2>
+<p>$x_1,x_2,x_3,x_4$ be the amount of Duckwheat from</p>
+<ul>
+<li>$x_1$ K to N</li>
+<li>$x_2$ K to C</li>
+<li>$x_3$ M to N</li>
+<li>$x_4$ M to C  </li>
+</ul>
+<h2>Objective</h2>
+<p>minimize $2x_1 + 3x_2 + 4x_3 + x_4$</p>
+<h2>Constraint</h2>
+<ul>
+<li>$x_1 + x_2 = 15$</li>
+<li>$x_3+x_4 = 8$</li>
+<li>$x_1 + x_3 = 10$</li>
+<li>$x_2+ x_4 = 13$</li>
+<li>$x_1,x_2,x_3,x_4 \geq 0$</li>
+</ul>
+<p>Then it equals to maximize
+$$2x + 3(15-x)+4(10-x)+(x-2)=-4x+93$$
+where $2\leq x\leq 10$, hence $x=2$</p>
+<h1>Example Problem 2</h1>
+<p>Consider a set of mobile computing clients in a certain town who each need to be connected to one of several possible "base stations". We'll suppose there are $n$ clients, with the position of each client specified by its $(x,y)$ coordinates in the plane. There are also m base stations, each of whose position is specified by $(x,y)$ coordinates as well.<br>
+We wish to connect each client to exactly one base station. Our choice of connections is constrained in the following ways. There is a "range parameter" r −− a client can only be connected to a base station that is    within distance r. There is also a "load parameter" L −− no more than L clients can be connected to any single base station.<br>
+Show how to represent this problem as a linear program, and how to solve    it using linear programming algorithms. Justify carefully that your    solution is correct. Can you guarantee that your algorithm runs in    polytime?</p>
+<h2>Variables</h2>
+<p>$I_{11},...,I_{nn}$ where $I_{ij}$ is the indicator that there is a connection between client $i$ and base station $j$.</p>
+<h2>Objective</h2>
+<p>minimize $\sum_{i=1}^n\sum_{j=1}^n d_{ij}I_{ij}$ where $d_{ij}$ is the distance between client $i$ and base station $j$.</p>
+<h2>Constraint</h2>
+<ul>
+<li>$\forall i\in\{1,2,...,n\}. \sum_{j=1}^n I_{ij} = 1$</li>
+<li>$\forall i,j. d_{ij}I_{ij}\leq r_{ij}$</li>
+<li>$\forall j. \sum_{i=1}^n I_{ij}\leq L_j$</li>
+</ul>
+<p>Since $I_{ij}$ is a indicator function, this is an integer problem</p>
+
+</div>
+</div>
+</div>
+ 
+

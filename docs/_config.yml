@@ -44,6 +44,13 @@ collections:
     term: 2019 Fall
     instructor: Kenneth R. Jackson
     output: true
+    
+  csc373:
+    code: CSC373 
+    name: Algorithms - Design, Analysis and Complexity
+    term: 2019 Winter
+    instructor: Francois Pitt
+    output: true
 
 
 defaults:
