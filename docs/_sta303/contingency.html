@@ -1,0 +1,995 @@
+---
+title: Factor independence and Contingency Table
+order: 70
+---
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1>Case Study: Framingham Heart Study</h1>
+<p>Data considered:</p>
+<ul>
+<li>n = 1329 men</li>
+<li>X = Cholesterol measurement in 1948 (mg/dl)</li>
+<li>Y = after 10 years, did they developed CVD (present/absernt)</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2>Binomial Sampling</h2>
+<p>Let $\pi_H=p(present\mid high),\pi_L = P(present\mid low)$.</p>
+<p>Hypothese: $H_0: \pi_H = \pi_L, H_a: \pi_H \neq \pi_L$</p>
+<p>Assumptions:</p>
+<ul>
+<li>depending on level of cholesterol, each person is a Bernoulli trial with chance of developing CVD as $n_H = 284, n_L = 1043$. </li>
+<li>Then for fixed $n_H, n_L$, the count of the number of people who develop CVD $y_H\sim Binomial(n_H=286,\pi_H)$ $y_L\sim Binomial(n_L=1043,\pi_L)$</li>
+<li>Then estimate of $\pi_H-\pi_L$ is $\hat\pi_H-\hat\pi_L$ where $\hat\pi_H = y_H/n_H, \hat\pi_L = y_L/n_L$ are the sample proportions.</li>
+<li>$var(\hat\pi_H-\hat\pi_L) = var(\hat\pi_H) + var(\hat\pi_L)\\=n_H\pi_H(1-\pi_H)/n^2_H + n_L\pi_L(1-\pi_L)/n^2_L\\= \pi_H(1-\pi_H)/n_H+\pi_L(1-\pi_L)/n_L$</li>
+<li>$se(\hat\pi_H-\hat\pi_L) = \sqrt{\hat\pi_c(1-\hat\pi_c)(n_H^{-1}+n_L^{-1})}$ where $\hat\pi_c=\frac{y_L+y_H}{n+L + n_H}$ is the combined sample proportion</li>
+<li>By CLT, the test statistic $\sim N(0,1)$</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Test statistic: $\frac{\hat\pi_H-\hat\pi_L}{se(\hat\pi_H-\hat\pi_L)}=5.575$</p>
+<p>p-value $2P(Z\geq 5.575)&lt;0.05$</p>
+<p>Conclusion: We have strong evidence that the probability of developing CVD is not the same for High and Low cholesterol groups.</p>
+
+</div>
+</div>
+</div>
+
+<div class=" highlight hl-r"><pre><span></span><span class="n">cvd</span><span class="o">&lt;-</span><span class="nf">matrix</span><span class="p">(</span><span class="nf">c</span><span class="p">(</span><span class="m">41</span><span class="p">,</span><span class="m">245</span><span class="p">,</span><span class="m">51</span><span class="p">,</span><span class="m">992</span><span class="p">),</span> <span class="n">nrow</span><span class="o">=</span><span class="m">2</span><span class="p">,</span><span class="n">byrow</span><span class="o">=</span><span class="kc">TRUE</span><span class="p">)</span>
+<span class="nf">dimnames</span><span class="p">(</span><span class="n">cvd</span><span class="p">)</span><span class="o">&lt;-</span><span class="nf">list</span><span class="p">(</span><span class="nf">c</span><span class="p">(</span><span class="s">&quot;High&quot;</span><span class="p">,</span><span class="s">&quot;Low&quot;</span><span class="p">),</span> <span class="nf">c</span><span class="p">(</span><span class="s">&quot;Present&quot;</span><span class="p">,</span><span class="s">&quot;Absent&quot;</span><span class="p">))</span>
+<span class="nf">names</span><span class="p">(</span><span class="nf">dimnames</span><span class="p">(</span><span class="n">cvd</span><span class="p">))</span><span class="o">&lt;-</span><span class="nf">c</span><span class="p">(</span><span class="s">&quot;Cholesterol&quot;</span><span class="p">,</span><span class="s">&quot;Cardio Vascular Disease&quot;</span><span class="p">)</span>
+<span class="nf">print</span><span class="p">(</span><span class="n">cvd</span><span class="p">)</span>
+</pre></div>
+
+
+<div class="output_wrapper">
+
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>           Cardio Vascular Disease
+Cholesterol Present Absent
+       High      41    245
+       Low       51    992
+</pre>
+</div>
+</div>
+
+</div>
+
+
+<div class=" highlight hl-r"><pre><span></span><span class="c1"># estimate for pi</span>
+<span class="n">pi_h</span> <span class="o">=</span> <span class="m">41</span><span class="o">/</span><span class="p">(</span><span class="m">41+245</span><span class="p">)</span>
+<span class="n">pi_l</span> <span class="o">=</span> <span class="m">51</span><span class="o">/</span><span class="p">(</span><span class="m">51+992</span><span class="p">)</span>
+<span class="nf">print</span><span class="p">(</span><span class="n">pi_h</span><span class="p">)</span>
+<span class="nf">print</span><span class="p">(</span><span class="n">pi_l</span><span class="p">)</span>
+</pre></div>
+
+
+<div class="output_wrapper">
+
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>[1] 0.1433566
+[1] 0.04889741
+</pre>
+</div>
+</div>
+
+</div>
+
+
+<div class=" highlight hl-r"><pre><span></span><span class="c1"># sample size </span>
+<span class="n">n_h</span> <span class="o">=</span> <span class="m">41</span> <span class="o">+</span> <span class="m">245</span>
+<span class="n">n_l</span> <span class="o">=</span> <span class="m">51</span> <span class="o">+</span> <span class="m">992</span>
+<span class="n">conf.level</span> <span class="o">=</span> <span class="m">0.95</span>
+<span class="n">crit.val</span> <span class="o">=</span> <span class="nf">qnorm</span><span class="p">(</span><span class="m">1</span><span class="o">-</span><span class="p">(</span><span class="m">1</span><span class="o">-</span><span class="n">conf.level</span><span class="p">)</span><span class="o">/</span><span class="m">2</span><span class="p">)</span>
+<span class="n">crit.val</span>
+</pre></div>
+
+
+<div class="output_wrapper">
+
+<div class="output_area">
+
+
+<div class="output_html rendered_html output_subarea ">
+1.95996398454005
+</div>
+
+</div>
+
+</div>
+
+
+<div class=" highlight hl-r"><pre><span></span><span class="c1"># standard error</span>
+<span class="n">se.hat</span> <span class="o">=</span> <span class="nf">sqrt</span><span class="p">(</span><span class="n">pi_h</span> <span class="o">*</span> <span class="p">(</span><span class="m">1</span> <span class="o">-</span> <span class="n">pi_h</span><span class="p">)</span><span class="o">/</span><span class="n">n_h</span> <span class="o">+</span> <span class="n">pi_l</span> <span class="o">*</span> <span class="p">(</span><span class="m">1</span> <span class="o">-</span> <span class="n">pi_l</span><span class="p">)</span><span class="o">/</span><span class="n">n_l</span><span class="p">)</span>
+<span class="n">se.hat</span>
+</pre></div>
+
+
+<div class="output_wrapper">
+
+<div class="output_area">
+
+
+<div class="output_html rendered_html output_subarea ">
+0.0217710596635901
+</div>
+
+</div>
+
+</div>
+
+
+<div class=" highlight hl-r"><pre><span></span><span class="c1"># 95% CI</span>
+<span class="nf">c</span><span class="p">((</span><span class="n">pi_h</span><span class="o">-</span><span class="n">pi_l</span><span class="p">)</span><span class="o">-</span><span class="n">crit.val</span><span class="o">*</span><span class="n">se.hat</span><span class="p">,</span> <span class="p">(</span><span class="n">pi_h</span><span class="o">-</span><span class="n">pi_l</span><span class="p">)</span><span class="o">+</span><span class="n">crit.val</span><span class="o">*</span><span class="n">se.hat</span><span class="p">)</span>
+</pre></div>
+
+
+<div class="output_wrapper">
+
+<div class="output_area">
+
+
+<div class="output_html rendered_html output_subarea ">
+<style>
+.list-inline {list-style: none; margin:0; padding: 0}
+.list-inline>li {display: inline-block}
+.list-inline>li:not(:last-child)::after {content: "\00b7"; padding: 0 .5ex}
+</style>
+<ol class=list-inline><li>0.0517887391972153</li><li>0.137129724889034</li></ol>
+
+</div>
+
+</div>
+
+</div>
+
+
+<div class=" highlight hl-r"><pre><span></span><span class="c1"># easier way for bonimial sampling</span>
+<span class="nf">prop.test</span><span class="p">(</span><span class="n">cvd</span><span class="p">,</span> <span class="n">correct</span><span class="o">=</span><span class="kc">FALSE</span><span class="p">)</span>
+</pre></div>
+
+
+<div class="output_wrapper">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea ">
+<pre>
+	2-sample test for equality of proportions without continuity
+	correction
+
+data:  cvd
+X-squared = 31.082, df = 1, p-value = 2.474e-08
+alternative hypothesis: two.sided
+95 percent confidence interval:
+ 0.05178874 0.13712972
+sample estimates:
+    prop 1     prop 2 
+0.14335664 0.04889741 
+</pre>
+</div>
+
+</div>
+
+</div>
+
+
+<div class=" highlight hl-r"><pre><span></span><span class="c1"># or chisq test</span>
+<span class="nf">chisq.test</span><span class="p">(</span><span class="n">cvd</span><span class="p">,</span> <span class="n">correct</span><span class="o">=</span><span class="bp">F</span><span class="p">)</span>
+</pre></div>
+
+
+<div class="output_wrapper">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea ">
+<pre>
+	Pearson&#39;s Chi-squared test
+
+data:  cvd
+X-squared = 31.082, df = 1, p-value = 2.474e-08
+</pre>
+</div>
+
+</div>
+
+</div>
+
+
+<div class=" highlight hl-r"><pre><span></span><span class="c1"># Don&#39;t use this, provide different result from the manual way</span>
+<span class="nf">prop.test</span><span class="p">(</span><span class="n">cvd</span><span class="p">)</span>
+</pre></div>
+
+
+<div class="output_wrapper">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea ">
+<pre>
+	2-sample test for equality of proportions with continuity correction
+
+data:  cvd
+X-squared = 29.633, df = 1, p-value = 5.221e-08
+alternative hypothesis: two.sided
+95 percent confidence interval:
+ 0.0495611 0.1393574
+sample estimates:
+    prop 1     prop 2 
+0.14335664 0.04889741 
+</pre>
+</div>
+
+</div>
+
+</div>
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>The CI does not include 0.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1>Contingency Table</h1>
+<p>Have a row factor with $I$ levels and a column factor with $J$ levels</p>
+<p>Then, define $P(C=i,R=j)=\pi_{ij}, P(C=i)=\pi_{i\cdot}, P(R=j)=\pi_{\cdot j}$</p>
+<p>Hypothesis: $H_0: \pi_{ij} = \pi_{i\cdot}\pi_{\cdot j}, H_a: \pi_{ij} \neq\pi_{i\cdot}\pi_{\cdot j}$
+null: there is no relationship between the two factors</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>For each cell, estimated expected cell count $\hat\mu_{ij} = n\hat\pi_i\hat\pi_j = y_{i\cdot}y_{\cdot j}/n$</p>
+<p>Test statistic: $X^2 = \sum_{j=1}^J\sum_{i=1}^I \frac{(y_{ij}-\hat\mu_{ij})^2}{\hat\mu_{ij}}\sim \chi^2_{(I-1)(J-1)} $</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>If $var(y)=E(y)=\mu\Rightarrow y\sim Poisson(\mu)$</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>For this case, test statistic: $ 31.08\sim \chi^2_{(2-1)(2-1)}$, p-value $&lt;0.0001$</p>
+<p>Strong evidence that the two factors are not independent, CVD status depends on cholesterol level.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>When $I=J=2$, the chi-square test of independence is equivalent to comparing two proportions.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2>Formal approach</h2>
+<p>Let $Y_{ij}$ be r.v. representing the number of observations in cell $(i,j)$.</p>
+<p>Observe $y_{ij}$ be observed cell counts</p>
+<p>Then multinomial $$P(Y=y)=\frac{n!\pi_{11}^{y_{11}}\pi_{12}^{y_{12}}\pi_{21}^{y_{21}}\pi_{22}^{y_{22}}} {y_{11}!y_{12}!y_{21}!y_{22}!}\sim Multinomial(n,\pi_{11},\pi_{12},\pi_{21},\pi_{22})$$</p>
+<p>Log-likelihood is 
+$$\log\mathcal{L}=\sum_{j=1}^2\sum_{i=1}^2 y_{ij}\log\pi_{ij}+\log{n\choose y_{11}y_{12}y_{21}y_{22}}$$</p>
+<p>Maximize $\log\mathcal{L}$ w.r.t. $\pi$'s and $\sum\sum\pi_{ij}=1$, then $\hat\pi_{ij}=y_{ij}/n$</p>
+<p>Under $H_0: \pi_{ij}=\pi_{i\cdot}\pi_{\cdot j}$, can substitute $\pi_{ij}$ and maximize the column and row $\pi$'s.</p>
+$$G^2 = -2\log(\mathcal{L}_R/\mathcal{L}_F)\sim\chi^2_{(I-1)(J-1)}$$<p>To obtain the d.f. 
+df(Unrestrcited / FULL)-df(Independence/REDUCED)<br>
+=#parameters in FULL($\pi_{ij}$) - #parameters in REDUCED($\pi_{i\cdot},\pi_{\cdot j}$)<br>
+= $IJ-1-(I+J-2)$<br>
+$-1$ because constraint $\sum\sum\pi_{ij}=1$<br>
+$-2$ because constraint $\sum\pi_{i\cdot}=1,\sum\pi_{\cdot j}=1$</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1>Case Study 7: Three Way Contingency</h1>
+<p><strong>A</strong> alcohol use 1 = True, 2 = False</p>
+<p><strong>M</strong> marijuana use</p>
+<p><strong>C</strong> cigarette use</p>
+
+</div>
+</div>
+</div>
+
+<div class=" highlight hl-r"><pre><span></span><span class="n">A</span><span class="o">=</span><span class="nf">c</span><span class="p">(</span><span class="m">1</span><span class="p">,</span><span class="m">1</span><span class="p">,</span><span class="m">1</span><span class="p">,</span><span class="m">1</span><span class="p">,</span><span class="m">2</span><span class="p">,</span><span class="m">2</span><span class="p">,</span><span class="m">2</span><span class="p">,</span><span class="m">2</span><span class="p">)</span>
+<span class="n">C</span><span class="o">=</span><span class="nf">c</span><span class="p">(</span><span class="m">1</span><span class="p">,</span><span class="m">1</span><span class="p">,</span><span class="m">2</span><span class="p">,</span><span class="m">2</span><span class="p">,</span><span class="m">1</span><span class="p">,</span><span class="m">1</span><span class="p">,</span><span class="m">2</span><span class="p">,</span><span class="m">2</span><span class="p">)</span>
+<span class="n">M</span><span class="o">=</span><span class="nf">c</span><span class="p">(</span><span class="m">1</span><span class="p">,</span><span class="m">2</span><span class="p">,</span><span class="m">1</span><span class="p">,</span><span class="m">2</span><span class="p">,</span><span class="m">1</span><span class="p">,</span><span class="m">2</span><span class="p">,</span><span class="m">1</span><span class="p">,</span><span class="m">2</span><span class="p">)</span>
+<span class="n">Y</span><span class="o">=</span><span class="nf">c</span><span class="p">(</span><span class="m">911</span><span class="p">,</span><span class="m">538</span><span class="p">,</span><span class="m">44</span><span class="p">,</span><span class="m">456</span><span class="p">,</span><span class="m">3</span><span class="p">,</span><span class="m">43</span><span class="p">,</span><span class="m">2</span><span class="p">,</span><span class="m">279</span><span class="p">)</span>
+<span class="n">A</span><span class="o">=</span><span class="nf">as.factor</span><span class="p">(</span><span class="n">A</span><span class="p">)</span>
+<span class="n">C</span><span class="o">=</span><span class="nf">as.factor</span><span class="p">(</span><span class="n">C</span><span class="p">)</span>
+<span class="n">M</span><span class="o">=</span><span class="nf">as.factor</span><span class="p">(</span><span class="n">M</span><span class="p">)</span>
+<span class="n">ACM</span><span class="o">=</span><span class="nf">cbind</span><span class="p">(</span><span class="n">A</span><span class="p">,</span><span class="n">C</span><span class="p">,</span><span class="n">M</span><span class="p">,</span> <span class="n">Y</span><span class="p">)</span>
+<span class="n">ACM</span>
+</pre></div>
+
+
+<div class="output_wrapper">
+
+<div class="output_area">
+
+
+<div class="output_html rendered_html output_subarea ">
+<table>
+<caption>A matrix: 8 × 4 of type dbl</caption>
+<thead>
+	<tr><th scope=col>A</th><th scope=col>C</th><th scope=col>M</th><th scope=col>Y</th></tr>
+</thead>
+<tbody>
+	<tr><td>1</td><td>1</td><td>1</td><td>911</td></tr>
+	<tr><td>1</td><td>1</td><td>2</td><td>538</td></tr>
+	<tr><td>1</td><td>2</td><td>1</td><td> 44</td></tr>
+	<tr><td>1</td><td>2</td><td>2</td><td>456</td></tr>
+	<tr><td>2</td><td>1</td><td>1</td><td>  3</td></tr>
+	<tr><td>2</td><td>1</td><td>2</td><td> 43</td></tr>
+	<tr><td>2</td><td>2</td><td>1</td><td>  2</td></tr>
+	<tr><td>2</td><td>2</td><td>2</td><td>279</td></tr>
+</tbody>
+</table>
+
+</div>
+
+</div>
+
+</div>
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1>Model 1. Complete Independence</h1>
+<p>$P(ACM)=P(A)P(C)P(M)$ - the three factors are mutually independent</p>
+<p>$H_0: \pi_{ijk} = \pi_{i..}\pi_{.j.}\pi_{k..}$ for all $i,j,k$.<br>
+$H_a: \pi_{ijk} \neq \pi_{i..}\pi_{.j.}\pi_{k..}$</p>
+<p>$\log(\mu_{ijk}) = \beta_0+\beta_1 \mathbb{I}_C + \beta_2 \mathbb{I}_C + \beta_3 \mathbb{I}_M$</p>
+<p>MLE $$\hat\mu_{ijk}=n\hat\pi_{ijk} = n\hat\pi_{i..}\hat\pi_{.j.}\hat\pi_{..k}=\frac{ny_{i..}y_{.j.}y_{..k}}{nnn}$$</p>
+
+</div>
+</div>
+</div>
+
+<div class=" highlight hl-r"><pre><span></span><span class="n">mod_A.C.M</span><span class="o">=</span><span class="nf">glm</span><span class="p">(</span><span class="n">Y</span><span class="o">~</span><span class="n">A</span><span class="o">+</span><span class="n">C</span><span class="o">+</span><span class="n">M</span><span class="p">,</span> <span class="n">family</span><span class="o">=</span><span class="n">poisson</span><span class="p">)</span> <span class="c1"># Additive</span>
+<span class="nf">summary</span><span class="p">(</span><span class="n">mod_A.C.M</span><span class="p">)</span>
+</pre></div>
+
+
+<div class="output_wrapper">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea ">
+<pre>
+Call:
+glm(formula = Y ~ A + C + M, family = poisson)
+
+Deviance Residuals: 
+      1        2        3        4        5        6        7        8  
+ 14.522   -7.817  -17.683    3.426  -12.440   -8.436   -8.832   19.639  
+
+Coefficients:
+            Estimate Std. Error z value Pr(&gt;|z|)    
+(Intercept)  6.29154    0.03667 171.558  &lt; 2e-16 ***
+A2          -1.78511    0.05976 -29.872  &lt; 2e-16 ***
+C2          -0.64931    0.04415 -14.707  &lt; 2e-16 ***
+M2           0.31542    0.04244   7.431 1.08e-13 ***
+---
+Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+
+(Dispersion parameter for poisson family taken to be 1)
+
+    Null deviance: 2851.5  on 7  degrees of freedom
+Residual deviance: 1286.0  on 4  degrees of freedom
+AIC: 1343.1
+
+Number of Fisher Scoring iterations: 6
+</pre>
+</div>
+
+</div>
+
+</div>
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2>Model 2. Block Independence</h2>
+<p>$P(AC\mid M)= P(AC)$ - Joint probability of alcohol and cigarette use is independent of marijuana use; Alcohol and cigarette use
+are associated.</p>
+<p>$H_0: \pi_{ijk} = \pi_{ij.}\pi_{k..}$ for all $i,j,k$.<br>
+$H_a: \pi_{ijk} \neq \pi_{ij.}\pi_{k..}$</p>
+<p>$\log(\mu_{ijk}) = \beta_0+\beta_1 \mathbb{I}_C + \beta_2 \mathbb{I}_C + \beta_3 \mathbb{I}_M+\beta_4\mathbb{I}_A\mathbb{I}_C$</p>
+<p>MLE
+$$\hat\mu_{ijk}=n\hat\pi_{ijk} = n\hat\pi_{ij.}\hat\pi_{..k}=\frac{ny_{ij.}y_{..k}}{nn}$$</p>
+
+</div>
+</div>
+</div>
+
+<div class=" highlight hl-r"><pre><span></span><span class="n">mod_AC.M</span><span class="o">=</span><span class="nf">glm</span><span class="p">(</span><span class="n">Y</span><span class="o">~</span><span class="n">M</span><span class="o">+</span><span class="n">A</span><span class="o">*</span><span class="n">C</span><span class="p">,</span> <span class="n">family</span><span class="o">=</span><span class="n">poisson</span><span class="p">)</span> <span class="c1">#Block AC</span>
+<span class="nf">summary</span><span class="p">(</span><span class="n">mod_AC.M</span><span class="p">)</span>
+</pre></div>
+
+
+<div class="output_wrapper">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea ">
+<pre>
+Call:
+glm(formula = Y ~ M + A * C, family = poisson)
+
+Deviance Residuals: 
+      1        2        3        4        5        6        7        8  
+ 11.297  -11.092  -13.996    9.045   -4.648    2.917  -14.721    8.286  
+
+Coefficients:
+            Estimate Std. Error z value Pr(&gt;|z|)    
+(Intercept)  6.41539    0.03595 178.451  &lt; 2e-16 ***
+M2           0.31542    0.04244   7.431 1.08e-13 ***
+A2          -3.44999    0.14976 -23.036  &lt; 2e-16 ***
+C2          -1.06402    0.05187 -20.515  &lt; 2e-16 ***
+A2:C2        2.87373    0.16730  17.178  &lt; 2e-16 ***
+---
+Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+
+(Dispersion parameter for poisson family taken to be 1)
+
+    Null deviance: 2851.46  on 7  degrees of freedom
+Residual deviance:  843.83  on 3  degrees of freedom
+AIC: 902.87
+
+Number of Fisher Scoring iterations: 6
+</pre>
+</div>
+
+</div>
+
+</div>
+
+
+<div class=" highlight hl-r"><pre><span></span><span class="n">mod_AM.C</span><span class="o">=</span><span class="nf">glm</span><span class="p">(</span><span class="n">Y</span><span class="o">~</span><span class="n">C</span><span class="o">+</span><span class="n">A</span><span class="o">*</span><span class="n">M</span><span class="p">,</span> <span class="n">family</span><span class="o">=</span><span class="n">poisson</span><span class="p">)</span> <span class="c1">#Block AM</span>
+<span class="nf">summary</span><span class="p">(</span><span class="n">mod_AM.C</span><span class="p">)</span>
+</pre></div>
+
+
+<div class="output_wrapper">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea ">
+<pre>
+Call:
+glm(formula = Y ~ C + A * M, family = poisson)
+
+Deviance Residuals: 
+       1         2         3         4         5         6         7         8  
+ 10.6031   -4.6398  -19.7664    5.9142   -0.1592  -14.1425    0.2114   13.4104  
+
+Coefficients:
+            Estimate Std. Error z value Pr(&gt;|z|)    
+(Intercept)  6.44142    0.03573 180.280   &lt;2e-16 ***
+C2          -0.64931    0.04415 -14.707   &lt;2e-16 ***
+A2          -5.25227    0.44838 -11.714   &lt;2e-16 ***
+M2           0.04003    0.04531   0.883    0.377    
+A2:M2        4.12509    0.45294   9.107   &lt;2e-16 ***
+---
+Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+
+(Dispersion parameter for poisson family taken to be 1)
+
+    Null deviance: 2851.46  on 7  degrees of freedom
+Residual deviance:  939.56  on 3  degrees of freedom
+AIC: 998.61
+
+Number of Fisher Scoring iterations: 5
+</pre>
+</div>
+
+</div>
+
+</div>
+
+
+<div class=" highlight hl-r"><pre><span></span><span class="n">mod_A.CM</span><span class="o">=</span><span class="nf">glm</span><span class="p">(</span><span class="n">Y</span><span class="o">~</span><span class="n">A</span><span class="o">+</span><span class="n">C</span><span class="o">*</span><span class="n">M</span><span class="p">,</span> <span class="n">family</span><span class="o">=</span><span class="n">poisson</span><span class="p">)</span> <span class="c1">#Block CM</span>
+<span class="nf">summary</span><span class="p">(</span><span class="n">mod_A.CM</span><span class="p">)</span>
+</pre></div>
+
+
+<div class="output_wrapper">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea ">
+<pre>
+Call:
+glm(formula = Y ~ A + C * M, family = poisson)
+
+Deviance Residuals: 
+       1         2         3         4         5         6         7         8  
+  4.4691    1.7907    0.7207   -7.2723  -15.2958   -4.8889   -2.1064   13.9760  
+
+Coefficients:
+            Estimate Std. Error z value Pr(&gt;|z|)    
+(Intercept)  6.66273    0.03417 194.969   &lt;2e-16 ***
+A2          -1.78511    0.05976 -29.872   &lt;2e-16 ***
+C2          -2.98919    0.15111 -19.782   &lt;2e-16 ***
+M2          -0.45308    0.05306  -8.539   &lt;2e-16 ***
+C2:M2        3.22431    0.16098  20.029   &lt;2e-16 ***
+---
+Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+
+(Dispersion parameter for poisson family taken to be 1)
+
+    Null deviance: 2851.46  on 7  degrees of freedom
+Residual deviance:  534.21  on 3  degrees of freedom
+AIC: 593.26
+
+Number of Fisher Scoring iterations: 6
+</pre>
+</div>
+
+</div>
+
+</div>
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2>Model 3. Partial Independence</h2>
+<p>$P(AC\mid M)=P(A\mid M)P(C\mid M)$. Alcohol and cigarette use are conditionally independent given marijuana use; Alcohol and marijuana use are associated, and cigarette and marijuana use are associated</p>
+<p>$H_0:\pi_{ijk} = \pi_{i.k}\pi_{.jk}/\pi_{..k}$<br>
+$H_a:\pi_{ijk} \neq \pi_{i.k}\pi_{.jk}/\pi_{..k}$</p>
+<p>$\log(\mu_{ijk}) = \beta_0+\beta_1 \mathbb{I}_C + \beta_2 \mathbb{I}_C + \beta_3 \mathbb{I}_M+\beta_4\mathbb{I}_A\mathbb{I}_M+\beta_5\mathbb{I}_C\mathbb{I}_M$</p>
+<p>MLE
+$$\hat\mu_{ijk}=n\hat\pi_{ijk} = n\hat\pi_{.jk}\hat\pi_{i.k} / \hat\pi_{..k}=y_{ijk}y_{i.k}/y_{..k}$$</p>
+
+</div>
+</div>
+</div>
+
+<div class=" highlight hl-r"><pre><span></span><span class="n">mod_AC.AM</span><span class="o">=</span><span class="nf">glm</span><span class="p">(</span><span class="n">Y</span><span class="o">~</span><span class="n">A</span><span class="o">*</span><span class="n">C</span><span class="o">+</span><span class="n">A</span><span class="o">*</span><span class="n">M</span><span class="p">,</span> <span class="n">family</span><span class="o">=</span><span class="n">poisson</span><span class="p">)</span> <span class="c1">#Partial A</span>
+<span class="nf">summary</span><span class="p">(</span><span class="n">mod_AC.AM</span><span class="p">)</span>
+</pre></div>
+
+
+<div class="output_wrapper">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea ">
+<pre>
+Call:
+glm(formula = Y ~ A * C + A * M, family = poisson)
+
+Deviance Residuals: 
+       1         2         3         4         5         6         7         8  
+  7.2238   -7.7739  -15.8396   11.3171    2.0272   -0.3442   -1.2388    0.1379  
+
+Coefficients:
+            Estimate Std. Error z value Pr(&gt;|z|)    
+(Intercept)  6.56527    0.03499 187.643   &lt;2e-16 ***
+A2          -6.91715    0.46893 -14.751   &lt;2e-16 ***
+C2          -1.06402    0.05187 -20.515   &lt;2e-16 ***
+M2           0.04003    0.04531   0.883    0.377    
+A2:C2        2.87373    0.16730  17.178   &lt;2e-16 ***
+A2:M2        4.12509    0.45294   9.107   &lt;2e-16 ***
+---
+Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+
+(Dispersion parameter for poisson family taken to be 1)
+
+    Null deviance: 2851.46  on 7  degrees of freedom
+Residual deviance:  497.37  on 2  degrees of freedom
+AIC: 558.41
+
+Number of Fisher Scoring iterations: 5
+</pre>
+</div>
+
+</div>
+
+</div>
+
+
+<div class=" highlight hl-r"><pre><span></span><span class="n">mod_AC.CM</span><span class="o">=</span><span class="nf">glm</span><span class="p">(</span><span class="n">Y</span><span class="o">~</span><span class="n">A</span><span class="o">*</span><span class="n">C</span><span class="o">+</span><span class="n">C</span><span class="o">*</span><span class="n">M</span><span class="p">,</span> <span class="n">family</span><span class="o">=</span><span class="n">poisson</span><span class="p">)</span> <span class="c1">#Partial C</span>
+<span class="nf">summary</span><span class="p">(</span><span class="n">mod_AC.CM</span><span class="p">)</span>
+</pre></div>
+
+
+<div class="output_wrapper">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea ">
+<pre>
+Call:
+glm(formula = Y ~ A * C + C * M, family = poisson)
+
+Deviance Residuals: 
+      1        2        3        4        5        6        7        8  
+ 0.8401  -1.0667   2.4964  -0.6743  -6.0678   5.0235  -4.5440   0.8867  
+
+Coefficients:
+            Estimate Std. Error z value Pr(&gt;|z|)    
+(Intercept)  6.78658    0.03340 203.212   &lt;2e-16 ***
+A2          -3.44999    0.14976 -23.036   &lt;2e-16 ***
+C2          -3.40390    0.15354 -22.170   &lt;2e-16 ***
+M2          -0.45308    0.05306  -8.539   &lt;2e-16 ***
+A2:C2        2.87373    0.16730  17.178   &lt;2e-16 ***
+C2:M2        3.22431    0.16098  20.029   &lt;2e-16 ***
+---
+Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+
+(Dispersion parameter for poisson family taken to be 1)
+
+    Null deviance: 2851.461  on 7  degrees of freedom
+Residual deviance:   92.018  on 2  degrees of freedom
+AIC: 153.06
+
+Number of Fisher Scoring iterations: 6
+</pre>
+</div>
+
+</div>
+
+</div>
+
+
+<div class=" highlight hl-r"><pre><span></span><span class="n">mod_AM.CM</span><span class="o">=</span><span class="nf">glm</span><span class="p">(</span><span class="n">Y</span><span class="o">~</span><span class="n">A</span><span class="o">*</span><span class="n">M</span><span class="o">+</span><span class="n">C</span><span class="o">*</span><span class="n">M</span><span class="p">,</span> <span class="n">family</span><span class="o">=</span><span class="n">poisson</span><span class="p">)</span> <span class="c1">#Partial M</span>
+<span class="nf">summary</span><span class="p">(</span><span class="n">mod_AM.CM</span><span class="p">)</span>
+</pre></div>
+
+
+<div class="output_wrapper">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea ">
+<pre>
+Call:
+glm(formula = Y ~ A * M + C * M, family = poisson)
+
+Deviance Residuals: 
+      1        2        3        4        5        6        7        8  
+ 0.0584   4.5702  -0.2619  -4.3441  -0.8663  -9.7716   2.2287   6.8353  
+
+Coefficients:
+            Estimate Std. Error z value Pr(&gt;|z|)    
+(Intercept)  6.81261    0.03316 205.450   &lt;2e-16 ***
+A2          -5.25227    0.44837 -11.714   &lt;2e-16 ***
+M2          -0.72847    0.05538 -13.154   &lt;2e-16 ***
+C2          -2.98919    0.15111 -19.782   &lt;2e-16 ***
+A2:M2        4.12509    0.45294   9.107   &lt;2e-16 ***
+M2:C2        3.22431    0.16098  20.029   &lt;2e-16 ***
+---
+Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+
+(Dispersion parameter for poisson family taken to be 1)
+
+    Null deviance: 2851.46  on 7  degrees of freedom
+Residual deviance:  187.75  on 2  degrees of freedom
+AIC: 248.8
+
+Number of Fisher Scoring iterations: 5
+</pre>
+</div>
+
+</div>
+
+</div>
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2>Model 4. Uniform Association</h2>
+<p>Association among all pairs</p>
+<p>$\log(\mu_{ijk}) = \beta_0+\beta_1 \mathbb{I}_C + \beta_2 \mathbb{I}_C + \beta_3 \mathbb{I}_M+\beta_4\mathbb{I}_A\mathbb{I}_M+\beta_5\mathbb{I}_C\mathbb{I}_M + \beta_6\mathbb{I}_A\mathbb{I}_C$</p>
+
+</div>
+</div>
+</div>
+
+<div class=" highlight hl-r"><pre><span></span><span class="n">mod_AM.AC.CM</span><span class="o">=</span><span class="nf">glm</span><span class="p">(</span><span class="n">Y</span><span class="o">~</span><span class="n">A</span><span class="o">*</span><span class="n">M</span><span class="o">+</span><span class="n">A</span><span class="o">*</span><span class="n">C</span><span class="o">+</span><span class="n">C</span><span class="o">*</span><span class="n">M</span><span class="p">,</span> <span class="n">family</span><span class="o">=</span><span class="n">poisson</span><span class="p">)</span> <span class="c1">#Uniform</span>
+<span class="nf">summary</span><span class="p">(</span><span class="n">mod_AM.AC.CM</span><span class="p">)</span>
+</pre></div>
+
+
+<div class="output_wrapper">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea ">
+<pre>
+Call:
+glm(formula = Y ~ A * M + A * C + C * M, family = poisson)
+
+Deviance Residuals: 
+       1         2         3         4         5         6         7         8  
+ 0.02044  -0.02658  -0.09256   0.02890  -0.33428   0.09452   0.49134  -0.03690  
+
+Coefficients:
+            Estimate Std. Error z value Pr(&gt;|z|)    
+(Intercept)  6.81387    0.03313 205.699  &lt; 2e-16 ***
+A2          -5.52827    0.45221 -12.225  &lt; 2e-16 ***
+M2          -0.52486    0.05428  -9.669  &lt; 2e-16 ***
+C2          -3.01575    0.15162 -19.891  &lt; 2e-16 ***
+A2:M2        2.98601    0.46468   6.426 1.31e-10 ***
+A2:C2        2.05453    0.17406  11.803  &lt; 2e-16 ***
+M2:C2        2.84789    0.16384  17.382  &lt; 2e-16 ***
+---
+Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+
+(Dispersion parameter for poisson family taken to be 1)
+
+    Null deviance: 2851.46098  on 7  degrees of freedom
+Residual deviance:    0.37399  on 1  degrees of freedom
+AIC: 63.417
+
+Number of Fisher Scoring iterations: 4
+</pre>
+</div>
+
+</div>
+
+</div>
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2>Saturated Model</h2>
+<p>$\log(\mu_{ijk}) = \beta_0+\beta_1 \mathbb{I}_C + \beta_2 \mathbb{I}_C + \beta_3 \mathbb{I}_M+\beta_4\mathbb{I}_A\mathbb{I}_M+\beta_5\mathbb{I}_C\mathbb{I}_M + \beta_6\mathbb{I}_A\mathbb{I}_C + \beta_7\mathbb{I}_A\mathbb{I}_C\mathbb{I}_M$
+this always fits the data perfectly</p>
+
+</div>
+</div>
+</div>
+
+<div class=" highlight hl-r"><pre><span></span><span class="n">mod_ACM</span><span class="o">=</span><span class="nf">glm</span><span class="p">(</span><span class="n">Y</span><span class="o">~</span><span class="n">A</span><span class="o">*</span><span class="n">C</span><span class="o">*</span><span class="n">M</span><span class="p">,</span> <span class="n">family</span><span class="o">=</span><span class="n">poisson</span><span class="p">)</span> <span class="c1">#Saturated</span>
+<span class="nf">summary</span><span class="p">(</span><span class="n">mod_ACM</span><span class="p">)</span>
+</pre></div>
+
+
+<div class="output_wrapper">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea ">
+<pre>
+Call:
+glm(formula = Y ~ A * C * M, family = poisson)
+
+Deviance Residuals: 
+[1]  0  0  0  0  0  0  0  0
+
+Coefficients:
+            Estimate Std. Error z value Pr(&gt;|z|)    
+(Intercept)  6.81454    0.03313 205.682  &lt; 2e-16 ***
+A2          -5.71593    0.57830  -9.884  &lt; 2e-16 ***
+C2          -3.03035    0.15435 -19.633  &lt; 2e-16 ***
+M2          -0.52668    0.05437  -9.686  &lt; 2e-16 ***
+A2:C2        2.62489    0.92583   2.835  0.00458 ** 
+A2:M2        3.18927    0.59962   5.319 1.04e-07 ***
+C2:M2        2.86499    0.16696  17.159  &lt; 2e-16 ***
+A2:C2:M2    -0.58951    0.94236  -0.626  0.53160    
+---
+Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+
+(Dispersion parameter for poisson family taken to be 1)
+
+    Null deviance:  2.8515e+03  on 7  degrees of freedom
+Residual deviance: -4.1522e-14  on 0  degrees of freedom
+AIC: 65.043
+
+Number of Fisher Scoring iterations: 3
+</pre>
+</div>
+
+</div>
+
+</div>
+
+
+<div class=" highlight hl-r"><pre><span></span><span class="n">muhats</span><span class="o">&lt;-</span><span class="nf">predict.glm</span><span class="p">(</span><span class="n">mod_AM.AC.CM</span><span class="p">,</span> <span class="n">type</span><span class="o">=</span><span class="s">&quot;response&quot;</span><span class="p">)</span>
+<span class="nf">cbind</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">C</span><span class="p">,</span> <span class="n">M</span><span class="p">,</span> <span class="n">Y</span><span class="p">,</span> <span class="n">muhats</span><span class="p">)</span>
+</pre></div>
+
+
+<div class="output_wrapper">
+
+<div class="output_area">
+
+
+<div class="output_html rendered_html output_subarea ">
+<table>
+<caption>A matrix: 8 × 5 of type dbl</caption>
+<thead>
+	<tr><th></th><th scope=col>A</th><th scope=col>C</th><th scope=col>M</th><th scope=col>Y</th><th scope=col>muhats</th></tr>
+</thead>
+<tbody>
+	<tr><th scope=row>1</th><td>1</td><td>1</td><td>1</td><td>911</td><td>910.38317</td></tr>
+	<tr><th scope=row>2</th><td>1</td><td>1</td><td>2</td><td>538</td><td>538.61683</td></tr>
+	<tr><th scope=row>3</th><td>1</td><td>2</td><td>1</td><td> 44</td><td> 44.61683</td></tr>
+	<tr><th scope=row>4</th><td>1</td><td>2</td><td>2</td><td>456</td><td>455.38317</td></tr>
+	<tr><th scope=row>5</th><td>2</td><td>1</td><td>1</td><td>  3</td><td>  3.61683</td></tr>
+	<tr><th scope=row>6</th><td>2</td><td>1</td><td>2</td><td> 43</td><td> 42.38317</td></tr>
+	<tr><th scope=row>7</th><td>2</td><td>2</td><td>1</td><td>  2</td><td>  1.38317</td></tr>
+	<tr><th scope=row>8</th><td>2</td><td>2</td><td>2</td><td>279</td><td>279.61683</td></tr>
+</tbody>
+</table>
+
+</div>
+
+</div>
+
+</div>
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1>Inference for log-linear models</h1>
+<h2>Model assumptions</h2>
+<ul>
+<li>independent quantities being counted</li>
+<li>Large enough sample size for MLE asymptotic tests to hold (most $\hat\mu_{ijk}\geq 5$)</li>
+<li>Cross-classified counts follow a Poisson distribution $var(y_{ijk})=\mu_{ijk}$. If not, the deviance is very large("extra-Poisson" variation)</li>
+<li>Correct form <ul>
+<li>$\log(E(Y))$ is linear in $\beta$'s</li>
+<li>All relevant variables included</li>
+<li>No outliers</li>
+<li>Agreement of predicted and observed count</li>
+<li>Check deviance GOF test</li>
+</ul>
+</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2>Model comparisons</h2>
+<p><strong>Example</strong> For the uniform association model, is the CM interaction needed? / Does the (AC,CM) model fit just as well?</p>
+<p>Uniform association model
+$\log(\mu_{ijk}) = \beta_0+\beta_1 \mathbb{I}_C + \beta_2 \mathbb{I}_C + \beta_3 \mathbb{I}_M+\beta_4\mathbb{I}_A\mathbb{I}_M+\beta_5\mathbb{I}_C\mathbb{I}_M + \beta_6\mathbb{I}_A\mathbb{I}_C$</p>
+<p>$H_0: \beta_6=0$, reduced model is better no CM interaction
+$H_a: \beta\neq 0$ full model is better</p>
+<p>Wald: test-statistic: 17.382.<br>
+$p&lt;2\times 10^{-16}$.</p>
+<p>LRT: test-statistic: 497.37 - 0.37399 = 497<br>
+$p&lt;2\times 10^{-16}$</p>
+<p>Conclusion: Very strong evidence that we should keep the CM interaction term. The uniform association model is better than the model without CM interaction term.</p>
+
+</div>
+</div>
+</div>
+
+<div class=" highlight hl-r"><pre><span></span><span class="n">mod_AM.AC</span><span class="o">=</span><span class="nf">glm</span><span class="p">(</span><span class="n">Y</span><span class="o">~</span><span class="n">A</span><span class="o">+</span><span class="n">M</span><span class="o">+</span><span class="n">C</span><span class="o">+</span><span class="n">A</span><span class="o">:</span><span class="n">C</span> <span class="o">+</span> <span class="n">A</span><span class="o">*</span><span class="n">M</span><span class="p">,</span> <span class="n">family</span><span class="o">=</span><span class="n">poisson</span><span class="p">)</span> <span class="c1">#Uniform</span>
+<span class="nf">summary</span><span class="p">(</span><span class="n">mod_AM.AC</span><span class="p">)</span>
+</pre></div>
+
+
+<div class="output_wrapper">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea ">
+<pre>
+Call:
+glm(formula = Y ~ A + M + C + A:C + A * M, family = poisson)
+
+Deviance Residuals: 
+       1         2         3         4         5         6         7         8  
+  7.2238   -7.7739  -15.8396   11.3171    2.0272   -0.3442   -1.2388    0.1379  
+
+Coefficients:
+            Estimate Std. Error z value Pr(&gt;|z|)    
+(Intercept)  6.56527    0.03499 187.643   &lt;2e-16 ***
+A2          -6.91715    0.46893 -14.751   &lt;2e-16 ***
+M2           0.04003    0.04531   0.883    0.377    
+C2          -1.06402    0.05187 -20.515   &lt;2e-16 ***
+A2:C2        2.87373    0.16730  17.178   &lt;2e-16 ***
+A2:M2        4.12509    0.45294   9.107   &lt;2e-16 ***
+---
+Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+
+(Dispersion parameter for poisson family taken to be 1)
+
+    Null deviance: 2851.46  on 7  degrees of freedom
+Residual deviance:  497.37  on 2  degrees of freedom
+AIC: 558.41
+
+Number of Fisher Scoring iterations: 5
+</pre>
+</div>
+
+</div>
+
+</div>
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2>Deviance GOF test</h2>
+<p>Compare fitted model to saturated model
+Small deviance / large p-values</p>
+<ul>
+<li>fitted model is adequate</li>
+<li>test is not powerful enough to detect inadequacies
+Large deviance / small p-value</li>
+<li>Fitted model is not adequate, consider a more complex model OR</li>
+<li>underlying distribution is not adequately modeled by the Poisson distribution OR</li>
+<li>There are severe outliers </li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2>Outliers</h2>
+<ul>
+<li>raw residual: $y_{ijk} - \hat\mu_{ijk}$</li>
+<li>Pearson residuals: $(y_{ijk} - \hat\mu_{ijk})/\sqrt{\hat\mu_{ijk}}$</li>
+<li>Deviance residuals: $sign(y_{ijk} - \hat\mu_{ijk})\sqrt{2(y_{ijk}\log(y_{ijk}/\hat\mu_{ijk}))-y_{ijk}+\hat\mu_{ijk}}$</li>
+</ul>
+<p>Rule of thumb: outliers if Pearson or Deviance residual $&gt;3$, is the sample size if small, then $&gt;2$.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2>Extra-Poisson variation</h2>
+<ul>
+<li>Check if $Deviance/df &gt; 1$</li>
+<li>If other problems are ruled out, then include a dispersion paramter OR use negative binomial regression</li>
+</ul>
+
+</div>
+</div>
+</div>
+ 
+

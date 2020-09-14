@@ -52,6 +52,13 @@ collections:
     instructor: Francois Pitt
     output: true
 
+  sta303:
+    code: STA303 
+    name: Methods of Data Analysis II
+    term: 2019 Winter
+    instructor: Shivon Sue-Chee
+    output: true
+
 
 defaults:
   -

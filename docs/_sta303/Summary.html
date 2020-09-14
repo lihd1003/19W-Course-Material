@@ -1,0 +1,318 @@
+---
+title: Summary
+order: 999
+---
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2>pooled two sample t-tests</h2>
+<ul>
+<li>assume equal population variances</li>
+<li>$s^2_p = \frac{(n_x-1)s_x^2 + (n_y-1)s_y^2}{n_x+n_y-2}$</li>
+<li>$t = \frac{(\bar{x} - \bar{y} -D_0)}{\sqrt{s_p^2(n_x^{-1}+n_y^{-1})} }\sim t_{(n_x-1)(n_y-1)}$</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2>SLM Dummy variable</h2>
+<p>$Y_i=\beta_0+\beta_1X_i + \epsilon_i$
+assumptions</p>
+<ul>
+<li>linear model is appropriate</li>
+<li>$\epsilon_i \sim N(0,\sigma^2)$</li>
+</ul>
+<p>Hypothesis test:<br>
+ $H_0:\beta_1 = 0, H_a:\beta_1\neq 0$<br>
+$t=b_1/se(b_1)\sim t_{N-2}$, $N$ is the total number of observations</p>
+<h2>One Way ANOVA  &amp; GLM</h2>
+<p>$Y_i=\vec{X_i}\vec{\beta}+\vec{\epsilon}$</p>
+<ul>
+<li>assumptions: same as dummy variable, jointly normally distributed errors</li>
+<li>$F=MSReg/MSE = \frac{(SSR/G-1)}{SSE/(N-G)}\sim F_{G-1,N-G}$</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2>Multiple Comparisons</h2>
+<p>Bonferrroni's Method:</p>
+<ul>
+<li>$P(\cup A_i)\leq \sum P(A_i)$</li>
+<li>$k= {G \choose 2}$</li>
+<li>level at $a/k$</li>
+</ul>
+<p>Tukey's Method: less conservative than Bonferroni's method</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2>Two Way ANOVA</h2>
+<p>Overall vs. Partiral F-tests<br>
+$H_0: $ a subset of $\beta$'s are 0. $H_a: $ some of the $\beta$ in the subset are not 0.<br>
+Let FULL model be with all explanatory variables, REDUCED be without the coefficients in testing.<br>
+$F=\frac{(RSS_r - RSS_f)/\# \beta \text{ tested} }{MSE_f}\sim F_{\# \beta \text{ tested}, d.f. RES_f}$</p>
+<p>Describing "interactions"</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2>GLM vs. Transformation</h2>
+<p>Transform Y so it has an approximate normal  distribution with constant variance,</p>
+<p>GLM: distribution of Y not restricted to Normal,<br>
+model parameters describe $g(E(Y))$ rather than $E(g(Y))$<br>
+GLMs provide a unified theory of modeling that encompasses the most important models for continuous and discrete variables.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2>GLM tests</h2>
+<p>Wald<br>
+$H_0:\beta_j = 0, H_a: \beta_j\neq 0$<br>
+$z=\hat\beta_j / se(\hat\beta_j)\sim N(0,1)$.<br>
+CI: $\hat\beta_j \pm z_{a/2} se(\hat\beta_j)$</p>
+<p>LRT<br>
+$H_0: $ some $beta$ are 0, $H_a: $ at least one tested $\beta$ is not 0.</p>
+$$G^2 = (-2\log \mathcal L_R) - (-2\log \mathcal L_F) = -2\log (\mathcal L_R / \mathcal L_F)\sim \chi^2_k$$<p>$k= \# \beta$ tested</p>
+<p>Global LRT<br>
+LRT comparing to the NULL model (null deviance)</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2>AIC, BIC</h2>
+<ul>
+<li>combines log-likelihood with a penalty </li>
+<li>$AIC = -2\log\mathcal L + 2(p+1)$</li>
+<li>$BIC =  -2\log\mathcal L + \log N(p+1)$</li>
+<li>$p$ number of explanatory variables, $N$ sample size</li>
+<li>Smaller is better</li>
+<li>Better = $diff(AIC) &gt; 10$</li>
+<li>Same = $diff(AIC) &lt; 2$</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2>SLR vs. Binary LR</h2>
+<ul>
+<li><p>both use MLE</p>
+</li>
+<li><p>Binary LR has fewer assumptions</p>
+<ul>
+<li>no outelires</li>
+<li>no residual plots</li>
+<li>non constant variance </li>
+</ul>
+</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2>Binary Logistic Regression</h2>
+<p>underlying distribution for each independent observation: $Bernoulli(\pi_i)$</p>
+<p>We cannot estimate $\pi_i$ for individual $i$.</p>
+<ul>
+<li>Let $\pi = P(success)$, </li>
+<li>ODDS: $\pi/(1-\pi)$</li>
+<li>LOG ODDS: $\log(\pi/(1-\pi))$</li>
+<li>ODDS RATIO is the ratio of two ODDS</li>
+</ul>
+<p>$E(Y\mid X)=\pi, var(Y\mid X) = \pi(1-\pi)$</p>
+<p>The model
+$$\log(\pi/(1-\pi)) = X\beta$$
+$$\log(\frac{\pi_i}{1-\pi_i}) = X_i\beta$$ (no error term)</p>
+<p>MLE:
+$P(Y_i=y_i)=\pi_i^{y_i}(1-\pi_i)^{1-y_i}$
+$$\mathcal{L} = \prod_1^n\pi_i^{y_i}(1-\pi_i)^{1-y_i}$$
+where $\pi_i = \frac{\exp(X_i\beta)}{1+\exp(X_i\beta)}=e^{\mu}/(1+e^\mu)$
+and $$1-\mu_i = 1-\frac{e^\mu}{1+e^\mu} = (1+e^\mu)^{-1}$$</p>
+$$\log\mathcal{L} = \\
+\sum_1^ny_i(X_i\beta) - y_i\log(1+\exp(X_i\beta))-(1-y_i)\log(1+X_i\beta))$$<p>Let $(a,b)$ be CI, CI for Odds ratio is $e^a, e^b$, while we cannot compute CI for $\pi$ since $\pi$ is not normally distributed</p>
+<p>Assumptions:</p>
+<ul>
+<li>underlying model for Y is Bernoulli</li>
+<li>independent observations</li>
+<li>Correct form of model (linear relationship, included all relevant variables and excluded irrelevant)</li>
+<li>enough large sample size</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2>Binomial Logistic Regression</h2>
+<p>Let $Y$ be the count of the number of "success"</p>
+<p>$P(Y=y)={m\choose y}\pi^y (1-\pi)^{m-y}$</p>
+<p>$E(Y)=m\pi, var(Y)=m\pi(1-\pi)$</p>
+<p>Then the proportion of successes 
+$E(Y/m)=\pi, var(Y/m)=\pi(1-\pi)/m$</p>
+<p>Assume for each group of observation, it is independent.</p>
+<p>We can estimate $\pi_i$ is this case</p>
+<p>MLE:<br>
+$$P(Y_i=y_i) = {m_i\choose y_i}\pi^{y_i}(1-\pi_i)^{m_i-y_i}$$
+$$\mathcal L = \prod_1^n {m_i\choose y_i}\pi^{y_i}(1-\pi_i)^{m_i-y_i}$$ where $\pi_i = \frac{e^\mu}{1+e^\mu}$
+$$\log\mathcal L = \sum y_i\log(\pi_i)+(m_i-y_i)\log(1-\pi_i) + \log{m_i\choose y_i}$$</p>
+<p>Deviance $=-2\log(\mathcal L_M/\mathcal L_S) = -2(\log \mathcal L_M - \log \mathcal L_S)$.</p>
+<p>Saturated model has log likelihood ratio 0.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2>Logistic Regression Problems</h2>
+<ul>
+<li>Extrapolation: model outside of range of observed data may not be appropriate</li>
+<li>Multicollinearity<ul>
+<li>unstable fitted equation</li>
+<li>coefficient significance and signs</li>
+<li>large standard error of coefficients</li>
+<li>MLR may not converge</li>
+</ul>
+</li>
+<li>Influential points</li>
+</ul>
+<p>Specific to logistic</p>
+<ul>
+<li>Complete separation<ul>
+<li>one of a linear combination of explanatory variables perfectly predict $Y$, then MLE cannot be computed</li>
+</ul>
+</li>
+<li>Quasi-complete separation<ul>
+<li>almost perfectly predict Y
+<strong>Solution</strong> simplify model, or try other options</li>
+</ul>
+</li>
+</ul>
+<p>Extra-binomial variation</p>
+<ul>
+<li>when Bernoulli observations are not independent</li>
+<li>use quasibinomial </li>
+<li>model for variance: $var(Y_i)=\phi m_i \pi_i(1-\pi_i)$</li>
+<li>$\hat\phi = $ sum of squared Pearson residuals / d.f. </li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2>GOF</h2>
+<p>To check model adequacy using LRT</p>
+<p>$H_0: $ fitted model fits data as well as Saturated model. $H_a: $ saturated model is better, the fitted model is inadequate</p>
+<p>$G^2 = -2\log(\mathcal L_F /\mathcal L_S)\sim \chi^2_{n-(p+1)}$</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2>Log linear Model</h2>
+<ul>
+<li>Why not linear<ul>
+<li>outcome is counts and small numbers</li>
+<li>Won't have a normal distribution conditional on age</li>
+</ul>
+</li>
+<li>Why no logistic<ul>
+<li>Not a binary outcome</li>
+<li>Not a binomial outcome since not a fixed number of trials</li>
+</ul>
+</li>
+</ul>
+<p>$P(Y=y)=\mu^y e^{-\mu} / y!, E(Y)=var(Y)=\mu$</p>
+$$\mathcal L = \prod_1^n \mu_i^{y_i} e^{-\mu_i} / y_i!$$$$\log\mathcal L = \sum_1^n y_i \log (\mu_i) -\mu_i - \log(y_i!)$$
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2>Two Factor Independence</h2>
+<p><strong>Binomial Sampling</strong><br>
+For $2\times 2$ table<br>
+$H_0: \mu_a = \mu_b, H_a: \mu_a\neq \mu_b$
+$$z=\frac{\hat\mu_a - \hat\mu_b}{se(\hat\mu_a - \hat\mu_b)}\sim N(0,1)$$
+Assumption:</p>
+<ul>
+<li>each trial is a Bernoulli</li>
+<li>the number of groups are fixed</li>
+<li>The underlying distribution is $y_a\sim binomial(n_a, \pi_a), y_b\sim binomial(n_b, \pi_b)$</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2>Contingency Table</h2>
+<p>test statistics $\chi^2 = \sum_j\sum_i (y_{ij} - \hat\mu_{ij})^2 / \hat\mu_{ij}\sim \chi^2_{(I-1)(J-1)}$ where $\hat\mu_{ij} = \pi_{i.}\pi_{.j}/n$</p>
+<p>Contingency table model:<br>
+$Y_{ij}$ be the r.v. representing the number of observations in the cell<br>
+$y_{ij}$ be the observed cell counts</p>
+<p>The underlying distribution of $Y=(Y_{11},...,Y_{nn})\sim Multinomial$
+$$P(Y=y)=\frac{n!}{y_{11}!...y_{nn}!} \prod_{i,j}\pi_{ij}^{y_{ij} }$$</p>
+<p>Using MLE subjecting to $\sum_{ij}\pi_{ij} = 1$, we get $\hat\mu_{ij} = y_{ij} / n$</p>
+<p>With null hypothesis of independence we can get $\hat\mu_{ij} = \hat\mu_{i.}\hat\mu_{.j}$
+Then we can use LRT where the full model contains the interaction terms
+$$\log\mathcal L_F = \sum_{ij}y_{ij}\log(y_{ij}/n)$$
+$$\log\mathcal L_R = \sum_{ij}y_{ij}\log(y_{i.}y_{.j}/nn)$$</p>
+$$d.f. = (IJ-1)-(I+J-2)$$<p>
+lose 1 for constraint $\sum_{ij}\pi_{ij} = 1$, lose 2 for constraints $\sum_i \pi_{i.}=1,\sum_j\pi_{.j}=1$</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2>Fisher's Exact Test</h2>
+<ul>
+<li>randomization test</li>
+<li>appropriate for small sample size</li>
+<li>assumes the row and column totals are fixed</li>
+<li>p-value is calculated from hypergeometrix distribution
+$$P=\frac{ {a+b\choose a}{c+d\choose c} }{ {n\choose a+c} }$$</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2>Poisson Regression</h2>
+<ul>
+<li>counts aren't fixed</li>
+<li>treat IJ count as realizations of a Possion random variable</li>
+</ul>
+<p>Compare the interactions term</p>
+<p>Three-way interactions</p>
+<ul>
+<li>complete independence: does not have any interaction terms</li>
+<li>block independence: joint probability of two factors (say A,B) is independent of the third (C). Then include the interaction term between $AB$</li>
+<li>partial independence: $P(AB\mid C)=P(A\mid C)P(B\mid C)$, AB are conditionally independent on $C$. Include interactions between $AC,BC$</li>
+<li>Uniform association: include all two-way interactions</li>
+<li>Saturated model: include three-way interactions</li>
+</ul>
+
+</div>
+</div>
+</div>
+ 
+
