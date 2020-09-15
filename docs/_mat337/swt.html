@@ -1,0 +1,43 @@
+---
+title: Extra. Stone Weierstrass Theorem
+order: 20
+---
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1>Stone-Weierstrass Theorem</h1>
+<h2><em>Def'n</em>. Function Algebra</h2>
+<p>For $\mathcal A\subset C([a,b])$, that follows</p>
+<ul>
+<li>(linearity) $\forall f,g\in \mathcal A. \forall a,b\in\mathbb R. af + bg\in \mathcal A$</li>
+<li>(closed under product) $\forall f,g\in\mathcal A. f\cdot g\in \mathcal A$</li>
+</ul>
+<h2><em>Thrm 1</em>.</h2>
+<p>For $\mathcal A\subset C([a,b])$ be a function algebra,<br>
+IF</p>
+<ul>
+<li>(vanishes nowhere) $\forall p\in [a,b]. \exists f\in \mathcal A. f(p)\neq 0$</li>
+<li>(separates points) $\forall x\neq y \in [a,b]. \exists h\in\mathcal A. h(x)\neq h(y)$  </li>
+</ul>
+<p>THEN $\mathcal A$ is dense in $C[a,b]$, i.e. $\forall f\in C[a,b]. \exists \{f_n\}\in \mathcal A. \{f_n\}\rightarrow^{u.c.} f$</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2><em>Thrm 2</em>.</h2>
+<p>$\mathcal A_{trig}:= \{a_0 + \sum_{k=1}^N a_k\cos(kn) + \sum_{k=1}^N b_k \sin(kn) | a_k, b_k\in\mathbb R. N\in\mathbb N\}$ is dense in $C[-\pi, \pi]$</p>
+<p><em>proof</em>. Consider the assumptions of SWT<br>
+Let $f$ have coefficients $a_k, b_k, M$, $g$ have $a'_k, a'_k, N$, let $c,d\in\mathbb R$. wlog, assume $M\geq N$, extend $a'_k, b'_k = 0. \forall k &gt; N$</p>
+<p>(linearity) $ca_0 + da'_0 + \sum (ca_k + da'_k)\cos(kn) + \sum(cb_k + db'_k)\sin(kn)\in \mathcal A_{trig}$</p>
+<p>(product) Using half angle formula $\cos(a)\cos(b) = \frac{1}{2}cos(a+b) + cos(a-b)$ and other similar ones, we can break all the products of trig functions back to a sum, hence rearrange the summation coefficients.</p>
+<p>(vanish nowhere) For any $a_0 + \sum a_k\cos(pn) + \sum b_k\sin(pn) = 0$, take $a_0' = a_0 + 1$ and others remain unchanged.</p>
+<p>(separates points) Take $a\neq b\in[-\pi,\pi]$. Using periodicity of trig functions<br>
+If $a\neq -b. \cos(a)\neq cos(b)$, if $a = -b. \sin(a)\neq [sin(-a) = \sin(b)]$</p>
+<p>Therefore, we can apply SWT</p>
+
+</div>
+</div>
+</div>
+ 
+

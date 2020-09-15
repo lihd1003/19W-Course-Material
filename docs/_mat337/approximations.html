@@ -1,0 +1,97 @@
+---
+title: Function Approximations
+order: 10
+---
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1>Taylor Series</h1>
+<p>$f\in C^n(\mathbb R)$, then $P_{n,a}(x):= \sum_{i=0}^n \frac{f^{(i)}(a)(x-a)^i}{i!}$ is the Taylor polynomial around $a$</p>
+<h2><em>Def'n</em>. Taylor Form remainder</h2>
+<p>$f\in C^n(\mathbb R)$ and $f^{(n+1)}$ exists, then $f(x) = P_{n,a}(x) + \frac{f^{(n+1)}(c)}{(n+1)!}(x-a)^{n+1}, c\in [a,x]$</p>
+<h2><em>Thrm 1</em>. Uniqueness</h2>
+<p><strong>Claim</strong>. Taylor polynomial is unique</p>
+<p><em>proof</em>. Suppose $f(x) = \sum a_k(x-a)^k + \epsilon_1(x-a)^n = \sum b_k(x-a)^k + \epsilon_2(x-a)$,<br>
+then $\sum(a_k-b_k)(x-a)^k + (\epsilon_1-\epsilon_2)(x-a)^n = 0$,<br>
+by independence of the system of equations, $a_n = b_n, \epsilon_1 = \epsilon_2$</p>
+<p><strong>Claim</strong>. For $x,a\in [-R,R], P_{a,n}\rightarrow^{u.c.}f$</p>
+<p><em>proof</em>. \begin{align*}
+\|f(x)-P_{a,n}(x)\| &amp;\leq \frac{|f^{(n+1)(c)}|}{(n+1)!}|x-a|^{n+1}\\
+&amp;\leq \frac{|f^{(n+1)(c)}|}{(n+1)!}|2R|^{n+1} \\
+&amp;\leq \frac{M}{(n+1)!}(2R)^{n+1} &amp;\text{by EVT}\\
+&amp;\leq \frac{M}{n^ne^{-n}\sqrt{2\pi n}}(2R)^{n+1} &amp;\text{Stirling's formula}\\
+&amp;\leq M(\frac{2Re}{n+1})^{n+1}\rightarrow 0 \text{ for large }n
+\end{align*}</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1><em>Thrm 2</em>.Weierstrass Theorem</h1>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>For any $a&lt;b, f\in C[a,b]$, exists $p_n\rightarrow^{u.c.}f$</p>
+<p><em>proof</em>. Define $g(x):[0,1]\rightarrow \mathbb R := f(a+x(b-a))$.<br>
+Take $q_n\rightarrow^{u.c.}g$, consider $y=a+x(b-a)$, i.e. $x = \frac{y-a}{b-a}$<br>
+Define $p_n(y):=q_n(\frac{y-a}{b-a}) = q_n(x)\rightarrow^{u.c.}f(y)$</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2><em>Thrm 2</em>.</h2>
+<p>If $f\in C^1[0,1]$, then $\exists \{p_n\}$ over $[0,1]$, $p_n\rightarrow^{u.c}f\land p_n'\rightarrow^{u.c}f'$</p>
+<p><em>proof</em>. Let $f\in C^1[0,1]$, then $f'\in C[0,1]$, take $q_n\rightarrow^{u.c}f'$,<br>
+then let $p_n = \int_0^x q_n(x)dx + f(0)$, 
+\begin{align*}
+p_n &amp;= \int_0^x q_n(x)dx + f(0) + f(0) \\
+&amp;\rightarrow^{u.c.}\int_0^x f'(x)dx +f(0)&amp;\text{ICT} \\
+&amp;=f(x)-f(0) + f(0)&amp;\text{FTC II} \\
+&amp;=f(x)
+\end{align*}</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2><em>Thrm 3</em>.</h2>
+<p>If $f\in C[0,1]$ and $f(0)=0$, then you can find $p_n\rightarrow^{u.c.}f$ s.t. $p_n(0)=0, p'_n(0)=0$</p>
+<p><strong>lemma 1</strong> If $f\in C^1[-1,1]$ is even, then exists $\{p_n\}$ is even and $p_n\rightarrow^{u.c.}f$</p>
+<p><em>proof</em>. Take $q_n \rightarrow^{u.c.}f$ over $[-1,1]$ by Weierstrass Theorem.<br>
+Define $p_n(x):= \frac{q_n(x)+q_n(-x)}{2}$, and by $f$ even, known $f(x)=\frac{f(x)+f(-x)}{2}$
+\begin{align*}
+\|p_n-f\|_\infty &amp;= \sup_{x\in[-1,1]}|\frac{q_n(x)+q_n(-x)}{2} - \frac{q_n(x)+q_n(-x)}{2}|\\
+&amp;= \frac{1}{2}\sup|q_n(x)-f(x)+(q_n(-x)-f(-x))| \\
+&amp;\leq \frac{1}{2}(\sup|q_n(x)-f(x))| + \sup|q_n(x)-f(x))|) &amp;\text{tri.ineq}\\
+&amp;\leq \frac{\epsilon + \epsilon}{2} = \epsilon
+\end{align*}</p>
+<p><em>proof</em>. extend $f$ to $F=\begin{cases}f(x) &amp;[0,1]\\f(-x)&amp;[-1,0]\end{cases}, F$ is even. by lemma 1, take even $q_n\rightarrow F$.<br>
+Then, take $p_n(x) := q_n(x)-q_n(0)$ and<br>
+(i) by $f(0)=0, q_n\rightarrow F\Rightarrow q_n(0) &lt; \epsilon/2$, $\|p_n-f\| \leq \|q_n-F\|+ \epsilon/2 = \epsilon$<br>
+(ii) $p_n(0)=q_n(0)-q_n(0)=0$<br>
+(iii) $p_n$ is even, hence $p_n(x)=\frac{p_n(x)+p_n(-x)}{2}$, $p_n'(x)=\frac{p_n'(x)-p_n'(-x)}{2}\Rightarrow p'_n(0)=0$</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2><em>Thrm 4</em>.</h2>
+<p>If $f\in C(\mathbb R), p_n\rightarrow f$ over $\mathbb R$, then $f$ is a polynomial</p>
+<p><em>proof</em>. Since $p_n$ uniform converge, $p_n$ is also Cauchy. Take $N$ large so that $\forall n,m \geq N. \|p_m-p_n\|_\infty \leq 1$<br>
+Then $f(x)=(f(x)-p_m(x))+(p_m(x)-p_n(x))+p_n(x)$.<br>
+Consider $q_{n,m}(x) = p_m(x)-p_n(x)$, it will also be a polynomial, and since $\|q_{n,m}\|\leq 1$, it must converges to some $a_{n,m}\in[-1,1]$.<br>
+By BW Theorem, take subsequence $a_{n,m_k}\rightarrow a_n$ for each $n$.<br>
+$f(x)=\lim_{m_k\rightarrow\infty}f(x) = \lim_k(f(x)-p_{m_k}(x)) + \|p_m - p_n\| + p_n(x) = 0 + a_n + p_n(x)$</p>
+
+</div>
+</div>
+</div>
+ 
+

@@ -1,0 +1,119 @@
+---
+title: Normed Space
+order: 5
+---
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2><em>Def'n</em>. Norm</h2>
+<p>Let $V$ be a vector space over $\mathbb{R}$, a norm $\|\cdot\|$ over $V$ is a function $V\rightarrow \mathbb{R}^+$ s.t.</p>
+<ul>
+<li>positive definite: $\|x\|\geq 0 \land \|x\| = 0 IFF x\equiv 0 \in V$  </li>
+<li>homogeneous $\|ax\| = |a|\|x\|. \forall a\in \mathbb{R}$</li>
+<li>triangular inequality $\|x+y\| = \|x\| + \|y\|$</li>
+</ul>
+<h3>Example: Euclidean space over $\mathbb{R}^n$</h3>
+<p>$\|x\|_2 = \sqrt{\sum |x_k|^2}$</p>
+<ul>
+<li>positive definite<br>
+$|x_k|^2 \geq 0 \Rightarrow \sqrt{\sum |x_k|^2} \geq 0$<br>
+$\|x\| = 0\Rightarrow x = 0$</li>
+<li>homogeneous $\|ax\| = \sqrt{\sum |ax_k|^2} = \sqrt{|a|^2\sum |x_k|^2} = |a|\|x\|$</li>
+<li>Tri-ineq<br>
+By Cauchy Swartz Inequality<br>
+$\|x+y\|^2 = \sum |x_k + y_k|^2 \leq \sum |x_k|^2 + |y_k|^2 = \sum |x_k|^2 + \sum|y_k|^2 = \|x\|^2 + \|y\|^2$</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3>Example: Some well-known norms</h3>
+<p>Some norms are</p>
+<ul>
+<li><strong>p-norm</strong> $\|x\|_p:=(\sum |x_k|^p)^{p^{-1}}, p\geq 1$</li>
+<li><strong>Lp-norm</strong> $\|f\|_{L_p} := (\int_S f(x)^p dx)^{p^{-1}}, p\geq 1$ is a norm over $C:=$ the set of all continuous functions</li>
+<li><strong>sup-norm</strong> $\|f\|_\infty:= sup\{|f(x)|:x\in S\}$ is a norm over $C_b(S):=$ the set of all continuous bounded functions or over $C(S)$ if $S$ is compact. </li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3>Example: sup-norm</h3>
+<p><strong>Claim</strong>. sup-norm is a norm
+<em>proof</em>.</p>
+<ol>
+<li>$|f(x)| \geq 0$, $f(x):= 0 \Rightarrow \|f\|_\infty = 0, \|f\|_\infty=0\Rightarrow |f(x)|\leq 0\Rightarrow f(x)=0$</li>
+<li>$\|af\|_\infty = sup|af(S)| = |a|sup|f(S)|= |a|\|f\|_\infty$  </li>
+<li>$\|f+g\|=sup(|f+g|) \leq sup(|f| + |g|) \leq sup|f| + sup|g| = \|f\| + \|g\|$</li>
+</ol>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><strong>$C^k(S):=$</strong> The set of all real number functions whose k-first derivative exists and continuous</p>
+<p>Some norms are defined on $C^k$, such as $\|f\|':= \max\|f'\|_\infty; \|f\|_{C^k} = \sum \|f^{(n)}\|_\infty$</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><strong>Remark</strong> $C^\infty$ a.k.a. <strong>smooth</strong> are normed space that obey completeness</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1>Topology of normed-spaces</h1>
+<h2><em>Thrm 1.</em></h2>
+<p>The set $C:=\{f:[0,1]\rightarrow \mathbb{R}: f(0)=1\}$ is closed in $(C([0,1]), \|f\|_\infty:= sup_{x\in [0,1]}f(x))$.</p>
+<p><em>proof</em>. Take a sequence $g_n \in C$ s.t. $\|g_n - g\| \rightarrow 0$.<br>
+Then, consider  $|g(0) - 1| \leq |g(0) - g_n(0)| + |g_n(0) -1|$<br>
+$\leq |g(0)-g_n(0)| \leq \|g_n-g\|=0$<br>
+$\Rightarrow g(0)\rightarrow 1\Rightarrow g(0) = 1\Rightarrow g\in C$</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2><em>Thrm 2.</em></h2>
+<p>Let $A:=\{f\in [0,1]: f(x) &gt; 0, \|f'\|_\infty &lt; 2\}$ is open in $C^1([0,1])$ wrt $\|f\|_{\infty, C^1}:=\|f\|_\infty + \|f'\|_\infty$</p>
+<p><em>proof</em>. Take any $g\in A$.<br>
+Since $g(x) &gt; 0$, by EVT on $[0,1]$, take $\delta_1$ s.t. $g(x)&gt; \delta_1 &gt; 0$<br>
+Since $g'(x) &lt; 2$, by EVT on $[0,1]$, take $\delta_2$ s.t. $g'(x)&lt; 2-\delta_2 &lt; 2$<br>
+Take $\delta = \min(\delta_1, \delta_2)/ 2$.</p>
+<ul>
+<li>$\|h-g\|_\infty &lt; \delta \Rightarrow |h(x)-g(x)|&lt; \delta\Rightarrow h(x) &gt; g(x)-\delta &gt; \delta_1/2 &gt; 0$</li>
+<li>$\|h'-g'\|_\infty &lt; \delta \Rightarrow |h'(x) - g'(x)| &lt; \delta \Rightarrow h'(x) &lt; g'(x)+\delta &lt; 2-\delta_2 + \delta_2/2 &lt; 2$</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2><em>Thrm 3.</em></h2>
+<p>$C_c(\mathbb{R}):=$ space of compactly supported function on reals, $C_c(\mathbb R), f\in C_c(\mathbb R)$ if $\exists M &gt; 0$ s.t. $f(x)=0, \forall |x| &gt; M$</p>
+<p><strong>Claim</strong> $C_c(\mathbb R)$ is not complete wrt $\|f\|_\infty$</p>
+<p><em>proof</em>. WTF a Cauchy sequence $f_n \in C_c(\mathbb R)$ s.t. $f_m \rightarrow f\not\in C_c(\mathbb R)$.<br>
+Take $f_n(x) = \frac{1-(x/n)^2}{1+x^2}\mathbb I (|x|\leq n)$ and we can show that $f_n$ is Cauchy wrt $\|\cdot\|_\infty$</p>
+<p>wlog, assume $n &gt; m$,<br>
+Consider $\|f_n - f_m\| = sup_{x\in [-n,n]} |\frac{1-(x/n)^2}{1+x^2} - f_m(x)|$<br>
+Suppose $x\in [-m,m], sup_{x\in [-n,n]} |\frac{1-(x/n)^2}{1+x^2} - \frac{1-(x/m)^2}{1+x^2}| = |\frac{x^2}{1+x^2}||n^{-2} - m^{-2}| \rightarrow |1||0|=0$<br>
+Suppose $x\in [-n, -m)\cup (m, n], sup_{x\in [-n,n]} |\frac{1-(x/n)^2}{1+x^2}|\leq |\frac{1}{1+x^2}|\leq |\frac{1}{1+m^2}|\rightarrow 0$</p>
+<p>Therefore, take $N = \epsilon^{1/2}$ we can prove Cauchy.</p>
+<p>However, $f_n(x)=\frac{1-(x/n)^2}{1+x^2}\rightarrow \frac{1}{1+x^2}\rightarrow 0$ is not compactly supported</p>
+<p>Therefore, only compact in metric space $\rightarrow$ closed and bounded but not the converse.</p>
+
+</div>
+</div>
+</div>
+ 
+

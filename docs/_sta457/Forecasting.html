@@ -1,0 +1,127 @@
+---
+title: Forecasting and Transfer Function Noise model
+order: 30
+---
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1>Minimized MSE Forecasts for ARMA models</h1>
+<p>Consider a stationary ARMA model (casual and invertible)<br>
+$$\Phi(B)X_t = \Theta(B)a_t$$<br>
+Rewrite as a MA process
+$$X_t = \Psi(B)a_t$$</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Then, for $t = n + h$, 
+$$X_{n+h}=\sum^\infty_0 \psi_i a_{n+ h - i}$$
+Suppose we have observations till $X_n, X_{n-1},...$ and wish to forecast $h$ step ahead of future values $X_{n+h}$ as a lin.comb. of the observations. Then, we define the mean square error forecaster 
+$$\hat X_t(h):= \sum_{i=0}^\infty \hat\psi_i a_{t-i}$$
+where $\hat\psi_i$ are parameters to be determined.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Then MSE of the forecast is<br>
+$E(X_{t+h} - \hat X_t(h))^2  = E(\sum^\infty \psi_i a_{t+h-i} - \sum^\infty \hat\psi_i a _{t-i})$<br>
+$= E(\sum^{j-1}\psi_i a_{t+h-i}) + \sum^\infty (\psi_{h+i} + \hat\psi_i)a_{t-i})^2$<br>
+$= \sigma^2 \sum^{h-1} \psi_i^2 + \sigma^2 \sum^\infty (\psi_{h+i-\hat\psi_i})^2$</p>
+<p>$argmin(E(X_{t+h} - \hat X_t(h))^2)=argmin(\sum^\infty (\psi_{h+i-\hat\psi_i})^2)$<br>
+$\Rightarrow \psi_{h+i} = \hat\psi_i$</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3>Rule of calculating conditional expectation</h3>
+$$E_t(X_{t+h}) := E(X_{t+h}\mid X_t, X_{t-1}, ...) = E(\sum^\infty \psi_i a_{t+h-i}\mid X_t, X_{t-1},...)$$<p>Using the fact that $a_i$'s are uncorrelated
+$$E(X_{t+h}\mid X_t, X_{t-1}, ...) =\sum^\infty \psi_{h+i}a_{t-i} = \hat X_t(h)$$</p>
+<p>For $h &gt; 0$, 
+$$E_t(X+h) = \hat X_t (h)$$
+$$E_t(X_{t-h}) = X_{t-h}$$
+$$E_t(a_{t+h})=E(a_{t+h}) = 0$$
+$$E_t(a_{t-h}) = X_{t-h} - \hat X_{t-h-1} = X_{t-h} - E_{t-h-1}(X_{t-h})$$</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3>Example</h3>
+<p>Consider a AR(1) model $X_t = 0.5X_{t-1} + a_t$. Then<br>
+$$\hat X_t(1)  = E_t(X_{t+1}) = 0.5 E_t(X_t) + E_t(a_{t+1}) = 0.5E_t(X_t) = 0.5X_t$$ 
+$$\hat X_t(h) = 0.5 E_t(X_{t+h-1}) + E_t(a_{t+h}) = 0.5 \hat X_t(h-1) = 0.5^h X_t$$</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1>Transfer Function Noise model</h1>
+<p>Consider the model that 
+$X_t = f(X_{t-1}, X_{t-2}, ... , Z_t, Z_{t-1},...)$, $X_t$ is a linear combination of past observations and an external variable.</p>
+<p>A TFN model is a time series regression that predict values of a dependent variable based on both the current and lagged values of one or more explanatory variables.</p>
+<h2>Procedure of building the single input TFN model</h2>
+<ol>
+<li>Preliminary identification of the impulse response coefficients $v_i$ (prewhitening)</li>
+<li>Specification of the noise term $n_t$</li>
+<li>Specification of the transfer function using a rational polynomial in B if necessary</li>
+<li>Estimation of the TFN specified </li>
+<li>Model diagnostic checks</li>
+</ol>
+<p><strong>Rational distributed lag model</strong>
+$v(B)$ can be approximated by a ratio of polynomials<br>
+$$v(B)=\frac{\sum_0^r\delta B^i}{1-\sum_1^s\theta_i B^i} = \delta(B)/\theta(B)$$
+and then, $y_t = \delta(B)x_t / \theta(B) + n_t$</p>
+<h2>ARMAX</h2>
+<p>$y_t = v(B)x_t + n_t = v_0 x_t + v_1 x_{t-1}+v_2 x_{t-2}+...+n_t$<br>
+where $v(B) = \sum^\infty v_j B^j$, and $x_t,n_t$ are independent.</p>
+<p>The coefficient $v_0, v_1,...$ are referred as the impulse response function of the system.</p>
+<p>To make such equation to be meaningful, $\sum^\infty |v_j| = g&lt;\infty$, which the system is stable and $g$ is called the stead-state gain. $g$ represents the impact on $Y$ when $X_{t-j}$ are held constant over time.</p>
+<p><strong>Properties</strong><br>
+$x_t \sim ARMA(p,q)$, $v_i = \phi^i (1-\phi)$, $y_t = \sum^\infty v_i x_{t-i}+a_t$</p>
+<h2>Pre-whitening</h2>
+<p>Consider $x\sim $ARMA, i.e. $\Phi_x(B)x_t = \Theta_x(B)a_t$<br>
+Apply $\Phi_x(B)/\Theta_x(B)$ on TFN model<br>
+$\frac{\Phi_x(B)}{\Theta_x(B)}y_t = v(B)\frac{\Phi_x(B)}{\Theta_x(B)} x_t + \frac{\Phi_x(B)}{\Theta_x(B)}\epsilon_t$<br>
+Let $\tau_t = \frac{\Phi_x(B)}{\Theta_x(B)} y_t, n_t = \frac{\Phi_x(B)}{\Theta_x(B)} \epsilon_t$, we get<br>
+$\tau_t = v(B)a_t + n_t$ and $n_t$ is independent of $a_t$</p>
+<p>To get $\gamma_{a\tau}(0)$, multiply both sides by $a_t$ and take the expectations. 
+$\gamma_{a\tau}(0)=E(a_t\tau_t) = E(a_tv(B)a_t) + E(a_tn_t)$<br>
+$=E((v_0a_t + v_1e_{t-1}+...+v_ma_{t-m})a_t)$<br>
+$=E(v_0a_ta_t)=v_o\gamma_a(0) = v_0\sigma^2$</p>
+<p>To get $\gamma_{a\tau}(1)$, multiply both sides by $a_{t-1}$<br>
+$\gamma_{a\tau}(1)=E(a_{t-1}\tau_t) =E(a_{t-1}v(B)a_t) + E(a_{t-1}n_t)$<br>
+$=E(a_{t-1}(v_0a_t + v_1 a_{t-1} + v_2 a_{t-2}+...+v_m a_{t-m}))$<br>
+$= E(a_{t-1}v_1 a_{t-1})=v_1\gamma_a(0) = v_1\sigma^2$</p>
+<p>Therefore, $\gamma_{a\tau(k)} = v_k\sigma^2$</p>
+<p>Since $\rho_{a\tau}(k) = \gamma_{a\tau}(k) / \sigma_a\sigma_\tau$<br>
+$\rho_{a\tau}(k) = \frac{v_k \sigma_a^2}{\sigma_a\sigma_\tau} = \frac{v_k \sigma_a}{\sigma_\tau}$<br>
+and $v_k = \rho_{a\tau}(k)\frac{\sigma_\tau}{\sigma_a}\propto \rho_{a\tau}(k)$</p>
+<h2>Box-Tiao Transformation</h2>
+<p>Similarly, since $n_t\sim$ ARMA, i.e. $\Phi_n(B)n_t = \Theta_n(B)a_t$<br>
+Which $\frac{\Phi_n(B)}{\Theta_n(B)}n_t = a_t$<br>
+Then, apply $\frac{\Phi_n(B)}{\Theta_n(B)}$ to both sides of the equation. 
+$$\frac{\Phi_n(B)}{\Theta_n(B)} y_t = v(B) \frac{\Phi_n(B)}{\Theta_n(B)} x_t + $\frac{\Phi_n(B)}{\Theta_n(B)} n_t$$
+$$\tilde y_t = v(B)\tilde x_t + a_t$$
+is called the Box-Tiao Transformation</p>
+<h2>Steps of The Estimation Procedure</h2>
+<p>The steps of the estimation procedures</p>
+<ol>
+<li>Run the OLS regression on $y_t = \sum_{j=1}^s v_j x_{t-j} + e_t$ to collect the residuals $\{\hat e_t\}$</li>
+<li>Identify an ARMA model for $\hat e_t$ </li>
+<li>Apply Box-Tiao transformation to filter $y_t, x_t$</li>
+<li>Run regression on the transformed equation</li>
+<li>check the correlation of regression residuals </li>
+</ol>
+
+</div>
+</div>
+</div>
+ 
+

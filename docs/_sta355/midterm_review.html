@@ -1,0 +1,244 @@
+---
+title: Midterm Review
+order: 55
+---
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2>Markov's Inequality</h2>
+$$P(|Y| &gt; \epsilon) \leq \frac{E[|Y|^r]}{\epsilon^t}$$<h2>Chebyshev's Inequality</h2>
+<p>If $r=2$ and $Y=X-E(X)$
+$$P(|X-E(X)|&gt;\epsilon) \leq \frac{var(X)}{\epsilon^2}$$</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2>Converges in probability</h2>
+$$\lim_{n\rightarrow\infty} P(|Y_n - Y| &gt; \epsilon) = 0$$
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2>Weak Law of Large Numbers</h2>
+<p>If $X_1,X_2,...$ are indep. r.v. with finite $\mu$ then 
+$$\frac1n \sum_{i=1}^nX_i\rightarrow^p\mu$$
+(proven in Checbyshev's Inequality as $var(\bar X_n)\rightarrow 0$)</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2>Central Limit Theorem</h2>
+<p>finite mean and variance $\mu, \sigma^2$. If $S_n = \sqrt n (\bar X_n - \mu)$
+$$\lim_{n\rightarrow\infty} P(S_n\leq x) = \frac1{\sigma \sqrt{2\pi}}\int_{-\infty}^x \exp(-\frac{t^2}{2\sigma^2})dt\sim N(0,\sigma^2)$$
+i.e. converge to $N(0,\sigma^2)$ in distribution</p>
+<h2>General CLT</h2>
+<p>$X_1,X_2,...$ indep. with $E(X_i) = \mu_i, var(X_i) = \sigma^2_i$ then 
+$$S_n = \sqrt n (\frac1n\sum_{i=1}^n X_i - \frac1n\sum_{i=1}^n\mu_i) \rightarrow^d N(0, \frac1n\sum_{i=1}^n \sigma_i^2)$$</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2>Slutsky's Theorem</h2>
+<p>For continuous $\psi$ and $X_n\rightarrow^d X$ and $Y_n\rightarrow^p \theta$<br>
+$$\psi(X_n,Y_n)\rightarrow^d \psi(X,\theta)$$
+Some useful examples
+$$X_n + Y_n\rightarrow^d X+\theta, X_nY_n\rightarrow^d \theta X$$</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2>Delta Method</h2>
+<p>If $a_n(X_n-\theta)\rightarrow^d Z$ with $a_n\rightarrow \infty$. If $g(x)$ is differentiable at $x=\theta$, then 
+$$a_n(g(X_n) - g(\theta))\rightarrow^d g'(\theta)Z$$</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3>Substitution Principle</h3>
+<p>Given $X_1,...,X_n$ from $F$, to estimate $\theta(F)$ where $\theta$ is some statistics of $F$. Then, We first estimate $F\rightarrow \hat F$ and substitute $\hat F$ for $F$ into $\theta(F)$
+$$\hat\theta(F) = \theta(\hat F)$$
+If $\theta$ continuous and $\hat F\approx F$ then $\theta(\hat F) \approx \theta(F)$</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1>Order Statistics</h1>
+<p>Assume $X_1,...,X_n$ independent with cdf $F$</p>
+<h2>Sample min/max</h2>
+$$P(X_{(1)} \leq x) = 1-[1-F(x)]^n, P(X_{(n)}\leq x) = F(x)^n$$<p>Then the densities
+$$g_1(x) = n[1-F(x)]^{n-1}f(x), g_n(x) = nF(x)^{n-1}f(x)$$</p>
+<h2>Distribution of $X_{(k)}$</h2>
+<p>Define $Z(x) = \sum_{i=1}^n \mathbb I(X_i\leq x)\sim Binomial(n,F(x))$, then $X_{(k)}\leq x \equiv Z(x)\geq k$
+$$P(X_{(k)}\leq x)=P(Z(x)\geq k) = \sum_{i=k}^n {n\choose i}F(x)^i[1-F(x)]^{n-i}$$
+and density is 
+$$g_k(x) = \frac{n!}{(k-1)!(n-k)!}F(x)^{k-1}[1-F(x)]^{n-k}f(x)$$</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2>Central Order Statistics</h2>
+<p>If $\{k_n\}$ is a sequence of integers with $\sqrt{n}(\frac{k_n}{n}-\tau)\rightarrow 0$ for some $\tau\in(0,1)$ and $f(F^{-1}(\tau)) &gt; 0$
+$$\sqrt n (X_{(k_n)} - F^{-1}(\tau))\rightarrow^d N\big(0, \frac{\tau(1-\tau)}{f^2(F^{-1}(\tau))}\big)$$
+i.e. 
+$$\widehat{F^{-1}(\tau)} = X_{(k)} \sim N(F^{-1}(\tau), \frac{\tau(1-\tau)}{nf^2(F^{-1}(\tau))})$$
+with $k\approx \tau n$</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2>Exponential Spacings</h2>
+<p>$X_1,...,X_n$ are indep. Exponential r.v. with 
+$$f(x;\lambda) = \lambda \exp(-\lambda x), x\geq 0$$
+Given the order statistics $X_{(1)}\leq ... \leq X_{(n)}$, define 
+\begin{align*}
+Y_1 &amp;= nX_{(1)}\\
+Y_2 &amp;= (n-1)(X_{(2)} - X_{(1)}) = (n-1)D_1\\
+Y_3 &amp;= (n-2)(X_{(3)} - X_{(2)}) = (n-2)D_2\\
+...\\
+Y_n &amp;= X_{(n)}-X_{(n-1)} = D_{n-1}
+\end{align*}
+Then, $Y_1,...,Y_n$ are indep. r.v. $\sim f(x;\lambda)$</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2>Hazard functions</h2>
+<p>If $X$ is a positive continuous r.v. then its hazard function is 
+$$h(x) = \frac{f(x)}{1-F(x)}$$
+Note that 
+$$h(x) = -\frac{d}{dx}\ln(1-F(x))$$</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2>Histograms</h2>
+<p>Given data $x_1,...,x_n$ and $B_k = [u_{k-1}, u_k)$ for $k=1,...,m$ then 
+$$hist(x) = \frac{\sum_{i=1}^n \mathbb I(x_i \in B_k)}{n(\mu_k - u_{k-1})}$$</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2>Kernel density estimation</h2>
+<p>Given the kernel $w$ and a bandwidth $h$, the kernel density estimator is 
+$$\hat{f_h}(x) = \frac{1}{nh}\sum_{i=1}^n w(\frac{x-X_i}{h})$$</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2>Mean square error</h2>
+$$MSE_\theta(\hat\theta) = E_\theta[(\hat\theta - \theta)^2] = var_\theta(\hat\theta) + [E_\theta(\hat\theta) - \theta]^2$$
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2>Consistency</h2>
+<p>A sequence of estimators $\{\hat\theta_n\}$ is consistent for $\theta$ if for each $\epsilon &gt; 0 $ and $\theta\in \Theta$
+$$\lim_{n\rightarrow\infty}P_\theta(|\hat\theta_n - \theta| &gt; \epsilon ) = 0, i.e. \hat\theta_n\rightarrow^p \theta$$</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2>Delta Method Estimator</h2>
+<p>If $g$ is differentiable then we can approximate the sampling distribution of $\hat\theta$ by a normal distribution, then
+$$\hat\theta = g(\bar X) \sim N(g(\mu) = \theta, [g'(\mu)]^2 \frac{\sigma^2}{n})$$
+by Delta method. Then
+$$\hat{se}(\hat\theta) = \frac{|g'(\bar X)|S}{\sqrt n}$$</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2>Jackknife s.e. estimator</h2>
+<p>Given the pseudo-values $\Phi_1,...,\Phi_n$, we define the jackknife estimator of $se(\hat\theta)$
+$$\hat{se}(\hat\theta) = \bigg[\frac{1}{n(n-1)\sum_{i=1}^n (\Phi_i - \bar\Phi)^2}\bigg]^{1/2} = \bigg[\frac{1}{n(n-1)}\sum_{i=1}^n(\hat\theta_{-i}-\hat\theta_{\cdot})^2\bigg]^{1/2}$$</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2>MoM estimation</h2>
+<p>To find a statistic $T(X_1,...,X_n)$ s.t. $E_\theta[T(X_1,...,X_n)] = h(\theta)$ where $h^{-1}$ is well-defined.</p>
+<h3>Exponential Distribution</h3>
+<p>$X_1,...,X_n$ indep. with $f(x;\lambda) = \lambda \exp(-\lambda x)$ for $x\geq 0$ where $\lambda &gt; 0$ is unknown.</p>
+<p>For $r &gt; 0$, $E_\lambda(X_i^r) = \lambda^{-r} \Gamma(r+1)$ so that 
+$$\frac1n\sum_{i=1}^n X_i^r  = \frac{\Gamma(r+1)}{\hat\lambda^r}$$
+$$\hat\lambda(r) = (\frac{1}{n\Gamma(r+1)}\sum_{i=1}^n X_i^r)^{-1/r}$$</p>
+<h3>Gamma Distribution</h3>
+$$f(x;\alpha, \lambda) = \frac{\lambda^a x^{a-1}\exp(-\lambda x)}{\Gamma(\alpha)}\mathbb I(x\geq 0)$$<p>Note that $E(X_i) = a/\lambda, var(X_i) = a/\lambda^2$
+Then, by MoM, set $\bar X = \frac{\hat\alpha }{\hat\lambda}, S^2 = \frac{\hat\alpha}{\hat\lambda^2}$ then, solves to be $\hat \alpha = \frac{\bar X^2}{S^2}, \hat\lambda = \frac{\bar X}{S^2}$</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2>The pivotal method</h2>
+<p>To find a r.v. $g(X_1,...,X_n, \theta)$ whose distribution is independent of $\theta$ and any other unknown params. 
+$$P_\theta[g(X_1,...,X_n, \theta) \leq x] = G(x)$$ 
+where $G(x)$ is completely known. Then $g(X_1,...,X_n,\theta) $ is a <strong>pivot</strong>.</p>
+<p>Given the pivot, the choose $a, b$ so that 
+$$p = P_\theta[a\leq g\leq b] = G(b)-G(a-)$$
+Then, use $g$ to find $P_\theta[l(X_1,...,X_n)\leq \theta \leq u(X_1,...,X_\theta)]$</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2>Sufficient Statistic</h2>
+<p>A statistic $T = (T_1(x),..., T_m(X))$ is sufficient for $\theta$ if the conditional distribution of $X$ given $T= t$ depends only on $t$</p>
+<h3>Neyman Factorization Theorem</h3>
+<p>$T$ is sufficient IFF
+$$f(x;\theta) = g(T(x);\theta)h(x)$$</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2>Fisher Information</h2>
+$$FI(\theta) = -\frac{d^2}{d\theta^2}\ln \mathcal L(\hat\theta)$$<p>Then, the estimated s.e. of $\hat\theta$ is 
+$$\hat{se}(\hat\theta) = [FI(\theta)]^{-1/2}$$</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2>MLE</h2>
+<p>The MLE $\hat\theta_n$ maximizes $\phi_n(\theta)$, which converges in probability for each $\theta$ to $\phi(\theta)$, which is maximized at $\theta = \theta_0$</p>
+
+</div>
+</div>
+</div>
+ 
+

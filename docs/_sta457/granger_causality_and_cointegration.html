@@ -1,0 +1,71 @@
+---
+title: Granger Causality and Cointegration
+order: 50
+---
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1>Granger causality</h1>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Consider a VAR(p) model of 2-d variables, i.e. $y_t = [y_{i,t},  y_{2,t}]^T$
+$y_t = A_0 + \sum_1^p A_i y_{t-i} + a_t$, 
+and each $A_i = \begin{bmatrix}\phi_{i,11}&amp;\phi_{i,12}\\\phi_{i,21}&amp;\phi_{i,22}\end{bmatrix}$</p>
+<p>Then, if $y_{2,t}$ does not Granger cause $y_{1,t}$, then all $\phi_{i, 12} = 0$ since it will only be contributing to the equation of $y_{1,t}$</p>
+<p>Similarly, if $y_{1,t}$ does not Granger cause $y_{2,t}$, then all of $\phi_{i,21}=0$</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2>Portmanteau test</h2>
+<p>Let $X_t, Y_t$ be causal and invertible univariate ARMA processes and be given by 
+$$\Phi_1(B)(X_{1,t}-\mu_1)=\Theta_1(B)a_{1,t}$$$$\Phi_2(B)(X_{2,t}-\mu_2)=\Theta_2(B)a_{2,t}$$
+The cross-correlation 
+$$\rho_{X_1X_2}(k) = \frac{E(a_{1,t}, a_{2,t+k})}{\sqrt{\sigma_1^2\sigma_2^2}}$$
+If $\rho(k)=0$ for $k&lt;0$, then $X_2$ does not cause $X_1$</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2>Cointegration</h2>
+<p><strong>I(d) process</strong> For a time series $X_t$</p>
+<ul>
+<li>A stationary and invertible time series is said to be an I(0) process</li>
+<li>A time series is said to be an integrated process of order one, i.e. I(1) process, if $(1-B)X_t$ is stationary and invertible. </li>
+<li>I(d) process, if $(1-B)^d X_t$ is stationary and invertible, $d&gt;0$ and order $d$ is referred to as the order of integration or the multiplicity of a unit root. </li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Consider a multi time series $X_t$. If $\forall i, X_{i,t}$ are I(1) but a nontrivial linear combination $\beta'X_t$ is I(0), then $X_t$ is said to be cointegrated of order one and the linear combination vector $\beta$ is called a cointegrating vector.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2>Granger representation theorem</h2>
+<p>$X_t, Y_t$ are cointegrated, IFF exists an ECM representation.</p>
+<p><strong>Implications</strong></p>
+<ol>
+<li>Vector autoregression on differenced I(1) processes will be a misspecification if the component series are cointegrated</li>
+<li>An equilibrium specification is missing from a VAR representation</li>
+<li>When lagged disequilibrium terms are included as explanatory variables, the model becomes well specified</li>
+<li>Such as model is called an error correction model because the model is structured so that short-rum deviation from the long-run equilibrium will be corrected. </li>
+</ol>
+
+</div>
+</div>
+</div>
+ 
+

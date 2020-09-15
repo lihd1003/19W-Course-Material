@@ -1,0 +1,59 @@
+---
+title: Extremum
+order: 2
+---
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2><em>Def'n</em>. Boundedness</h2>
+<p><strong>Bound</strong>  A set $S\subset\mathbb{R}$ is<br>
+<strong>bounded above</strong> $\exists M\in\mathbb{R}. \forall s \in S. s\leq M. $<br>
+<strong>bounded below</strong> $\exists L\in\mathbb{R}. \forall s \in S. s\geq L. $</p>
+<h2><em>Def'n</em>. Extremum</h2>
+<p><strong>Supremum</strong> $sup(S)\in\mathbb{R}$ is a upper bound and $\forall v. v\geq sup(S)\land v$ is upper bound.<br>
+<strong>Infimum</strong> $inf(S)\in\mathbb{R}$ is a lower bound and $\forall v. v\leq inf(S)\land v$ is lower bound.</p>
+<p><strong>Proposition</strong> $u$ is a supremum of $S$ IFF $u$ is a upper bound and $\forall \epsilon &gt; 0. \exists s_\epsilon \in S. u-\epsilon &lt; s_\epsilon$</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1>Least upper bound principle</h1>
+<p>$\forall S\neq \emptyset, S$ bounded above. $S$ has a supremum.</p>
+<p><em>proof</em>.  Since bounded above, take $M\in\mathbb{R}$ where $\forall s \in S. M\geq s$.<br>
+Pick $s'=s_0.s_1 \in S\Rightarrow M\geq s'\Rightarrow m_0 + 1 &gt; s_0$.<br>
+Find lowest $a_0\in \{s_0, ..., m_0 + 1\}$ that is an upper bound for $S$.</p>
+<p><em>Induction</em> $y_n = \sum_0^n a_i / 10^i$ where $a_i=\min\{a \in \{0, 1, ..., 9\}\mid y_i \geq S\}$. Take $x_n \in S$ s.t. $a_0.a_1...a_n - 10^{-n}\leq x_n \leq y_n$</p>
+<p><em>WTS</em> $L = a_0.a_1... = sup(S)$</p>
+<p>Upper bound property: start with any $s_0.s_1,... \in S$ either</p>
+<ol>
+<li>$\forall i. s_i = a_i\Rightarrow S = L$  </li>
+<li>$\exists k$ be the first different digit and $s_k &gt; a_k$
+Construct $y_k^* = a_0.a_1...a_{k-1}s_k$. then $L &lt; y_k^*\leq s_0.s_1$, while by the ordering this cannot happen. </li>
+</ol>
+<p>Subsequence Property: For each $\epsilon$, you can pick $n &gt; 0$ s.t. $L-\epsilon \leq L - 10^{-n} \leq x_n \leq y_n &lt; L$</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2><em>Thrm 1.</em> Uniqueness of supremum</h2>
+<p><em>proof</em> Assume $\exists u,v$ be two supremums, $v &lt; u$. Take $\epsilon = u -v, \forall \epsilon &gt; 0. \exists s_\epsilon \in S \Rightarrow u - (u-v) &lt; s_\epsilon \Rightarrow v &lt; s_\epsilon$.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2><em>Thrm 2</em>.</h2>
+<p>For all bounded above set $A$ and $c\geq 0$. $\sup(cA) = c \sup(A)$</p>
+<p><em>proof</em>. Let $M = \sup(A)$.<br>
+Upper bound property: $\forall s. s\leq M \Rightarrow cs \leq cM$<br>
+Subsequence property: Let $\epsilon \geq 0$, take $s_{\epsilon/c}$, then $cs_{\epsilon/c}\geq u - \epsilon$</p>
+
+</div>
+</div>
+</div>
+ 
+

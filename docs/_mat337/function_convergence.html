@@ -1,0 +1,229 @@
+---
+title: Convergence of Functions
+order: 7
+---
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1>Convergence</h1>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2><em>Def'n</em>. Pointwise convergence</h2>
+<p>Given $\{h_k\}\subset C(S,\mathbb R)$. We say that they converge pointwise if $\forall x\in S. h_k(x)\rightarrow h(x)$. 
+$$\forall \epsilon &gt; 0. \forall x \in S. \exists N &gt; 0. \forall k \geq N. |f_k(x)-f(x)|&lt;\epsilon$$</p>
+<h2><em>Def'n</em>. Convergence Uniformly</h2>
+<p>$f_k\rightarrow^{u.c.}f$ if $\|f_k - f\|_{\infty}\rightarrow 0$. 
+$$\forall \epsilon &gt; 0. \exists N &gt; 0. \forall k\geq N. \sup_{x\in S}|f_k(x)-f(x)|\leq \epsilon$$</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3>Example</h3>
+<p>consider 
+$f_k(x):=
+    \begin{cases}
+        k^2 x &amp; 0\leq x\leq 1/k \\
+       k^2 x (\frac{2}{k}-x) &amp; 1/2 \leq x \leq 2/k \\
+       0 &amp;2/k \leq x \leq 1
+    \end{cases}$</p>
+<p><strong>Claim</strong> $f_k \rightarrow^{p.w.} 0$</p>
+<p><em>proof</em>. Let $x\in[0,1]$. take $N &gt; 0$ s.t. $2/N \leq x$. Therefore, $\forall k \geq N, |f_k(x)-0|&lt;\epsilon$</p>
+<p><strong>Claim</strong> $f_k\not\rightarrow^{u.c.} 0$</p>
+<p><em>proof</em>. $\sup_{x\in[0,1]}|f_k(x)-0|=k\rightarrow\infty$</p>
+<p><strong>Claim</strong> $\lim_{k\rightarrow\infty}\int_0^1 f_k(x)dx \neq \int_0^1 \lim_{k\rightarrow\infty}f_k(x)dx$</p>
+<p><em>proof</em>. $LHS=\lim_{k\rightarrow\infty}\int_0^{1/k} k^2 x dx + \int_{1/k}^{2/k} k^2(\frac{2}{k}-x)dx + 0 = \lim_{k\rightarrow\infty}1=1$<br>
+$RHS = 0 \neq 1$</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3>Example.</h3>
+<p>Let $f_n:[0,A]\rightarrow \mathbb R, f(x):= \frac{\sin(nx)}{n}\rightarrow^{u.c.}0$.</p>
+<p><em>proof</em>. $\sup_{x\in[0,A]}|\frac{\sin(nx)}{x} - 0| \leq 1/n \rightarrow 0$</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2><em>Thrm 1</em>.</h2>
+<p><strong>Claim</strong> u.c. does not preserve derivatives</p>
+<p><em>proof</em>. $f'(x)=\frac{n\cos(nx)}{n} = cos(nx)$ doesn't converge to any function.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2><em>Thrm 2</em>. Dini's Theorem</h2>
+<p>If $f,f_n\in C([a,b]). (\forall n \geq 1. f_n \leq f_{n+1} \land f_n(x)\rightarrow f(x))\Rightarrow f_n\rightarrow^{u.c.} f$</p>
+<p><em>proof</em>. Since $f_n \leq f_{n+1}\land f_n \rightarrow f \Rightarrow g(x):=f(x)-f_n(x)\geq 0$<br>
+(i) By continuity at $x_0$, take $\delta_1 &gt; 0, \forall y\in\mathbb R. |x_0 - y|\Rightarrow |g(x_0) - g(y)|\leq \epsilon/2$<br>
+(ii) By $f_n(x_0)\rightarrow^{p.w.}f(x_0)$, take $N&gt;0, \forall n &gt; N. |f_n(x_0)-f(x_0)|\leq \epsilon/2$<br>
+\begin{align*}
+|g(y)| &amp;= |f(y)-f_n(y)| \\
+&amp;\leq |f(x_0)-f_n(x_0)| + |g(x_0) - g(y)| \\
+&amp;\leq \epsilon /2 + \epsilon /2 = \epsilon. &amp;\forall y\in (x_0-\delta, x_0 + \delta)
+\end{align*}</p>
+<p>Then, suppose that we don't have u.c.<br>
+$\Rightarrow \sup_{x\in[a,b]}|g(x)|=\sup_{x\in[a,b]} |f(x)-f_n(x)|\geq d, d &gt; 0$.<br>
+$\|g\|_{\infty}&gt;d\Rightarrow \forall n &gt; 1. \exists x_n \in [a,b]. g_n(x_n)\geq d$<br>
+By $\{x_n\}\in[a,b]$, with bolzano weierstrass theorem, $x_{n_k}\rightarrow x_0 \in [a,b]$.<br>
+But we show for $\epsilon &lt; d. \exists \delta &gt; 0. |x_0 - y|&lt;\delta\Rightarrow |g(y)|&lt; \epsilon &lt; d$.<br>
+For $\delta, \exists N&gt;0$ so that $\forall k\geq N.|x_{n_k}-x_0|\leq \delta$. Take $y = x_{n_k}\Rightarrow |g(x_{n_k})|&lt;\epsilon &lt; d$ causes contradiction</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1>Uniform convergence and completeness</h1>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2><em>Thrm 3</em>.</h2>
+<p>If $f_k\in C([a,b]),f_k \rightarrow^{u.c.}f$, then $f\in C([a,b])$</p>
+<p><em>proof</em>. Let $\epsilon &gt; 0$, and $x_0\in [a,b]$.<br>
+By uniform continuous, take $N_{\epsilon/3} &gt; 0, \forall k &gt; N_{\epsilon/3}. \sup_{x\in[a,b]}|f_k(k)-f(x)|\leq \epsilon/3$<br>
+By continuity of $f_k$, take $\delta_{\epsilon/3} &gt; 0, |x_0 - y|\leq \delta \Rightarrow |f_{N_{\epsilon/3} }(x_0) - f_{N_{\epsilon/3} }(y)|\leq \epsilon/3$<br>
+Take $\delta = \delta_{\epsilon/3}$,<br>
+\begin{align*}
+|f(x_0) - f(y)| &amp;\leq |f(x_0) - f_{N_{\epsilon/3} }(x_0)| &amp;\text{by uniform continuous} \\
+&amp;\quad+ |f_{N_{\epsilon/3} }(x_0) - f_{N_{\epsilon/3} }(y)|&amp;\text{by continuity}  \\
+&amp;\quad+ |f_{N_{\epsilon/3} }(y) - f(y)|&amp;\text{by uniform continuous}  \\
+&amp;= \epsilon/3 + \epsilon/3 + \epsilon/3 = \epsilon
+\end{align*}</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3>Example</h3>
+<p>$f_n(x) = (1 + \frac{x}{n})^n\rightarrow^{u.c.} e^x := \sum^\infty \frac{x^k}{k!}$ over any interval $[a,b]$</p>
+<p><em>proof</em>. \begin{align*}
+\sup_{x\in [a,b]} |(1+\frac{x}{n})^n - e^x| &amp;=\|\sum_{k=1}^n {n\choose k}\frac{x^k}{n^k} - \sum\frac{x^k}{k!}\|_\infty \\
+&amp;\leq |\sum^\infty \frac{x^k}{k!}| &amp;{n\choose k}/n^k \leq \frac{n}{k!}\\
+&amp;\leq |\sum \frac{b^k}{k!}| &amp;x\in [a,b]
+\end{align*}</p>
+<p>By big-oh, Take $N_\epsilon &gt; 0, \forall n \geq N. \sum \frac{b^k}{k!} \leq \epsilon$</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2><em>Thrm 4</em>.</h2>
+<p><strong>Claim</strong> $\lim_{n\rightarrow\infty}\int_0^1 f_n(x)dx = \int_0^1 \lim_{n\rightarrow\infty}f_n(x)dx = \int_0^1 e^x dx = e-1$</p>
+<p><em>proof</em>. \begin{align*}
+\int_0^1 (1 + \frac{x}{n})^n dx &amp;= \big(\frac{ {n+x}^{n+1} }{(n+1)n^n}\big)\big|_0^1  \\
+&amp;= \frac{(n+1)^{n+1} }{(n+1)n^n} - \frac{n^{n+1} }{(n+1)n^n}\\ 
+&amp;= (1 + \frac{1}{n})^n - \frac{n}{n+1}\\ 
+\lim_{n\rightarrow \infty} (1 + \frac{1}{n})^n - \frac{n}{n+1} &amp;= e - 1\\
+\end{align*}</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3>Example</h3>
+<p>Point-wise convergence does not imply uniform continuous</p>
+<p><em>proof</em>. Take $f_n:[0,1]\rightarrow \mathbb{R} : = x^n$.<br>
+$f_n(x_0) \rightarrow^{p.w.} \mathbb I (x_0 = 1)$<br>
+But $\sup_{x\in[0,1]}|x_n - \mathbb I(x = 1)| = \sup_{x\in(0,1)}|x^n|$.<br>
+Therefore, for $x_0 = 0.5^{1/n}, f_n(x_0) = 1/2 &gt; 0$.<br>
+You will lose u.c. when you arbitrarily close to 1.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><strong>Claim</strong> $\forall f,g\in C(K). K$ compact, if $f_n \rightarrow^{u.c.} f, g_n \rightarrow^{u.c.} g$, then $f_n g_n \rightarrow^{u.c.} f g$</p>
+<p><em>proof</em>. Let $\epsilon &gt; 0$, for all $x\in K$<br>
+\begin{align*}
+|f_n(x)g_n(x) - f(x)g(x)| &amp;= |f_n(x)g_n(x) - g(x)f_n(x) + g(x)f_n(x) - f(x)g(x)| \\
+&amp;\leq |f_n(x)||g_n(x)-g(x)| + |g(x)||f_n(x)-f(x)| \\
+&amp;&lt; B_1 |g_n(x)-g(x)| + B_2 |f_n(x)-f(x)|\:\text{By EVT on $f_n, g_n$, since $K$ compact} \\
+&amp;\leq B_1 \|g_n - g\|_\infty + B_2 \|f_n-f\|_{\infty}\:\text{By u.c. of $f,g$} \\
+\text{take} N_1\Rightarrow \forall &amp;n \geq N_1 . \|g_n-g\|_\infty \leq |\frac{\epsilon}{2B_1}|, N_2\Rightarrow \forall n \geq N_2 . \|f_n-f\|_\infty \leq |\frac{\epsilon}{2B_2}| \\ 
+&amp;\leq \epsilon
+\end{align*}</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1>Integral Convergence Theorem</h1>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>If $f_n \in C([a,b])\land f_n \rightarrow^{u.c.}f$,<br>
+then $\forall [c,d]\subseteq [a,b]. \lim_{n\rightarrow\infty}\int_c^d f_n(t)dt = \int_c^d \lim_{n\rightarrow\infty}f_n(t)dt$</p>
+<p><em>proof</em>. 
+\begin{align}
+\Big|\int_c^d f_n(t) - f(t)dt\Big| &amp;\leq \int_c^d |f_n(t)-f(t)|dt  \\
+&amp;\leq \int_c^d \sup_{s\in[a,b]}|f_n(s)-f(s)|dt \\
+&amp;= \sup_{s\in[a,b]} |f_n(s)-f(s)| \int_c^d d_t \\
+&amp;= \|f_n-f\|_\infty(d-c) \\
+&amp;\text{by u.c., take }\tilde\epsilon = \frac{\epsilon}{b-a} s.t. \exists N_{\tilde \epsilon} \geq 0. \forall n\geq N_{\tilde\epsilon}, \|f_n-f\|_\infty \leq \tilde\epsilon  \\
+&amp;\leq \frac{d-c}{a-b}\epsilon
+\end{align}</p>
+<p>Note that if $[a,b]=[0,\infty)$, then the proof breaks down.<br>
+because $\int_c^d dt$ can be arbitrarily large, so one fix is to have a density $\rho(x)$ so that $\int_c^d \rho(s)ds\leq B$</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2><em>Thrm 5</em>. Leibriz's Rule (differentiation under the integral)</h2>
+<p>$\forall f(x,t), d_x f(x,t) \in C([a,b]\times[c,d])$. If $f(x) = \int_c^d f(x,t)dt$, then $\frac{dF}{dx} = \int_c^d d_x f(x,t)dt$</p>
+<p><em>proof</em>. Fix $x_0\in[a,b]$<br>
+$$F'(x_0) = \lim_{h\rightarrow 0}\frac{F(x_0 + h) - F(x_0)}{h}$$
+Consider the RHS, 
+\begin{align}
+\lim_{h\rightarrow 0}\frac{F(x_0 + h) - F(x_0)}{h} &amp;= \frac{1}{h}\int_c^d f(x_0+h,t)-f(x_0, t)dt \\
+\text{by MVT, take }\xi(t,h)\in [x_0, x_0+h], &amp;\frac{F(x_0 + h) - F(x_0)}{h} = d_x f(\xi(t,h), t) \\
+&amp;= \int_c^d d_xf(\xi(t,h),t)dt
+\end{align}</p>
+<p>WTS given $\epsilon$, can find $h$ small enough so that $|\int_c^d d_xf(\xi(t,h), t) - d_xf(x_0, t)dt|\leq \epsilon$<br>
+Using continuity of $d_xf(x_0, t)$, take $\delta &gt; 0. |x_0 - y|&lt;\delta \Rightarrow |d_xf(y,t) - d_xf(x_0,t)|\leq \frac{\epsilon}{d-c}$</p>
+<p>Since $|\xi(t,h)-x_0|&lt;h$, take $\delta &lt; h$, then $|d_xf(\xi(t,h), t) - d_xf(x_0, t)|\leq \frac{\epsilon}{d-c}$,<br>
+\begin{align}
+ |\int_c^d d_xf(\xi(t,h), t)-d_xf(x_0, t)dt| &amp;\leq \int_c^d |d_xf(\xi(t,h), t)-d_xf(x_0, t)|dt \\
+ &amp;\leq \frac{\epsilon}{d-c}\int_c^d dt = \epsilon
+\end{align}</p>
+<p>Therefore, $\epsilon&gt;0, \exists h$ small enough so that $|\frac{F(x_0 + h, t) - F(x_0)}{h} - \int_c^d d_xf(x_0,t)dt|\leq \epsilon$. 
+Therefore, $F'(x_0)=\lim_{h\rightarrow 0} \frac{F(x_0+h)-F(x)}{h} = \int_c^d d_xf(x_0, t)dt$</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3>Example</h3>
+<p>Prove $\int_0^\infty e^{-x^2}dx = \sqrt\pi/2$<br>
+<em>proof</em>. Define $F(x,t) = \int_0^1 \frac{e^{-x}(1+t^2)}{1+t^2}dx = \int_0^1 f(x,t)dt$, $f(x,t)$ is continuous on $[0,M]\times[0,1]$.<br>
+By Leibiz' Rule,</p>
+
+</div>
+</div>
+</div>
+ 
+

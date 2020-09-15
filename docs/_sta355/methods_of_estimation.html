@@ -1,0 +1,200 @@
+---
+title: Methods of Estimation
+order: 50
+---
+
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+</pre></div>
+
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1>Method of moments estimation</h1>
+<p>Want to find a statistic $T(X_1,...,X_n)$ s.t. $E_\theta[T(X_1,...,X_n)] = h(\theta)$ where $h$ has a well-defined inverse. Then, we can set $T(X_1,...,X_n) = h(\hat\theta)$ s.t. $\hat\theta = h^{-1}(T)$</p>
+<p>If $X_1,..., X_n$ indep. and $E_\theta(X_i) = h(\theta)$, then by substitution principle, we can estimate $E_\theta(X_i)$ by $\bar X$ and then $\bar X = h(\hat\theta)$ and so $\hat\theta = h^{-1}(\bar X)$</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2>Example: Exponential Distribution</h2>
+<p>$X_1,...,X_n$ indep, $f(x;\lambda) = \lambda \exp(-\lambda x), x\geq 0$, $\lambda &gt; 0$ is unknown.</p>
+<p>Note that for $r &gt; 0, E_\lambda (X_i^r) = \lambda ^{-r}\Gamma(r+1)$ so that we have MoM estimator 
+$$n^{-1}\sum^n X_i^r = \frac{\Gamma(r+1)}{\hat\lambda^r}$$ 
+$$\Rightarrow \hat\lambda(r) = \bigg((n\Gamma(r+1)^{-1}\sum^nX_i^r)\bigg)^{-1/r}$$
+Using $r = 1$ gives the best estimation (minimized s.d.)</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2>Example: Gamma Distribution</h2>
+<p>$X_1,...,X_n$ indep. $f(x;\lambda, \alpha) = \lambda^a x^{a-1}exp(-\lambda x) \Gamma(a)^{-1}, x\geq 0$. $\lambda, a &gt; 0$ are unknown. 
+Note that $E(X_i) = a/\lambda, var(X_i) = a/\lambda^2$, so that MoM gives 
+$$\bar X = \hat a / \hat \lambda , S^2 = \hat a / \hat \lambda^2$$
+$$\Rightarrow \hat a = \bar X^2 / S^2 , \hat \lambda = \bar X / S^2$$</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1>Confidence Interval</h1>
+<p>An interval $\mathcal I = [l(X_1,...,X_n), u(X_1,...,X_n)]$ is a CI with coverage $100p\%$ if 
+$$P[l(X_1,...,X_n)\leq \theta \leq u(X_1,...,X_n)] = p, \forall \theta\in\Theta$$</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2>The pivotal method</h2>
+<p>Is not that often that we can measure such probability directly. One way to work around is to find a r.v. $g(X_1,...,X_n,\theta)$ whose distribution is independent of $\theta$ and any other unknown params.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2>The pivotal method</h2>
+<p>Is not that often that we can measure such probability directly. One way to work around is to find a r.v. $g(X_1,...,X_n,\theta)$ whose distribution is independent of $\theta$ and any other unknown params.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1>Confidence Interval</h1>
+<p>An interval $\mathcal I = [l(X_1,...,X_n), u(X_1,...,X_n)]$ is a CI with coverage $100p\%$ if 
+$$P[l(X_1,...,X_n)\leq \theta \leq u(X_1,...,X_n)] = p, \forall \theta\in\Theta$$</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3>Example</h3>
+<p>For $X_1,...,X_{20}$ indep. $\sim N(\mu, \sigma^2)$, the $95\%$ CI is $[\bar X\pm -2.093\frac{S}{\sqrt{20}}]$.</p>
+<p>The following example is 100 samples of size 20 from $N(0, 1)$ and we note that $95\%$ of the samples falls into the confidence interval.</p>
+
+</div>
+</div>
+</div>
+
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">samples</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="mi">200</span><span class="p">,</span> <span class="mi">20</span><span class="p">)</span>
+<span class="n">mean</span> <span class="o">=</span> <span class="n">samples</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">sd</span> <span class="o">=</span> <span class="n">samples</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">not_in_CI</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">((</span><span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">mean</span> <span class="o">+</span> <span class="mf">2.093</span> <span class="o">*</span> <span class="n">sd</span> <span class="o">/</span> <span class="n">samples</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">**</span><span class="mf">0.5</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">)[</span><span class="mi">0</span><span class="p">],</span> 
+                            <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">mean</span> <span class="o">-</span> <span class="mf">2.093</span> <span class="o">*</span> <span class="n">sd</span> <span class="o">/</span> <span class="n">samples</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">**</span><span class="mf">0.5</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)[</span><span class="mi">0</span><span class="p">]))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">errorbar</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">samples</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]),</span> <span class="n">y</span><span class="o">=</span><span class="n">mean</span><span class="p">,</span> 
+             <span class="n">yerr</span> <span class="o">=</span> <span class="mf">2.093</span> <span class="o">*</span> <span class="n">sd</span> <span class="o">/</span> <span class="mi">20</span><span class="o">**</span><span class="mf">0.5</span> <span class="p">,</span> 
+             <span class="n">fmt</span><span class="o">=</span><span class="s2">&quot; &quot;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;CI covers true mean&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">errorbar</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">not_in_CI</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="n">mean</span><span class="p">[</span><span class="n">not_in_CI</span><span class="p">],</span> 
+             <span class="n">yerr</span> <span class="o">=</span> <span class="mf">2.093</span> <span class="o">*</span> <span class="n">sd</span><span class="p">[</span><span class="n">not_in_CI</span><span class="p">]</span> <span class="o">/</span> <span class="mi">20</span><span class="o">**</span><span class="mf">0.5</span> <span class="p">,</span> 
+             <span class="n">fmt</span><span class="o">=</span><span class="s2">&quot; &quot;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;red&quot;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;CI does not cover&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">axhline</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s2">&quot;:&quot;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;grey&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;sample&quot;</span><span class="p">);</span> <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;CI&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;95% CIs for $\mu$&quot;</span><span class="p">);</span> <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">();</span>
+</pre></div>
+
+
+<div class="output_wrapper">
+
+<div class="output_area">
+
+
+
+<div class="output_png output_subarea ">
+<img src="data:image/png;base64,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YMq/PseUf32u2GWoRBX7K/xmAs8BAyNidUT8fURcGRFXZhf5BfAasBz4EfClIpUqSZLUqv7yl79w0UUX0a9fPwYPHsykSZNYtmwZK1asYOjQoc2+v1fXbebVdZtbodL6rVixgh//+McFe7xSV+xvF5nayPwEXFWgciRJkooipcT555/PpZdeyv333w/AwoULWbt2Lb169Wpk7dZXW1tL+/Z7j427QvbFF1/covUrTalfLiJJklTxnnrqKTp06MCVV16ZmzZy5EhOPvnkva536623MmzYMEaMGMH06dOBTDg/8cQT+cz4E/nipVN55513WLJkCccff3xuvRUrVjB8+HAAFixYwPjx4xk1ahRnnnkma9Zkrsw95ZRT+MY3vsH48eP5/ve/z09+8hOGDh3KiBEjGDdu3B61TJ8+nd/+9reMHDmS2267jerqai644ALOOeccJk6cyNNPP81nP/vZ3PJXX3011dXVe62hrqqqKr74xS8yYcIEjjnmGObMmcPll1/OoEGDqKqqyi3361//mrFjx3LcccdxwQUXsHlz5mz+TTfdxJgxYxg6dChXXHEFmXO5med5/fXXc/zxxzNgwAB++9vf7rXPm8qQLUmSVGSLFi1i1KhRzVrnl7/8JQ899BAvvPACf/zjH/n6178OwCWXXMItt9zCY3OeZ+CgIXzrW99i0KBBfPDBB7z22msAzJo1iwsvvJDt27dzzTXX8OCDD7JgwQIuv/xybrjhhtxjbNy4kTlz5vDVr36Vm266iV/96lf88Y9/5JFHHtmjnhkzZnDyySezcOFCrrvuOgCee+457r33Xp588skGn0djNdT1zjvv8OSTT3LbbbdxzjnncN1117F48WJefvllFi5cyPr16/nOd77DE088wYsvvsjo0aP53ve+B2RC/bx581i0aBHvv/8+jz76aO5+a2tr+f3vf8/tt9/Ot771rWa9Dg1pW+ftJUmSKsQTTzzBZZddRpcuXQDo1q0bmzZtYuPGjYwfP55X123m/CkX8w9XVgFw4YUX8sADDzB9+nRmzZrFrFmzWLp0KYsWLeKMM84AYMeOHRx++OG5x5gyZUru9kknnURVVRUXXnghkydPblKNZ5xxBt26ddvrMo3VUNc555xDRDBs2DAOO+wwhg0bBsCQIUNYsWIFq1ev5pVXXuGkk04C4IMPPmDs2LFA5q8Ft956K1u2bGHDhg0MGTKEc845ByD3fEaNGsWKFSua9NwaY8iW6rHr0+KzvjC2yJVI+ef4lkrPkCFDePDBB5u1TkqpWV8tN2XKFC644AImT55MRNC/f39efvllhgwZwnPP1f8tKQcccEDu9l133cULL7zAY489xsiRI1m4cCHdu3ff62PWXb99+/bs3Lkz1971vdMppb3WUFenTp0A2G+//XK3d7Vra2tp164dZ5xxBjNnzvzIelu3buVLX/oS8+fPp1evXtx4440f+d7rXffVrl07amtrG62jKbxcRK3KrzeSJKlxp556Ktu2beNHP/pRbtq8efOYM2dOg+tMnDiRe+65hy1btgCwYcMGDjnkELp27Zq7rvihn9zP+PHjAejXrx/t2rXj29/+du4M9cCBA1m3bl0u4G7fvp3FixfX+3ivvvoqJ5xwAjfddBM9evRg1apVH5l/0EEH8d577zVYb+/evXnllVfYtm0bmzZt4je/+U2za2jMiSeeyLPPPsvy5csB2LJlC8uWLcsF6h49erB58+Zmv6FpCc9kS5KkktFW/9ISEcyePZtrr72WGTNm0LlzZ/r06cPtt9/e4DpnnXUWCxcuZPTo0XTs2JFJkyZx8803c++993LllVey8d3N9Ordhwd+/B+5daZMmcLXvvY1Xn/9dQA6duzIgw8+yJe//GU2bdpEbW0t1157LUOGDNnj8b72ta/x5z//mZQSp512GiNGjPjI/OHDh9O+fXtGjBhBVVUVXbt2/cj8Xr16ceGFFzJ8+HD69+/PJz/5yWbX0JiePXtSXV3N1KlT2bZtGwDf+c53GDBgAJ///OcZNmwYffr0YcyYMc2+7+aKXZ+srCSjR49O8+fPL3YZonx3luVat9QUjm+VsmKNzyVLljBo0KBmrVPq29Ku78ju1/PAIldSGeobIxGxIKU0ur7lPZMtSZLUAqUarlUavCZbkiRJyjNDtiRJu/FD25L2lSFbUtEZaCRJlcaQLalkGb7V1rkNSOXLkC1JktQSp5yS+SfVw5AtSVIZ82x35fjLX/7CRRddRL9+/Rg8eDCTJk1i2bJlrFixgqFDhza6flVVVUF+ZKWpbr755mKXUFSGbEmSpCJ6dd1mlr/9Hueffz6nnHIKr776Kq+88go333wza9euLXZ5LVYKITtfP5HeEoZsqQwtHnAciwccV+wySoJn8VRpHNNt0/PPzKVDhw5ceeWVuWkjR47k5JNPbnCdlBJXX301gwcP5jOf+Qxvv/12bt5vfvMbzjn1JCaNP4HLL7889+uHCxYsYPz48YwaNYozzzyTNWvWAHDHHXcwePBghg8fzkUXXbTHY1VXVzN58mTOOuss+vfvz9e//vXcvJkzZzJs2DCGDh3K9ddfD8D06dN5//33GTlyJNOmTdvj/h5//HGOO+44RowYwWmnnQZkfhb+vPPOY/jw4Zx44om89NJL7Ny5kz59+rBx48bcusceeyxr165l3bp1/M3f/A1jxoxhzJgxPPvsswDceOONXHHFFUycOJFLLrmk8c5vJf4YjSRJUpEt+9MrjBo1qlnrzJ49m6VLl/Lyyy+zdu1aBg8ezOWXX87WrVupqqri337yCH379edbX/0SP/zhD7nqqqu45pprePjhh+nZsyezZs3ihhtu4J577mHGjBm8/vrrdOrU6SOBtq6FCxfyhz/8gU6dOjFw4ECuueYa2rVrx/XXX8+CBQvo2rUrEydO5KGHHmLGjBnceeedLFy4cI/7WbduHZ///OeZO3cuffv2ZcOGDQD88z//M5/85Cd56KGHePLJJ7nkkktYuHAh5557LrNnz+ayyy7jhRdeoE+fPhx22GFcfPHFXHfddXz605/mjTfe4Mwzz2TJkiVA5s3EM888w/7779/MVyJ/DNlqllL/CVlJUtvV1o5Rc+fOZerUqbRr144jjjiCU089FYClS5fSt29f+vbrD8Cll17KD37wA04//XQWLVrEGWecAcCOHTs4/PDDARg+fDjTpk3jvPPO47zzzqv38U477TQOOeQQAAYPHszKlSupqanhlFNOoWfPngBMmzaNuXPnNngfAM8//zzjxo2jb9++AHTr1g2AZ555hp/+9KcAnHrqqdTU1LBp0yamTJnCTTfdxGWXXcb999/PlClTAHjiiSd45ZVXcvf77rvv8t577wHwuc99rqgBGwzZkiRJrebVdZsB6NfzwL0u13/gIH70+M+bff8Rsce0lFK9y6aUGDJkCM89t+flSI899hhz587lkUce4dvf/jaLFy+mffuPxsROnTrlbrdr147a2toGH2tvUkpNrjsiGDt2LMuXL2fdunU89NBDfPOb3wRg586dPPfcc/WG6QMOOKDZdeWb12RLKgqvO5WkD409eTzbtm3jRz/6UW7avHnzmDNnToPrjBs3jvvvv58dO3awZs0annrqKQA+8YlPsGLFCla89ioA//Ef/8H48eMZOHAg69aty4Xs7du3s3jxYnbu3MmqVauYMGECt956Kxs3bmTz5s1NqvuEE05gzpw5rF+/nh07djBz5kzGjx8PQIcOHdi+ffuez3XsWObMmcPrr78OwIJlb/Dqus2MGzeO++67D4Cnn36aHj16cPDBBxMRnH/++XzlK19h0KBBdO/eHYCJEydy55135u63vktTiskz2Sp7be3Pg9Lu2so20FaeZ6nzdWgdEcHs2bO59tprmTFjBp07d6ZPnz7cfvvtDa5z/vnn8+STTzJs2DAGDBiQC7edO3fm3/7t37jmv1/Cjh21nHTiCVx55ZV07NiRBx98kC9/+cts2rSJ2tparr32WgYMGMDf/u3fsmnTJlJKXHfddRx66KFNqvvwww/nu9/9LhMmTCClxKRJkzj33HMBuOKKKxg+fDjHHXdcLjwD9OzZk7vvvpvJkyezc+dODjq0O/c++Ag33ngjl112GcOHD6dLly7ce++9uXWmTJnCmDFjqK6uzk274447uOqqqxg+fDi1tbWMGzeOu+66qznd3qoM2ZLaHENC67J/pZY54ogjeOCBB+qdt2jRoj2mRcRHzuTWddppp/HzJzPftlH3UpWRI0cyd+7cPZZ/5pln9lpbVVUVVVVVufajjz6au33xxRdz8cUX77HOLbfcwi233FLv/Z199tmcffbZwIeX1HTr1o2HH3643uVHjx69x+UkPXr0YNasWXsse+ONN+71uRSKIVuSyoDBVW1RyY/7p58udgUqYV6TLUmSJOWZIbuE5fODYX7IrG3z9ZekxrXkmzIK5dV1m3OXVajwWjI2DNkqaYZDNYfjRU3hOKnfvvZLufdr586dqampKemgreJIKVFTU0Pnzp2btZ7XZKtilfy1fJKkknHUUUexevVq1q1bl9f7Xfde5ufMP1jfqdWXycc6xVAOdXbu3JmjjjqqWesYstsgw6ckSR/VoUOH3C8Q5tONuWPuyFZfJh/rFEO51NlcXi4iSW1Auf8pvxTZp5L2xpAtSUVmWJNjQIXkeCsMQ3aZcIOQisftT5LUXIZsSSpRhvvCsr/Lk6+bSpUhW2WjKTtSd7YqZfkan3u7H7cBqXDc3rQ3hmyVJXds9bNfJEkqDYZstTkGUUmS1NoM2ZLaNN90qS0r9Ph3e1NbYsiWpGYwJKgcOW5VatrCmDRkS21MPndsbWEnqdLk2FOpcUw2rq31kSG7ghVyMLe1DUeF5xhTJXAcS21HUUN2RJwVEUsjYnlETK9n/ikRsSkiFmb//VMx6pQkSW2Lb4hazr7LaF+sB46IdsAPgDOA1cC8iHgkpfTKbov+NqX02YIXKEkttOvgMusLY/dpGUkfcptRuSnmmezjgeUppddSSh8A9wPnFrEetbK672x9lyuptbmfUblzDJd3HxQzZB8JrKrTXp2dtruxEfHHiPhlRAxp6M4i4oqImB8R89etW5fvWqW8K+cdhyRJ2rtihuyoZ1rarf0i0DulNAL4/4GHGrqzlNLdKaXRKaXRPXv2zGOZpa/UwlpL6im15yBJarmm7NPLab/fGrWW0/MvReXQf8UM2auBXnXaRwFv1V0gpfRuSmlz9vYvgA4R0aNwJUpNUw4buyRVCve5KgfFDNnzgP4R0TciOgIXAY/UXSAiPh4Rkb19PJl6awpeqSSVIYOIJBVP0b5dJKVUGxFXA78C2gH3pJQWR8SV2fl3Af8N+GJE1ALvAxellHa/pET7oK18WruSn2clPzdJpc39j9SwooVsyF0C8ovdpt1V5/adwJ2FrktS/ngQlqTic19ceP7iYyvwT7RS63IbkxrndqLW4LhqOkO2JJWQQh/APGC2PvtYapsM2VIzeLCUJElNYciWyoQBX6XA7wtWuXBctT77eO8M2ZIa5Y60fvZL25PP19zx8yH7QpXIkC1JkqSyVapv0gzZkvKuVHd4klRM5bpvLNe6i82QLUn18KCilnLslB5fExWDIVv1cockNY/bTOuwX9XaHGOtqy33ryG7BLTlASipsrl/K0++btK+M2RLkrQXpRg496WmUnw++lBTXh9fw/JgyFaLuZFXllJ5PUulDkmS9oUhO08MBpIkSdrFkC1JktREpX45R7EuJSrEcy63E5qGbKkNK7cdlpRvbgOSWoshu0x5YMiP1urHuvdb6mc9JElS/hmylWPQk1QKWmNf5P5NUqEZsqUSk68wYKiQJDXGY0XrMWRLklrEg7MkNcyQLRWQoURqXW5jaou8xKo0GbILyA/AqZI5diuLB21JxVIp+wpDtiRJajWVEpik5jJkS43wACFJkprLkC1Jrcg3aZLUNhmypRYyPEmSpIYYsiVJqhC++ZdKhyFbyvLgVFl8PVVpHNNSeTFkS5IKLp+B0fApqRQZsiVVPEOYJKnQDNkVxjAhSYXnvlfS7gzZkqR9ZsiUpI8yZKvkeLCWJEnlzpAtSZIk5Vn7YhcgqfmGLHux2CVUpF1/QZn1hbFFrkSSVO48k10kXhIhqVy4v1Jb4VhXPhmyJUlSm2GQVqEYsiXtwYOQJEn7xpAtSZIk5ZkhW43yrKYkSVLzFDVkR8RZEbE0IpZHxPR65kdE3JGd/1JEHFeMOqVi8Q2OJEnlqWghOyLaAT8AzgYGA1MjYvBui50N9M/+uwL4YUGLlCRJklqgmGeyjweWp5ReSyl9ANwPnLvbMucC/54yngcOjYjDC12oJEmS1BzFDNlHAqvqtFdnpzV3mT3U1NSwcOFCAHbs2EF1dTUvvfQSANu3b6e6uppFixYBsHXrVqqrq1myZAkAW7Zsobq6mqVLlwKwefNmqqurWb58OQCbNm2iurqa1157DYB33nmH6upqunywAYD169fTu2Ye+3+wEYBL7vw1X7/5Dt58800AOm1/l+rqajptfxeAN998k9418+i0/T0A9v9gI71r5rF+/XoAunywgerqajrUbgHgtddeo7q6mvY7tgKwfPlyetfMo92ObQAcuPVtetfMY8uWzPIHbV1LdXU1++3cDsCiRYvoXTOPSDsAOOT9t+hdM48dO7LtLW9SXV2d68sFCxZw9Ib5uXbXLW9w9IYFuXa3v65k5syZufbvfvc7jnpnYa7dffPrHLnxpVy7x+ZX+dnPfpZrP/XUUzz88MO59hNPPMHhmxbn2oe9u5SPv7ukTvtPPP7447n2Y489xmHvLs21D9+0mI+99+dc+4hNi3jqqady7Z/97Gf02Pxqrn3kxpfovvn1XPuodxbyu9/9LteeOXMm3f66Mtc+esMCum55o057PgsWfNgf1dXVubFH2kl1dTWHvP8WkBl7vWvmcfD7fwFgv52Z9q6x127nB1RXV3Pg1reBzNjrXTOPA7ZlxkL7HVvpXTOvyWOv0/b36F0zb5/H3jvvvAPAAdtqqK6uZtOmTUDLxl51dTXbt2faxR57Pd9bXlFjr3fNvH0ee3X3e3sbex1qt7T62OtdM2+PsVfO+70jNr6ca5fb2LvvvvuYN29ern30hvkcumV1rp2PsdfU/V6+x96qVavoXTOPjrV/Bcpz7D3wwAO59jPPPFP2Y+/555/Pte+777499nuNjb3WznsrVqwAMmOv7mtXn2KG7KhnWmrBMpkFI66IiPkRMX/XQVySJEkqhmKG7NVArzrto4C3WrAMACmlu1NKo1NKoz/+8Y8zcuRIANq1a0dVVRXDhw8HoEOHDlRVVTF06FAAOnfuTFVVFYMGDQKgS5cuVFVVMXDgQAAOPPBAqqqqOPbYYwE45JBDqKqq4phjjgGga9euVFVVsaVjNwB69OjByu5jeL/joQBs63AQK7uP4cgjj8y2D6aqqoptHQ4G4Mgjj2Rl9zFs63AQAO93PJSV3cfQo0cPALZ07EZVVRXb23cB4JhjjqGqqoradp0BOPbYY1nZfQw72nUCYHPnj7Gy+xi6dMks/17nw6iqqmLnfh0AGDp0KCu7jyFFOwA27X8EK7uPoV27bLvLkVRVVeX6ddSoUbzRbXSu/U6Xo3mj26hce8MBvZk6dWqu/alPfYrVXUfm2jUH9uXNQ4fn2usP7MfkyZNz7QkTJnDuuR9eJXT66aez5pAhufbagwfyl4MH1Wl/grPOOivX/sxnPsPagwfm2msOGcLbB/XPtd86ZCgTJkzItSdPnsz6A/vl2m8eOpyaA/vm2qu7juRTn/pUrj116lQ2HNA7136j2yje6XJ0nfZoRo36sD+qqqpyY4/Yj6qqKjbtfwSQGXsru4/h3f0/DsDO/TLtXWNvx34dqaqqYnPnjwGZsbey+xj+2ikzFmrbdWZl9zEFH3tdu3YF4K+dulNVVcUhhxwCtGzsjbn5DpYNOQEo/thbd9CxFTX2VnYfs89jr/acqSwecFyjY297+y6tPvZWdh+zx9gr5/3eW4cOy7XLbexNmzaNMWPG5NpvdBvNxi5H5dr5GHtN3e/le+z16tWLld3H8EH7A4DyHHsXXnhhrv3pT3+67MfeiSeemGtPmzZtj/1eY2OvtfNenz59gMzYq/va1af9Xue2rnlA/4joC7wJXARcvNsyjwBXR8T9wAnAppTSmsKWKamuxQMyX/IzZNmLRa6k5WZ9YWyxS5AkVbiiheyUUm1EXA38CmgH3JNSWhwRV2bn3wX8ApgELAe2AJcVq15JktqiSnhjLRVDMc9kk1L6BZkgXXfaXXVuJ+CqQtclqWnydUbYM8uSpEqz15AdES/TwAcNAVJKwxuaJ0mSJLVVjZ3Jngwcxke/Rg+gNw18AFGSVNr8y4Ektb7GQvZtwDdSSivrToyIntl557RWYZIkSeXON7VtV2Mhu09K6aXdJ6aU5kdEn1apSJIkqYkMsSpVjYXsznuZt38+C5EkSVL+VPIbkHJ4bo39GM28iPj87hMj4u+BBfUsL0mSJLV5jZ3JvhaYHRHT+DBUjwY6Aue3ZmGSVA5nKlSZymnslVOtlcavMdXe7DVkp5TWAp+KiAnA0Ozkx1JKT7Z6ZZIkSVKZatKP0aSUngKeauVaVMZ8Fy5JkvShov7ioyqf4VuSKov7dalpDNmSisIDtSSpkhmyVZYMaFLb43YvqZwYstUsHuQkqXK4T1Q1f/gAAA5fSURBVJdajyFbkiRVBN80lLa29voYsiWVnba2o1Z+OX4kFYIhWyXNg6EkSSpHhmypDWgrb1bayvPcXVt93lJrcrvSvjJkS1IZ8IAvKV/cnxSGIVuSpCIz9Kgtq9Txb8iWJEnaR5UaFNVyhuw2wo1f5c4xvG/sP0kqLEO2KpahojT4OhSW/V16fE2ktsmQLUkqOwbXyuVrq0phyJbq4U5ekhrnvlJqmCFbkiTts1IO3KVcmyqXIVuSJAxipcjXpHjs+31nyC5hDvD8sS8lSVIhGbJVUQzTUutqjW3M7bbt8LVWW2LIVt4Veifa3MdzJy9JKgd1j1ceu8qPIVsqE629g3UHrkrjmG7bfP1VbIbsNqgUdzylWFMhtfXnL6l1uY8pPb4mlc+QLamsleuBqil17+tzK9e+kaRKYMiWJKmJCvHGxzdH2heOn9JhyJZaWant8EqtnnJj/0lqKfcfbYshuwLsy0brBi8p39yv5E8h+9LXrXy01mtV6mOg1OvbnSFbRVEqG0qp1JEvlfZ8iilfX53la1LafH0ktRZDtpTlwVblwrFaGvxgasPK6bmVU60qL4ZsSZJUVkr9R8/UuLbQp4ZsSWqhtnCQkCS1jCG7FXjgldRSlXyGzn2jpKaolH1FUUJ2RHQDZgF9gBXAhSmld+pZbgXwHrADqE0pjS5clcq3StloJGlvSmVf11AdpVKfVOmKdSZ7OvCblNKMiJiebV/fwLITUkrrC1eaJKkpDGuS1LBihexzgVOyt+8FnqbhkC2pDTG4SaqP+4biyddXmrY1xQrZh6WU1gCklNZExMcaWC4Bv46IBPxrSunuhu4wIq4ArgA4+uij811v0TmoJUlSvpkvWk+rheyIeAL4eD2zbmjG3ZyUUnorG8L/KyL+lFKaW9+C2QB+N8Do0aNTswsuAAeypHLh/kqS9k2rheyU0ukNzYuItRFxePYs9uHA2w3cx1vZ/9+OiNnA8UC9IbutacoB0IOkJKnYPBaprSrW5SKPAJcCM7L/P7z7AhFxALBfSum97O2JwE0FrVJSi3hQValxTEoqtGKF7BnAAxHx98AbwAUAEXEE8H9SSpOAw4DZEbGrzh+nlB4vUr1SRTJ4+D3RKk+OJan0FSVkp5RqgNPqmf4WMCl7+zVgRIFLk5rMg5wkqRR4PCpN/uKjVOb8wYnSY9/vG/uv7fE1b332ceEZsqU8cOclSWrLPA7uyZCtFnODkj7k9tA89pfUNrTlbd2QLUlF1pYPQpJUqfYrdgGSJElSpfFMtnJK/WxaqdcnqTK575HUEobsPHEnLEmSpF0M2ZKkVlOIExCe5JCKw21v77wmW5IkScozz2SXGN8VVoamvI6+1pJUftx3l55SfU0M2ZKkilGqB9tyYz8Wj31fOQzZJcANqnz4WklSfrg/VVOU8zgxZFeYch6MyvA1lCSp/BmypUYYeiVJUnMZsiVJKgO+4S8fvlYCQ7akAhqy7MVilyC1CkOVpN0ZslUvDxiSdnF/IEnNZ8hWyfGAXto8Gy2pnHmMUaEYsiVJqhAGSKl0GLIl5YUHd0mSPmTIlrSHSgvMlfZ82hJfOxWS4035ZMiWCqhcd+DlWrckScViyJYk7TPfiEnaxf1Bxn7FLkCSJEmqNIZsSZIkKc8M2ZIkSVKeGbIlSZKkPPODj63Mi/8lSZLaHs9kS5IkSXnmmWyphPmXEEmSypNnsiVJkqQ8M2RLkiRJeeblIpIqkpfaSJKKyTPZkiRJUp55JluSsjz7LUnKF89kS5IkSXlmyJYkSZLyzJAtSZIk5ZnXZBdJOV37WU61SpIklYKinMmOiAsiYnFE7IyI0XtZ7qyIWBoRyyNieiFrlKS2ZsiyFxmy7MVilyFJFaFYl4ssAiYDcxtaICLaAT8AzgYGA1MjYnBhypMkSZJariiXi6SUlgBExN4WOx5YnlJ6Lbvs/cC5wCutXqAkSZK0D0r5g49HAqvqtFdnp9UrIq6IiPkRMX/dunWtXpwkSZLUkFY7kx0RTwAfr2fWDSmlh5tyF/VMSw0tnFK6G7gbYPTo0Q0uJ0mSJLW2VgvZKaXT9/EuVgO96rSPAt7ax/uUJEmSWl0pXy4yD+gfEX0joiNwEfBIkWuSJEmSGlWsr/A7PyJWA2OBxyLiV9npR0TELwBSSrXA1cCvgCXAAymlxcWoV5IkSWqOYn27yGxgdj3T3wIm1Wn/AvhFAUuTJEmS9lkpXy4iSZIklSVDtiRJkpRnhmxJkiQpz4pyTbYkSSoPQ5a9WOwSpLLkmWxJkiQpzwzZkiRJUp4ZsiVJkqQ8M2RLkiRJeWbIliRJkvLMkC1JkiTlmSFbkiRJyjNDtiRJkpRnhmxJkiQpzyKlVOwa8i4i1gEri/DQPYD1RXjccmV/NZ991jz2V/PZZ81jfzWffdY89lfzFbLPeqeUetY3oyJDdrFExPyU0uhi11Eu7K/ms8+ax/5qPvuseeyv5rPPmsf+ar5S6TMvF5EkSZLyzJAtSZIk5ZkhO7/uLnYBZcb+aj77rHnsr+azz5rH/mo++6x57K/mK4k+85psSZIkKc88ky1JkiTlmSFbkiRJyjNDdh5ExFkRsTQilkfE9GLXU4oioldEPBURSyJicUT8j+z0GyPizYhYmP03qdi1loqIWBERL2f7ZX52WreI+K+I+HP2/67FrrNURMTAOuNoYUS8GxHXOsY+FBH3RMTbEbGozrQGx1RE/GN2v7Y0Is4sTtXF1UCf/UtE/CkiXoqI2RFxaHZ6n4h4v85Yu6t4lRdHA/3V4DboGGuwz2bV6a8VEbEwO90x1nCeKLl9mddk76OIaAcsA84AVgPzgKkppVeKWliJiYjDgcNTSi9GxEHAAuA84EJgc0rpfxa1wBIUESuA0Sml9XWm3QpsSCnNyL6h65pSur5YNZaq7Hb5JnACcBmOMQAiYhywGfj3lNLQ7LR6x1REDAZmAscDRwBPAANSSjuKVH5RNNBnE4EnU0q1EXELQLbP+gCP7lquLWqgv26knm3QMZZRX5/tNv9/AZtSSjc5xvaaJ6oosX2ZZ7L33fHA8pTSaymlD4D7gXOLXFPJSSmtSSm9mL39HrAEOLK4VZWlc4F7s7fvJbNj0Z5OA15NKRXjl19LVkppLrBht8kNjalzgftTSttSSq8Dy8ns79qU+vospfTrlFJttvk8cFTBCytRDYyxhjjG2HufRUSQORk1s6BFlbC95ImS25cZsvfdkcCqOu3VGB73KvtO/JPAC9lJV2f/7HqPlz98RAJ+HRELIuKK7LTDUkprILOjAT5WtOpK20V89KDkGGtYQ2PKfVvTXA78sk67b0T8ISLmRMTJxSqqBNW3DTrGGncysDal9Oc60xxjWbvliZLblxmy913UM81rcBoQEQcCPwWuTSm9C/wQ6AeMBNYA/6uI5ZWak1JKxwFnA1dl/6SoRkRER+BzwE+ykxxjLeO+rRERcQNQC9yXnbQGODql9EngK8CPI+LgYtVXQhraBh1jjZvKR08YOMay6skTDS5az7SCjDND9r5bDfSq0z4KeKtItZS0iOhAZoO4L6X0M4CU0tqU0o6U0k7gR7TBPxU2JKX0Vvb/t4HZZPpmbfZ6tF3Xpb1dvApL1tnAiymlteAYa4KGxpT7tr2IiEuBzwLTUvbDTdk/R9dkby8AXgUGFK/K0rCXbdAxthcR0R6YDMzaNc0xllFfnqAE92WG7H03D+gfEX2zZ9AuAh4pck0lJ3td2f8FlqSUvldn+uF1FjsfWLT7um1RRByQ/UAHEXEAMJFM3zwCXJpd7FLg4eJUWNI+cubHMdaohsbUI8BFEdEpIvoC/YHfF6G+khMRZwHXA59LKW2pM71n9kO3RMQxZPrsteJUWTr2sg06xvbudOBPKaXVuyY4xhrOE5Tgvqx9IR6kkmU/XX418CugHXBPSmlxkcsqRScBfwe8vOuriIBvAFMjYiSZP92sAL5QnPJKzmHA7My+hPbAj1NKj0fEPOCBiPh74A3ggiLWWHIioguZb/qpO45udYxlRMRM4BSgR0SsBv4ZmEE9YyqltDgiHgBeIXNJxFVt7VsfoME++0egE/Bf2W30+ZTSlcA44KaIqAV2AFemlJr6IcCK0EB/nVLfNugYy6ivz1JK/5c9P1sCjjFoOE+U3L7Mr/CTJEmS8szLRSRJkqQ8M2RLkiRJeWbIliRJkvLMkC1JkiTlmSFbkiRJyjNDtiSpySLi6YgYXew6JKnUGbIlSZKkPDNkS1KZy/5C6GMR8ceIWBQRUyLinyJiXrZ9d/ZX0nadib4tIuZGxJKIGBMRP4uIP0fEd7LL9ImIP0XEvRHxUkQ8mP2hn90fd2JEPBcRL0bETyLiwEI/d0kqVYZsSSp/ZwFvpZRGpJSGAo8Dd6aUxmTb+wOfrbP8BymlccBdZH56+CpgKFAVEd2zywwE7k4pDQfeBb5U9wEjogfwTeD0lNJxwHzgK632DCWpzBiyJan8vQycHhG3RMTJKaVNwISIeCEiXgZOBYbUWf6ROustTimtSSltA14DemXnrUopPZu9/Z/Ap3d7zBOBwcCz2Z82vhTonfdnJkllqn2xC5Ak7ZuU0rKIGAVMAr4bEb8mc3Z6dEppVUTcCHSus8q27P8769ze1d51XEi7P8xu7QD+K6U0NQ9PQZIqjmeyJanMRcQRwJaU0n8C/xM4LjtrffY66f/Wgrs9OiLGZm9PBZ7Zbf7zwEkRcWy2hi4RMaAFjyNJFckz2ZJU/oYB/xIRO4HtwBeB88hcDrICmNeC+1wCXBoR/wr8Gfhh3ZkppXURUQXMjIhO2cnfBJa15AlIUqWJlHb/C6AkqS2LiD7Ao9kPTUqSWsDLRSRJkqQ880y2JEmSlGeeyZYkSZLyzJAtSZIk5ZkhW5IkScozQ7YkSZKUZ4ZsSZIkKc/+H8UoAjGAjoCFAAAAAElFTkSuQmCC
+"
+>
+</div>
+
+</div>
+
+</div>
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2>The pivotal method</h2>
+<p>Is not that often that we can measure such probability directly. One way to work around is to find a r.v. $g(X_1,...,X_n,\theta)$ whose distribution is independent of $\theta$ and any other unknown params.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1>Maximum Likelihood Estimation</h1>
+<p>Given $(X_1,...,X_n)$ r.v. with joint pdf 
+$$f(x_1,...,x_n; \theta_1,...,\theta_k)$$
+where $\theta$'s are unknown parameters.<br>
+The likelihood is defined as 
+$$\mathcal L(\theta_1, ...,\theta_k) = f(x_1,...,x_n; \theta_1,...,\theta_k)$$
+note that $x_1,...,x_n$ are fixed observations</p>
+<p>Suppose that for each $\vec x$, $(T_1(\vec x), ..., T_k(\vec x))$ maximize $\mathcal L (\Theta)$ . Then maximum likelihood estimators (MLEs) of $\Theta$ are 
+$$\hat \theta_j = T_j(X_1,..., X_n), j = 1,..., k$$</p>
+<h2>Existence and uniqueness</h2>
+<ul>
+<li>MLE is essentially an ad hoc procedure albeit one that works very well in many problems. </li>
+<li>MLEs need not be unique, although in most cases, it is unique. </li>
+<li>MLEs may not exist, typically when the sample size is too small.</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2>Sufficient Statistic</h2>
+<p>A statistic $T = (T_1(\vec X), ..., T_m(\vec X))$ is sufficient for $\theta$ if the conditional distribution of $\vec X$ given $T = t$ depends only on $t$.</p>
+<h3>Neyman Factorization Theorem</h3>
+<p>$T$ is sufficient for $\theta$ IFF 
+$$f(\vec x;\theta) = g(T(\vec x); \theta) h(\vec x)$$</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2>Observed Fisher Information</h2>
+<p>Given the MLE $\hat \theta$, the observed Fisher information is 
+$$\mathcal I(\hat\theta) = -\frac{d^2}{d\theta^2}\ln \mathcal L(\hat\theta)$$
+Fisher information is an estimator for standard error, i.e. 
+$$\hat se(\hat \theta) = \{\mathcal I(\hat\theta)\}^{-1/2}$$
+Mathematically, this is the absolute curvature of the log-likelihood function at its maximum. If this is small, then the estimator is more well-defined (hence with smaller estimated s.e.)</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2>Approximate normality of MLEs</h2>
+<p><strong>Theorem</strong> For $X_1,...,X_n$ indep. with pdf $f$ for some real-valued $\theta\in \Theta$, if</p>
+<ul>
+<li>$\Theta$ is an open set</li>
+<li>$A = \{x: f(x;\theta)&gt; 0\}$ does not depend on $\theta$ (true for the exponential families) </li>
+<li>$l(x;\theta)$ is 3-time differentiable w.r.t. $\theta$ for each $x\in A$. </li>
+</ul>
+<p>Then, with $\theta_0$ being the true parameter, we have</p>
+\begin{align*}
+\sqrt n(\hat\theta_n - \theta_0) &amp;\approx \bigg\{-n^{-1}\sum^n l''(X_i; \theta_0)\bigg\}^{-1}\frac{1}{\sqrt n} \sum^n l'(X_i;\theta_0)\\
+&amp;\approx \frac{1}{\sqrt n} \sum^n \frac{l'(X_i; \theta_0)}{\mathcal I(\theta_0)}\\
+&amp;\rightarrow^d N(0, \mathcal I(\theta_0)^{-1})
+\end{align*}<p><em>proof</em>. This conclusion follows Taylor expansion 
+$$0 = \frac{1}{\sqrt n} \sum^n l'(X_i;\theta_0) + \{\sqrt n (\hat \theta_n - \theta_0)\} \frac{\sum^n l''(X_i; \theta_0)}{n} + \sqrt n(\hat\theta_n - \theta_0) \times R_n$$
+where $R_n = \frac{1}{2}(\hat\theta_n - \theta_0) \frac{\sum^nl''(X_i; \theta_n^*)}{n}$ is the Taylor's remainder with $\theta_n^*$ in between $\hat\theta_n, \theta_0$
+so that 
+$$\sqrt n (\hat\theta_n - \theta_0) =\bigg\{-n^{-1}\sum^n l''(X_i; \theta_0) - R_n\bigg\}^{-1}\frac{1}{\sqrt n} \sum^n l'(X_i;\theta_0)$$
+Then, note that $\hat\theta_n - \theta_0 \rightarrow ^p 0$ (i.e. $\hat\theta$) is a "good" estimator from the assumption, and $\frac{1}{n}\sum l''(X_i; \theta_n^*)$ is bounded. so that their product, 
+$$ R_n = \frac{1}{2}(\hat\theta_n - \theta_0) \frac{\sum^nl''(X_i; \theta_n^*)}{n}\rightarrow^p 0$$
+Therefore, $\sqrt{\hat\theta_n - \theta_0}\rightarrow^d (0, \mathcal I(\theta_0)^{-1})$</p>
+
+</div>
+</div>
+</div>
+ 
+

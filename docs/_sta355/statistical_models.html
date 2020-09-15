@@ -1,0 +1,112 @@
+---
+title: Statistical Models
+order: 10
+---
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1>Probability versus statistics</h1>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2>Statistical Models</h2>
+<p>Assume that the data $x_1,...,x_n$ are outcomes of r.v. $X_1,...,X_n \sim F$, which assumes to be unknown.</p>
+<p>A <strong>statistical model</strong> is a family $\mathcal F$ of probability distributions of $(X_1,...,X_n)$.</p>
+<p>Theoretically, $F\in \mathcal F$ but in practice this is not always true, we are to find some $F_0 \in \mathcal F$ close enough to $F$ so that $\mathcal F$ is useful.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3>Parametric models</h3>
+<p>For a given $\mathcal F$, we can parametrize as $\mathcal F = \{F_\theta:\theta \in \Theta\}$</p>
+<p>If $\Theta \subset \mathbb R^p$ then $\mathcal F$ is a <strong>parametric model</strong> and $\theta \in \mathbb R^p = (\theta_1,...,\theta_p)$</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3>Non-parametric models</h3>
+<p>If $\Theta$ is not finite dimensional then the model is said to be <strong>non-parametric</strong> (in this case, $\in\mathbb R^\infty$)</p>
+<p><strong>Example</strong> $g(x)\approx \sum^p \beta_k \phi_k(x)$ for some functions $\phi_1,...,\phi_p$ and unknown parameters $\beta_1,...,\beta_p$</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3>Semi-parametric models</h3>
+<p>Non-parametric models often have a finite dimensional parametric component.</p>
+<p><strong>Example</strong> $Y_i = g(x_i) + \epsilon_i$ with $\{\epsilon_i\}$ iid. $N(0,\sigma^2)$ and $g,\sigma^2$ are unknown</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3>Example</h3>
+<p>Consider the linear regression $Y_i = \beta_0 + \beta_1x_i + \epsilon_i$ for observations $(x_1,Y_1), ..., (x_n, Y_n)$ where $\epsilon_i \sim N(0,\sigma^2)$ iid.  Such model is parametric model.</p>
+<p>However, if relax the assumption to $E(\epsilon_i) = 0, E(\epsilon_i^2) = \sigma^2$, then this will be semi-parametric model.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3>Example</h3>
+<p>Let $X_1,...,X_n$ be iid. Exponential r.v. representing survival times.<br>
+$$f(x;\lambda) = \lambda e^{-\lambda x}\mathbb I(x\geq 0)$$
+$\lambda &gt;0$ is unknown</p>
+<p>Let $C_1,...,C_n$ be independent with unknown cdf $G$ (or cdfs $G_i$)</p>
+<p>Observe $Z_i = \min(X_i, C_i), \delta_i = \mathbb I(X_i\leq C_i)$</p>
+<p>parameters $\lambda, G$ so that semi-parametric model.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2>Bayesian models</h2>
+<p>Assume a parametric model with $\Theta \subset \mathbb R^p$, for each $\theta \in \Theta$, think of the join cdf $F_\theta$ as the conditional distribution of $\mathcal X$ given $\theta$.</p>
+<p><strong>Bayesian inference</strong> put a probability distribution on $\Theta$, i.e. a prior.</p>
+<p>After observing $x_1,...,x_n$, we can use Bayes Theorem to obtain a <strong>posterior distribution</strong> of $\theta$ given $X_1 = x_1,...,X_n = x_n$</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2>Statistical Functionals</h2>
+<p>To estimate the characteristics of a model $F$, we often consider $\theta(F)$, i.e. a mapping $\theta: \mathcal F\rightarrow \mathbb R$</p>
+<h4>Examples</h4>
+<p>$\theta(F) = E_F(X_i)=E_F(h(X_i))$<br>
+$\theta(F) = F^{-1}(\tau)$ quantiles<br>
+$\theta(F) = E_F\big[\frac{X_i}{\mu(F)}\ln(\frac{X_i}{\mu(F)})\big], P(X_i &gt; 0 ) = 1, \mu(F) = E_F(X_i)$ Theil index</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2>Substitution principle</h2>
+<p>First estimate $F\rightarrow \hat F$ and substitute $\hat F$ into $\theta (\hat F)$<br>
+<strong>If $\theta$ is continuous</strong>, Using continuous mapping theorem, $\theta(\hat F) \approx \theta(F)$</p>
+<p><strong>Example</strong> empirical distribution function (edf)<br>
+$$\hat F(x) = \frac{1}{n} \sum^n \mathbb I(X_i \leq x) = \text{proportion of observations } \leq x$$</p>
+<p>Note that the edf is just a sample mean and WLLN, CLT holds, for each $\mathbb I(X_i \leq x)$ is iid. Bernoulli</p>
+<p>Therefore,</p>
+<ul>
+<li>$E(\hat F(x)) = F(x), var(\hat F(x)) = \frac{F(x)(1-F(x))}{n}$  </li>
+<li><strong>WLLN</strong> $\hat F(x) = \hat F_n(x) \rightarrow^p F(x), \forall x$  </li>
+<li><strong>CLT</strong> $\sqrt n(\hat F_n(x)-F(x))\rightarrow^f N(0, F(x)(1-F(x)))$</li>
+</ul>
+
+</div>
+</div>
+</div>
+ 
+

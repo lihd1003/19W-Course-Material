@@ -1,0 +1,197 @@
+---
+title: Inner Product Space and Fourier Series
+order: 6
+---
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1>Inner Products Spaces</h1>
+<p>An inner product $\langle \cdot, \cdot\rangle :V\rightarrow \mathbb R$ is a function that satisfies</p>
+<ul>
+<li><strong>positive definite</strong> $\langle x,x\rangle &gt; 0$ and $\langle x,x\rangle =0$ IFF $x\equiv0$</li>
+<li><strong>symmetry</strong> $\langle x,y\rangle =\langle y,x\rangle $</li>
+<li><strong>bilinear</strong> $\langle ax+cy,z\rangle =a\langle x,z\rangle +c\langle y,z\rangle $</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3>Example 1</h3>
+<p>On $\mathbb R^n, x\cdot y = \sum_1^n x_i y_i$</p>
+<ul>
+<li>$x\cdot x =\sum^n x_i^2 \geq 0$</li>
+<li>$x\cdot y = \sum x_i y_i = \sum y_i x_i = y\cdot x$</li>
+<li>$(ax+cy)\cdot z = \sum (ax_i + cy_i) z_i = a\sum x_i z_i + c\sum y_i z_i = ax\cdot z + cy\cdot z$ </li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3>Example 2</h3>
+<p>Let $A_{n\times n}$ be a positive definite symmetric matrix, i.e. all its eigenvalues are strictly positive. Then $\langle x\cdot y\rangle _A = x A y^T$ is an inner product on $\mathbb R^n$</p>
+<p>Note that such $A$ can be diagonalized into $A=PDP^T$</p>
+<ul>
+<li>$\langle x,x\rangle _A = xAx^T = xPDPx^T = vDv^T = \sum v_k^2 \lambda_k \rangle  0$ (since $A$ is definite, $\lambda_k \rangle  0$)<br>
+$\langle x,x\rangle =0$ IFF $\sum v_k^2 \lambda_k = 0\Rightarrow v_k = 0 \Rightarrow xP = 0$, since $P$ is orthogonal, $x=0$</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2><em>Thrm 1</em>. Cauchy Schwarz inequality</h2>
+<p>For $x,y\in (V,\langle ,\rangle ), |\langle x,y\rangle |\leq \langle x,x\rangle ^2\langle y,y\rangle ^2$</p>
+<p><em>proof</em>. By positive definite, for $t\in\mathbb R$, $\langle x-ty, x-ty\rangle  \geq 0$.<br>
+Take $t = \frac{\langle x,y\rangle }{y,y}$,<br>
+$\langle x,x\rangle  - 2t |\langle x,y\rangle | + t^2 \langle y,y\rangle  $<br>
+$= \langle x,x\rangle  - 2\frac{\langle x,y\rangle ^2}{\langle y,y\rangle} + \frac{\langle x,y\rangle ^2}{\langle y,y\rangle }$<br>
+$=\langle x,x\rangle  - \frac{\langle x,y\rangle ^2}{\langle x,y\rangle } \geq 0$<br>
+$\Rightarrow \langle x,y\rangle ^2 \leq \langle x,x\rangle \langle y,y\rangle $</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3>Example 3</h3>
+<p>Over $C[a,b]$, $\langle f,g\rangle _{L^2} = \int_a^b f g dx$</p>
+<ul>
+<li>$\langle f,f\rangle _{L^2} = \int_a^b f^2 dx \geq 0$<br>
+$\langle f,f\rangle _{L^2}=0$ IFF $\int_a^b |f|^2 dx = 0$ IFF $f(x)=0$ because $f$ is continuous<br>
+Assume $f(x_0) &gt;  0$, then by continuity, take $I_\delta(x_0):=[x_0-\delta, x_0+\delta], \forall x\in I_\delta(x_0). f(x) \rangle  \epsilon \rangle  0$ so that $\int_a^b |f|^2 dx &gt;  \int_{I_\delta(x_0)} |f(x)|^2 dx &gt;  \epsilon^2 $ contradicts with $\langle f,f\rangle _{L^2}=0$ (other details to be filled)</li>
+</ul>
+<p>By Cauchy Schwartz inequality, $\int fg\leq \sqrt{\int f^2}\sqrt{\int g^2}$<br>
+ $\Rightarrow \langle f,g\rangle _{L^2} \leq \|f\|_{L^2}\|g\|_{L^2}$<br>
+ $\Rightarrow f\in L^2([a,b]) \Rightarrow f\in L^1([a,b])$</p>
+<p>Therefore, every inner product gives rise to a norm $\|x\|_v := \sqrt{\langle x,x\rangle }$</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2><em>Def'n</em>. Hilbert space</h2>
+<p>a complete inner product space is called Hilbert space</p>
+<p><strong>Completeness over inner product space</strong> A inner product space is complete if every Cauchy sequence $x_n$ has a limit in the space. i.e.<br>
+$\|x_n - x\|_V^2 = \langle x_n - x, x_n - x\rangle \rightarrow 0$</p>
+<p>$L^2([a,b]):= \{f:[a,b]\rightarrow \mathbb R: \int_a^b |f|^2 \langle  \infty\}$</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><strong>Remark</strong> The space $S:=(C[a,b], \|\cdot\|_{L^2})$ is not complete, but $L^2([a,b])$ is the completion of $S$. which means taking any Cauchy sequence, then it has a limit in $L^2$. In another words, continuous functions can approximate any square integrable function in $L^2$-norm.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2><em>Thrm 2</em>. Monotone Convergence Theorem</h2>
+<p>Take nonnegative $f_n(x)\geq 0$, if  $f_1(x)\leq f_2(x) \leq ...$  then point-wise limit $f_n(x)\rightarrow f(x)$ i.e. $|f_n(x)-f(x)|\rightarrow 0$</p>
+<p><strong>Corollary</strong> By MCT, $\lim \int f_n = \int \lim f_n = \int f$</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2><em>Thrm 3</em>. Dominated/Integral Convergence Theorem</h2>
+<p>If $\{h_n\}$ satisfy</p>
+<ul>
+<li>$|h_n(x)|\leq B(x)$, which $B$ is an integrable function</li>
+<li>$h_n(x)\rightarrow^{\text{point-wise}} h(x)$</li>
+</ul>
+<p>Then, $\lim \int f_n = \int \lim f_n = \int f$</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2><em>Thrm 4.</em> Completeness</h2>
+<p>The space $(L^2, \|\cdot\|_{L^2})$ is complete</p>
+<p><em>proof</em>. Take Cauchy sequence $f_n \in L^2([a,b])$. By Cauchy, take subsequence $f_{n,k}$ s.t. $\|f_{n,k} - f_{n,k+1}\| \leq 2^{-k}$.<br>
+Let $f(x):=f_{n,1}(x) + \sum (f_{n, k+1} - f_{n,k}(x))$. WTS $f\in L^2 (i)$, $f_{n,k}\rightarrow^{L^2} f (ii)$.<br>
+Define $g:= |f_n,1| + \sum|f_{n,k+1}- f_{n,k}| $, $S_M(g) = |f_n,1| + \sum^M|f_{n,k+1}- f_{n,k}|$, then $f\leq g, S_M(f) \leq S_M(g)$<br>
+Apply MCT to $\{S_M(g)\}, 0\leq |f_{n,1}| \leq |f_{n,2}-f_{n,1}|\leq ..., S_1(g) \leq S_2(g) \leq S_3(g)$</p>
+<p>Then, WTS $S_M(g)\rightarrow g(x)$, which suffices to show that the sequence $g$ converges, a.k.a. $g\in L^2$<br>
+By triangle inequality $\|S_M(g)\|_{L^2} \leq \|f_{n,1}\|_{}L^2 + \sum^M \|f_{n,k+1} - f_{n,k}\| \leq \|f_{n,1}\| + \sum^M 2^{-k} \langle  \infty$</p>
+<p>$\int |g^2| dx = \int \lim_{M\rightarrow \infty} |S_M(g)^2|dx$<br>
+$=\lim_{n\rightarrow\infty} \int |S_M(g)|^2 dx$ by MCT<br>
+$\leq \lim_{M\rightarrow \infty} \|f_{n,1}\| + \sum^M 2^{-k} \leq \|f_{n,1}\| + 2 \langle  \infty $</p>
+<p>We have Cauchy seuqnce $f_n \in L^2$, WTS $\|f_n -f\|_{L^2}\rightarrow 0$<br>
+(i) Since $|f|\leq g$ and $g\in L^2, \int |f|^2 \leq \int |g|^2 \langle \infty\Rightarrow f\in L^2$</p>
+<p>(ii) $\|f_n - f\|_{L^2}^2 = \int |f_n - f|^2 dx\rightarrow 0$<br>
+Let $h_k:=|f_{n,k}- f|^2$, then<br>
+$h_k \leq |S_k(g)| + |g| \leq 2|g|\in L^2$<br>
+$f_{n,k}\rightarrow^{\text{point-wise}} f$ since $g\in L^2$ so $\lim_{k\rightarrow \infty} f_{n,k}(x)=f(x)$ exists<br>
+BY DCT, $\lim_{k\rightarrow \infty} \int |h_k|^2 = \int \lim_{k\rightarrow \infty} |h_k|^2 =0$,<br>
+Therefore, $f_{n,k}\rightarrow^{L^2}f$</p>
+<p>Then, expansion $f_{n,k} $ to $f_n$. i.e. $f_n \rightarrow^{L^2} f$.<br>
+By Cauchy sequence of $f_n$, if the sub-sequence converges to some limit, so that the whole sequence will do so.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1>Fourier Series</h1>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2><em>Def'n.</em> Orthogonal</h2>
+<p>Given $x,y\ in (V,\langle\cdot, \cdot\rangle)$, x,y are orthogonal if $\langle x,y\rangle  = 0$</p>
+<h3>Example</h3>
+<p>$x\circ y = cos(\theta) |x||y|$, so when $\theta = \pi /2, x\circ y = 0$</p>
+<h2><em>Def'n.</em> Orthogonal set</h2>
+<p>A collection of $\{e_k\}$ is called orthonormal if $\langle e_k,e_m\rangle  = 1\mathbb I(k=m)$</p>
+<h2><em>Thrm 4</em>.</h2>
+<p>Every Hilbert space has orthonormal basis, i.e. $\forall x\in H. x = \sum^\infty \langle x,e_k\rangle  e_k$</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3>Example</h3>
+<p>Take $e_k = (0,...,0,1,0)$ where $1$ is at $k$th position, $\{e_k\}$ is orthonormal set.</p>
+<p><em>proof</em>. $e_k \cdot e_m = \sum^n (e_k)_i (e_m)_i = 1\mathbb I(k=m)$</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3>Example</h3>
+<p>$\{1, \sqrt2\cos(n\theta), \sqrt2\sin(n\theta)\}$ is orthogonal for $(C([-\pi, \pi]), \|\cdot\|_{L^2})$</p>
+<p><em>proof</em>. $\frac{\sqrt2}{\pi}\int_{-\pi}^\pi \cos(n\theta)\cos(k\theta) = 1\mathbb I(n=k)$ and<br>
+$\frac{\sqrt2}{\pi}\int_{-\pi}^\pi \sin(n\theta)\sin(k\theta) = 1\mathbb I(n=k)$  and<br>
+$\frac{\sqrt2}{\pi}\int_{-\pi}^\pi \sin(n\theta)\cos(k\theta) = 0$</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2><em>Def'n</em>. Fourier Series</h2>
+<p>For function $f\in L^2([a,b])$, the Fourier series is defined to be 
+$$f(x):= a_0 + \sum a_n \frac{\cos(n\pi x)}{L} + b_n \frac{\sin(n\pi x)}{L}$$ where
+$$a_n = \langle f, \frac{\cos(n\pi x)}{L})\rangle _{L^2}, b_n = \langle f, \frac{\sin(n\pi x)}{L}\rangle _{L^2}$$</p>
+<h2><em>Thrm</em>. Carleson Hunt Theorem</h2>
+<p>If $f\in L^2([-L,L])$, then $f$ equals its Fourier series <em>almost everywhere</em>.<br>
+<em>almost everywhere</em> outside a measure zero set</p>
+
+</div>
+</div>
+</div>
+ 
+

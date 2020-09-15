@@ -1,0 +1,161 @@
+<div class=" highlight hl-ipython3"><pre><span></span><span class="o">---</span>
+<span class="n">title</span><span class="p">:</span> <span class="n">Arzela</span><span class="o">-</span><span class="n">Ascoli</span> <span class="n">Theorem</span>
+<span class="n">order</span><span class="p">:</span> <span class="mi">9</span>
+<span class="o">---</span>
+</pre></div>
+
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2><em>Def'n</em>. Equicontinuous</h2>
+<p>A family of function $\mathcal F \subset C(K,\mathbb R^m)$ is equicontinuous at $a\in K$<br>
+$$\forall f \in \mathcal F. \forall \epsilon &gt; 0. \exists \delta &gt; 0. \|x-a\|&lt;\delta \Rightarrow \|f(x)-f(a)\|&lt;\epsilon$$
+Then $\mathcal F$ is equicontinuous on $K$ is $\mathcal F$ is equicontinuous $\forall a\in K$.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2><em>Def'n</em>. Uniformly equicontinuous</h2>
+<p>$\mathcal F$ is uniformly equicontinuous if 
+$$\forall \epsilon &gt; 0. \exists \delta &gt; 0. \forall f\in\mathcal F. \forall x,y\in K. \|x-y\|&lt;\delta \Rightarrow \|f(x)-f(y)\|&lt;\epsilon$$</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2><em>Thrm 1.</em></h2>
+<p>$\mathcal G := \{g_n\}_{n\geq 1}\cup \{g\}$ where $g_n \in C(K,\mathbb R^m), g_n\rightarrow^{u.c.}g$, then $\mathcal G$ is equicontinuous.</p>
+<p><em>proof</em>. Let $a\in K, \epsilon &gt; 0$,<br>
+By completeness and uniform continuous, $g$ is also continuous,<br>
+take $\delta' &gt; 0$ s.t. $\forall x\in K. \|x-a\|&lt;\delta' \Rightarrow \|g(x)-g(a)\|&lt;\epsilon/3$.<br>
+By uniform continuous, take $N\geq 0$ s.t. $\forall n\geq N. \|g_n-g\|_\infty &lt;\epsilon/3$.<br>
+Then, $\forall n\geq N. \forall x, \|x-a\|&lt;\delta'$<br>
+$\|g_n(x)-g_n(a)\| \leq \|g_n(x)-g(x)\| + \|g(x)-g(a)\| + \|g(a)-g_n(a)\| \leq 3(\epsilon/3)=\epsilon$</p>
+<p>Then, for each $g_k \in \{g_1,g_2,...,g_N\}$, take $\delta_k$ by continuity of each $g_k$, 
+take $\delta = \min\{\delta_1,..,\delta_k, \delta'\}$<br>
+$\forall f \in \mathcal F. \forall \epsilon &gt; 0. \exists \delta &gt; 0. \|x-a\|&lt;\delta \Rightarrow \|f(x)-f(a)\|&lt;\epsilon$</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3>Example</h3>
+<p>$f_n(x)=x^n, x\in [0,1], \mathcal F = \{f_n\}_{n\geq 1}$ is not equicontinuous at 1.</p>
+<p><em>proof</em>. Take $\epsilon =1/2$, let $\delta &gt; 0$, wlog, $\delta &lt; 1$.<br>
+Take $y = 1-\delta/2&lt;1$, then $y^n \rightarrow 0$, hence we can take $N$ s.t. $\forall n\geq N, 1-y^n &gt; 1/2$<br>
+Therefore, $|1-y|=\delta/2 &lt; \delta$ but $|f_n(1)-f_n(y)|= 1-y^n &gt; 1/2$</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2>Lemma 1.   Compact Implies Equicontinuous</h2>
+<p>If $\mathcal F$ compact, then $\mathcal F$ equicontinuous on $K$.</p>
+<p><em>proof</em>. Suppose $\mathcal F$ is not equicontinuous,<br>
+take $a\in K, \epsilon &gt; 0$ s.t. $\forall n\geq 1. \exists f_n\in\mathcal F. \exists x_n\in K$ s.t. $\|x_n-a\|&lt;1/n$ but $\|f_n(x_n) - f_n(a)\| \geq \epsilon$, hence we construct sequences $\{x_n\}, \{f_n\}$<br>
+Then, any subset of $\{f_n\}$ cannot be equicontinuous $(i)$<br>
+However, since $\mathcal F$ is compact, take $\{f_{n_k}\}$ converges uniformly to some $f\in\mathcal F$, and $\{f_{n_k}\}\cup \{f\}$
+is equicontinuous, this contradicts with $(i)$</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2>Lemma 2.  Equicontinuous implies uniformly equicontinuous</h2>
+<p><em>proof</em>. Suppose $\mathcal F$ not u.e.c.<br>
+Take $\epsilon &gt; 0$ s.t. $\forall n\geq 1, \exists x_n,y_n \in K. \exists f_n\in \mathcal F. \|x_n-y_n\| &lt; 1/n \land \|f_n(x_n)-f_n(y_n)\|\geq \epsilon$ hence we construct sequence $\{x_n\}, \{y_n\}, \{f_n\}$<br>
+Since $K$ is compact, take $x_{n_k}\rightarrow a \in K$, then $y_{n_k} = x_{n_k}-(x_{n_k}-y_{n_k})\rightarrow a$</p>
+<p>$\mathcal F$ is equicontinous at $a\in K\Rightarrow \exists \delta &gt; 0, \|f_n(x)-f_n(a)\|\leq \epsilon/2$ for all $\|x-a\|&lt;\delta, f\in\mathcal F$.<br>
+Since $x_{n_k}\rightarrow a, y_{n_k}\rightarrow a, \exists M\in \mathbb N, \forall m \geq M. \|x_{n_m}-a\|&lt;\delta\land \|y_{n_m}-a\|&lt;\delta$<br>
+Therefore, $\forall m\geq M$<br>
+$\|f_{n_m}(x_{n_m})- f_{n_m}(y_{n_m})\|\leq \|f_{n_m}(x_{n_m})- f_{n_m}(a)\| + \|f_{n_m}(a)- f_{n_m}(y_{n_m})\|&lt; 2(\epsilon/2)=\epsilon$<br>
+contradicts with assumption</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2><em>Def'n</em>. Totally bouded</h2>
+<p>$S\subseteq K$ is an $\epsilon$-net of $K$ if $K\subseteq \cup_{a\in S}B_\epsilon(a)$<br>
+$K$ is totally bounded if it has a finite $\epsilon$-net $\forall \epsilon &gt; 0$</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2>Lemma 3. Bounded Implies Totally Bounded</h2>
+<p>If $K\subseteq \mathbb R^m$ bounded, then totally bounded.</p>
+<p><em>proof</em>. Let $\epsilon &gt; 0$, choose $N, N \leq \min\{\epsilon, \frac{1}{\sqrt m}\}$<br>
+$K$ bounded, hence $\exists L &gt; 0, \forall x = (x_1,...,x_m)\in K, |x_i|\leq L, \forall i$<br>
+Let $F = \{\frac{k_i}{2N^2}\}_{k_i\in \mathbb Z}\subseteq [-L,L]$, then $F$ is a finite $\frac{1}{2N^2}$-net for $[-L,L]$.<br>
+Let $A = \{x_1,...,x_m\}\subseteq \mathbb R^m$ s.t. $x_i \in F, \forall i$<br>
+Let $\tilde A = \{a\in A: B_{\epsilon/2}(x)\cap K \neq \emptyset\}$. Then, for each $x\in \tilde A$, choose $x_a \in B_{\epsilon/2}(a)\cap K$.<br>
+Take $x = (x_1,...,x_m)\in K$ for each $i = 1,...,m, \exists a_i \in F$ s.t. $|x_i-a_i|&lt;\frac{1}{2N^2}$<br>
+Then, $\|x-a\| = \sqrt{\sum |x_i-a_i|^2} &lt; \sqrt{\frac{m}{4N^4}} = \sqrt M/2N^2 \leq N/2N^2 \leq (2N)^{-1} &lt; \epsilon/2$<br>
+Also, $B_{\epsilon/2}(a)\cap K\neq \emptyset, a\in \tilde A$, so that $x_a$ is defined.<br>
+Then, $\|x-x_a\|\leq \|x-a\|+\|x-x_a\|&lt; \epsilon/2+\epsilon/2 = \epsilon$</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2>Lemma 4.</h2>
+<p>If $K$ bounded, then $K$ contains a sequence $\{x_i\}_{i\geq 1}$ dense in $K$. Moreover, $\forall \epsilon &gt; 0. \exists N\in\mathbb N$ s.t. $\{x_i\}_{i\leq N}$ is an $\epsilon$-net for $K$.</p>
+<p><em>proof</em>. For each $k\geq i$, let $B_k$ be a finite $k^{-1}$-net.<br>
+Take $\{x_i\}$ be the sequence which lists the $B_k$ consecutively, i.e. $x_0,...,x_{N_0}\in B_0, x_{N_0+1}, ...,x_{N_1} \in B_1,..$<br>
+Let $x\in K$, then $\forall k\geq 1. \exists n_k$ s.t. $x_{n_k}\in B_k$ and $\|x-x_{n_k}\|&lt; k^{-1}$, hence dense.<br>
+Also, given $\epsilon &gt; 0$, choose $k &gt; \epsilon^{-1}, \{x_i\}_{i\leq N_k}$ is a $\epsilon$-net.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1><em>Thrm</em>. Arzela-Ascoli Theorem</h1>
+<p>$\mathcal F \subseteq C(K,\mathbb R^m)$ is compact IFF closed, bounded, euicontinuous</p>
+<p>$\Rightarrow$ <em>proof.</em> Suppose not closed, then take $\{f_n\}\subseteq \mathcal F$ s.t. $f_n\rightarrow f\not\in \mathcal F$ contradicts with compactness.<br>
+Suppose not bounded, take $\{f_n\}\subseteq \mathcal F$ that $\|f_n\|_\infty\rightarrow\infty$ contradicts<br>
+and Lemma 1</p>
+<p>$\Leftarrow$ <em>proof</em>. Fix $\{f_n\} \subseteq \mathcal F$, by the Lemma 4, $\exists \{x_i\}\subseteq K$ s.t. $\forall \epsilon &gt; 0. \exists \{x_i\}_{i\leq N}$ is a $\epsilon$-net.<br>
+WTF $\{f_{n_k}\} \subseteq \{f_n\}$ s.t. $f_{n_k}(x_i)\rightarrow^{k}L_i, \forall 1\leq i\leq N$.<br>
+Let $A_0=\mathbb N$, since $\{f_n(x_1)\}_{n\in A_0}$ bounded, by Bolzano-Weierstrass Theorem, take the convergent subsequence, i.e. $A_1\subseteq A_0, \lim_{n\in A_1}f_n(x_1) =L_1$.<br>
+Inductively take $\mathcal A = A_0\supseteq A_1\supseteq A_2\supseteq ...$ be a decreasing sequence, s.t. $\lim_{n\in A_i}f_n(x_i)=L_i$<br>
+Then, for each $k\geq 1$, let $n_k$ ne tje $k$th element of $A_k$, i.e. 
+\begin{matrix}
+&amp;A_1 &amp;n_1 &amp; &amp; \\
+&amp;A_2 &amp; &amp; n_2 &amp;\\
+&amp;A_3 &amp; &amp; &amp;n_3 \\
+&amp;...
+\end{matrix}
+Since $A_n$ is decreasing, for each $i\geq 1$, there are at most $i-1$ elements are not in $A_i$.<br>
+In particular, this implies $\lim_k f_{n_k}(x_i) = \lim_{n\in A_i} f_n(x_i) = L_i$<br>
+Let $g_k = f_{n_k}$, let $\epsilon &gt; 0$, since $\mathcal F$ is equicontinuous, i.e. uniform equicontinuous. Take $\delta &gt; 0. \|x-y\|&lt;\delta\Rightarrow\|f(x)-f(y)\|&lt;\epsilon/3, \forall f \in \mathcal F$<br>
+By definition of $\{x_i\}$, take $N\in\mathcal N, \{x_1,...,x_n\}$ is a $\delta$-net.<br>
+Since $\lim_{k\rightarrow\infty} g_k(x_i)$ exists for all $i\geq 1$.<br>
+$\exists M\in \mathbb N$ s.t. $\forall k,l\geq M. \forall 1\leq i\leq N\Rightarrow \|g_n(x_i)-g_l(x_i)\|&lt;\epsilon/3$<br>
+Since $\{x_1,...,x_N\}$ is a $\delta$-net, $\exists i, \|x_i-x\|&lt;\delta$
+$$\|g_k(x)-g_l(x)\|\leq \|g_k(x)-g_k(x_i)\| + \|g_k(x_i)-g_l(x_i)\| + \|g_l(x_i)-g_l(x)\|&lt;\epsilon$$
+Since $\{g_k\}$ is uniform Cauchy, and $C(K,\mathbb R^m)$ is complete, $g_k\rightarrow g\in C(K,\mathbb R^m)$<br>
+Since $\mathcal F$ closed, $g\in\mathcal F$, therefore, compact.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Note that we only used closed at the very end. Therefore, If $\{f_n\}\subseteq C([a,b])$ and is bounded and equicontinuous, then it has a convergent subsequence.</p>
+
+</div>
+</div>
+</div>
+ 
+

@@ -24,6 +24,13 @@ collections:
     instructor: Jonathan Korman
     output: true
 
+  mat337:
+    code: MAT337
+    name: Introduction to Real Analysis
+    term: 2019 Summer
+    instructor: Tomas Kojar
+    output: true
+
   csc311:
     code: CSC311
     name: Introduction to Machine Learning
@@ -53,10 +60,24 @@ collections:
     output: true
 
   sta303:
-    code: STA303 
+    code: STA303/STA1002
     name: Methods of Data Analysis II
     term: 2019 Winter
     instructor: Shivon Sue-Chee
+    output: true
+
+  sta355:
+    code: STA355
+    name: Theory of Statistical Practice
+    term: 2020 Fall
+    instructor: Keith Knight
+    output: true
+
+  sta457:
+    code: STA457/STA2202
+    name: Time Series Analysis
+    term: 2019 Summer
+    instructor: Jen Wen Lin
     output: true
 
 

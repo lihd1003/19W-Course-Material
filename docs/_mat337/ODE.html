@@ -1,0 +1,127 @@
+---
+title: Fixed Point and ODE
+order: 11
+---
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1>Discrete Dynamical Systems</h1>
+<p><strong>Discrete Dynamical Systems</strong> Let $X\subseteq (V,\|\cdot\|), T:X\rightarrow X$ continuous. $(X,T)$ is a discrete dynamical system<br>
+<strong>Forward orbit</strong> $\forall x\in X$, forward orbit of x is the sequence $O(x):=\{T^n_x\}_{n\geq 0}$, $T^n_x=T(T...T(x))$</p>
+<p><strong>Fixed Point</strong> $x^*$ is<br>
+<strong>attractive fixed point (sink)</strong> if $\exists (a,b)\ni x^*$ s.t. $\forall x \in (a,b). T^N_x\rightarrow x^*$<br>
+<strong>repelling fixed point (source)</strong> if $\forall x\neq x^*$, $O(x)$ leaves $(a,b)$</p>
+<p><strong>Contraction</strong> $X\subseteq (V,\|\cdot\|),T:X\rightarrow X$ is a contraction on $X$ if 
+$$\exists c &lt; 1. \forall x,y\in X. \|Tx-Ty\|\leq c\|x-y\|$$
+i.e. $T$ is $c$-Lipschitz $c&lt;1$</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1>Banach Contraction Principle</h1>
+<p>Let $X\subseteq (V,\|\cdot\|)$ be a closed subset of a complete normed vector space,<br>
+IF $T:X\rightarrow X$ is a contraction on $X$<br>
+THEN<br>
+(i) $T$ has unique fixed point $x^*$<br>
+(ii) $\forall x\in X. x^* = \lim_{n\rightarrow\infty} T^nx$<br>
+(iii) $\|T^nx-x^*\|\leq c^n\|x-x^*\|\leq \frac{c^n}{1-c}\|x-Tx\|, c$ is the Lipschitz constant</p>
+<p><em>proof</em>. Let $x_0\in X$, recursively define $x_{n+1} = Tx_n$, hence form a sequence $\{x_n\}$.<br>
+Then, we can show that $\{x_n\}$ is Cauchy by observing
+\begin{align*}
+\|x_{n+m} - x_n\| &amp;\leq \sum_0^{m-1}\|x_{n+i-1}-x_{n+i}\| &amp;\text{triangle inequality} \\
+&amp;= \sum_{i=0}^{m-1} \|Tx_{n+i}-Tx_{n+i-1}\| \\
+&amp;\leq \sum_{i=0}^{m-1} c\|x_{n+i}-x_{n+i-1}\|&amp;\text{by contraction}\\
+&amp;\leq \sum^{m-1}c^{n+i}\|x_1-x_0\| &amp;\text{recursively repeat such process} \\
+&amp;&lt;\sum^\infty c^{n+i}\|x_1-x_0\| \\
+&amp;= \frac{c^n\|x_1-x_0\|}{1-c}
+\end{align*}
+Since $c^n\rightarrow 0$, we can choose $N$ sufficiently large to have $\|x_{n+m}-x_n\|\rightarrow 0$</p>
+<p><em>Existence</em> By completeness of the normed space, Cauchy implies convergent to some $x^*\in V$, by $X$ closed, $x^*\in X$. By Lipshitz, hence continuous of $T$, $Tx^* = T(\lim x_n) = \lim Tx_n = x^*\Rightarrow x^*$ is the fixed point.</p>
+<p><em>Uniqueness</em> Suppose $y\in X$ is also fixed point, $\|x^*-y\| = \|Tx^* - Ty\| \leq c\|x^*-y\|\Rightarrow \|x^*-y\| = 0\Rightarrow x^*=y$</p>
+$$\|T^Nx-x^*\| = \|T^n x-T^nx^*\|\leq c^n\|x-x^*\|= c^n lim \|x-x_m\|\leq \frac{c^n}{1-c}\|Tx-x\|$$
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1>Solving ODE</h1>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><strong>Example</strong> given the initial value problem $f'(x)=1+x-f(x), |x|\leq 1/2$ and $f(0)=1$</p>
+<p>First convert to the integral problem<br>
+$$f(x) = 1+ \int_0^x 1 + t - f(t)dt = 1+ x + \frac{x^2}{2} - \int_0^x f(t)dt, f\in C[-1/2,1/2]$$
+Define $T$ on $C[-1/2,1/2]$ and $Tf = f$ and the solution of the integral equation is a fixed point of $T$
+Then, to show $T$ is a contraction 
+\begin{align*}
+|Tf(x)-Tg(x) &amp;= |\int_0^x f(t)-g(t)dt| \\
+&amp;\leq \big|\int_0^x |f(t)-g(t)|dt\big| &amp;\text{tri. ineq.}\\
+&amp;\leq \int_0^x \|f-g\|dt \\
+&amp;=\|f-g\|_\infty \int_0^{|x|}dt\\
+&amp;\leq \frac{\|f-g\|_\infty}{2}
+\end{align*}
+Thus, by Banach Contraction Principle, choose $f_0 := 1\in C[-1/2,1/2]$, then 
+\begin{align*}
+f_1(x) &amp;= Tf_0(x) = 1+x+\frac{x^2}{2} - \int_0^x dt = 1+\frac{x^2}{2} \\
+f_2(x) &amp;= Tf_1(x) = 1+x+\frac{x^2}{2} - \int_0^x 1+\frac{x^2}{2} dt = 1 + \frac{x^2}{2} - \frac{x^3}{6}\\
+&amp;...\\
+f_n(x) &amp;= \sum \frac{(-x)^{n+1}}{(n+1)!}
+\end{align*}
+Since $|x|\leq 1/2$, using M-test, this power series is uniform convergence, and note that $f_n(x):=e^{-x} + x$</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2><em>Thrm</em>.  Existence of ODE</h2>
+<p>If $\Phi:[a,b]\times \mathbb R^n\rightarrow \mathbb R^n$ is Lipschitz on the second coordinate $y\in\mathbb R^n$.<br>
+Then $\exists F_*\in C([a,b],\mathbb R^n)$ s.t. $F_*=TF_*=\Gamma + \int_a^x \Phi(t,F_*(t))dt$</p>
+<p><em>proof</em>. (Picard iteration)</p>
+<p>Recursively define $F_0(x)=\Gamma, F_{k+1}(x)=TF_k = \Gamma + \int_a^x \Phi(t, F_k(t))dt$</p>
+<p>Consider $F_{k+1}-F_k$, let $M = \|\Phi(t,\Gamma)\|_\infty$, by EVT, since $[a,b]$ compact, $M$ is the maximum.<br>
+Then for any $x\in [a,b]$. $\|F_1(x) - F_0(x)\|  = \int_a^x \Phi(t,\Gamma)dt\leq M(x-a)$<br>
+\begin{align*}
+\|F_{k+1}(x) - F_k(x)\| &amp;= \int_a^x \Phi(t, F_{k}(t))-\Phi(t, F_{k-1}(t))dt \\
+&amp;\leq L\int_a^x\|F_k - F_{k-1}\|_\infty dt &amp;L \text{ is the Lipschitz constant} \\
+&amp;\leq L \int_a^x \frac{L^{k-1}M(x-a)^k}{k!} &amp;\text{induction hypothesis}\\
+&amp;= L^k \frac{M(x-a)^{k+1}}{(k+1)!}
+\end{align*}
+Then, for $n\geq N$, for some large $N$
+\begin{align*}
+\|F_n - F_0\| &amp;\leq \sum^{n-1} \|F_{k+1}-F_k\| \\
+&amp;\leq \sum^{n-1} \frac{L^k M(x-a)^{k+1}}{(k+1)!} \\
+&amp;\leq \frac{M}{L} \sum^\infty \frac{(L(x-a))^{k+1}}{(k+1)!}\\
+&amp;\leq \frac{M}{L} \sum^\infty \frac{(L(b-a))^{k+1}}{(k+1)!} &lt; \infty
+\end{align*}
+Since the infinite sum is finite, the series is Cauchy. so that $F_n\rightarrow^{u.c.}F_*\in C([a,b], \mathbb R^n)$ by compactness and closeness.</p>
+<p>Therefore, $TF_* = T\lim F_n = \lim TF_n = F_*$ using continuity</p>
+<p><strong>Uniqueness</strong> Suppose exists $G_*$, then 
+\begin{align*}
+TF_* - G_* &amp;= TTF_* - TG_* &amp;\text{by fixed point assumption} \\
+&amp;= T^kF_* - T^kG_* \\
+&amp;\leq \frac{(L(x-a))^{k+1}M}{(k+1)!L} \\
+&amp;\sim 0 &amp;\text{Sterling's formula}
+\end{align*}</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3>Example</h3>
+<p>$f'(x)=f(x), f(0)=1, x\in [0,1]$</p>
+<p><em>proof</em>. Let $F_0(x)=1, F_1(x) = 1 + \int_0^x F_0(t)dt = 1 + \int_0^x dt = 1 + x$<br>
+Assume $F_n(x) = \sum_0^k \frac{x^m}{m!}$, then 
+$$F_{k+1}(x) = 1 + \int_0^x F_n(t)dt = 1 + \int_0^x \sum_0^k \frac{x^m}{m!} = \sum_0^{k+1}\frac{x^m}{m!}$$<br>
+Therefore by induction, $F_*(x) = \lim_nF_n(x) = \sum^\infty x^m/m! = e^x$</p>
+
+</div>
+</div>
+</div>
+ 
+
