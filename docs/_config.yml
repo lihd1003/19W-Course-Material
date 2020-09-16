@@ -10,6 +10,14 @@ kramdown:
 markdown: kramdown 
 
 collections:
+
+  csc417:
+    code: CSC417/CSC2549
+    name: Physics-based Animation 
+    term: 2020 Fall
+    instructor: David I.W. Levin
+    output: true
+
   csc418:
     code: CSC418/CSC2504
     name: Computer Graphics

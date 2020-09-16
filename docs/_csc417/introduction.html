@@ -1,0 +1,68 @@
+---
+title: Math and Physics Background
+order: 0
+---
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1>Position, Velocity, and Acceleration</h1>
+<p>For a particle of constant mass $m$, its position at time $t$ is $\mathbf x(t):\mathbb R\rightarrow \mathbb R^3$ (Assuming 3D space), its velocity $\mathbf v(t) = \frac{d\mathbf x}{dt}(t)$ and its acceleration $\mathbf a(t) = \frac{d\mathbf v}{dt}(t) = \frac{d^2\mathbf x}{dt^2}(t)$</p>
+<h1>Newton's Law</h1>
+<ol>
+<li>Every object will remain at rest of in uniform motion in a straight line unless compelled to change its state by the action of an external force</li>
+<li>The force acting on ab object is equal to the time rate-of-change of the momentum  ()
+$$f = \underset{\text{time rate of change}}{\frac{d}{dt}}\underset{\text{momentum}}{m\mathbf v}= m\frac{d\mathbf v}{dt} = m\mathbf a$$</li>
+<li>For every action there is an equal and opposite reaction</li>
+</ol>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1>Variational (Analytical) Mechanics</h1>
+<p>Based on fundamental energies rather than two vectorial quantities</p>
+<ul>
+<li><strong>Kinetic Energy</strong> energy due to motion</li>
+<li><strong>Potential Energy</strong> energy "held within" an object due to position, internal stresses, charge, etc. 
+Potential energy has the potential to become kinetic energy</li>
+</ul>
+<h2>Problem Settings</h2>
+<p>Let the image of $\mathbf f(t)$ be the path of the motion, setting some functional 
+$$e(\mathbf f(t), \dot{\mathbf f}(t), ...) \rightarrow \mathbb R$$
+and then solve (optimize) the variational derivative to find the proper $\mathbf f$</p>
+<h2>Generalized Coordinates</h2>
+<p>Let the generalized coordinates be $\mathbf q: \mathbb R \rightarrow \mathbb R^n$ be the actual variable parametrize the motion
+$$\mathbf x(t) = \mathbf f(\mathbf q(t)), \frac{d\mathbf x}{dt}(t) = \underset{\text{Jacobian}}{\frac{d\mathbf f}{d\mathbf q}}\underset{\text{generalized velocity}}{{\dot q(t)}}$$</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2>Lagrangian</h2>
+<p>define the Lagrangian be
+$$L = T - V = \text{kinetic} - \text{potential}$$</p>
+<h1>The Principle of Least Action</h1>
+<p>Assume the end points are known, to find the path between them by finding a <strong>stationary point</strong> of the <strong>action</strong>.</p>
+<h2>Action</h2>
+<p>For constant time $t_1, t_2$, the action is a functional equals the integral of the Lagrangian over 
+$$S(\mathbf q(t), \dot{\mathbf q}(t)) = \int_{t_1}^{t_2} T(\mathbf q(t), \dot{\mathbf q}(t)) - V(\mathbf q(t), \dot{\mathbf q}(t)) = dt = \int_{t_1}^{t_2}L(\mathbf q(t), \dot{\mathbf q}(t))dt$$</p>
+<h2>Stationary Point</h2>
+$$S(\mathbf q + \delta\mathbf q, \dot{\mathbf q}+\delta \dot{\mathbf q}) = S(\mathbf q(t), \dot{\mathbf q}(t))$$<p>which means that perturbation $\delta$ of the trajectory $\mathbf q$ does not change the action.</p>
+<h2>The Calculus of Variations (Euler Lagrange Equations)</h2>
+\begin{align*}
+S(\mathbf q + \delta\mathbf q, \dot{\mathbf q}+\delta \dot{\mathbf q}) &amp;=\int_{t_1}^{t_2}L(\mathbf q + \delta\mathbf q, \dot{\mathbf q}+\delta \dot{\mathbf q})dt\\
+&amp;\approx \int_{t_1}^{t_2}L(\mathbf q, \dot{\mathbf q})dt + \int_{t_1}^{t_2}\frac{\partial L}{\partial\mathbf q}\delta\mathbf q + \frac{\partial L}{\partial\dot{\mathbf q}}\delta\dot{\mathbf q }dt\\
+&amp;= S(\mathbf q, \dot{\mathbf q}) + \underset{\text{first variation}}{\delta S(\mathbf q, \dot{\mathbf q})}
+\end{align*}<p>Therefore, principle of least action becomes 
+$$\delta S(\mathbf q, \dot{\mathbf q}) = 0$$
+Then, use integration by parts (see APM462 notes for detailed steps)
+$$\int_{t_1}^{t_2}\frac{\partial L}{\partial\mathbf q}\delta\mathbf q + \frac{\partial L}{\partial\dot{\mathbf q}}\delta\dot{\mathbf q }dt = \int_{t_1}^{t_2}(\frac{\partial L}{\partial \mathbf q} - \frac{d}{dt}\frac{\partial L}{\partial \dot{\mathbf q}})\delta \mathbf q dt + \underset{\text{known end points so }=0}{\frac{\partial L}{\partial \dot{\mathbf q}}\delta \mathbf q \vert_{t_1}^{t_2}}$$
+Therefore, we have the Euler Lagrange equation (The lemmas are in APM462 notes)
+$$\frac{\partial L}{\partial \mathbf q} = \frac{d}{dt}\frac{\partial L}{\partial \dot{\mathbf q}}$$</p>
+
+</div>
+</div>
+</div>
+ 
+
