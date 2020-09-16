@@ -1,0 +1,69 @@
+---
+title: Gradient Descent
+order: 45
+---
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1>Stochastic gradient descent</h1>
+<p>Update the parameters based on the gradient for a single training example
+$$1. \text{Choose i uniformly}, 2. \theta \leftarrow \theta - \alpha \frac{\partial \mathcal L^{(i)}}{\partial \theta}$$
+Therefore, for extremely large dataset, you can see some progress before seeing all the data.</p>
+<p>Such gradient is a biased estimate of the batch gradient
+$$E(\partial_\theta L^{(i)}) = N^{-1}\sum_{i=1}^n \partial_\theta L^{(i)} = \partial_\theta J$$
+Note that by this expectation, we should do sampling with replacement</p>
+<h3>Potential Issues</h3>
+<ul>
+<li>Dependent on the order </li>
+<li>Variance can be high, considering some points goes in one direction, while the others goes another</li>
+</ul>
+<h2>mini-batch</h2>
+<p>Compute the gradients on a randomly chosen medium-sized set of training example.</p>
+<p>Let $M$ be the size of the mini batch,</p>
+<ul>
+<li>$M\uparrow$: computation</li>
+<li>$M\downarrow$: can't exploit vectorization, high variance</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2>Learning Rate</h2>
+<p>The learning rate also influences the <strong>fluctuations</strong> due to the stochasticity of the gradients.</p>
+<h3>Strategy</h3>
+<p>Start large, gradually decay the learning rate to reduce the fluctuations</p>
+<p>By reducing the learning rate, reducing the fluctuations can appear to make the loss drop suddenly, but can come at the expense of long-run performance.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2>Non-convex optimization</h2>
+<p>Have a chance of escaping from local (but non global) minima. If the step-size is too small, it will likely to fall into the local minimum.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1>GD with Momentum</h1>
+<p>compute an exponentially weighted average of the gradient, and the use the gradient to update the weights</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2>Algorithm</h2>
+<p>initialize $V= 0$
+$$V\leftarrow \beta V + (1-\beta)\frac{\partial E}{\partial w}$$
+$$w \leftarrow w - \alpha V$$
+where $\alpha$ is the learning rate, $\beta$ is the momentum. Commonly, $\beta$ is around 0.9</p>
+
+</div>
+</div>
+</div>
+ 
+

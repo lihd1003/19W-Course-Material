@@ -9,6 +9,8 @@ kramdown:
   syntax_highlighter: rouge
 markdown: kramdown 
 
+collections_dir: ./courses
+
 collections:
 
   csc417:

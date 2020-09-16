@@ -1,0 +1,204 @@
+---
+title: Dimension Reduction - PCA and Auto Encoders
+order: 80
+---
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1>Dimension Reduction</h1>
+<p>Loss some information (e.g. spread / $\sigma$) by projecting higher dimensions onto lower ones. IN practice, the important features can be accurately captured in a low dimensional subspace.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Let $\mathcal D = \{x^{(1)},...,x^{(N)}\}\subset \mathbb R^D$, so that $N$ instances will form matrix 
+$$X = \begin{bmatrix}[\vec x^{(1)}]^T\\...\\ [\vec x^{(N)}]^T\end{bmatrix}$$
+each row will be one observation of $D$ faetures,<br>
+Let $x^{(i)}\sim N(\mu, \Sigma)$</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2>Projection onto a subspace</h2>
+<p>Given $\mathcal D, \hat\mu=N^{-1}\sum^N x^{(i)}$ be the sample mean.</p>
+<p>Want to find a $K &lt;D $ dimensional subspace $S\subset \mathcal R^D$ s.t. $x^{(n)}-\hat\mu$ is "well represented" by a projection onto $K$-dimensional $S$.</p>
+<p>Where <strong>projection</strong> is to find the closest point $\tilde x$ on $S$ s.t. $\|x-\tilde x\|$ is minimized.</p>
+<p>In a 2-dimensional problem, we are looking for direction $u_1$ along with the data is well-represented, such as direction of higher variance or the direction of min difference after projection, which turns to be the same.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2>Euclidean Projection</h2>
+<p>$Proj_S(x):=$ projection of $x$ on $S$.</p>
+<p>In 2D case, $S$ is the line along the unit vector $u$ (1-D subspace). $u$ is a basis for $S$.</p>
+<p>Since $x^Tu = \|x\|\|u\|\cos\theta =\|x\|\cos\theta$
+$$Proj_S(x) = x^Tu\cdot u = \|\tilde x\|u$$</p>
+<p>In K-D case, we have $K$ basis $u_1,...,u_K \in \mathcal R^D$. and the projection will be 
+$$Proj_S(x) = \sum^K (x^Tu_i) u_i = \sum^K z_i u_i$$</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3>Center data</h3>
+<p>Centering by subtract the mean $\hat\mu$. i.e. the mean (center) be the origin. We need to center the data since we don't want location of data to influence the calculations.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3>Representation/code</h3>
+<p>Combine the two above together, we have 
+$$\tilde x = \hat\mu + Proj_S(x-\hat\mu) = \hat\mu + \sum^K z_i \vec u_i$$
+where $z_k = \vec u_k^T(x-\hat\mu)$</p>
+<p>Define matrix $U_{D\times K} = [\vec u_1, ..., \vec u_K]$, then $$\vec z = U^T(x-\hat\mu), \tilde x = \hat\mu + U\vec z = \hat\mu + UU^T(x-\hat\mu)$$ 
+We call $UU^T$ the projector on $S$, $U^TU = I$</p>
+<p>Both $x,\tilde x\in \mathbb R^D$ but $\tilde x$ is a linear combination of vectors in a lower dimensional subspace with representation $\vec z \in \mathbb R^K$.</p>
+<p>We call $\tilde x$ <strong>reconstruction</strong> of $x$, $\vec z$ be its representation(code).</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2>Learning a Subspace</h2>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Since we will definitely lose partial information by dimension reduction, we want a good $D\times K$ matrix $U$ with orthonormal columns.</p>
+<p>To measure how "good" the subspace is, propose two criteria:</p>
+<p><strong>Minimize reconstruction error</strong>: find vectors in a subspace that are closest to data points 
+$$\arg\min_U \frac 1 N \sum^N \|x^{(i)} - \tilde x^{(i)}\|^2$$
+<strong>Maximize variance of reconstructions</strong> find a subspace where data has the most variability
+$$\arg\max_U \frac 1 N \sum^N \|\tilde x^{(i)} - \hat\mu\|^2$$</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Noting that 
+\begin{align*}
+E(\tilde x) &amp;= E(\hat\mu + UU^T(x-\hat\mu))\\
+&amp;= \hat\mu + UU^T(E(x)-\hat\mu)\\
+&amp;= \hat\mu + UU^T0\\
+&amp;= \hat\mu
+\end{align*}
+So that we can still use mean of $x$ to calculate variance of the reconstruciton</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3>Equivalence of the criteria</h3>
+<p><strong>lemma1</strong> Norm of centered reconstruction is equal to norm of representation
+\begin{align*}
+\|\tilde x^{(i)} - \hat\mu\|^2 &amp;= (U\vec z^{(i)})^T(U\vec z^{(i)})\\
+&amp;=  (\vec z^{(i)})^T U^TU\vec z^{(i)}\\
+&amp;= (\vec z^{(i)})^T\vec z^{(i)}&amp;U^TU = I\\
+&amp;= \|z^{(i)}\|
+\end{align*}</p>
+<p><strong>lemma2</strong> $\tilde x^{(i)}-\hat\mu$ is orthogonal to $\tilde x^{(i)} - x^{(i)}$</p>
+\begin{align*}
+(\tilde x^{(i)}-\hat\mu)^T(\tilde x^{(i)} - x^{(i)}) &amp;= (\hat\mu+UU^T(x^{(i)}-\hat\mu)-\hat\mu)^T(\hat\mu+UU^T(x^{(i)}-\hat\mu) - x^{(i)})\\
+&amp;= (x^{(i)}-\hat\mu)^TUU^T(\hat\mu- x^{(i)}+UU^T(x^{(i)}-\hat\mu) )\\
+&amp;= (x^{(i)}-\hat\mu)^TUU^T(\hat\mu - x^{(i)}) + (x^{(i)}-\hat\mu)^TUU^TUU^T(x^{(i)}-\hat\mu))\\
+&amp;= (x^{(i)}-\hat\mu)^TUU^T(\hat\mu - x^{(i)}) + (x^{(i)}-\hat\mu)^TUU^T(x^{(i)}-\hat\mu))\\
+&amp;= 0
+\end{align*}
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><strong>Proposition</strong> The two criteria is equivalent $\frac 1 N \sum^N\|x^{(i)}- \tilde x^{(i)}\|^2 = C - \frac1N\sum^N\|\tilde x^{(i)}-\hat\mu\|^2$</p>
+<p>By lemma2, since the two vectors are orthogonal, by Pythagorean Theorem
+\begin{align*}
+\|\tilde x^{(i)} - \hat\mu\|^2 + \|x^{(i)} - \tilde x^{(i)}\|^2 &amp;= \|x^{(i)}-\hat\mu\|^2\\
+\frac1N\sum^N \|\tilde x^{(i)} - \hat\mu\|^2 + \frac1N\sum^N\|x^{(i)} - \tilde x^{(i)}\|^2 &amp;= \frac1N\sum^N\|x^{(i)}-\hat\mu\|^2\\
+\text{projected variance} + \text{reconstruction error} &amp;= C
+\end{align*}</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1>PCA</h1>
+<h2>Spectral Decomposition (Eigendecomposition)</h2>
+<p>If $A_{n\times n}$ is a symmetric matrix (so that has a full set of eigenvectors). Then, $\exists Q_{n\times n}, \Lambda_{n\times n}$ s.t. $A = Q\Lambda Q^T$ where $Q$ is orthogonal matrix formed by $n$ eigenvectors and $\Lambda$ is diagonal with $\lambda_1,...,\lambda_n$.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Using Eigendecomposition on the <strong>empirical convariance matrix</strong> $\hat\Sigma = \frac1N \sum^N (x^{(i)}-\hat\mu)(x^{(i)}-\hat\mu)^T$, the optimal PCA subspace is then spanned by some $K$ eigenvectors of $\hat\Sigma$</p>
+<p>These eigencectors are called principal components, analogous to the principal axes of an ellipse.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2>Deriving PCA for $K=1$</h2>
+\begin{align*}
+\frac 1N \sum^N\|\tilde x^{(i)} - \hat\mu\|^2 &amp;= \frac1N\sum^N [z^{(i)}]^2\\
+&amp;= \frac1N\sum^N(u^T(x^{(i)}-\hat\mu))^2\\
+&amp;=  \frac1N\sum^Nu^T(x^{(i)}-\hat\mu)(x^{(i)}-\hat\mu)^Tu\\
+&amp;= u^T\bigg[\frac1N\sum^N(x^{(i)}-\hat\mu)(x^{(i)}-\hat\mu)^T\bigg]u\\
+&amp;= u^T\hat\Sigma u= u^TQ\Lambda Q^Tu=a^T\Lambda a= \sum^D\lambda_j a_j^2
+\end{align*}<p>For the goal of maximize $\sum^D \lambda_j a_j^2, \vec a = Q^Tu$, noting that $\sum a_j = a^Ta = u^TQQ^Tu = u^Tu = 1$. Therefore, choosing the largest $\lambda_k$, 
+$$\sum \lambda_ja_j^2 \leq \sum \lambda_k a_j^2 = \lambda_d\sum a_j^2 = \lambda_k$$
+And such maximum can be obtained by setting $a_i = \mathbb I(i = k)$. Therefore, $\vec u = Q\vec a = q_k$</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2>Decorrelation</h2>
+\begin{align*}
+cov(\vec z) &amp;= cov(U^T(x-\mu))\\
+&amp;= U^Tcov(x)U\\
+&amp;= U^TQ\Lambda Q^TU\\
+&amp;= [I_k, 0_{n-k}]\Lambda [I_k, 0_{n-k}]^T&amp;\text{orthogonality}\\
+&amp;= \text{Top left } K\times K\text{ block of }\Lambda 
+\end{align*}
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1>Autoencoder</h1>
+<p>An autoencoder is a feed-forward neural net to take input/target pair $(\vec x, \vec x)$. In such NN, we add a bottleneck layer to reduce the dimensionality so that the weights on such layer will be our code vector.</p>
+<p>The whole process goes through 
+$$x \Rightarrow Encode \Rightarrow Bottleneck(code\_vector)\Rightarrow Decode\Rightarrow \tilde x$$</p>
+<p>By doing such, we learn abstract features in an unsupervised way, and can transfer to supervised tasks.</p>
+<h2>Linear autoencoders</h2>
+<p>If we use linear activations and squared error loss. Say we have 1 hidden layer of $k$ weights, so that $\tilde x = W_2W_1x, W_2:D\times K, W_1: K\times D$, then $W_2$ is the PCA subspace</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2>Nonlinear Autoencoder</h2>
+<p>If we use non-linear activations, then they can be more powerful for a given dimensionality, comparing to PCA (but also much more computational heavy in finding an optimal subspace).</p>
+
+</div>
+</div>
+</div>
+ 
+

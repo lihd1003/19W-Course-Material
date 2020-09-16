@@ -1,0 +1,99 @@
+---
+title: Reinforcement Learning
+order: 110
+---
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1>Reinforcement Learning Problem</h1>
+<p>An agent continually interacts with the environment. How should it choose its actions so that its long-term rewards are maximized.</p>
+<p>Reinforcement Learning is challenging in</p>
+<ul>
+<li>continuous stream of input information, and we have to choose actions</li>
+<li>effects of an action depend on the state of the agent in the world </li>
+<li>obtain reward that depends on the state and actions </li>
+<li>You know only the reward for your action, not other possible actions. </li>
+<li>Could be a delay between action and reward. </li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2>Markov Decision Process (MDP)</h2>
+<p>MDP is the mathematical framework to describe RL problems.</p>
+<p>A discounted MDP is defined by a tuple $(S, A, P, R, \gamma)$ where</p>
+<ul>
+<li>$S$ state space, discrete or continuous (most cases discrete)</li>
+<li>$A$ action space. we only consider finite action apace, i.e. $A = \{a_1,...,a_M\}$</li>
+<li>$P$ transition probability</li>
+<li>$R$ immediate reward distribution</li>
+<li>$\gamma$ discount factor $0\leq \gamma \leq 1$</li>
+</ul>
+<p>The agent has a <strong>state</strong> $s\in S$ in the environment.</p>
+<p>At every time step $t = 0, 1,...$ the agent is at state $S_t$.</p>
+<ul>
+<li>Takes an <strong>action</strong> $A_t$</li>
+<li>Moves into a new state $S_{t+1}$, according to the dynamics of the environment and the selected action, i.e., $S_{t+1}\sim P(\cdot|S_t, A_t)$</li>
+<li>Receives some <strong>reward</strong> $R_t \sim R(\cdot|S_t, A_t, S_{t+1})$</li>
+<li>Alternatively, $R_t \sim R(\cdot|S_t, A_t)$ or $R_t\sim R(\cdot |S_t)$</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>The action selection mechanism is described by a <strong>policy</strong> $\pi$, which is a mapping from states to actions, i.e., $A_t = \pi(S_t)$ (deterministic policy) or $A_t\sim \pi(\cdot|S_t)$ (stochastic policy).</p>
+<p>The goal is to find a policy $\pi$ s.t. <strong>long term rewards</strong> of the agent is maximized.</p>
+<p>Different notions of long-term reward:</p>
+<ul>
+<li>Cumulative/total reward: $R_0 + R_1 + R_2 + ...$</li>
+<li>Discounted (cumulative) reward: $R_0 + \gamma R_1 + \gamma^2 R_2 + ...$ <ul>
+<li>The discount factor $0\leq \gamma \leq 1$ determines how myopic the agent is. </li>
+<li>When $\gamma &gt;&gt; 0\Rightarrow $ more myopic, $\gamma &gt;&gt; 1\Rightarrow $ less myopic. </li>
+</ul>
+</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h4>Transition Probability (or Dynamics)</h4>
+<p>The transition probability describes the changes in the state of the agent when it chooses actions 
+$$P(S_{t+1} = s'|S_t = s, A_t = a)$$
+This model has <strong>Markov property</strong>; the future depends on the past only through the current state.</p>
+<p>A <strong>policy</strong> is the action-selection mechanism of the agent, and describes its behavior. Policy can be deterministic or stochastic.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1>Value Function based Reinforcement Learning</h1>
+<p>The expected future reward, and is used to evaluate the desirability of states.<br>
+State-value function $V^\pi$ for policy $pi$ is a function defined as 
+$$V^\pi(s):= E_\pi \bigg[\sum_{t\geq 0}\gamma^t R_t\mid S_0 = s], R_t\sim R(\cdot |S_t, A_t, S_{t+1})\bigg]$$
+describes the expected discounted reward if the agent starts from state $s$ following policy $\pi$.</p>
+<p>Action-value function $Q^\pi$ for policy $\pi$ is 
+$$Q^\pi(s,a) := E_\pi\bigg[\sum_{t\geq 0}\gamma^t R_t\mid S_0 = s, A_0 = a\bigg]$$
+describes the expected discounted reward if the agent starts from state $s$, takes action $a$, and afterwards follows policy $\pi$.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>The goal is to find a policy $\pi$ that maximizes the value function, i.e. the optimal value function 
+$$Q^*(s,a)=\sup_\pi Q^\pi(s,a)$$
+Given $Q^*$, the optimal policy can be obtained as 
+$$\pi^*(s) = \arg\max_a Q^* (s,a)$$
+The goal of an RL agent is to find a policy $\pi$ that is close to optimal, $Q^\pi \approx Q^*$</p>
+
+</div>
+</div>
+</div>
+ 
+

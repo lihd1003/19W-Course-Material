@@ -1,0 +1,102 @@
+---
+title: Linear Regression
+order: 30
+---
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1>Modular approach of a question</h1>
+<ul>
+<li>Choose a <strong>model</strong> describing the relationships between variables of interest</li>
+<li><strong>loss function</strong> quantifying how bad is the fit</li>
+<li><strong>regularizer</strong> saying how much we prefer different candidate explanations</li>
+<li>fit the model using an <strong>optimization algorithm</strong></li>
+</ul>
+<p>For supervised learning<br>
+Given: target $t\in\mathcal T$ (response, outcome, output, class)<br>
+features $x\in\mathcal X$ (inputs, covariates, design)<br>
+Objective to learn a function $f:\mathcal X \rightarrow \mathcal T$ .s.t. $t\approx y = f(x)$</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1>Linear Regression</h1>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2>Model</h2>
+$$y = f(\vec x) = \sum_{j} w_j x_j +b$$<p>where $\vec x$ is the input, $y$ is <strong>prediction</strong>, $\vec w$ is <strong>wights</strong>, $b$ is the <strong>bias</strong><br>
+$\vec w, b$ are the <strong>parameters</strong></p>
+<p>In matrix form<br>
+$y = XW$ where $$ X=
+\begin{bmatrix}  
+1&amp;[x^{(1)}]^T\\
+...&amp;...\\
+1&amp;[x^{(D)}]^T
+\end{bmatrix}, W = \begin{bmatrix}b&amp;w_1&amp;w_2&amp;...&amp;w_D\end{bmatrix}^T$$</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2>Loss Function (Squared error)</h2>
+<p>$\mathcal L(y, t) = \frac{(y-t)^2}{2}$ where $y-t$ is the residual and $\frac{1}{2}$ is just to make the calculations convenient.</p>
+<p>Therefore, define <strong>cost function</strong> to be the average over all training examples<br>
+$$\mathcal J(\vec w, b) = \frac{\sum^N (y^{(i)}- t^{(i)})^2}{2} = \frac{1}{2} \sum^N (\vec w^T \vec x^{(i)} + b - t^{(i)})^2$$</p>
+<p>To minimize the loss/cost, calculate $\partial_{w_j} \mathcal J := 0, \forall j \in \{0,1,2,.., N\}, w_0 = b$<br>
+The resulted $$\vec w^{L.S.} = (X^TX)^{-1}X^Tt$$</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2>Improving model: Polynomial curve fitting</h2>
+<p>Consider <strong>feature mapping</strong> $\psi(x):\mathbb R^D\rightarrow \mathbb R^M$, for example $x\in\mathbb R, \psi(x) = [1, x, x^2]^T$, so that we get a new $\vec x'$ and can be used into fit</p>
+<h4>Underfit and Overfit</h4>
+<p>Underfit: model is too simple to fit the data<br>
+Overfit: too complex so that fit the data perfectly</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2>Improving model: $L^2$ Regularization</h2>
+<p>A function that quantifies how much we prefer one hypothesis vs. another</p>
+<p>We encourage the weights to be small by choosing as our regularizer the $L^2$ penalty $\mathcal R(\vec w) := \frac{\|\vec w\|^2_2}{2}$<br>
+The regularized cost function makes a trade-off between fit to the data and the norm of the weights<br>
+$$\mathcal J_{reg}(\vec w) = \mathcal J(\vec w) + \lambda \mathcal R(\vec w)$$
+Hence $\lambda$ is a hyperparameter that we can tune with a validation set and allows to vary penalty on dimensionality.</p>
+<p>When measuring the validation rate, we still measure $\mathcal J(\vec w)$, but for training we will use $\mathcal J_{reg}(\vec w)$ for determining $M$</p>
+<p><strong>Probelms</strong> need to make sure $x_i$'s have approximately the same unit so that $\mathcal R(\vec w)$ is not dominated by some feature weights</p>
+<p>For LS, regularized cost gives 
+$$\vec w_\lambda^{Ridge} = arg\min_\vec w \mathcal J_{reg}(\vec w)= (X^T X+\lambda I)^{-1}X^T t$$</p>
+<h3>$L^1$ Regularization</h3>
+<p>$\mathcal R_{L^1} = \sum |w_i|$ encourages weights to be exactly zero, we can design regularizers based on whatever property we'd like to encourage.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1>Conclusion</h1>
+<ul>
+<li>Choose a model and a loss function</li>
+<li>Formulate an optimization problem</li>
+<li>Solve the minimization problem using either direct solution (set derivative to zero) or gradient descent (move $\vec w$, start with a guess, slowly changes to minimize cost, when direct solution is unavailable)</li>
+<li><strong>vectorize</strong> </li>
+<li>use <strong>features</strong> to get a more powerful linear model</li>
+<li>improve the generalization by adding a <strong>regularizer</strong></li>
+</ul>
+
+</div>
+</div>
+</div>
+ 
+
