@@ -24,6 +24,13 @@ collections:
     term: 2020 Summer
     instructor: Sarah Kushner
     output: true
+  
+  csc420:
+    code: CSC420
+    name:  Intro to Image Understanding 
+    term: 2019 Fall
+    instructor: Babak Taati
+    output: true
 
   apm462:
     code: APM462

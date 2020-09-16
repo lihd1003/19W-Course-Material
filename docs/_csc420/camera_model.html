@@ -1,0 +1,285 @@
+---
+title: Homography - Basics and Camera Model
+order: 70
+---
+
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">cv2</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">pyplot</span> <span class="k">as</span> <span class="n">plt</span>
+<span class="kn">import</span> <span class="nn">math</span>
+
+<span class="k">def</span> <span class="nf">imshow</span><span class="p">(</span><span class="n">img</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="n">bgr</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+    <span class="c1"># since plt and cv2 have different RGB sorting</span>
+    <span class="k">if</span> <span class="n">bgr</span><span class="p">:</span>
+        <span class="n">img</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">cvtColor</span><span class="p">(</span><span class="n">img</span><span class="p">,</span><span class="n">cv2</span><span class="o">.</span><span class="n">COLOR_BGR2RGB</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">ax</span> <span class="o">==</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">img</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">uint8</span><span class="p">))</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s2">&quot;off&quot;</span><span class="p">)</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="n">title</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">ax</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">img</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">uint8</span><span class="p">))</span>
+        <span class="n">ax</span><span class="o">.</span><span class="n">set_axis_off</span><span class="p">()</span>
+        <span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="n">title</span><span class="p">)</span>
+        
+<span class="n">plt</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s2">&quot;figure.figsize&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="mi">12</span><span class="p">,</span><span class="mi">6</span><span class="p">)</span>
+</pre></div>
+
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1>Affine Transformations</h1>
+$$\begin{bmatrix}x'\\y'\end{bmatrix} = 
+\begin{bmatrix}a&amp;b&amp;e\\c&amp;d&amp;f\end{bmatrix} \begin{bmatrix}x\\y\\1\end{bmatrix} $$<p>is the combination of a linear transformation $\begin{bmatrix}a&amp;b\\c&amp;d\end{bmatrix}$ plus a translation $\begin{bmatrix}e\\f\end{bmatrix} $</p>
+<h2>Properties</h2>
+<ul>
+<li>Origin $\Rightarrow (e, f)$</li>
+<li>Lines map to lines </li>
+<li>Parallel lines remain parallel</li>
+<li>Preserves ratios</li>
+<li>Closed under composition</li>
+<li>Rectangles go to parallelograms</li>
+</ul>
+
+</div>
+</div>
+</div>
+
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">axs</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">8</span><span class="p">))</span>
+<span class="n">img</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="mi">100</span><span class="p">,</span> <span class="mi">100</span><span class="p">))</span>
+
+<span class="n">img</span><span class="p">[:</span><span class="mi">33</span><span class="p">,</span> <span class="p">:</span><span class="mi">33</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="n">imshow</span><span class="p">(</span><span class="n">img</span><span class="p">,</span> <span class="n">axs</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">],</span> <span class="n">title</span><span class="o">=</span><span class="s2">&quot;original&quot;</span><span class="p">,</span> <span class="n">bgr</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+
+<span class="n">M_trans</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">20</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mf">1.</span><span class="p">,</span> <span class="mi">20</span><span class="p">]])</span>
+<span class="n">img_trans</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">warpAffine</span><span class="p">(</span><span class="n">img</span><span class="p">,</span> <span class="n">M_trans</span><span class="p">,</span> <span class="p">(</span><span class="mi">100</span><span class="p">,</span> <span class="mi">100</span><span class="p">))</span>
+<span class="n">imshow</span><span class="p">(</span><span class="n">img_trans</span><span class="p">,</span> <span class="n">axs</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">1</span><span class="p">],</span> <span class="n">title</span><span class="o">=</span><span class="s2">&quot;translation&quot;</span><span class="p">,</span> <span class="n">bgr</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+
+<span class="n">M_rotation</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="mf">0.5</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="mf">0.5</span><span class="p">),</span> <span class="mi">0</span><span class="p">],</span> 
+                       <span class="p">[</span><span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="mf">0.5</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="mf">0.5</span><span class="p">),</span> <span class="mi">0</span><span class="p">]])</span>
+<span class="n">img_rotation</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">warpAffine</span><span class="p">(</span><span class="n">img</span><span class="p">,</span> <span class="n">M_rotation</span><span class="p">,</span> <span class="p">(</span><span class="mi">100</span><span class="p">,</span> <span class="mi">100</span><span class="p">))</span>
+<span class="n">imshow</span><span class="p">(</span><span class="n">img_rotation</span><span class="p">,</span> <span class="n">axs</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">2</span><span class="p">],</span> <span class="n">title</span><span class="o">=</span><span class="s2">&quot;rigid (Euclidean)&quot;</span><span class="p">,</span> <span class="n">bgr</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+
+<span class="n">M_sim</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="mf">0.5</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="mf">0.5</span><span class="p">),</span> <span class="mi">0</span><span class="p">],</span> 
+                       <span class="p">[</span><span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="mf">0.5</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="mf">0.5</span><span class="p">),</span> <span class="mi">0</span><span class="p">]])</span> <span class="o">*</span> <span class="mf">0.5</span>
+<span class="n">img_sim</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">warpAffine</span><span class="p">(</span><span class="n">img</span><span class="p">,</span> <span class="n">M_sim</span><span class="p">,</span> <span class="p">(</span><span class="mi">100</span><span class="p">,</span> <span class="mi">100</span><span class="p">))</span>
+<span class="n">imshow</span><span class="p">(</span><span class="n">img_sim</span><span class="p">,</span> <span class="n">axs</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="mi">0</span><span class="p">],</span> <span class="n">title</span><span class="o">=</span><span class="s2">&quot;similarity&quot;</span><span class="p">,</span> <span class="n">bgr</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+
+<span class="n">M_aff</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">,</span> <span class="mi">10</span><span class="p">],</span> 
+                  <span class="p">[</span><span class="mf">0.7</span><span class="p">,</span> <span class="mf">1.3</span><span class="p">,</span> <span class="mi">10</span><span class="p">]])</span>
+<span class="n">img_aff</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">warpAffine</span><span class="p">(</span><span class="n">img</span><span class="p">,</span> <span class="n">M_aff</span><span class="p">,</span> <span class="p">(</span><span class="mi">100</span><span class="p">,</span> <span class="mi">100</span><span class="p">))</span>
+<span class="n">imshow</span><span class="p">(</span><span class="n">img_aff</span><span class="p">,</span> <span class="n">axs</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="mi">1</span><span class="p">],</span> <span class="n">title</span><span class="o">=</span><span class="s2">&quot;affine&quot;</span><span class="p">,</span> <span class="n">bgr</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+
+<span class="n">axs</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">set_axis_off</span><span class="p">()</span>
+</pre></div>
+
+
+<div class="output_wrapper">
+
+<div class="output_area">
+
+
+
+<div class="output_png output_subarea ">
+<img src="data:image/png;base64,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
+"
+>
+</div>
+
+</div>
+
+</div>
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1>Projective Transformations</h1>
+$$w\begin{bmatrix}x'\\y'\\1\end{bmatrix} = 
+\begin{bmatrix}a&amp;b&amp;e\\c&amp;d&amp;f\\g&amp;h&amp;i\end{bmatrix} \begin{bmatrix}x\\y\\1\end{bmatrix} $$<p>Note that this is an expansion of affine transformation, when $g=h=0$ and $i=1$</p>
+<h2>Properties</h2>
+<ul>
+<li>origin does not necessarily map to origin</li>
+<li>Lines map to lines</li>
+<li><strong>parallel are not necessarily remain parallel</strong></li>
+<li><strong>Do not</strong> preserve ratios</li>
+<li>closed under composition</li>
+<li>rectangles goes to quadrilateral</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1>Solving Homographies</h1>
+<p>Let $(x_i,y_i)$ be a point on the reference (model) image, and $(x_i',y_i')$ be its matching in the test image, $H_{3\times 3}$ be the projective matrix. 
+So that 
+$$a\begin{bmatrix}x_i'\\y_i'\\1\end{bmatrix} = 
+\begin{bmatrix}h_{00}&amp;h_{01}&amp;h_{02}\\
+h_{10}&amp;h_{11}&amp;h_{12}\\h_{20}&amp;h_{21}&amp;h_{22}\end{bmatrix} \begin{bmatrix}x_i\\y_i\\1\end{bmatrix} $$
+We need to solve the 9 unknowns $h_{[0:2, 0:2]}$ 
+First, note that $$a = h_{20}x_i + h_{21}y_i + h_{22}$$
+so that $$ax_i' = h_{00}x_i + h_{01}y_1 + h_{02}\Rightarrow x_i' = \frac{h_{00}x_i + h_{01}y_1 + h_{02}}{h_{20}x_i + h_{21}y_i + h_{22}} $$
+$$y_i' = \frac{h_{10}x_i + h_{11}y_1 + h_{12}}{h_{20}x_i + h_{21}y_i + h_{22}}$$
+rewrite them as linear equations
+\begin{align*}
+-(h_{20}x_i + h_{21}y_i + h_{22})x_i' + h_{00}x_i + h_{01}y_1 + h_{02} = 0\\
+-(h_{20}x_i + h_{21}y_i + h_{22})y_i' + h_{10}x_i + h_{11}y_1 + h_{12} = 0
+\end{align*}
+i.e. 
+$$\begin{bmatrix}
+x_i &amp;y_i&amp;1&amp;0&amp;0&amp;0&amp;-x_i'x_i&amp;-x_i'y_i &amp;-x_i'\\
+0 &amp;0&amp;0&amp;x_i&amp;y_i&amp;1&amp;-y_i'x_i&amp;-y_i'y_i &amp;-y_i'
+\end{bmatrix}
+h_F = \vec 0$$
+where $h_F=[h_{00}, h_{01},...,h_{21},h_{22}]^T$ is the flatten vector of $H$</p>
+<p>Since we have $n$ sets of matching points, we can have 
+$$A_{2n\times 9} h_{F_9\times 1} = \vec 0_{2n}$$
+and we want to find 
+$$h = arg\min \|Ah\|_2^2$$</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Since $h$ is only defined up to scale, we can first solve for unit vector and then multiply back scale. so that we can add constraint 
+$\|h\|_2 = 1$ and 
+$$h = arg\min_{\|h\|_2=1}\|Ah\|_2^2$$
+For constrained optimization, we use method of Lagrange Multipliers
+where $\hat h = $eigenvector of $A^TA$ with smallest eigenvalue.</p>
+<p>Notice that although we seem to have $9$ unknowns, we actually only have $8$, since the last one is calculated from the constraint. So that we only need $4$ matching to form a deterministic or over-deterministic system.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1>Camera Modeling Projection</h1>
+<h2>Set up</h2>
+<p>To simplify the model, assume we have a pinhole camera, and we are working with the virtual image plane, since the real image plane is upside down.</p>
+<p>For the 3-D coordinate system, using the <strong>right handed</strong> coordinate system<br>
+call the <strong>optical center</strong> or <strong>cemera center</strong> $C:= (0,0)$<br>
+$Z$ axis be the <strong>optical</strong> or <strong>principal</strong> axis, which will be orthogonal to the image plane.<br>
+$X,Y$ axes are parallel to the image.<br>
+So that $Z$-axis points to the object, $X$-axis points away and $Y$-axis points top.</p>
+<p><strong>principal point</strong> $p$: the optical axis intersects the image plane.<br>
+<strong>focal length</strong> $f:=d(C,p)$ is the distance from the camera center to the principal point.<br>
+<strong>image coordinate system</strong> the $(x,y)$ coordinate used to represent the 2D image plane. Let the origin be the bottom left corner, so that $p=(p_x,p_y)$</p>
+<p>Taking some point $Q$ living in the 3D, connected to the origin, call the connection line <strong>projection line</strong>. Call its intersection with the image plane $q$. However, we can notice that every point on the <strong>projection line</strong> will be mapped to $q$ in the 2D image.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2>Equations</h2>
+<p>Consider the point $Q = (X,Y,Z)^T$, then its corresponding projection point $q=(X\frac{f}{Z}, Y\frac{f}{Z},f)$ using similar triangles. In the 2D projection space, $q = p + (X\frac{f}{Z}, Y\frac{f}{Z}) = (X\frac{f}{Z} + p_x, Y\frac{f}{Z}+p_y)$</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1>Homogeneous Coordinates</h1>
+<p>Add a $1$ for the vector, e.g. $(x,y)\Rightarrow [x,y,1]^T$. In homogeneous coordinates, scaling doesn't affect anything. i.e. $[x,y,1]^T \sim [wx,wy,w]^T$. Therefore, we can write $q$ as 
+$$\hat q = \begin{bmatrix}X\frac{f}{Z}+p_x\\Y\frac{f}{Z}+p_y\\1 \end{bmatrix}\sim \begin{bmatrix}fX+Zp_x\\fY+Zp_y\\Z \end{bmatrix}$$
+Then, the mapping from $Q$ to $q$ is</p>
+$$
+\begin{bmatrix}fX+Zp_x\\fY+Zp_y\\Z \end{bmatrix} 
+= \begin{bmatrix}f&amp;0&amp;p_x \\ 0&amp;f&amp;p_y \\ 0&amp;0&amp;1\end{bmatrix}
+\begin{bmatrix}X\\Y\\Z \end{bmatrix}
+$$$$\hat q = KQ, q = \hat q / Z$$<p>$K$ is the <strong>camera calibration matrix</strong> or <strong>intrinsic parameter matrix</strong>. The parameters in $K$ are called <strong>internal camera parameters</strong>.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2>Some properties</h2>
+<ul>
+<li>Many to one: any points along same ray map to same point</li>
+<li>Points, lines, and planes are preserved </li>
+<li>Any line through principal point projects to a point</li>
+<li>Any plane through principal point projects to line</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2>Vanishing points</h2>
+<p>All lines in the same direction in 3D will intersect at the same vanishing point in 2D.</p>
+<p>Consider a line that pass through $V$ with direction $D$, i.e. the line $X = V+tD$</p>
+$$KX = \begin{bmatrix}f&amp;0&amp;p_x \\ 0&amp;f&amp;p_y \\ 0&amp;0&amp;1\end{bmatrix}
+\begin{bmatrix}V_x+tD_x \\ V_y+tD_y \\ V_z+tD_z\end{bmatrix} = 
+\begin{bmatrix}fV_x+ftD_x + p_xV_z + tp_xD_z\\ fV_y+ftD_y + p_yV_z + tp_yD_z \\ V_z+tD_z\end{bmatrix}$$<p>so that the project point $(x, y)$ will be 
+$(x,y) = \lim_{t\rightarrow\infty} (\frac{fV_x+ftD_x + p_xV_z + tp_xD_z}{V_z + tD_z}, \frac{fV_y+ftD_y + p_yV_z + tp_yD_z}{V_z + tD_z}) = (\frac{fD_x + p_xD_z}{D_z}, \frac{fD_y+p_yD_z}{D_z})$
+is only about $D$ and independent of $V$.</p>
+<p>However, lines parallel to image plane are still parallel, we say that they intersect at infinity. 
+Consider $X_1,X_2$ be two line parallel to the image plane, i.e. $V_z = 0, D_{1z}=D_{2z}$ so that the distance (only demonstrate $x$-distance)</p>
+\begin{align*}d_x &amp;= \frac{fV_{1x}+ftD_x + p_xV_{1z} + tp_xD_z}{V_{1z} + tD_z} - \frac{fV_{2x}+ftD_x + p_xV_{2z} + tp_xD_z}{V_{2z} + tD_z}\\
+&amp;= \frac{fV_{1x}+ftD_x + p_xV_{1z}}{V_{1z}} - \frac{fV_{2x}+ftD_x + p_xV_{2z}}{V_{2z}}&amp;D_z = 0\\
+&amp;=C + \frac{tfD_x(V_{2z} - V_{1z})}{V_{1z}V_{2z}}\\
+&amp;= C + 0&amp;V_{1z}=V_{2z}\end{align*}
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3>Example</h3>
+<p>Suppose we have a photo taken from a car with a camera on top, and we know the camera intrinsic matrix $K$, WTF the incline of the hill $\theta$.</p>
+<p>Since the vertical lines now is not parallel to the image plane (the image plane is perpendicular to the inclined ground), we can find the vanishing points in these 2D lines, which is $[w\cdot vp_x, w\cdot vp_y, w]^T$. Therefore, 
+$$\begin{bmatrix}w\cdot vp_x\\w\cdot vp_y\\w\end{bmatrix}=KD\Rightarrow D = wK^{-1}\begin{bmatrix} vp_x\\vp_y\\1\end{bmatrix}$$
+Then, we can find $D$ and normalizes it.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2>Vanishing Line</h2>
+<p>Parallel lines in 3D projects to intersected lines in 2D. However, the converse is not necessarily true.</p>
+<p>For lines on the same 3D plane, the vanishing points lie on a line, i.e. <strong>vanishing line</strong>. The ground plane is the horizon line.</p>
+<p>Parallel plnes in 3D the the same horizon line in the image.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1>Camera Coordinate System</h1>
+<p>Since we are measuring everything from 2D images taken by the camera, we need to project the 3D points onto our camera coordinate system, so that we can describe them and get them back.</p>
+<p>To do such projection, we need</p>
+<ul>
+<li>Camera <strong>position</strong> $c$ (in world coordinates)</li>
+<li>Camera <strong>orientation</strong> $(\vec u,\vec v,\vec w)$ (in world coordinates)</li>
+<li>$K$</li>
+</ul>
+<p>So that for point $Q$ in the world coordinates,<br>
+$Q-c$ is the projection in the camera coordinates,<br>
+$R\begin{bmatrix}u&amp;v&amp;w\end{bmatrix}=I$ looking for rotation to canonical orientation. Then, because orientation is orthogonal, $RR^T = I\Rightarrow R = \begin{bmatrix}u^T&amp;v^T&amp;w^T\end{bmatrix}$</p>
+<p>Therefore, the camera coordinate for $(x,y,z)$ in world coordinate is
+$$\begin{bmatrix}X'\\Y'\\Z'\end{bmatrix} = R(\begin{bmatrix}X\\Y\\Z\end{bmatrix} - c) = \begin{bmatrix}R&amp;-Rc\end{bmatrix}\begin{bmatrix}X\\Y\\Z\\1\end{bmatrix}$$</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2>Projection Matrix</h2>
+<p>We can describe all the cumulative effect of all intrinsic and extrinsic parameters using the projection matrix $P$. so that the 2D projection $(x,y)$ from $(x,y,z)$ can be described through homogeneous coordinates
+$$q = \begin{bmatrix}ax\\ay\\a\end{bmatrix} = P\begin{bmatrix}x\\y\\z\\1\end{bmatrix}$$
+Where to get a point $q$ in the image plane, we need to compute $P[x,y,z,1]^T$, and divide all coordinates with the third coordinate, and drop the last coordinate.</p>
+$$P_{3\times 4} = 
+\underset{K}{\begin{bmatrix}f&amp;0&amp;p_x\\0&amp;f&amp;p_y\\0&amp;0&amp;1\end{bmatrix}}\:
+\underset{\text{projection}}{\begin{bmatrix}1&amp;0&amp;0&amp;0\\0&amp;1&amp;0&amp;0\\0&amp;0&amp;1&amp;0\end{bmatrix}}\:
+\underset{\text{rotation}}{\begin{bmatrix}&amp;&amp;&amp;0\\&amp;R&amp;&amp;0\\&amp;&amp;&amp;0\\0&amp;0&amp;0&amp;1\end{bmatrix}}\:
+\underset{translation}{\begin{bmatrix}&amp;&amp;&amp;\\&amp;I&amp;&amp;t\\&amp;&amp;&amp;\\0&amp;0&amp;0&amp;1\end{bmatrix}}\:
+$$<p>Sometimes we use more compact form, 
+$$P = K[R\quad t] = K[R\mid t]$$</p>
+
+</div>
+</div>
+</div>
+ 
+
