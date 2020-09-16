@@ -5,7 +5,7 @@ def convert_course(course):
     if not os.path.isdir(directory):
         raise FileNotFoundError("Cannot find " + os.path.abspath(directory))
     assets_dir = os.path.join(directory, "assets")
-    output_dir = os.path.join("./docs/", f"_{course}")
+    output_dir = os.path.join("./docs/courses", f"_{course}")
     os.makedirs(output_dir, exist_ok=True)
 
     if os.path.isdir(assets_dir) and not os.path.isdir(os.path.join(output_dir, "assets")):
