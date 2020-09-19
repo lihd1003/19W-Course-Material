@@ -1,6 +1,6 @@
 import subprocess, os, shutil, argparse
 
-def convert_course(course):
+def convert_course(course, overwrite):
     directory = os.path.join("./notebook", course)
     if not os.path.isdir(directory):
         raise FileNotFoundError("Cannot find " + os.path.abspath(directory))
@@ -14,21 +14,23 @@ def convert_course(course):
     files = [x for x in os.listdir(directory) if x.endswith(".ipynb")]
     for file in files:
         input_path = os.path.join(directory, file)
-        output_name = file.replace(".ipynb", ".md")
+        output_name = file.replace(".ipynb", ".html")
         output_path = os.path.join(output_dir, output_name)
-        bash_command = [
-            'jupyter', 'nbconvert',
-            f'--output-dir={output_dir}',
-            '--template=./base.tpl',
-            '--to=html',
-            '--config=configs.py',
-            input_path
-        ]
-        subprocess.run(bash_command)
+        if not os.path.exists(output_path) or overwrite:
+            bash_command = [
+                'jupyter', 'nbconvert',
+                f'--output-dir={output_dir}',
+                '--template=./base.tpl',
+                '--to=html',
+                '--config=configs.py',
+                input_path
+            ]
+            subprocess.run(bash_command)
 
 parser = argparse.ArgumentParser(description='Convert a course notebook directory to jekyll collection')
 parser.add_argument('--course', type=str,
                     help='The course code')
+parser.add_argument('-o', '--overwrite', action="store_true", help="Whether overwrite the generated notebook")
 
 args = parser.parse_args()
-convert_course(args.course)
+convert_course(args.course, args.overwrite)

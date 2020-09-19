@@ -26,6 +26,13 @@ collections:
     term: 2020 Summer
     instructor: Sarah Kushner
     output: true
+
+  csc419:
+    code: CSC419/CSC2520
+    name: Geometry Processing 
+    term: 2020 Fall
+    instructor: Alec Jacobson
+    output: true
   
   csc420:
     code: CSC420
