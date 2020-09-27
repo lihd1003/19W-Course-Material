@@ -1,0 +1,379 @@
+---
+title: 1D Mass Spring System
+order: 10
+---
+
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">plotly.graph_objects</span> <span class="k">as</span> <span class="nn">go</span> 
+<span class="kn">from</span> <span class="nn">plotly.subplots</span> <span class="kn">import</span> <span class="n">make_subplots</span>
+<span class="kn">from</span> <span class="nn">IPython.display</span> <span class="kn">import</span> <span class="n">display</span><span class="p">,</span> <span class="n">IFrame</span><span class="p">,</span> <span class="n">HTML</span>
+</pre></div>
+
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1>Problem Setup</h1>
+<p><img src="assets/mass_spring_1d.png" alt="png"></p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Given a particle of mass $m$</p>
+<h2>Generalized coordinates</h2>
+$$q = x(t)$$<p>so that the generalized velocity is 
+$$\dot q = v(t)$$</p>
+<h2>Kinetic Energy</h2>
+<p>In 1-D the kinetic energy is $\frac 12 mv^2 = \frac 12 m\dot q$</p>
+<h2>Potential Energy</h2>
+<p>By Hooke's Law, force is linearly proportional to stretch in spring, i.e. 
+$$f = -kx$$
+for some stiffness coefficient $k$, then the total mechanical work is 
+$$W = \int \underset{\text{force}}{-kx(t)}\underset{\text{displacement}}{v(t)} dt = \int -kx dx = -\frac12kx^2$$
+and the potential energy is the negative of work
+$$V = -W = \frac12 kx^2$$</p>
+<h2>Equation of Motion</h2>
+<p>Therefore, we have 
+$$L = \frac12 m\dot q^2 - \frac12 kq^2$$
+By Euler Lagrange Equation
+\begin{align*}
+\frac{\partial L}{\partial q} &amp;= \frac{d}{dt}\frac{\partial L}{\partial \dot q}\\
+-kq &amp;= \frac{d}{dt}(m\dot q)\\
+-kq &amp;= m\ddot q\\
+\end{align*}</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1>Time Integration</h1>
+<p>Note that $q:\mathbb R\rightarrow \mathbb R$ is the mapping from time to the position of the particle at that time. Time integration</p>
+<ul>
+<li>input: A ODE $\ddot q = f(q, \dot q)$ and the initial conditions $q_0 = q(t_0), \dot q_0 = \dot q(t_0)$</li>
+<li>output: the discrete update equation $q^{t+1} = f(q^t, q^{t+1},...,\dot q^t, \dot q^{t+1}, ...)$</li>
+</ul>
+<h2>The Coupled First Order Systems</h2>
+<p>Note that we have a second-order ODE, $m\ddot q = -kq$, replaces $\dot q $ with velocity $v$, we can transform the system into a coupled first order ODE
+$$m\dot v = -kq$$
+rewrite into matrix form
+$$\begin{pmatrix}m&amp;0\\0&amp;1\end{pmatrix}\frac{d}{dt}\begin{pmatrix}v\\q\end{pmatrix} = \begin{pmatrix}0&amp;-k\\1&amp;0\end{pmatrix}\begin{pmatrix}v\\q\end{pmatrix}$$
+Denote $\mathbf y = [v, q]^T$, the equation above is further written as 
+$$A  \dot{\mathbf y} = \mathbf f(\mathbf y)$$</p>
+<h2>Phase Space</h2>
+<p>We define the phase space as the x-axis being the value of $v$ and y-axis being $q$, so that we can plot the trajectory of the position and velocity through time.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1>Numerical Integration</h1>
+<p>Note that the integration above is simple, while more complex equations may not be suitable for analytical solution, so we need integrate it numerically</p>
+<h2>Explicit and Implicit Integration</h2>
+<ul>
+<li>Explicit: Next time step can be computed entirely using the previous and current time step</li>
+<li>Implicit: Next time step is computed using future values </li>
+</ul>
+<h2>Concerns</h2>
+<ul>
+<li>Performance: runtime / efficiency</li>
+<li>Stability: We don't want the spring to "fly" out, which means we need the solution to stay "within" the bounded system of the analytical solution</li>
+<li>Accuracy: the "visual" accuracy, we mostly want it looks real, even if the solution may not be mathematically correct</li>
+</ul>
+
+</div>
+</div>
+</div>
+
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">class</span> <span class="nc">TimeIntegration</span><span class="p">:</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">mass</span><span class="p">,</span> <span class="n">stiffness</span><span class="p">,</span> <span class="n">dt</span><span class="p">,</span> <span class="n">q0</span><span class="p">,</span> <span class="n">v0</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        mass: the mass of the object</span>
+<span class="sd">        stiffness: the stiffness coefficient of the spring</span>
+<span class="sd">        dt: Delta t for each step taken</span>
+<span class="sd">        q0: the initial position at t0</span>
+<span class="sd">        v0: the initial velocity at t0</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">m</span> <span class="o">=</span> <span class="n">mass</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">k</span> <span class="o">=</span> <span class="n">stiffness</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">dt</span> <span class="o">=</span> <span class="n">dt</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">q0</span> <span class="o">=</span> <span class="n">q0</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">v0</span> <span class="o">=</span> <span class="n">v0</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">trajectory_q</span> <span class="o">=</span> <span class="p">[</span><span class="n">q0</span><span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">trajectory_v</span> <span class="o">=</span> <span class="p">[</span><span class="n">v0</span><span class="p">]</span>
+        
+    <span class="k">def</span> <span class="nf">one_step</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">raise</span> <span class="ne">NotImplementedError</span>
+        
+    <span class="k">def</span> <span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">step</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">step</span><span class="p">):</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">one_step</span><span class="p">()</span>
+            
+    <span class="k">def</span> <span class="nf">plot</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">step</span><span class="p">,</span> <span class="n">output_file</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">step</span><span class="p">)</span>
+        <span class="n">fig</span> <span class="o">=</span> <span class="n">make_subplots</span><span class="p">(</span><span class="n">rows</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">cols</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> 
+                            <span class="n">subplot_titles</span><span class="o">=</span><span class="p">(</span><span class="s1">&#39;Object&#39;</span><span class="p">,</span> <span class="s1">&#39;Phase Space&#39;</span><span class="p">),</span> 
+                            <span class="n">column_widths</span><span class="o">=</span><span class="p">[</span><span class="mf">0.7</span><span class="p">,</span> <span class="mf">0.3</span><span class="p">])</span>
+
+        <span class="n">fig</span><span class="o">.</span><span class="n">add_trace</span><span class="p">(</span><span class="n">go</span><span class="o">.</span><span class="n">Scatter</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">q0</span><span class="p">],</span> <span class="n">y</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">marker_size</span><span class="o">=</span><span class="mi">10</span><span class="p">),</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+
+        <span class="n">fig</span><span class="o">.</span><span class="n">add_trace</span><span class="p">(</span><span class="n">go</span><span class="o">.</span><span class="n">Scatter</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">q0</span><span class="p">],</span> <span class="n">y</span><span class="o">=</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">v0</span><span class="p">],</span> <span class="n">marker_size</span><span class="o">=</span><span class="mi">3</span><span class="p">),</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+        <span class="n">fig</span><span class="o">.</span><span class="n">frames</span> <span class="o">=</span> <span class="p">[</span><span class="n">go</span><span class="o">.</span><span class="n">Frame</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="p">[</span><span class="n">go</span><span class="o">.</span><span class="n">Scatter</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">trajectory_q</span><span class="p">[</span><span class="n">i</span><span class="p">]]),</span>
+                                <span class="n">go</span><span class="o">.</span><span class="n">Scatter</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">trajectory_q</span><span class="p">[:</span><span class="n">i</span><span class="p">],</span> <span class="n">y</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">trajectory_v</span><span class="p">[:</span><span class="n">i</span><span class="p">])],</span>
+                          <span class="n">traces</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">])</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">trajectory_q</span><span class="p">))]</span>
+        <span class="n">button</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span>
+                     <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Play&#39;</span><span class="p">,</span>
+                     <span class="n">method</span><span class="o">=</span><span class="s1">&#39;animate&#39;</span><span class="p">,</span>
+                     <span class="n">args</span><span class="o">=</span><span class="p">[</span><span class="kc">None</span><span class="p">,</span> <span class="nb">dict</span><span class="p">(</span><span class="n">frame</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">duration</span><span class="o">=</span><span class="mi">25</span><span class="p">,</span> <span class="n">redraw</span><span class="o">=</span><span class="kc">False</span><span class="p">),</span> 
+                                      <span class="n">transition</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">duration</span><span class="o">=</span><span class="mi">0</span><span class="p">),</span>
+                                      <span class="n">fromcurrent</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+                                      <span class="n">mode</span><span class="o">=</span><span class="s1">&#39;immediate&#39;</span><span class="p">)])</span>
+        <span class="n">fig</span><span class="o">.</span><span class="n">update_layout</span><span class="p">(</span><span class="n">updatemenus</span><span class="o">=</span><span class="p">[</span><span class="nb">dict</span><span class="p">(</span><span class="nb">type</span><span class="o">=</span><span class="s1">&#39;buttons&#39;</span><span class="p">,</span>
+                                      <span class="n">showactive</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+                                      <span class="n">y</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+                                      <span class="n">x</span><span class="o">=</span><span class="mf">1.05</span><span class="p">,</span>
+                                      <span class="n">xanchor</span><span class="o">=</span><span class="s1">&#39;left&#39;</span><span class="p">,</span>
+                                      <span class="n">yanchor</span><span class="o">=</span><span class="s1">&#39;bottom&#39;</span><span class="p">,</span>
+                                      <span class="n">buttons</span><span class="o">=</span><span class="p">[</span><span class="n">button</span><span class="p">]</span> <span class="p">)</span>
+                                              <span class="p">],</span>
+                         <span class="n">width</span><span class="o">=</span><span class="mi">800</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="mi">460</span><span class="p">,</span> <span class="n">showlegend</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+        <span class="n">fig</span><span class="o">.</span><span class="n">update_xaxes</span><span class="p">(</span><span class="nb">range</span><span class="o">=</span><span class="p">[</span><span class="o">-</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">])</span>
+        <span class="n">fig</span><span class="o">.</span><span class="n">update_yaxes</span><span class="p">(</span><span class="nb">range</span><span class="o">=</span><span class="p">[</span><span class="o">-</span><span class="mi">20</span><span class="p">,</span> <span class="mi">20</span><span class="p">])</span>
+        <span class="n">fig</span><span class="o">.</span><span class="n">write_html</span><span class="p">(</span><span class="n">output_file</span><span class="p">,</span> <span class="n">full_html</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">auto_open</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">include_plotlyjs</span><span class="o">=</span><span class="s2">&quot;cdn&quot;</span><span class="p">,</span> <span class="n">auto_play</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+        <span class="n">display</span><span class="p">(</span><span class="n">IFrame</span><span class="p">(</span><span class="n">output_file</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="mi">480</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="s2">&quot;100%&quot;</span><span class="p">))</span>
+        
+<span class="n">mass</span> <span class="o">=</span> <span class="mi">1</span> 
+<span class="n">stiffness</span> <span class="o">=</span> <span class="mi">100</span> 
+<span class="n">dt</span> <span class="o">=</span> <span class="mf">0.01</span> 
+<span class="n">q0</span> <span class="o">=</span> <span class="mi">1</span> 
+<span class="n">v0</span> <span class="o">=</span> <span class="mi">1</span>
+</pre></div>
+
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2>Forward Euler Time Integration</h2>
+<p>Replace time derivative with finite difference
+$$\dot{\mathbf y} \approx \frac{1}{\Delta t} (\mathbf y^{t+1} - \mathbf y^t)$$
+so that 
+\begin{align*}
+A  \frac{1}{\Delta t} (\mathbf y^{t+1} - \mathbf y^t) &amp;= \mathbf f(\mathbf y^t)\\
+\mathbf y^{t+1} &amp;= \mathbf y^t + \Delta t A^{-1}\mathbf f(\mathbf y^t)\\
+v^{t+1} &amp;= v^t - \Delta t \frac{k}{m}q^t\\
+q^{t+1} &amp;= q^t + \Delta t v^t
+\end{align*}</p>
+<h3>Problem</h3>
+<p>Because we replace the derivative with the current "slope", the trajectory is going outwards, which is unstable.</p>
+
+</div>
+</div>
+</div>
+
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">class</span> <span class="nc">ForwardEuler</span><span class="p">(</span><span class="n">TimeIntegration</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">one_step</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">q_t</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">trajectory_q</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+        <span class="n">v_t</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">trajectory_v</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">trajectory_v</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">v_t</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">dt</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">k</span> <span class="o">/</span> <span class="bp">self</span><span class="o">.</span><span class="n">m</span> <span class="o">*</span> <span class="n">q_t</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">trajectory_q</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">q_t</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">dt</span> <span class="o">*</span> <span class="n">v_t</span><span class="p">)</span>
+        
+<span class="n">fe</span> <span class="o">=</span> <span class="n">ForwardEuler</span><span class="p">(</span><span class="n">mass</span><span class="p">,</span> <span class="n">stiffness</span><span class="p">,</span> <span class="n">dt</span><span class="p">,</span> <span class="n">q0</span><span class="p">,</span> <span class="n">v0</span><span class="p">)</span>
+<span class="n">fe</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="mi">200</span><span class="p">,</span> <span class="s2">&quot;./assets/1d_mass_spring_fe.html&quot;</span><span class="p">)</span>
+</pre></div>
+
+
+<div class="output_wrapper">
+
+<div class="output_area">
+
+
+<div class="output_html rendered_html output_subarea ">
+
+        <iframe
+            width="100%"
+            height="480"
+            src="./assets/1d_mass_spring_fe.html"
+            frameborder="0"
+            allowfullscreen
+        ></iframe>
+        
+</div>
+
+</div>
+
+</div>
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2>Runge-Kutta Time Integration</h2>
+<p>To fix the issue with Forward Euler, we can average several "slope" to pull the trajectory back. The general idea is 
+$$\mathbf y^{t+1} = \mathbf y^t + \Delta t A^{-1}(\alpha \mathbf f(\mathbf y^{t+a} + \beta \mathbf f(\tilde{\mathbf y}^{t+b})))$$
+where $\tilde {\mathbf y}^{t+a} = y^t + \alpha \Delta tA^{-1}\mathbf f(\mathbf y^t)$ is the Forward Euler estimate.</p>
+<p>Following this template, we can have Heun's Method by taking $a=0, b= 1, \alpha=\beta=\frac12$
+$$\mathbf y^{t+1} = \mathbf y^t + \frac{\Delta t}{2} A^{-1}(\mathbf f(\mathbf y^t) + \mathbf f(\tilde {\mathbf y}^{t+1}))$$</p>
+<p>The most general used method is <strong>RK4</strong>, The Fourth-order Runge Kutta Method. 
+\begin{align*}
+\kappa_1 &amp;= A^{-1}\mathbf f(\mathbf y^t)\\
+\kappa_2 &amp;= A^{-1}\mathbf f(\mathbf y^t + \frac{\Delta t}2 \kappa_1)\\
+\kappa_3 &amp;= A^{-1}\mathbf f(\mathbf y^t + \frac{\Delta t}2 \kappa_2)\\
+\kappa_4 &amp;= A^{-1}\mathbf f(\mathbf y^t + \Delta t \kappa_3)\\
+\mathbf y^{t+1} &amp;= \mathbf y^t + \frac{\Delta t}{6}(\kappa_1 + 2\kappa_2 + 2\kappa_3 + \kappa_4)
+\end{align*}</p>
+
+</div>
+</div>
+</div>
+
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">class</span> <span class="nc">RK4</span><span class="p">(</span><span class="n">TimeIntegration</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">one_step</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">q_t</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">trajectory_q</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+        <span class="n">v_t</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">trajectory_v</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+        <span class="n">weights</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">((</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
+        <span class="n">kappa</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">empty</span><span class="p">((</span><span class="mi">4</span><span class="p">,</span> <span class="mi">2</span><span class="p">))</span>
+        <span class="n">kappa</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">v_t</span>
+        <span class="n">kappa</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">k</span> <span class="o">/</span> <span class="bp">self</span><span class="o">.</span><span class="n">m</span> <span class="o">*</span> <span class="n">q_t</span>
+        
+        <span class="n">kappa</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">v_t</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">dt</span> <span class="o">*</span> <span class="mf">0.5</span> <span class="o">*</span> <span class="n">kappa</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span>
+        <span class="n">kappa</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">k</span> <span class="o">/</span> <span class="bp">self</span><span class="o">.</span><span class="n">m</span> <span class="o">*</span> <span class="p">(</span><span class="n">q_t</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">dt</span> <span class="o">*</span> <span class="mf">0.5</span> <span class="o">*</span> <span class="n">kappa</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">])</span>
+        
+        <span class="n">kappa</span><span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">v_t</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">dt</span> <span class="o">*</span> <span class="mf">0.5</span> <span class="o">*</span> <span class="n">kappa</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span>
+        <span class="n">kappa</span><span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">k</span> <span class="o">/</span> <span class="bp">self</span><span class="o">.</span><span class="n">m</span> <span class="o">*</span> <span class="p">(</span><span class="n">q_t</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">dt</span> <span class="o">*</span> <span class="mf">0.5</span> <span class="o">*</span> <span class="n">kappa</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">])</span>
+        
+        <span class="n">kappa</span><span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">v_t</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">dt</span> <span class="o">*</span> <span class="n">kappa</span><span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span>
+        <span class="n">kappa</span><span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">k</span> <span class="o">/</span> <span class="bp">self</span><span class="o">.</span><span class="n">m</span> <span class="o">*</span> <span class="p">(</span><span class="n">q_t</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">dt</span> <span class="o">*</span> <span class="n">kappa</span><span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">])</span>
+        
+        <span class="bp">self</span><span class="o">.</span><span class="n">trajectory_q</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">q_t</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">dt</span> <span class="o">/</span> <span class="mi">6</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">kappa</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">weights</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">trajectory_v</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">v_t</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">dt</span> <span class="o">/</span> <span class="mi">6</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">kappa</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">weights</span><span class="p">))</span>
+        
+<span class="n">rk4</span> <span class="o">=</span> <span class="n">RK4</span><span class="p">(</span><span class="n">mass</span><span class="p">,</span> <span class="n">stiffness</span><span class="p">,</span> <span class="n">dt</span><span class="p">,</span> <span class="n">q0</span><span class="p">,</span> <span class="n">v0</span><span class="p">)</span>
+<span class="n">rk4</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="mi">200</span><span class="p">,</span> <span class="s2">&quot;./assets/1d_mass_spring_rk4.html&quot;</span><span class="p">)</span>
+</pre></div>
+
+
+<div class="output_wrapper">
+
+<div class="output_area">
+
+
+<div class="output_html rendered_html output_subarea ">
+
+        <iframe
+            width="100%"
+            height="480"
+            src="./assets/1d_mass_spring_rk4.html"
+            frameborder="0"
+            allowfullscreen
+        ></iframe>
+        
+</div>
+
+</div>
+
+</div>
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2>Backward Euler Time Integration</h2>
+<p>This is the implicit time integration. Compare to Forward Euler, instead of evaluating at the current step, we evaluate at the next time step, i.e.
+$$A  \frac{1}{\Delta t} (\mathbf y^{t+1} - \mathbf y^t) = \mathbf f(\mathbf y^{t+1})$$
+Note that the unknown $\mathbf y^{t+1}$ appears on both sides, which causes problem. 
+However, if we look back at $\mathbf f (\mathbf y)$, note that 
+$$\mathbf f (\mathbf y) = \begin{pmatrix}0&amp;-k\\1&amp;0\end{pmatrix}\begin{pmatrix}v\\q\end{pmatrix} = B\mathbf y$$
+Since $\mathbf f$ is a linear function, we have 
+\begin{align*}
+A  \frac{1}{\Delta t} (\mathbf y^{t+1} - \mathbf y^t) &amp;= B\mathbf y^{t+1}\\
+(I - \Delta t A^{-1}B)\mathbf y^{t+1} &amp;= \mathbf y^t\\
+(1+\Delta t^2 \frac km) v^{t+1} &amp;= v^t - \Delta t \frac km q^t\\
+q^{t+1} &amp;= q^t + \Delta tv^{t+1}
+\end{align*}
+Note that this is stable since the vector difference is the slope at $t+1$, which means it "pulls" back the trajectory to the origin.</p>
+
+</div>
+</div>
+</div>
+
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">class</span> <span class="nc">BackwardEuler</span><span class="p">(</span><span class="n">TimeIntegration</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">one_step</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">q_t</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">trajectory_q</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+        <span class="n">v_t</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">trajectory_v</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+        <span class="n">v</span> <span class="o">=</span> <span class="n">v_t</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">dt</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">k</span> <span class="o">/</span> <span class="bp">self</span><span class="o">.</span><span class="n">m</span> <span class="o">*</span> <span class="n">q_t</span>
+        <span class="n">v</span> <span class="o">=</span> <span class="n">v</span> <span class="o">/</span> <span class="p">(</span><span class="mf">1.</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">dt</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">dt</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">k</span> <span class="o">/</span> <span class="bp">self</span><span class="o">.</span><span class="n">m</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">trajectory_v</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">v</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">trajectory_q</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">q_t</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">dt</span> <span class="o">*</span> <span class="n">v</span><span class="p">)</span>
+        
+<span class="n">be</span> <span class="o">=</span> <span class="n">BackwardEuler</span><span class="p">(</span><span class="n">mass</span><span class="p">,</span> <span class="n">stiffness</span><span class="p">,</span> <span class="n">dt</span><span class="p">,</span> <span class="n">q0</span><span class="p">,</span> <span class="n">v0</span><span class="p">)</span>
+<span class="n">be</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="mi">200</span><span class="p">,</span> <span class="s2">&quot;./assets/1d_mass_spring_be.html&quot;</span><span class="p">)</span>
+</pre></div>
+
+
+<div class="output_wrapper">
+
+<div class="output_area">
+
+
+<div class="output_html rendered_html output_subarea ">
+
+        <iframe
+            width="100%"
+            height="480"
+            src="./assets/1d_mass_spring_be.html"
+            frameborder="0"
+            allowfullscreen
+        ></iframe>
+        
+</div>
+
+</div>
+
+</div>
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2>Symplectic Euler Time Integration</h2>
+<p>Note that Forward Euler causes the exploding trajectory and the Backward Euler causes damping, we can do the two integrations alternately to "cancel out" long term effect, i.e.</p>
+<p>First take an explicit velocity step
+$$v^{t+1} = v^t - \Delta t \frac km q^t$$
+Then take an implicit position step
+$$q^{t+1} = q^t + \Delta t v^{t+1}$$</p>
+
+</div>
+</div>
+</div>
+
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">class</span> <span class="nc">Symplectic</span><span class="p">(</span><span class="n">TimeIntegration</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">one_step</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">q_t</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">trajectory_q</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+        <span class="n">v_t</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">trajectory_v</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+        <span class="n">v</span> <span class="o">=</span> <span class="n">v_t</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">dt</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">k</span> <span class="o">/</span> <span class="bp">self</span><span class="o">.</span><span class="n">m</span> <span class="o">*</span> <span class="n">q_t</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">trajectory_v</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">v</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">trajectory_q</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">q_t</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">dt</span> <span class="o">*</span> <span class="n">v</span><span class="p">)</span>
+        
+<span class="n">sc</span> <span class="o">=</span> <span class="n">Symplectic</span><span class="p">(</span><span class="n">mass</span><span class="p">,</span> <span class="n">stiffness</span><span class="p">,</span> <span class="n">dt</span><span class="p">,</span> <span class="n">q0</span><span class="p">,</span> <span class="n">v0</span><span class="p">)</span>
+<span class="n">sc</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="mi">200</span><span class="p">,</span> <span class="s2">&quot;./assets/1d_mass_spring_sc.html&quot;</span><span class="p">)</span>
+</pre></div>
+
+
+<div class="output_wrapper">
+
+<div class="output_area">
+
+
+<div class="output_html rendered_html output_subarea ">
+
+        <iframe
+            width="100%"
+            height="480"
+            src="./assets/1d_mass_spring_sc.html"
+            frameborder="0"
+            allowfullscreen
+        ></iframe>
+        
+</div>
+
+</div>
+
+</div>
+
+ 
+
