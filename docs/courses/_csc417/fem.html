@@ -156,5 +156,71 @@ D_{0\cdot}&amp;\vec 0&amp;\vec 0&amp;D_{1\cdot}&amp;\vec0&amp;\vec0&amp;D_{2\cdo
 </div>
 </div>
 </div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1>Time Integration Using Backward Euler</h1>
+<p>Although we can still use linear implicit time integration, it's quite unstable in this case. Instead we will use backward Euler
+$$M\dot{\mathbf q}^{t+1} = M\dot{\mathbf q}^t + \Delta t \mathbf f(\mathbf q^{t+1})$$
+$$\mathbf q^{t+1} = \mathbf q^t + \Delta \dot{\mathbf q}^{t+1}$$
+Which is solving the equation 
+$$M\dot{\mathbf q}^{t+1} - M\dot{\mathbf q}^t - \Delta t \mathbf f(\mathbf q^t + \Delta \dot{\mathbf q}^{t+1}) = 0$$
+However, this equation is non-linear and we need to do non-linear optimization. Define
+$$E(\mathbf v) = \frac 12 (\mathbf v - \dot{\mathbf q}^t)^TM(\mathbf v - \mathbf q^t) + V(\mathbf q^t + \Delta t \mathbf v)$$
+Note that $\partial_{\mathbf v} E = M\dot{\mathbf q}^{t+1} - M\dot{\mathbf q}^t - \Delta t \mathbf f(\mathbf q^t + \Delta \dot{\mathbf q}^{t+1})$, so that when $E$ is at minimum, we can have $\partial E = 0$.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2>Newton's Method</h2>
+<p>(More derivations in APM462 or CSC336 notes)</p>
+<p>Newton's Method is an iterative algorithm as follows</p>
+<div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">netwon_method</span><span class="p">(</span><span class="n">v0</span><span class="p">):</span>
+    <span class="n">v</span> <span class="o">=</span> <span class="n">v0</span>
+    <span class="k">while</span> <span class="n">grad</span><span class="p">(</span><span class="n">E</span><span class="p">(</span><span class="n">v</span><span class="p">))</span><span class="o">.</span><span class="n">norm</span><span class="p">()</span> <span class="o">&lt;</span> <span class="n">tolerance</span><span class="p">:</span>
+        <span class="n">solve</span> <span class="n">Hessian</span><span class="p">(</span><span class="n">E</span><span class="p">(</span><span class="n">v</span><span class="p">))</span> <span class="n">d</span> <span class="o">=</span> <span class="o">-</span> <span class="n">grad</span><span class="p">(</span><span class="n">E</span><span class="p">(</span><span class="n">v</span><span class="p">))</span>
+        <span class="n">a</span> <span class="o">=</span> <span class="p">[</span><span class="n">choose</span> <span class="n">a</span><span class="p">]</span>
+        <span class="n">v</span> <span class="o">=</span> <span class="n">v</span> <span class="o">+</span> <span class="n">a</span> <span class="o">*</span> <span class="n">d</span>
+    <span class="k">return</span> <span class="n">v</span>
+</pre></div>
+<p>with
+$$grad = \frac{\partial E}{\partial \mathbf v} = M(\mathbf v - \dot{\mathbf q}^t) + \Delta t \frac{\partial V}{\partial \mathbf q}\mid_{\mathbf q^t + \Delta t \mathbf v}$$
+$$Hessian = \frac{\partial^2 E}{\partial \mathbf v^2} = M + \Delta t^2 \frac{\partial^2 V}{\partial \mathbf q^2}\mid_{\mathbf q^t + \Delta t \mathbf v}$$</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2>Line Search</h2>
+<p>Note the <code>[choose a]</code> part in Newton's Method, how do we know a $\alpha$ is appropriate, which means not to small for a update and not to large that gets out of the decreasing gradient. Therefore, we can set a target value as $E(v) + c d^T g$, by MVT, this will be larger than the optimum we want but smaller than $E(v)$. Then, if we can find some update that's smaller than this, then we made sufficient progress. Therefore, the algorithm is</p>
+<div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">line_search</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">d</span><span class="p">,</span> <span class="n">g</span><span class="p">):</span>
+    <span class="n">a</span> <span class="o">=</span> <span class="n">a_max</span> <span class="c1">#an initial guess</span>
+    <span class="k">while</span> <span class="n">E</span><span class="p">(</span><span class="n">v</span> <span class="o">+</span> <span class="n">ad</span><span class="p">)</span> <span class="o">&gt;</span> <span class="n">E</span><span class="p">(</span><span class="n">v</span><span class="p">)</span> <span class="o">+</span> <span class="n">c</span> <span class="o">*</span> <span class="n">d</span><span class="o">.</span><span class="n">T</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">g</span><span class="p">)</span> <span class="ow">and</span> <span class="n">a</span> <span class="o">&gt;=</span> <span class="n">tolerance</span><span class="p">:</span>
+        <span class="n">a</span> <span class="o">=</span> <span class="n">p</span> <span class="o">*</span> <span class="n">a</span> <span class="c1">#choose some p &lt; 1, so that a is reduced</span>
+    <span class="k">return</span> <span class="n">a</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1>Skinning</h1>
+<p>Note that tetrahedral mesh for the simulation is much more computation expensive. We cannot use a very fine mesh for the simulation. Instead, we will use a "skinning" triangle mesh.</p>
+<p>We start with the precondition that each vertex of the skinning mesh will be contained in the simulation mesh. Then, note that for each vertex in the skinning mesh, it is within some tetrahedron, which we can map it to the 4 vertices with barycentric coordinates. For example, for triangle $X_A, X_B, X_C$ in the reference space, its position in the reformed space is 
+$$\begin{pmatrix}x(X_A)\\x(X_B)\\x(X_C)\end{pmatrix} = 
+\begin{pmatrix}
+\phi_0(X_A)I &amp;\phi_1(X_A)I &amp;\phi_2(X_A)I &amp;\phi_3(X_A)I \\
+\phi_0(X_B)I &amp;\phi_1(X_B)I &amp;\phi_2(X_B)I &amp;\phi_3(X_B)I \\
+\phi_0(X_C)I &amp;\phi_1(X_C)I &amp;\phi_2(X_C)I &amp;\phi_3(X_C)I 
+\end{pmatrix}\begin{pmatrix}x_0\\x_1\\x_2\\x_3\end{pmatrix}
+$$
+With the generalized coordinates $q$, we can then construct the skinning weights $W$ or dimension $\|V_{\text{skin}} \|\times \|V_{\text{sim}}|$ so that $\mathbf x_{\text{surface}} = W \mathbf q$</p>
+
+</div>
+</div>
+</div>
  
 
