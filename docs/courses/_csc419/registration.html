@@ -141,7 +141,7 @@ R^* &amp;= \arg\min_{R} \| R\bar X^T - \bar P^T\|^2_F\\
 <p>Using SVD, we can have $\bar P^T\bar X = U\Sigma V^T$, so that with permutation property of F-norm again
 $$R^* = \arg\max_R\langle R, U\Sigma V^T\rangle =  \arg\max_R\langle U^TRV, \Sigma\rangle$$
 Let $\Omega = U^TRV$ with $\det \Omega = \det UV^T$, since $U,V$ are orthonormal, $\Omega^T = \Omega^{-1}$. This implies that $R^* = U\Omega^*V^T$, where
-$$\Omega^* = \underset{{\Omega\in O(3), \det\Omega = \det UV^T}}{\arg\max} \langle \Omega, \Sigma\rangle_F$$
+$$\Omega^* = \underset{ {\Omega\in O(3), \det\Omega = \det UV^T} }{\arg\max} \langle \Omega, \Sigma\rangle_F$$
 so that $\det R^* = 1$.</p>
 <p>Because $\Omega$ is orthonormal, each col and row must have unit norm. Placing a non-zero on the off-diagonal will get "killed" when multiplied by the corresponding zero in $\Sigma$. So the optimal choice is to set all values 0, except the diagonal. The best choice is 
 $$\Omega^* = \begin{bmatrix}1&amp;0&amp;0\\0&amp;1&amp;0\\0&amp;0&amp;\det UV^T\end{bmatrix}$$
