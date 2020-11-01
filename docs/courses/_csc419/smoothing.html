@@ -90,7 +90,7 @@ where $$L_{ij} = \int_S \nabla \varphi_i\nabla\varphi_j dA$$</p>
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>By defining $\varphi_i$ as piecewise-linear hat functions, the values in the system matrix $L_{ij}$ is uniquely determined by the geometry of the underlying mesh, known as cotangent weights.</p>
 <p>First note that $\nabla\varphi_i$ are constant on each triangle, and only nonzero on triangles incident on node $i$, for such trianlge $T_\alpha$, $\nabla {\varphi_i}$ points perpendicularly from the opposite edge $e_i$ with inverse magnitude equal to the height $h$ of the triangle treating that opposite edge as base, 
-$$\nabla \varphi_i\| = h^{-1} = \frac{\|e_i\|}{2A}$$
+$$\|\nabla \varphi_i\| = h^{-1} = \frac{\|e_i\|}{2A}$$
 Now for neighboring nodes $i,j$ connected by edge $e_{ij}$. Then $\nabla \varphi_i$ points toward node $i$ perpendicular to $e_i$ the same for $\nabla \varphi_j$. Hence, call the angle formed between these two vectors $\theta$, then 
 $$\nabla\varphi_i \cdot\nabla\varphi_j = \|\nabla\varphi_i\|\|\nabla\varphi_j\|\cos\theta = \frac{\|e_j\|}{2A}\frac{\|e_i\|}{2A}\cos\theta$$
 call $a_ij = \pi-\theta$ the angle between $e_i$ and $e_j$, then 
