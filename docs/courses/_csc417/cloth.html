@@ -137,9 +137,9 @@ $$K = =  -\sum h\cdot\text{area}_j E_j^T
 <p>Then, the problem is left with $\frac{\partial^2 \varphi}{\partial F^2}$, which involves with the SVD.</p>
 <h2>Derivative of SVD</h2>
 <p>For a SVD $A = U\Sigma V^T$, we can parameterized by $A$ as $U(A)\Sigma(A)V(A)^T$, hence the derivative w.r.t to entries of $A$ can be written as 
-$$\frac{\partial}{\partial A_{ij}}U\Sigma V^T =\frac{\partial U}{\partial A_{ij}} \Sigma V^T U\frac{\partial\Sigma}{\partial A_{ij}}V^T + U\Sigma \frac{\partial V^T}{\partial A_{ij}}$$</p>
+$$\frac{\partial}{\partial A_{ij}}U\Sigma V^T =\frac{\partial U}{\partial A_{ij}} \Sigma V^T U\frac{\partial\Sigma}{\partial A_{ij}}V^T + U\Sigma \frac{\partial V}{\partial A_{ij}}^T$$</p>
 <p>Therefore, we can compute $\frac{\partial^2 \varphi}{\partial F^2}$ for each entry as
-$$\frac{\partial}{\partial F_{ij}}\frac{\partial \varphi}{\partial F} =\frac{\partial U}{\partial F_{ij}} \Delta\Sigma V^T U\cdot diag(\Delta \sigma_{ij})\cdot V^T + U\Delta\Sigma \frac{\partial V^T}{\partial F_{ij}}$$
+$$\frac{\partial}{\partial F_{ij}}\frac{\partial \varphi}{\partial F} =\frac{\partial U}{\partial F_{ij}} \Delta\Sigma V^T  + U\cdot diag(\Delta \sigma_{ij})\cdot V^T + U\Delta\Sigma \frac{\partial V}{\partial F_{ij}}^T$$
 where 
 $$\Delta \Sigma =  diag(\frac{\partial\varphi}{\partial\sigma_0}, \frac{\partial\varphi}{\partial\sigma_1}, \frac{\partial\varphi}{\partial\sigma_2})$$
 $$\Delta\sigma_{ij} = \begin{pmatrix}
