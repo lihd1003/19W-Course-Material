@@ -268,43 +268,10 @@ Then, let $Neighbor \in\mathbb R^{k\times 3}$ be stacked vertices, construct $P 
 $$w = a_1u+a_2v + a_3u^2 + a_4uv +a_5v^2$$
 We have $k$ sets of equations, and we can fits for the 5 parameters $a_i$. </li>
 <li>The shape operator can be constructed as the product of the second and first fundamental form matrices
-$$S = -\begin{bmatrix}e&amp;f\\f&amp;g\end{bmatrix}\begin{bmatrix}E&amp;F\\F&amp;g\end{bmatrix}^{-1}$$
-The entries categorize the strech and bending in each direction</li>
-</ol>
-<table>
-<thead><tr>
-<th>variable</th>
-<th>value</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>E</td>
-<td>$$1 + a_1^2$$</td>
-</tr>
-<tr>
-<td>F</td>
-<td>$$a_1a_2$$</td>
-</tr>
-<tr>
-<td>G</td>
-<td>$$1 + a_2^2$$</td>
-</tr>
-<tr>
-<td>e</td>
-<td>$$\frac{2a_3}{\sqrt{a_1^2 + 1 + a_2^2}}$$</td>
-</tr>
-<tr>
-<td>f</td>
-<td>$$\frac{a_4}{\sqrt{a_1^2 + 1 + a_2^2}}$$</td>
-</tr>
-<tr>
-<td>g</td>
-<td>$$\frac{2a_5}{\sqrt{a_1^2 + 1 + a_2^2}}$$</td>
-</tr>
-</tbody>
-</table>
-<ol>
+$$S = -\begin{bmatrix}e&amp;f\\f&amp;g\end{bmatrix}\begin{bmatrix}E&amp;F\\F&amp;G\end{bmatrix}^{-1}$$
+The entries categorize the strech and bending in each direction
+$$E = 1 + a_1^2;\quad F = a_1a_2;\quad G=1 + a_2^2$$ 
+$$e =\frac{2a_3}{\sqrt{a_1^2 + 1 + a_2^2}};\quad f = \frac{a_4}{\sqrt{a_1^2 + 1 + a_2^2}};\quad g = \frac{2a_5}{\sqrt{a_1^2 + 1 + a_2^2}}$$ </li>
 <li>Eigen decomposition of $S$ gives $k_1, k_2$ and the principal directions (in PCA basis)</li>
 <li>Lieft the principal tangent directions back to world $\mathbb R^3$. </li>
 </ol>
