@@ -1,0 +1,166 @@
+---
+title: Rotation Matrix Time Derivatives
+order: 55
+---
+
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">IPython.display</span> <span class="kn">import</span> <span class="n">display</span><span class="p">,</span> <span class="n">IFrame</span><span class="p">,</span> <span class="n">HTML</span>
+<span class="kn">from</span> <span class="nn">assets.rotation_plot</span> <span class="kn">import</span> <span class="n">plot</span>
+</pre></div>
+
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1>Problem Setup</h1>
+<p>For a point $x_0 \in\mathbb R^4$, the rotation is a transformation defined as 
+$$x(\Delta t) = R(\Delta t) x_0$$
+where $R(\Delta t) \in SO(3)$.</p>
+<p>Then, through the transformation through time $t$ will create a trajectory. We come up with the velocity of $x$ as 
+$$\dot x (\Delta t) = \dot R(\Delta t) x_0$$
+So that the velocity is the time derivative of the rotation matrix.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1>Angular Velocity</h1>
+<p>Without loss of generality, assume $x$ is rotated along the rotation with the axis of rotation $\vec a\in\mathbb R^3$. Therefore, $x$ is travel in a circle.<br>
+Let $\dot\theta$ be the change in angle.<br>
+Let $v: \mathbb R\rightarrow \mathbb R^3$ be the velocity of $x$, decompose $v(t) = a(t)d(t)$ where $a$ is the magnitude and $d$ is the direction.</p>
+<p>Since we are rotating around $\vec a$, i.e. the plane that contains the circle is orthogonal to $\vec a$. Hence $d\perp \vec a$.<br>
+In addition, a rotation is orthogonal matrix so that $v\perp x$, since $\vec a,v,x$ are mutually orthogonal, we can uniquely determine $d$ from 
+$$d = \frac{\vec a \times x}{\|x\|}$$</p>
+<p>Then, consider the magnitude $a$, let $y = x + \Delta tv$. The angle formed by $y$ and $x$ is $\dot\theta \Delta t$. So that we can have 
+$$a\Delta t = \|x\|\tan(\dot\theta) = \|x\|\frac{\sin(\dot\theta\Delta t)}{\cos(\dot\theta\Delta t)}$$
+Therefore, we can have 
+$$\lim_{\Delta t\rightarrow 0} \|x\|\frac{\sin(\dot\theta\Delta t)}{\cos(\dot\theta\Delta t)} = \|x\|\frac{\dot\theta\Delta t}{1} = \|x\|\dot\theta\Delta t$$
+so that 
+$$a = \|x\|\dot\theta$$
+and then
+$$v = ad=\dot\theta\|x\|\frac{\vec a\times x}{\|x\|} = (\dot\theta \vec a) \times x = \omega \times x$$
+Therefore, we obtain the angular velocity $\omega$, which includes the velocity of angle and the rotation direction.</p>
+
+</div>
+</div>
+</div>
+
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">output_file</span> <span class="o">=</span> <span class="s2">&quot;./assets/rotation.html&quot;</span>
+<span class="n">plot</span><span class="p">(</span><span class="n">output_file</span><span class="p">)</span>
+<span class="n">display</span><span class="p">(</span><span class="n">IFrame</span><span class="p">(</span><span class="n">output_file</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="mi">480</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="s2">&quot;100%&quot;</span><span class="p">))</span>
+</pre></div>
+
+
+<div class="output_wrapper">
+
+<div class="output_area">
+
+
+<div class="output_html rendered_html output_subarea ">
+
+        <iframe
+            width="100%"
+            height="480"
+            src="./assets/rotation.html"
+            frameborder="0"
+            allowfullscreen
+        ></iframe>
+        
+</div>
+
+</div>
+
+</div>
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1>Rotation Matrix</h1>
+<p>Since cross product can be written into cross matrix form as matrix multiplication, $v=\omega\times x $ can then be understood as 
+$$\frac{dx}{dt} = [\omega]_\times x$$
+which is a linear ODE, and has analytical solution
+$$x(t) = \exp([\omega]_\times t) x$$
+where $\exp(M)$ is the matrix exponential.</p>
+<h2>Matrix Exponential</h2>
+<p>For an invertible matrix $A\in\mathbb R^{n\times n}$. the matrix exponential $\exp(A)$ is given as 
+$$\exp(A) = V\begin{bmatrix}e^{\lambda_1}&amp;\cdots&amp;0\\\vdots&amp;\ddots&amp;\vdots\\0&amp;\cdots&amp;e^{\lambda_n}\end{bmatrix}V^{-1}$$
+Where $A=V\Lambda A^{-1}$ is the Eigen decomposition. However, as we did the decomposition, it is not very efficient.</p>
+<p>For our problem, since $[\omega]_{\times}$ is a cross product matrix, hence $3\times 3$ skew-symmetric, we can use <strong>Rodrigues' Rotation Formula</strong>. First, we can break $\omega t$ into the axis of rotation and angle of rotation, as $\vec a$ and $\theta$
+$$\omega t = \frac{\omega}{\|\omega\|}{\|\omega\|t} = \vec a \theta$$
+then Rodrigues' Rotation Formula gives 
+$$R(t) = I + \sin(\theta)[\vec a]_\times + (1-\cos(\theta)) {[\vec a]_\times}^2$$</p>
+<h2>Relationship between $R$ and $\omega$</h2>
+<p>Note that we have $\dot x(t) = \dot R(t)x_0$ and the equation above gives $\dot x(t) = [\omega]_\times x$, therefore, we have found the relation that 
+$$\dot R = [\omega]_\times$$</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1>General Equation</h1>
+<p>Consider the explicit equation with a fixed $t_0$
+$$x(t_0+\Delta t) = \Delta R(\Delta t) R(t_0)x_0$$
+and its time derivative is 
+$$v = \frac{dx}{d\Delta t} = \Delta \dot R(\Delta t) R(t_0)x_0$$
+Note that from the derivations above, since $R(t_0)x_0$ is a fixed point, $v$ is just the time derivative of rotation at time $t_0$ so that 
+$$v = [\omega]_\times Rx_0$$
+Another form of this equation is
+\begin{align*}
+v &amp;= \omega \times Rx_0\\
+&amp;= -(Rx_0)\times \omega\\
+&amp;= R{[x_0]_\times}^TR^T \omega
+\end{align*}
+then this form gives that $v$ is linear in $\omega$.</p>
+
+</div>
+</div>
+</div>
+
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># %load ./assets/rotation_plot.py</span>
+<span class="c1"># The code for plotting the illustraions </span>
+
+
+<span class="kn">import</span> <span class="nn">plotly.express</span> <span class="k">as</span> <span class="nn">px</span>
+<span class="kn">import</span> <span class="nn">plotly.graph_objects</span> <span class="k">as</span> <span class="nn">go</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="k">def</span> <span class="nf">rodrigues</span><span class="p">(</span><span class="n">k</span><span class="p">,</span> <span class="n">v</span><span class="p">,</span> <span class="n">theta</span><span class="p">):</span>
+    <span class="n">k</span> <span class="o">/=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">k</span><span class="p">)</span>
+    <span class="n">cross</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">cross</span><span class="p">(</span><span class="n">k</span><span class="p">,</span> <span class="n">v</span><span class="p">)</span>
+    <span class="n">cos</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">theta</span><span class="p">)[:,</span> <span class="kc">None</span><span class="p">]</span>
+    <span class="n">sin</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">theta</span><span class="p">)[:,</span> <span class="kc">None</span><span class="p">]</span>
+    <span class="n">dot</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">k</span><span class="p">,</span> <span class="n">v</span><span class="p">)</span>
+    <span class="n">v_p</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">tile</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">theta</span><span class="p">),</span> <span class="mi">1</span><span class="p">))</span>
+    <span class="n">k_p</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">tile</span><span class="p">(</span><span class="n">k</span><span class="p">,</span> <span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">theta</span><span class="p">),</span> <span class="mi">1</span><span class="p">))</span>
+    <span class="k">return</span> <span class="n">v_p</span> <span class="o">*</span> <span class="n">cos</span> <span class="o">+</span> <span class="n">sin</span> <span class="o">*</span> <span class="n">cross</span>  <span class="o">+</span>  <span class="n">dot</span> <span class="o">*</span> <span class="n">k_p</span> <span class="o">*</span> <span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">cos</span><span class="p">)</span>
+    
+<span class="k">def</span> <span class="nf">plot</span><span class="p">(</span><span class="n">output_file</span><span class="p">):</span>
+    <span class="n">axis</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">random</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+    <span class="n">axis</span> <span class="o">/=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">axis</span><span class="p">)</span>
+    <span class="n">vector</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">random</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+    <span class="n">angle</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span> <span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span>
+    <span class="n">dt</span> <span class="o">=</span> <span class="mf">0.2</span>
+    <span class="n">points</span> <span class="o">=</span> <span class="n">rodrigues</span><span class="p">(</span><span class="n">axis</span><span class="p">,</span> <span class="n">vector</span><span class="p">,</span> <span class="n">angle</span><span class="p">)</span>
+    <span class="n">alpha</span> <span class="o">=</span> <span class="n">vector</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">axis</span><span class="p">)</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">axis</span><span class="p">)</span> <span class="o">*</span> <span class="n">axis</span> 
+    <span class="n">d</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">cross</span><span class="p">(</span><span class="n">axis</span><span class="p">,</span> <span class="n">vector</span><span class="p">)</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">vector</span><span class="p">)</span>
+    <span class="n">derivative</span> <span class="o">=</span> <span class="n">vector</span> <span class="o">+</span> <span class="n">dt</span> <span class="o">*</span> <span class="n">d</span>
+
+    <span class="n">trajectory</span> <span class="o">=</span> <span class="n">go</span><span class="o">.</span><span class="n">Scatter3d</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">points</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">y</span><span class="o">=</span><span class="n">points</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">z</span><span class="o">=</span><span class="n">points</span><span class="p">[:,</span> <span class="mi">2</span><span class="p">],</span> 
+                              <span class="n">mode</span><span class="o">=</span><span class="s2">&quot;lines&quot;</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;x trajectory&quot;</span><span class="p">)</span>
+    <span class="n">plot_axis</span> <span class="o">=</span> <span class="n">go</span><span class="o">.</span><span class="n">Scatter3d</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="n">axis</span><span class="p">[</span><span class="mi">0</span><span class="p">]],</span><span class="n">y</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="n">axis</span><span class="p">[</span><span class="mi">1</span><span class="p">]],</span><span class="n">z</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="n">axis</span><span class="p">[</span><span class="mi">2</span><span class="p">]],</span> 
+                             <span class="n">name</span><span class="o">=</span><span class="s2">&quot;a_vec&quot;</span><span class="p">)</span>
+    <span class="n">plot_vector</span> <span class="o">=</span> <span class="n">go</span><span class="o">.</span><span class="n">Scatter3d</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="n">vector</span><span class="p">[</span><span class="mi">0</span><span class="p">]],</span><span class="n">y</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="n">vector</span><span class="p">[</span><span class="mi">1</span><span class="p">]],</span><span class="n">z</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="n">vector</span><span class="p">[</span><span class="mi">2</span><span class="p">]],</span> 
+                               <span class="n">name</span><span class="o">=</span><span class="s2">&quot;x&quot;</span><span class="p">)</span>
+    <span class="n">plot_normal</span> <span class="o">=</span> <span class="n">go</span><span class="o">.</span><span class="n">Scatter3d</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="p">[</span><span class="n">alpha</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">vector</span><span class="p">[</span><span class="mi">0</span><span class="p">]],</span> <span class="n">y</span><span class="o">=</span><span class="p">[</span><span class="n">alpha</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">vector</span><span class="p">[</span><span class="mi">1</span><span class="p">]],</span> <span class="n">z</span><span class="o">=</span><span class="p">[</span><span class="n">alpha</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">vector</span><span class="p">[</span><span class="mi">2</span><span class="p">]],</span> 
+                               <span class="n">name</span><span class="o">=</span><span class="s2">&quot;trajectory normal&quot;</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s2">&quot;lines&quot;</span><span class="p">,</span> <span class="n">line</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">dash</span><span class="o">=</span><span class="s2">&quot;dot&quot;</span><span class="p">))</span>
+    <span class="n">plot_y</span> <span class="o">=</span> <span class="n">go</span><span class="o">.</span><span class="n">Scatter3d</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="p">[</span><span class="n">vector</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">derivative</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="mi">0</span><span class="p">],</span> <span class="n">y</span><span class="o">=</span><span class="p">[</span><span class="n">vector</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">derivative</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="mi">0</span><span class="p">],</span> <span class="n">z</span><span class="o">=</span><span class="p">[</span><span class="n">vector</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">derivative</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="mi">0</span><span class="p">],</span> 
+                          <span class="n">name</span><span class="o">=</span><span class="s2">&quot;y&quot;</span><span class="p">)</span>
+    <span class="n">fig</span> <span class="o">=</span> <span class="n">go</span><span class="o">.</span><span class="n">Figure</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="p">[</span><span class="n">trajectory</span><span class="p">,</span> <span class="n">plot_axis</span><span class="p">,</span> <span class="n">plot_vector</span><span class="p">,</span> <span class="n">plot_normal</span><span class="p">,</span> <span class="n">plot_y</span><span class="p">])</span>
+    <span class="n">fig</span><span class="o">.</span><span class="n">update_layout</span><span class="p">(</span><span class="n">margin</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">l</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">r</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">b</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">t</span><span class="o">=</span><span class="mi">0</span><span class="p">),</span> 
+                      <span class="n">scene_aspectmode</span><span class="o">=</span><span class="s1">&#39;cube&#39;</span><span class="p">,</span>
+                      <span class="n">legend</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="mi">0</span><span class="p">))</span>
+    <span class="n">fig</span><span class="o">.</span><span class="n">write_html</span><span class="p">(</span><span class="n">output_file</span><span class="p">,</span> <span class="n">full_html</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">auto_open</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">include_plotlyjs</span><span class="o">=</span><span class="s2">&quot;cdn&quot;</span><span class="p">,</span> <span class="n">auto_play</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</pre></div>
+
+
+ 
+

@@ -1,0 +1,240 @@
+---
+title: Rigid Body Simulation
+order: 50
+---
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1>Rigid Body</h1>
+<h2>Defining the Transformation</h2>
+<p>Reviewing cloth simulation and deformable objects, we simulate a deformation from reference $X$ to world space $x$ as 
+$$\Delta x\approx \underset{F}{\frac{\partial x}{\partial X}}\Delta X$$
+so that we can have the strain 
+\begin{align*}
+\Delta x^T\Delta x - \Delta X^T\Delta X &amp;= \Delta X F^TF\Delta X - \Delta X^T\Delta X\\
+&amp;= \Delta X^T(F^TF-I)\Delta X
+\end{align*}
+where $F^TF-I$ is the Green Lagrange Strain.</p>
+<p>For a rigid object, the object cannot be deformed so that $F^TF-I = 0\Rightarrow F^TF=I\Rightarrow F\in O(3)$, i.e. $F$ is an orthogonal matrix.<br>
+For common 3D transformations, rotation matrices and reflection matrices are both orthogonal. However, reflection will have the object's topology passing through itself, which is not rigid.</p>
+<p>Therefore, we limit $F\in SO(3)$, i.e. rigid bodies can only rotate, and $SO(3)$ is called the special orthogonal Group, 
+$$\forall R\in SO(3). R^T = R^{-1}\land \det(R) &gt; 0$$. 
+In addition, rigid bodies can translate. Therefore, we have the rigid transformation from reference to world space as 
+$$\mathbf x(\mathbf X, t) = R(t)\mathbf X + \mathbf p(t)$$
+$\mathbf x, \mathbf X \in \mathbb R^3$, $R\in SO(3)$ is the rotation and $\mathbf p\in \mathbb R^3$ is the translation (often written in $\mathbf t$ but we don't want this to be confused with time $t$).</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2>Generalized Coordinates</h2>
+<p>Consider the mapping 
+$$\mathbf x(\mathbf X, t) = R(t)\mathbf X + \mathbf p(t)$$
+clearly, only $R, \mathbf p$ is about time, so that our generalized coordinates is 
+$$\mathbf q = \{R, \mathbf p\}$$
+Note that $\mathbf q$ is a set instead of a unified stacked vector.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2>Generalized Velocity</h2>
+<p>Consider the time derivative of the transformation on a single point
+\begin{align*}
+\mathbf v(\mathbf X,t ) &amp;= \dot{\mathbf x}(\mathbf X, t) \\
+&amp;= \frac{d}{dt}R(t)\mathbf X + \frac{d}{dt}\mathbf p(t)\\
+&amp;= \dot{R(t)}\mathbf X + \dot{\mathbf p(t)}
+\end{align*}
+$\dot{\mathbf p(t)}$ is called the <strong>linear velocity</strong> since it's just the velocity of the origin of the object moves,<br>
+$\dot{R(t)}$ is the <strong>time derivative of rotation matrix</strong>, and it's more complex, we can represent it with 
+$$\dot{R(t)} = R{[X]_{\times}}^TR^T\omega$$
+where $[\cdot]_\times$ is the cross product matrix, 
+$$X\in\mathbb R^3. [X]_{\times} = \begin{bmatrix}0&amp;-X_z&amp; X_y\\X_z&amp;0&amp;-X_z\\-X_y&amp;X_x&amp;0\end{bmatrix}, a\times b = [a]_\times b$$
+$\omega\in\mathbb R^3$ is the <strong>angular velocity</strong>, $\|\omega\|$ (magnitude) encodes the speed or rotation and angle encodes the axis of rotation.</p>
+\begin{align*}
+\mathbf v(\mathbf X,t ) &amp;= \dot{R(t)}\mathbf X + \dot{\mathbf p(t)}\\
+&amp;= R{[X]_{\times}}^TR^T\omega + \dot{\mathbf p(t)}\\
+&amp;= R \begin{bmatrix}{[X]_{\times}}^T&amp;I\end{bmatrix}\begin{bmatrix}R^T&amp;0\\0&amp;R^T\end{bmatrix}\begin{bmatrix}\omega\\\dot{\mathbf p}\end{bmatrix}\\
+&amp;= R \begin{bmatrix}{[X]_{\times}}^T&amp;I\end{bmatrix}A\dot{\mathbf q}
+\end{align*}<p>Since $R, \mathbf X$ is constant about $t$, we can define our generalized velocity $\dot{\mathbf q}\in\mathbb R^6 = [\omega, \dot{\mathbf p}]^T$. and we define $A = \begin{bmatrix}R^T&amp;0\\0&amp;R^T\end{bmatrix}$ to simplify the expression.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1>Kinetic Energy</h1>
+<p>As usual, we can find kinetic energy as
+\begin{align*}
+\frac12\int_\Omega\rho\|\mathbf v(\mathbf X )\|_2^2 d\Omega &amp;= \frac12\int_\Omega \rho \mathbf v^T\mathbf v d\Omega\\
+&amp;= \frac12\dot{\mathbf q}^TA^T \big(\rho\int_\Omega 
+\begin{bmatrix}[\mathbf X]_\times {[\mathbf X]_\times}^T &amp;[\mathbf X]_\times \\ [\mathbf X]_\times&amp;I\end{bmatrix}
+d\Omega\big)A\dot{\mathbf q}\\
+&amp;= \frac12\dot{\mathbf q}^TM\dot{\mathbf q}
+\end{align*}
+where $M$ is the mass matrix, $M = A^T \big(M_0\big)A$ and $M_0 \in \mathbb R^{6\times 6}$ is a constant matrix integrating over the whole volume.</p>
+<h2>Center of Mass</h2>
+<p>The center of mass is defined as the weighted average of points of the volume,
+$$\mathbf C = \frac1m \int_\Omega\rho\mathbf X d\Omega, m = \int_\Omega \rho d\Omega$$
+With the center of Mass, we can transfer our reference space to the center-of-mass coordinates system
+$$\bar{\mathbf X} = \mathbf X - \mathbf C$$
+This is convenient for the computation of $M_0$, 
+$$M_0 =\rho\int_\Omega \begin{bmatrix}[\mathbf X]_\times {[\mathbf X]_\times}^T &amp;[\mathbf X]_\times \\ [\mathbf X]_\times&amp;I\end{bmatrix}
+d\Omega  = \rho\int_\Omega 
+\begin{bmatrix}[\bar{\mathbf X}]_\times {[\bar{\mathbf X}]_\times}^T &amp;[\bar{\mathbf X}]_\times \\ [\bar{\mathbf X}]_\times&amp;I\end{bmatrix}
+d\Omega$$
+Consider the off-diagonal entries, 
+\begin{align*}
+\int_\Omega [\bar{\mathbf X}]_\times d\Omega &amp;= \int_\Omega [\mathbf X -\mathbf C]_\times d\Omega\\
+&amp;= \int_\Omega [\mathbf X]_\times d\Omega - \int_\Omega [\mathbf C]_\times d\Omega\\
+&amp;= \int_\Omega [\mathbf X]_\times d\Omega - \int_\Omega 1d\Omega \cdot [\mathbf C]_\times\\
+&amp;= 0
+\end{align*}
+So that we only need to compute the diagonal</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2>Surface Integral via Divergence Theorem</h2>
+<p>Note that $M_0$ is an integral over the volume, naturally, we can use tetrahedral mesh so that we can do this integral. However, a more efficient method will use only the surface mesh.</p>
+<p>Divergence Theorem states that 
+$$\int_V \nabla \mathbf f (\mathbf X) dV = \int_A \mathbf f(\mathbf X) \cdot \mathbf ndA$$
+so that we can turn a volume integral to a surface integral 
+Therefore, consider the entries of $M_0$
+\begin{align*}
+M_0 &amp;= \rho \int_\Omega 
+\begin{bmatrix}[\bar{\mathbf X}]_\times {[\bar{\mathbf X}]_\times}^T &amp;0\\0&amp;I\end{bmatrix}d\Omega \\
+ [\bar{\mathbf X}]_\times {[\bar{\mathbf X}]_\times}^T &amp;= 
+\begin{bmatrix}
+\bar{X_y}^2 + \bar{X_z}^2 &amp; -\bar{X_x}\bar{X_y}&amp;-\bar{X_x}\bar{X_z} \\
+-\bar{X_x}\bar{X_y} &amp;\bar{X_x}^2 + \bar{X_z}^2&amp;-\bar{X_y}\bar{X_z}\\
+-\bar{X_x}\bar{X_z}&amp;-\bar{X_y}\bar{X_z}&amp;\bar{X_x}^2 + \bar{X_y}^2\end{bmatrix}
+\end{align*}
+$\mathcal I$ is called the inertia matrix and we can integrate $M_0$ over each entry.</p>
+<p>Since each entry is simple enough, we can pick some integral of it and then apply divergence theorem. 
+For example
+\begin{align*}
+\int_\Omega \bar{X_y}^2 + \bar{X_z}^2d\Omega &amp;= \int_T\frac13\begin{pmatrix}0\\\bar{X_y}^3\\\bar{X_z}^3\end{pmatrix}\cdot \mathbf N dT \\
+\int_\Omega \bar{X_y}\bar{X_z}d\Omega &amp;= \int_T\begin{pmatrix}\bar{X_x}\bar{X_y}\bar{X_z}\\0\\0\end{pmatrix}\cdot \mathbf N dT \\
+\int_\Omega 1d\Omega &amp;= \int_T\frac13\begin{pmatrix}\bar{X_x}\\\bar{X_y}\\\bar{X_z}\end{pmatrix}\cdot \mathbf N dT 
+\end{align*}
+Then, because we are using triangle meshes, we can integrate over $T$ through the barycentric coordinates via
+$$\bar{\mathbf X} = \bar{\mathbf X}_0 \phi_0 + \bar{\mathbf X}_1 \phi_1+\bar{\mathbf X}_2 \phi_2$$
+Then, define $h: (\phi_0, \phi_1, \phi_2)\rightarrow \mathbb R$ and integrate as 
+$$2\text{Area}\int_0^1\int_0^{1-\phi}h(1-\phi_1-\phi_2, \phi_1, \phi_2)d\phi_2d\phi_1$$</p>
+<p>Therefore, we can obtain 
+$$M_0 =   
+\begin{bmatrix}\rho \int_\Omega[\bar{\mathbf X}]_\times {[\bar{\mathbf X}]_\times}^Td\Omega &amp;0\\0&amp;mI\end{bmatrix} = \begin{bmatrix}\mathcal I&amp;0\\0&amp;mI\end{bmatrix}$$
+where $\mathcal I$ is the <a href="https://en.wikipedia.org/wiki/Inertia">inertia</a> matrix</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2>Final Form of Kinetic Energy</h2>
+<p>Put every thing together 
+\begin{align*}
+T &amp;= \frac12 \dot{\mathbf q}^TA^T M_0 A\dot{\mathbf q}\\
+&amp;= \frac 12\dot{\mathbf q}^T
+\begin{bmatrix}R^T&amp;0\\0&amp;R^T\end{bmatrix}^T
+\begin{bmatrix}\mathcal I&amp;0\\0&amp;mI\end{bmatrix}
+\begin{bmatrix}R^T&amp;0\\0&amp;R^T\end{bmatrix}\dot{\mathbf q} \\
+&amp;= \frac 12\dot{\mathbf q}^T
+\begin{bmatrix}R\mathcal I R^T&amp;0\\0&amp;mI\end{bmatrix}\dot{\mathbf q}
+\end{align*}</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1>Potential Energy</h1>
+<p>Since the object is rigid and cannot deform, 
+$$V = 0$$</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1>Newton-Euler Equations (The Lagrangian)</h1>
+<p>Since $V = 0$, we have $L = T$ so that the Euler-Lagrange Equation gives <strong>Newton-Euler Equations</strong></p>
+<ol>
+<li><strong>Conservation of Angular Momentum</strong>
+$$(R\mathcal I R^T)\dot\omega = \omega \times ((R\mathcal IR^T)\omega) + \tau_{ext}$$
+Where $\dot\omega$ is the angular acceleration, $\tau_{ext}$ is the external torque and $\omega \times ((R\mathcal IR^T)\omega)$ is the quadratic velocity vector</li>
+<li><strong>Conservation of Linear Momentum</strong> 
+$$mI\ddot{\mathbf p} = \mathbf f_{ext}$$
+where $\ddot{\mathbf p}$ is the acceleration and $\mathbf f_{ext}$ is the external force.</li>
+</ol>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2>External Torques and Forces</h2>
+<p>For a force applied to some position $\mathbf x$ as $\mathbf f(\mathbf x)$, this will result in a rotation as well as a translation. Note that 
+$$\mathbf v(\bar{\mathbf X}, t) = R 
+\begin{bmatrix}{[X]_{\times}}^T&amp;I\end{bmatrix}
+\begin{bmatrix}R^T&amp;0\\0&amp;R^T\end{bmatrix}
+\begin{bmatrix}\omega\\\dot{\mathbf p}\end{bmatrix}$$
+Let $J \in\mathbb R^{3\times 6} = R \begin{bmatrix}{[X]_{\times}}^T&amp;I\end{bmatrix}\begin{bmatrix}R^T&amp;0\\0&amp;R^T\end{bmatrix}$ be the rigid body <strong>Jacobian matrix</strong>, which converts the generalized velocity to the velocity on some point
+$$\mathbf v(\bar{\mathbf X}, t) = J \dot{\mathbf q}$$
+Therefore, given $\mathbf x$ in the world space, we first inverse it back to reference space w.r.t. the center-of-mass
+$$\bar{\mathbf X} = R^T(\mathbf x - p)-\mathbf C$$
+and then we can compute $f(\bar{\mathbf X})$ and $J(\bar{\mathbf X})$ so that 
+$$\begin{pmatrix}\tau_{ext}\\\mathbf f_{ext}\end{pmatrix} = J(\bar{\mathbf X})^T\mathbf f(\bar{\mathbf X})$$</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1>Time Integration</h1>
+<p>The NE Equations are 2 second order ODEs, and they are not inter-related. Therefore, we can derive update equations independently.</p>
+<h2>Update on Translation</h2>
+<p>The update for linear momentum is simple. Note that this is just the translation of the center of mass, we can think this as the update of the point mass, the rule is simply 
+\begin{align*}
+m\dot{\mathbf p}^{t+1} &amp;= m\dot{\mathbf p}^t + \Delta t \mathbf f_{ext}\\
+\mathbf p^{t+1} &amp;= \mathbf p^t + \Delta t\dot{\mathbf p}^t
+\end{align*}</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2>Update on Rotation</h2>
+<p>For the angular velocity update, we can simply using the Forward Euler, i.e. approximate 
+$$\dot\omega = \Delta t^{-1}(\omega^{t+1}-\omega^t)$$ 
+so that the update is 
+$$(R\mathcal I R^T)\omega^{t+1} = (R\mathcal I R^T)\omega^t + \Delta t \omega^t\times ((R\mathcal I R^T)\omega^t)+\Delta t\tau^t_{ext}$$</p>
+<p>However, when we update the rotation, we cannot simply use the $x^{t+1} = x^t + \Delta t v^T$, since this will destroy the orthogonality.<br>
+Alternatively, we can view this as solving an <strong>initial value problem</strong>. 
+$$d_t\mathbf x = \mathbf v^t, \mathbf x(t_0) = \mathbf x^t$$</p>
+<p>integrating yields that 
+\begin{align*}
+d_t\mathbf x &amp;= \mathbf v^t\\
+\int_{t0}^{t1}d\mathbf x &amp;= \int_{t0}^{t1}\mathbf v^t dt\\
+\mathbf x(t) &amp;= \mathbf v^t \Delta t + \mathbf x^t
+\end{align*}
+With this, we can view $\mathbf v^t$ as the velocity of rotation around $\mathbf p$ so that 
+\begin{align*}
+\mathbf v^t &amp;= \omega^t \times (R\bar{\mathbf X} - \mathbf p -\mathbf p)\\
+\mathbf y&amp;:= R\bar{\mathbf X}\\
+\mathbf v^t &amp;= d_t\mathbf y = \omega^t\times \mathbf y\\
+\mathbf y(t_0) &amp;= \mathbf y^t
+\mathbf y(t_1) = \exp([\omega]_\times^t\Delta t)\mathbf y(t_0)\\
+R^{t+1} &amp;= \exp([\omega]_\times^t\Delta t)R^t
+\end{align*}</p>
+
+</div>
+</div>
+</div>
+ 
+
