@@ -28,7 +28,7 @@ def convert_course(course, overwrite):
             subprocess.run(bash_command)
 
 parser = argparse.ArgumentParser(description='Convert a course notebook directory to jekyll collection')
-parser.add_argument('--course', type=str,
+parser.add_argument('-c', '--course', type=str,
                     help='The course code')
 parser.add_argument('-o', '--overwrite', action="store_true", help="Whether overwrite the generated notebook")
 
